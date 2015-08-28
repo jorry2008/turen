@@ -1,0 +1,56 @@
+前端图片展示和操作使用widget
+后端图片上传使用action
+图片路径保存使用模型的beforeSave
+
+使用详情如下：
+前端：
+use backend\components\uploadify\UploadifyWidget;
+<?= $form->field($model, 'image')->widget(UploadifyWidget::className(), ['route'=>'catalog/brand/uploadify', 'dir'=>'brand', 'num'=>'1']) ?>
+//'route'=>'catalog/brand/uploadify'//指定上传的路径
+//'dir'=>'brand'//指定上传的目录名
+//'num'=>'1'//限制上传数量
+
+后端：
+在控制器中添加如下代码
+public function actions()
+{
+    return [
+        'uploadify' => [//与前端对应即可
+            'class' => 'backend\components\uploadify\UploadifyAction',
+        ],
+    ];
+}
+
+
+图片路径保存：
+public function beforeSave($insert)
+{
+    if(parent::beforeSave($insert)) {
+        //整理上传的图上路径
+        $images = explode(',', $this->image);
+        if(!empty($images)) {
+            foreach ($images as $key=>$image) {
+                if(empty($image)) {
+                    unset($images[$key]);
+                } else {
+                    $images[$key] = trim($images[$key]);
+                }
+            }
+            $this->image = implode(',', $images);
+        }
+        
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+
+
+
+
+
+
+
+

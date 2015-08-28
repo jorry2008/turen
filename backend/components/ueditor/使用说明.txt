@@ -1,0 +1,30 @@
+详情请见README.md
+
+如下是具体的操作说明：
+前端展示界面使用widget
+后台上传处理使用action
+前端：
+use backend\components\ueditor\UEditorWidget;
+echo $form->field($model, 'desc')->widget(UEditorWidget::className(), [
+    'clientOptions' => [
+        'serverUrl' => yii\helpers\Url::to(['ueditor']),
+    ],
+]);
+
+后端：
+public function actions()
+{
+    return [
+        'ueditor' => [//与上述配置一样即可
+            'class' => 'backend\components\ueditor\UEditorAction',
+        ]
+    ];
+}
+
+
+上传配置：
+config.php
+
+界面展示配置：
+assets/ueditor.config.js
+

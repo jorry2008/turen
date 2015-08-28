@@ -1,0 +1,118 @@
+/* 登录部分 */
+body.login-page {
+    animation: 40s linear 0s normal none infinite running animatedBackground;
+    background-color: #c0deed;
+    background-image: url('../img/bg/cloud.jpg');
+    background-position: 0 0;
+    background-repeat: repeat-x;
+}
+.login-box .login-logo {
+	margin-bottom: 0;
+	background: #3c8dbc;
+    border-radius: 4px 4px 0 0;
+    box-shadow: 0 -3px 0 rgba(0, 0, 0, 0.2) inset;
+    color: #fff;
+    font-size: 26px;
+    font-weight: 300;
+    padding: 20px 10px;
+}
+.login-box .login-box-body {
+	border-radius: 0 0 4px 4px;
+}
+.alert {
+    margin-bottom: 0;
+}
+
+/* 全局部分 */
+.main-footer {
+    padding: 5px;
+}
+.content-header {
+	padding-top: 5px;
+}
+.content-header > .breadcrumb {
+    top: 8px;
+}
+.navbar-nav > .user-menu > .dropdown-menu {
+	width: auto;
+}
+.skin-blue .main-header .navbar .dropdown-menu li a {
+    color: #333;
+}
+.normal_font label, .normal_font .box-title {
+    font-weight: normal;
+}
+#role_box .box-body ul {
+    padding-left: 0;
+}
+#role_box .box-body ul li {
+    list-style-type: none;
+}
+#role_box .box {
+    border-radius: 0;
+    box-shadow: none;
+}
+.nav-tabs-custom > .nav-tabs > li > a {
+    font-weight: bold;
+}
+.filters td .form-control {
+	padding: 0 8px;
+	height: 28px;
+	width: 100%;
+}
+#file_list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+#file_list li {
+	float: left;
+}
+#file_list li a {
+	display: block;
+    text-align: center;
+}
+.tab-content .tab-pane {
+	position: relative;
+}
+#product_nav {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+	position: fixed;
+    top: 200px;
+	right: 50px;
+    margin: 0;
+    padding: 0;
+    z-index: 1000;
+}
+#product_nav ul {
+    list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#product_nav ul li {
+    display: block;
+    margin: 10px;
+}
+.tab-content .mark_ {
+	padding-top: 40px;
+}
+#relative_products .center {
+	text-align: center;
+}
+#relative_products .box-body {
+	overflow: auto;
+}
+span.select2-container--classic .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 35px;
+}
+table.table span.bank {
+	display: inline-block;
+	width: 20px;
+}
+table.table span.name {
+    background: url('../img/subTypeBg.gif') no-repeat scroll 0 0;
+    padding-left: 30px;
+}
+
