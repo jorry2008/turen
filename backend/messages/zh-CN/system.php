@@ -21,7 +21,6 @@ return [
     'Code' => '配置块',
     'Key' => '配置标识',
     'Value' => '配置值',
-    'Serialized' => '序列化',
     'Example:' => '例如：',
     'Save Config Success!' => '保存配置成功！',
     'Are you sure you want to delete this item?' => '你确定要删除选中的项吗？',
@@ -59,7 +58,5 @@ return [
     'Site' => '站点配置',
     'Accepts units B KB MB GB if string,default is KB' => '接受的单位为B KB MB GB，默认是KB',
     'Please choose the parent item!' => '请先选择父项！',
-    'Don\'t change the original correspondence.' => '不要改变它们的对应关系。',
-    'Status' => '状态',
     'Is Array' => '是数组',
 ];

@@ -112,7 +112,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'data-pjax' => '0',
                                         'target' => '_blank',
                                     ];
-                                    return Html::a('<span class="glyphicon ion-map"></span>', $url, $options);
+                                    return Html::a('<span class="ion-map"></span>', $url, $options);
                                 }, 
                                 'new_address' => function ($url, $model, $key) {
                                     $url = ['/customer/customer-address/create', 'customer_id'=>$model->id];//用户id取用户地址
@@ -122,7 +122,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         'data-pjax' => '0',
                                         'target' => '_blank',
                                     ];
-                                    return Html::a('<span class="glyphicon ion-ios-plus"></span>', $url, $options);
+                                    return Html::a('<span class="ion-ios-plus"></span>', $url, $options);
                                 }
                             ],
                         ]

@@ -28,37 +28,39 @@ $this->params['breadcrumbs'][] = $this->title;
            
             <div class="tab-content clearfix">
                 <div class="tab-pane active cms-class-view">
-            <p>
-                <?= Html::a(Yii::t('cms', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('cms', 'Delete'), ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
-                    'data' => [
-                        'confirm' => Yii::t('cms', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ],
-                ]) ?>
-            </p>
-        
-            <?= DetailView::widget([
-                'model' => $model,
-                'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
-                'attributes' => [
-                    'id',
-            'parent_id',
-            'parent_str',
-            'type',
-            'name',
-            'link_url:url',
-            'pic_url:url',
-            'pic_width',
-            'pic_height',
-            'seo_title',
-            'keywords',
-            'description',
-            'order',
-            'status',
-                ],
-            ]) ?>
+		            <p>
+		                <?= Html::a(Yii::t('cms', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+		                <?= Html::a(Yii::t('cms', 'Delete'), ['delete', 'id' => $model->id], [
+		                    'class' => 'btn btn-danger',
+		                    'data' => [
+		                        'confirm' => Yii::t('cms', 'Are you sure you want to delete this item?'),
+		                        'method' => 'post',
+		                    ],
+		                ]) ?>
+		            </p>
+		        
+		            <?= DetailView::widget([
+		                'model' => $model,
+		                'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
+		                'attributes' => [
+		                    'id',
+		                	'type',
+				            'parent_id',
+// 				            'parent_str',
+				            'name',
+		                	'description',
+				            'link_url:url',
+				            'pic_url:url',
+				            'pic_width',
+				            'pic_height',
+		                	
+				            'seo_title',
+				            'keywords',
+				            
+				            'order',
+				            'status',
+		                ],
+		            ]) ?>
                 </div>
             </div>
             

@@ -116,3 +116,6 @@ table.table span.name {
     padding-left: 30px;
 }
 
+.cms-class-index .type {
+	color: #BBB;
+}

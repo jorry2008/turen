@@ -55,19 +55,20 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'attribute' => 'name',
                                 'format' => 'html',
                                 'value' => function($model){
-                                    return $model->name;
+                                	$type = !empty($model->cmsType[$model->type])?$model->cmsType[$model->type]:Yii::t('cms', 'Top Class');
+                                    return $model->name.'<i class="type">['.$type.']</i>';
                                 },
                             ],
 //                             'parent_id',
 //                             'parent_str',
-                            [
-                                'class' => 'yii\grid\DataColumn',
-                                'attribute' => 'type',
-                                //'format' => 'html',
-                                'value' => function($model){
-                                    return !empty($model->cmsType[$model->type])?$model->cmsType[$model->type]:'Unknown Type';
-                                },
-                            ],
+//                             [
+//                                 'class' => 'yii\grid\DataColumn',
+//                                 'attribute' => 'type',
+//                                 //'format' => 'html',
+//                                 'value' => function($model){
+//                                     return !empty($model->cmsType[$model->type])?$model->cmsType[$model->type]:Yii::t('cms', 'Top Class');
+//                                 },
+//                             ],
                             // 'link_url:url',
                             // 'pic_url:url',
                             // 'pic_width',
@@ -75,13 +76,40 @@ $this->params['breadcrumbs'][] = $this->title;
                             // 'seo_title',
                             // 'keywords',
                             // 'description',
-                            'order',
-                            'status',
-                
                             [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => Yii::t('common', 'Opration'),
+	                            'attribute' => 'order',
+	                            'format' => 'raw',
+	                            'value' => function($model){
+	                            	return Html::activeTextInput($model, 'order', ['style'=>'width:50px', 'data-id'=>$model->id]);
+	                            },
+                            ], [
+// 	                            'class' => 'yii\grid\DataColumn',
+	                            'attribute' => 'status',
+	                            'format' => 'html',
+	                            'value' => function($model){
+	                            	$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+	                            	$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+	                            	return $model->status?$on:$off;
+	                            },
                             ],
+                			'updated_at:datetime',
+                            [
+	                            'class' => 'yii\grid\ActionColumn',
+	                            'header' => Yii::t('common', 'Opration'),
+	                            
+	                            'template' => '{add} {view} {update} {delete}',
+	                            'buttons' => [
+                            		'add' => function ($url, $model, $key) {
+                            			$url = ['create', 'id'=>$model->id];
+                            			$options = [
+                            				'title' => Yii::t('cms', 'Add Column'),
+                            				'aria-label' => Yii::t('cms', 'Add New Column'),
+                            				'data-pjax' => '0',
+                            			];
+                            			return Html::a('<span class="ion-ios-plus"></span>', $url, $options);
+                            		},
+	                            ],
+                            ]
                         ],
                     ]); ?>
                                 

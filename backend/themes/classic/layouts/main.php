@@ -50,8 +50,8 @@ $baseUrl = Yii::getAlias('@web');
                     <!-- Navbar Right Menu -->
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
-                        
-                            <!-- Notifications: style can be found in dropdown.less -->
+                        	
+                        	<!-- Notifications: style can be found in dropdown.less -->
                             <li class="dropdown notifications-menu">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
@@ -78,6 +78,12 @@ $baseUrl = Yii::getAlias('@web');
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-comment-o"></i>
                                     <span class="label label-warning">6</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/turen-one/turen" target="_blank">
+                                    <i class="fa fa-github"></i>
+                                    <span class="label label-warning">hot</span>
                                 </a>
                             </li>
                             
@@ -170,6 +176,7 @@ $baseUrl = Yii::getAlias('@web');
                                     ['label' => '<i class="fa fa-map-marker"></i><span>地址批量管理</span>', 'url' => ['/customer/customer-address/index']],
                                 ]
                             ],
+                    		['label' => '<i class="fa fa-leaf"></i><span>土人帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
                     		['label' => '<i class="fa fa-users"></i><span>管理员管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                         		'items' => [
                             		['label' => '<i class="fa fa-user"></i><span>管理员列表</span>', 'url' => ['/user/user/index']],

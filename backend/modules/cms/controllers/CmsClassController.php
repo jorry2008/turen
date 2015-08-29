@@ -61,7 +61,7 @@ class CmsClassController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($id=false)
     {
         $model = new CmsClass();
 
@@ -70,6 +70,7 @@ class CmsClassController extends Controller
         } else {
             return $this->render('create', [
                 'model' => $model,
+            	'id' => $id,
             ]);
         }
     }
@@ -104,6 +105,19 @@ class CmsClassController extends Controller
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
+    }
+    
+    /**
+     * 切换栏目状态
+     * @param int $id
+     * @return \yii\web\Response
+     */
+    public function actionSwitchStauts($id)
+    {
+    	$model = $this->findModel($id);
+    	$model->status = $model->status?0:1;//取反
+    	$model->save(false);
+    	return $this->redirect(['index']);
     }
 
     /**

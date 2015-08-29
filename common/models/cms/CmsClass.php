@@ -4,6 +4,7 @@ namespace common\models\cms;
 
 use Yii;
 use yii\base\Object;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%cms_class}}".
@@ -25,9 +26,11 @@ use yii\base\Object;
  */
 class CmsClass extends \yii\db\ActiveRecord
 {
-    const CMS_TYPE_PAGE = 0;
-    const CMS_TYPE_LIST = 1;
-    const CMS_TYPE_IMG = 2;
+    const CMS_TYPE_PAGE = 1;
+    const CMS_TYPE_LIST = 2;
+    const CMS_TYPE_IMG = 3;
+    const CMS_TYPE_DOWN = 4;
+    const CMS_TYPE_PROD = 5;
     
     public $cmsType = [];
     
@@ -39,10 +42,27 @@ class CmsClass extends \yii\db\ActiveRecord
     public function init()
     {
         $this->cmsType = [
-            '0' => Yii::t('cms', 'Page'),
-            '1' => Yii::t('cms', 'List'),
-            '2' => Yii::t('cms', 'Image'),
+            self::CMS_TYPE_PAGE => Yii::t('cms', 'Page'),
+            self::CMS_TYPE_LIST => Yii::t('cms', 'List'),
+            self::CMS_TYPE_IMG => Yii::t('cms', 'Image'),
+        	self::CMS_TYPE_DOWN => Yii::t('cms', 'Download'),
+        	self::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
         ];
+    }
+    
+    /**
+     * 以行为的方式处理操作时间
+     * @see \yii\base\Component::behaviors()
+     */
+    public function behaviors()
+    {
+    	return [
+    		'timemap' => [
+    			'class' => TimestampBehavior::className(),
+    			'createdAtAttribute' => 'created_at',
+    			'updatedAtAttribute' => 'updated_at'
+    		]
+    	];
     }
     
     /**
@@ -59,7 +79,7 @@ class CmsClass extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'type', 'order', 'status'], 'integer'],
+            [['parent_id', 'type', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['parent_str', 'keywords'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 30],
             [['link_url', 'description'], 'string', 'max' => 255],
@@ -67,7 +87,8 @@ class CmsClass extends \yii\db\ActiveRecord
             [['pic_width', 'pic_height'], 'string', 'max' => 5],
             [['seo_title'], 'string', 'max' => 80],
             
-            [['name','seo_title'], 'required'],
+            [['name'], 'required'],
+        	[['link_url'], 'url'],
         ];
     }
 
@@ -78,19 +99,20 @@ class CmsClass extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cms', 'ID'),
-            'parent_id' => Yii::t('cms', 'Parent ID'),
-            'parent_str' => Yii::t('cms', 'Parent Str'),
-            'type' => Yii::t('cms', 'Type'),
-            'name' => Yii::t('cms', 'Name'),
+            'parent_id' => Yii::t('cms', 'Belong Column'),
+            'type' => Yii::t('cms', 'Column Type'),
+            'name' => Yii::t('cms', 'Column Name'),
             'link_url' => Yii::t('cms', 'Link Url'),
             'pic_url' => Yii::t('cms', 'Pic Url'),
             'pic_width' => Yii::t('cms', 'Pic Width'),
             'pic_height' => Yii::t('cms', 'Pic Height'),
             'seo_title' => Yii::t('cms', 'Seo Title'),
-            'keywords' => Yii::t('cms', 'Keywords'),
-            'description' => Yii::t('cms', 'Description'),
+            'keywords' => Yii::t('cms', 'Column Keywords'),
+            'description' => Yii::t('cms', 'Column Description'),
             'order' => Yii::t('cms', 'Order'),
             'status' => Yii::t('cms', 'Status'),
+        	'created_at' => Yii::t('cms', 'Created At'),
+        	'updated_at' => Yii::t('cms', 'Updated At'),
         ];
     }
     
@@ -125,6 +147,26 @@ class CmsClass extends \yii\db\ActiveRecord
     {
     
     }
+    
+    /**
+     * 删除之前审核
+     * @see \yii\db\BaseActiveRecord::beforeDelete()
+     */
+    public function beforeDelete()
+    {
+		if(parent::beforeDelete()) {
+			//当前分类下有没有子分类
+			fb($this->id);
+			exit;
+			
+			//当前分类下，有子分类，有没有内容
+			
+			
+			return true;
+		} else {
+			return false;
+		}
+	}
     
     public function afterDelete()
     {

@@ -20,7 +20,6 @@ return [
     'ID' => 'ID',
     'Home' => '首页',
     'Online' => '在线',
-    'yijitao' => '易极淘',
     'Are you sure you want to delete this item?' => '您确定要删除选中项吗？',
     'Click' => '单击进入',
     'Create' => '添加',
@@ -50,4 +49,7 @@ return [
     'Please check your upload file or file name!' => '请检查您上传的文件或者文件名！',
     'Failed to create the images directory!' => '创建图片路径不成功！',
     'Blank' => '未找到',
+	'No' => 'No',
+	'Yes' => 'Yes',
+	'turen' => '土人',
 ];

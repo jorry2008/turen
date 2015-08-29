@@ -18,6 +18,11 @@ if($model->isNewRecord) {
     $model->order = 10;
 }
 
+//指定了父级栏目
+if(isset($id) && $id !== false) {
+	$model->parent_id = $id;
+}
+
 $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Class')], ArrayHelper::map(General::recursiveObj(CmsClass::find()->orderBy(['order'=>SORT_ASC])->all()), 'id', 'name'));
 ?>
 
@@ -26,16 +31,16 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Class')], ArrayHelper::
     <div class="col-md-12 col-lg-6">
         <?php $form = ActiveForm::begin(); ?>
         
-        <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>
-
-        <?php //echo $form->field($model, 'parent_str')->textInput(['maxlength' => true]) ?>
-    
         <?= $form->field($model, 'type')->dropDownList((new CmsClass)->cmsType) ?>
-    
+        
+        <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>
+		
+        <?php //echo $form->field($model, 'parent_str')->textInput(['maxlength' => true]) ?>
+    	
         <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
         
-        <?= $form->field($model, 'seo_title')->textInput(['maxlength' => true]) ?>
-    
+        <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+        
         <?= $form->field($model, 'link_url')->textInput(['maxlength' => true]) ?>
     
         <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
@@ -45,8 +50,8 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Class')], ArrayHelper::
         <?= $form->field($model, 'pic_height')->textInput(['maxlength' => true]) ?>
     
         <?= $form->field($model, 'keywords')->textInput(['maxlength' => true]) ?>
-    
-        <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+        
+        <?= $form->field($model, 'seo_title')->textInput(['maxlength' => true]) ?>
     
         <?= $form->field($model, 'order')->input('number') ?>
     
