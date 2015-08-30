@@ -176,7 +176,7 @@ class CmsClass extends \yii\db\ActiveRecord
     			}
     		} else {//更新
     			if($this->type == self::CMS_TYPE_PAGE && array_key_exists('deleted', $changedAttributes) && $this->deleted == 1) {//删除单页页分类
-    				CmsPage::updateAll(['deleted'=>1], ['cms_class_id'=>$this->id]);
+    				CmsPage::updateAll(['deleted'=>0], ['cms_class_id'=>$this->id]);
     			}
     		}
     

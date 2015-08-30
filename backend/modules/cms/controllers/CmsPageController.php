@@ -59,19 +59,6 @@ class CmsPageController extends Controller
             ]);
         }
     }
-    
-    /**
-     * 切换栏目状态
-     * @param int $id
-     * @return \yii\web\Response
-     */
-    public function actionSwitchStauts($id)
-    {
-    	$model = $this->findModel($id);
-    	$model->status = $model->status?0:1;//取反
-    	$model->save(false);
-    	return $this->redirect(['index']);
-    }
 
     /**
      * Finds the CmsPage model based on its primary key value.

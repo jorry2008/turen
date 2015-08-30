@@ -51,7 +51,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                             // 'id',
                             'name',
-                            'flag',
+                            'cms_flag_id',
                             'order',
                 
                             [

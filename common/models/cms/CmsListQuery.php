@@ -9,11 +9,23 @@ namespace common\models\cms;
  */
 class CmsListQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+	/**
+	 * @return \common\models\cms\CmsListQuery
+	 */
+    public function active()
     {
-        $this->andWhere('[[status]]=1');
+        $this->andWhere('[[status]]=1');//双[[]]表示and
         return $this;
-    }*/
+    }
+    
+    /**
+     * @return \common\models\cms\CmsListQuery
+     */
+    public function alive()
+    {
+    	$this->andWhere('[[deleted]]=0');
+    	return $this;
+    }
 
     /**
      * @inheritdoc

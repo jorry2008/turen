@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
+use yii\helpers\ArrayHelper;
+
+use common\models\cms\CmsClass;
+use common\models\cms\CmsFlag;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\cms\CmsImgSearch */
@@ -55,11 +60,26 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
                 
                             // 'id',
-                            'title',
-                            'cms_class_id',
-//                             'colorval',
-//                             'boldval',
-                            // 'flag',
+                        	[
+                        		'attribute' => 'title',
+                        		'format' => 'raw',
+                        		'value' => function($model){
+                        			$length = Yii::$app->params['config']['config_site_title_length'];
+                        			return '<span title="'.$model->title.'" style="color:'.$model->colorval.';font-weight:'.$model->boldval.';">'.StringHelper::truncate($model->title, $length).'</span>';
+                        		},
+                        	], [
+                            		'attribute' => 'cms_class_id',
+                            		'filter' => ArrayHelper::map(CmsClass::find()->where(['type'=>CmsClass::CMS_TYPE_IMG])->alive()->all(), 'id', 'name'),
+                            		'value' => function($model){
+                            			return $model->cmsClass->name;
+                            		},
+                            ], [
+                        		'attribute' => 'cms_flag_id',
+                        		'filter' => ArrayHelper::map(CmsFlag::find()->orderBy('order')->all(), 'id', 'name'),
+                        		'value' => function($model){
+                        			return $model->cmsFlag->name;
+                        		},
+                        	],
                             // 'source',
                             // 'author',
                             // 'link_url:url',
@@ -69,8 +89,15 @@ $this->params['breadcrumbs'][] = $this->title;
                             // 'pic_url:url',
                             // 'picarr:ntext',
                             'hits',
-                            'order',
-                            'status',
+                        	[
+                        		'attribute' => 'status',
+                        		'format' => 'html',
+                        		'value' => function($model){
+                        			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			return $model->status?$on:$off;
+                        		},
+                        	],
                             'updated_at:datetime',
                             // 'created_at:datetime',
                 

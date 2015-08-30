@@ -45,11 +45,27 @@ class CommonController extends \backend\components\Controller
         ];
     }
     
+    /**
+     * 默认首页
+     * @return string
+     */
     public function actionDefault()
     {
         return $this->render('default');
     }
+    
+    /**
+     * 关于我们
+     */
+    public function actionAbout()
+    {
+    	return $this->render('about');
+    }
 
+    /**
+     * 后台登录
+     * @return \yii\web\Response|string
+     */
     public function actionLogin()
     {
         Yii::$app->layout = 'login_main';
@@ -67,6 +83,10 @@ class CommonController extends \backend\components\Controller
         }
     }
 
+    /**
+     * 后台登出
+     * @return \yii\web\Response
+     */
     public function actionLogout()
     {
         Yii::$app->user->logout();

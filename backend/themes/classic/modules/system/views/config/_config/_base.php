@@ -9,7 +9,7 @@ $model = $models['config_site_name'];
         	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
         </div>
         <div class="col-md-7">
-			<span class="help-block"><?=Yii::t('system', 'Example:')?> 易极淘官方店</span>
+			<span class="help-block"><?=Yii::t('system', 'Example:')?> 土人官方网站</span>
 		</div>
     </div>
 </div>
@@ -60,7 +60,7 @@ $model = $models['config_email'];
         	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
         </div>
         <div class="col-md-7">
-			<span class="help-block"><?=Yii::t('system', 'Example:')?> administor@yijitao.com</span>
+			<span class="help-block"><?=Yii::t('system', 'Example:')?> administor@turen.com</span>
 		</div>
     </div>
 </div>

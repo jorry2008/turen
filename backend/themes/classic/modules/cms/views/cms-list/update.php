@@ -1,13 +1,15 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\StringHelper;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsList */
 
-$this->title = Yii::t('cms', 'Update:') . $model->title;
+$length = Yii::$app->params['config']['config_site_title_length'];
+$this->title = Yii::t('cms', 'Update:') . StringHelper::truncate($model->title, $length-5);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Lists'), 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
+$this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('cms', 'Update');
 ?>
 

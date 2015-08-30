@@ -15,7 +15,7 @@ use yii\bootstrap\ActiveForm;
     <div class="col-md-12 col-lg-6">
         <?php $form = ActiveForm::begin(); ?>
     
-        <?= $form->field($model, 'flag')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'cms_flag_id')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
 

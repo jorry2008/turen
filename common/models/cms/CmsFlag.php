@@ -14,6 +14,14 @@ use Yii;
  */
 class CmsFlag extends \yii\db\ActiveRecord
 {
+	const FLAG_G = 0;//普通
+	const FLAG_H = 1;//头条
+	const FLAG_C = 2;//推荐
+	const FLAG_F = 3;//幻灯
+	const FLAG_A = 4;//特荐
+	const FLAG_S = 5;//滚动	
+	const FLAG_J = 6;//跳转
+	
     /**
      * @inheritdoc
      */
@@ -28,9 +36,8 @@ class CmsFlag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['flag'], 'required'],
-            [['order'], 'integer'],
-            [['flag', 'name'], 'string', 'max' => 30]
+            [['order', 'cms_flag_id'], 'integer'],
+            [['name'], 'string', 'max' => 30]
         ];
     }
 
@@ -42,7 +49,7 @@ class CmsFlag extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('cms', 'ID'),
             'flag' => Yii::t('cms', 'Flag'),
-            'name' => Yii::t('cms', 'Name'),
+            'name' => Yii::t('cms', 'Flag Name'),
             'order' => Yii::t('cms', 'Order'),
         ];
     }

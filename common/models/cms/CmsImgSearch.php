@@ -18,8 +18,8 @@ class CmsImgSearch extends CmsImg
     public function rules()
     {
         return [
-            [['id', 'cms_class_id', 'hits', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'flag', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
+            [['id', 'cms_class_id', 'cms_flag_id', 'hits', 'status', 'updated_at', 'created_at'], 'integer'],
+            [['title', 'colorval', 'boldval', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class CmsImgSearch extends CmsImg
      */
     public function search($params)
     {
-        $query = CmsImg::find();
+        $query = CmsImg::find()->alive();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
@@ -58,9 +58,10 @@ class CmsImgSearch extends CmsImg
         $query->andFilterWhere([
             'id' => $this->id,
             'cms_class_id' => $this->cms_class_id,
+        	'cms_flag_id' => $this->cms_flag_id,
             'hits' => $this->hits,
-            'order' => $this->order,
             'status' => $this->status,
+        	'deleted' => $this->deleted,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ]);
@@ -68,7 +69,6 @@ class CmsImgSearch extends CmsImg
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'colorval', $this->colorval])
             ->andFilterWhere(['like', 'boldval', $this->boldval])
-            ->andFilterWhere(['like', 'flag', $this->flag])
             ->andFilterWhere(['like', 'source', $this->source])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'link_url', $this->link_url])

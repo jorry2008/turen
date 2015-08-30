@@ -59,4 +59,5 @@ return [
     'Accepts units B KB MB GB if string,default is KB' => '接受的单位为B KB MB GB，默认是KB',
     'Please choose the parent item!' => '请先选择父项！',
     'Is Array' => '是数组',
+	'Number of direct interception length of Chinese characters or letters' => '截取的长度为汉字或字母的个数',
 ];

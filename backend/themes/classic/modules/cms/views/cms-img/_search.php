@@ -26,7 +26,7 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'boldval') ?>
 
-    <?php // echo $form->field($model, 'flag') ?>
+    <?php // echo $form->field($model, 'cms_flag_id') ?>
 
     <?php // echo $form->field($model, 'source') ?>
 

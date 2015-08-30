@@ -63,7 +63,6 @@ $this->params['breadcrumbs'][] = $this->title;
                         			return $model->status?$on:$off;
                         		},
                         	],
-                        	'order',
                             'updated_at:datetime',
                             // 'created_at:datetime',
                             [

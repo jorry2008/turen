@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-            'flag',
+            'cms_flag_id',
             'name',
             'order',
                 ],

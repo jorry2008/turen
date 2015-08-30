@@ -18,8 +18,8 @@ class CmsListSearch extends CmsList
     public function rules()
     {
         return [
-            [['id', 'cms_class_id', 'hits', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'flag', 'source', 'author', 'linkurl', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
+            [['id', 'cms_class_id', 'cms_flag_id', 'hits', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
+            [['title', 'colorval', 'boldval', 'source', 'author', 'linkurl', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
         ];
     }
 
@@ -41,10 +41,18 @@ class CmsListSearch extends CmsList
      */
     public function search($params)
     {
-        $query = CmsList::find();
+        $query = CmsList::find()->alive();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        	'pagination' => [
+        		//'pageSize' => static::MAX_PAGE_SIZE,
+        	],
+        	'sort' => [
+        		'defaultOrder' => [
+        			'updated_at' => SORT_ASC
+        		],
+        	],
         ]);
 
         $this->load($params);
@@ -58,9 +66,10 @@ class CmsListSearch extends CmsList
         $query->andFilterWhere([
             'id' => $this->id,
             'cms_class_id' => $this->cms_class_id,
+        	'cms_flag_id' => $this->cms_flag_id,
             'hits' => $this->hits,
-            'order' => $this->order,
             'status' => $this->status,
+        	'deleted' => $this->deleted,
             'updated_at' => $this->updated_at,
             'created_at' => $this->created_at,
         ]);
@@ -68,7 +77,6 @@ class CmsListSearch extends CmsList
         $query->andFilterWhere(['like', 'title', $this->title])
             ->andFilterWhere(['like', 'colorval', $this->colorval])
             ->andFilterWhere(['like', 'boldval', $this->boldval])
-            ->andFilterWhere(['like', 'flag', $this->flag])
             ->andFilterWhere(['like', 'source', $this->source])
             ->andFilterWhere(['like', 'author', $this->author])
             ->andFilterWhere(['like', 'linkurl', $this->linkurl])

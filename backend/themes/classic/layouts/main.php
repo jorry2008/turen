@@ -38,7 +38,7 @@ $baseUrl = Yii::getAlias('@web');
                     </span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg">
-                        <b>土人系统</b>
+                        <b>土人系统 <?= YII_ENV_PROD?'':' <span class="label label-warning" style="font-size: 10px; padding: 1px;">Beta</span>'; ?></b>
                     </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
@@ -152,14 +152,19 @@ $baseUrl = Yii::getAlias('@web');
                     		['label' => '<i class="fa fa-dashboard"></i><span>后台首页</span>', 'url' => ['/user/common/default']],
                     		['label' => '<i class="fa fa-wordpress"></i><span>文章管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                     			'items' => [
-                    				['label' => '<i class="fa fa-leaf"></i><span>栏目管理</span>', 'url' => ['/cms/cms-class/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>单页面信息管理</span>', 'url' => ['/cms/cms-page/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>列表信息管理</span>', 'url' => ['/cms/cms-list/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>图片信息管理</span>', 'url' => ['/cms/cms-img/index']],
-                    				//['label' => '<i class="fa fa-leaf"></i><span>数据碎片管理</span>', 'url' => ['/cms//']],
-                    				
-                    				['label' => '<i class="fa fa-leaf"></i><span>广告位管理</span>', 'url' => ['/cms/ad-type/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>广告管理</span>', 'url' => ['/cms/ad/index']],
+                    				['label' => '<i class="fa fa-th-large"></i><span>栏目管理</span>', 'url' => ['/cms/cms-class/index']],
+                    				['label' => '<i class="fa fa-file-text-o"></i><span>单页面信息管理</span>', 'url' => ['/cms/cms-page/index']],
+                    				['label' => '<i class="fa fa-list"></i><span>列表信息管理</span>', 'url' => ['/cms/cms-list/index']],
+                    				['label' => '<i class="fa fa-picture-o"></i><span>图片信息管理</span>', 'url' => ['/cms/cms-img/index']],
+                    				['label' => '<i class="fa fa-arrow-circle-o-down"></i><span>资源下载管理</span>', 'url' => ['/cms/cms-download/index']],
+                    				['label' => '<i class="fa fa-cube"></i><span>产品信息管理</span>', 'url' => ['/cms/cms-product/index']],
+                    				// ['label' => '<i class="fa fa-leaf"></i><span>数据碎片管理</span>', 'url' => ['/cms//']],
+                    			]
+                    		], ['label' => '<i class="fa fa-film"></i><span>广告管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    			'items' => [
+                    					['label' => '<i class="fa fa-bars"></i><span>广告位管理</span>', 'url' => ['/cms/ad-type/index']],
+                    					['label' => '<i class="fa fa-file-image-o"></i><span>广告管理</span>', 'url' => ['/cms/ad/index']],
+                    					['label' => '<i class="fa fa-line-chart"></i><span>广告统计</span>', 'url' => ['/cms//']],
                     			]
                     		],
                             ['label' => '<i class="fa fa-cubes "></i><span>产品&分类</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
@@ -196,6 +201,7 @@ $baseUrl = Yii::getAlias('@web');
                         		    ['label' => '<i class="fa fa-trash-o"></i><span>回收总站</span>', 'url' => ['/system/trash/index']],
                         		]
                     		],
+                    		['label' => '<i class="fa fa-flag-o"></i><span>关于我们</span>', 'url' => ['/user/common/about']],
                     	],
                     ]);
                     ?>
