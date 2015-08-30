@@ -136,23 +136,25 @@ class CmsClass extends \yii\db\ActiveRecord
     			
     		} else {//更新
     			//判断是否为删除动作的非单页面
-    			if($this->type != self::CMS_TYPE_PAGE && $this->getOldAttribute('deleted') != $this->getAttribute('deleted')) {
+    			//当前分类下，有子分类，有没有内容
+    			if($this->getOldAttribute('deleted') != $this->getAttribute('deleted')) {
     				//当前分类下有没有子分类
     				if($this->deleted && CmsClass::find()->where(['parent_id'=>$this->id])->exists()) {
     					Yii::$app->getSession()->setFlash('warning', Yii::t('cms', 'Under this column subtopic, are not allowed to delete directly!'));
     					return false;
     				}
     				
-    				//判断当前分类下有没有内容
-    				$class = $this->relativeClass[$this->type];//由type关联到相应的模型
-    				$class = 'common\\models\\cms\\'.$class;
-    				if($this->deleted && $class::find()->where(['cms_class_id'=>$this->id])->exists()) {
-    					Yii::$app->getSession()->setFlash('warning', Yii::t('cms', 'Under this category contains content, cannot be deleted!'));
-    					return false;
+    				if($this->type != self::CMS_TYPE_PAGE) {
+    					//判断当前分类下有没有内容
+    					$class = $this->relativeClass[$this->type];//由type关联到相应的模型
+    					$class = 'common\\models\\cms\\'.$class;
+    					if($this->deleted && $class::find()->where(['cms_class_id'=>$this->id])->exists()) {
+    						Yii::$app->getSession()->setFlash('warning', Yii::t('cms', 'Under this category contains content, cannot be deleted!'));
+    						return false;
+    					}
     				}
     			}
     		}
-    		//当前分类下，有子分类，有没有内容
     		
 			return true;
 		} else {
@@ -176,7 +178,7 @@ class CmsClass extends \yii\db\ActiveRecord
     			}
     		} else {//更新
     			if($this->type == self::CMS_TYPE_PAGE && array_key_exists('deleted', $changedAttributes) && $this->deleted == 1) {//删除单页页分类
-    				CmsPage::updateAll(['deleted'=>0], ['cms_class_id'=>$this->id]);
+    				CmsPage::updateAll(['deleted'=>1], ['cms_class_id'=>$this->id]);
     			}
     		}
     

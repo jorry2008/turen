@@ -150,7 +150,7 @@ $baseUrl = Yii::getAlias('@web');
                     	//局部设置
                     	'items' => [
                     		['label' => '<i class="fa fa-dashboard"></i><span>后台首页</span>', 'url' => ['/user/common/default']],
-                    		['label' => '<i class="fa fa-wordpress"></i><span>文章管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    		['label' => '<i class="fa fa-wordpress"></i><span>内容管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                     			'items' => [
                     				['label' => '<i class="fa fa-th-large"></i><span>栏目管理</span>', 'url' => ['/cms/cms-class/index']],
                     				['label' => '<i class="fa fa-file-text-o"></i><span>单页面信息管理</span>', 'url' => ['/cms/cms-page/index']],
@@ -181,6 +181,7 @@ $baseUrl = Yii::getAlias('@web');
                                     ['label' => '<i class="fa fa-map-marker"></i><span>地址批量管理</span>', 'url' => ['/customer/customer-address/index']],
                                 ]
                             ],
+							['label' => '<i class="fa fa-leaf"></i><span>微信公众平台</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
                     		['label' => '<i class="fa fa-leaf"></i><span>土人帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
                     		['label' => '<i class="fa fa-users"></i><span>管理员管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                         		'items' => [
