@@ -9,11 +9,25 @@ namespace common\models\cms;
  */
 class CmsClassQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+	/**
+	 * 前台可视的
+	 * @return \common\models\cms\CmsClassQuery
+	 */
+    public function active()
     {
         $this->andWhere('[[status]]=1');
         return $this;
-    }*/
+    }
+    
+    /**
+     * 未删除的
+     * @return \common\models\cms\CmsClassQuery
+     */
+    public function alive()
+    {
+    	$this->andWhere('[[deleted]]=0');
+    	return $this;
+    }
 
     /**
      * @inheritdoc

@@ -82,6 +82,19 @@ class General
     }
     
     /**
+     * 获取新model的keys
+     */
+    public static function getModelsKeys(array $models, $key='id')
+    {
+    	$keys = [];
+    	foreach ($models as $model) {
+    		$keys[] = $model->$key;
+    	}
+    	
+    	return $keys;
+    }
+    
+    /**
      * 批量上传到指定目录
      * 路径会被打乱，实现文件存储均衡
      * @param UploadedFile $files

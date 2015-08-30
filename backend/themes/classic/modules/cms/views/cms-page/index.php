@@ -54,11 +54,18 @@ $this->params['breadcrumbs'][] = $this->title;
                             // 'id',
                             'cmsClass.name',
 //                             'content:ntext',
-                            'order',
-                            'status',
+                        	[
+                        		'attribute' => 'status',
+                        		'format' => 'html',
+                        		'value' => function($model){
+                        			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			return $model->status?$on:$off;
+                        		},
+                        	],
+                        	'order',
                             'updated_at:datetime',
                             // 'created_at:datetime',
-                            
                             [
                                 'class' => 'yii\grid\ActionColumn',
                                 'template' => '{update}',

@@ -27,13 +27,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 <div class="tab-pane active cms-page-view">
             <p>
                 <?= Html::a(Yii::t('cms', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('cms', 'Delete'), ['delete', 'id' => $model->id], [
-                    'class' => 'btn btn-danger',
-                    'data' => [
-                        'confirm' => Yii::t('cms', 'Are you sure you want to delete this item?'),
-                        'method' => 'post',
-                    ],
-                ]) ?>
             </p>
         
             <?= DetailView::widget([
@@ -41,13 +34,13 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-            'cms_class_id',
-            'pic_url:url',
-            'content:ntext',
-            'order',
-            'status',
-            'updated_at:datetime',
-            'created_at:datetime',
+		            'cmsClass.name',
+		            'pic_url:url',
+		            'content:ntext',
+		            'order',
+		            'status',
+		            'updated_at:datetime',
+		            'created_at:datetime',
                 ],
             ]) ?>
                 </div>

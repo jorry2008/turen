@@ -12,6 +12,8 @@ use common\models\cms\CmsPage;
  */
 class CmsPageSearch extends CmsPage
 {
+	const MAX_PAGE_SIZE = 20;
+	
     /**
      * @inheritdoc
      */
@@ -41,10 +43,18 @@ class CmsPageSearch extends CmsPage
      */
     public function search($params)
     {
-        $query = CmsPage::find();
+        $query = CmsPage::find()->alive();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        	'pagination' => [
+        		//'pageSize' => static::MAX_PAGE_SIZE,
+        	],
+        	'sort' => [
+        		'defaultOrder' => [
+        			'order' => SORT_ASC
+        		],
+        	],
         ]);
 
         $this->load($params);

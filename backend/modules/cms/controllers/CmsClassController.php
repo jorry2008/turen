@@ -25,7 +25,7 @@ class CmsClassController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => CmsClass::find(),
+            'query' => CmsClass::find()->alive(),
             'pagination' => [
                 'pageSize' => static::MAX_PAGE_SIZE,
             ],
@@ -38,7 +38,13 @@ class CmsClassController extends Controller
         
         //递归处理
         $dataProvider->models = General::recursiveObj($dataProvider->models, 0, 0, '' ,'<span class="bank"></span>', false);
-
+		$keys = General::getModelsKeys($dataProvider->models, 'id');
+        $dataProvider->setKeys($keys);
+        
+// 		fb($keys);
+// 		fb($dataProvider->getKeys());
+// 		fb($dataProvider->models);
+        
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);
@@ -102,7 +108,9 @@ class CmsClassController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $model->deleted = 1;
+        $model->save(false);//更新
 
         return $this->redirect(['index']);
     }

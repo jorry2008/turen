@@ -70,9 +70,9 @@ return [
     'Width' => '宽度',
 	'Top Class' => '顶级栏目',
 	
-	'Page' => '单页',
+	'Page' => '单页面',
     'List' => '文章列表',
-    'Image' => '图片',
+    'Image' => '图片列表',
 	'Download' => '资源下载',
 	'Product' => '产品展示',
 	
@@ -91,4 +91,7 @@ return [
 	'Column Type' => '栏目类型',
 	'Linkurl' => '链接地址',
 	'Update Status' => '更新状态',
+		
+	'Under this column subtopic, are not allowed to delete directly!' => '此分类下有子分类，不允许直接删除.',
+	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',
 ];

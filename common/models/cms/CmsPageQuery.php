@@ -9,11 +9,23 @@ namespace common\models\cms;
  */
 class CmsPageQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+	/**
+	 * @return \common\models\cms\CmsPageQuery
+	 */
+    public function active()
     {
         $this->andWhere('[[status]]=1');
         return $this;
-    }*/
+    }
+    
+    /**
+     * @return \common\models\cms\CmsPageQuery
+     */
+    public function alive()
+    {
+    	$this->andWhere('[[deleted]]=0');
+    	return $this;
+    }
 
     /**
      * @inheritdoc
