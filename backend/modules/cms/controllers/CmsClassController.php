@@ -8,6 +8,7 @@ use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\helpers\Json;
 
 use common\models\cms\CmsClass;
 use common\components\helpers\General;
@@ -98,6 +99,22 @@ class CmsClassController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+    
+    /**
+     * 
+     * @throws NotFoundHttpException
+     */
+    public function actionOrder($id, $order)
+    {
+    	if(Yii::$app->getRequest()->isAjax) {
+    		$model = $this->findModel($id);
+    		$model->order = $order;
+    		$model->save(false);
+    		echo Json::encode(['status'=>0, 'msg'=>Yii::t('cms', 'Order is success!')]);
+    	} else {
+    		throw new NotFoundHttpException('404 This Is Ajax Page!');
+    	}
     }
 
     /**

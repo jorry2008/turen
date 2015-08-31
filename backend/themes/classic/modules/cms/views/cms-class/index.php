@@ -8,6 +8,30 @@ use yii\grid\GridView;
 
 $this->title = Yii::t('cms', 'Cms Classe List');
 $this->params['breadcrumbs'][] = $this->title;
+
+$orderUrl = Yii::$app->getUrlManager()->createUrl(['/cms/cms-class/order']);
+$httpFailure = Yii::t('cms', 'Request is failure!');
+$this->registerJs("
+var old_order = 0;
+$('.cms-class-index .cms-order').focus(function() {
+	old_order = $(this).val();
+}).blur(function(){
+	var order = $(this).val()*1;
+	$(this).val(order);
+	if(old_order != order && !isNaN($(this).val())) {
+		$.get('$orderUrl', {id: $(this).attr('data-id'), order: order}, function(data) {
+// 			console.debug(data);
+			if(data.status == 0) {
+// 				alert(data.msg);
+				window.location.href=window.location.href;
+			} else {
+				alert('$httpFailure');
+			}
+		}, 'json');
+	}
+});
+");
+
 ?>
 
 <div class="row">
@@ -80,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            'attribute' => 'order',
 	                            'format' => 'raw',
 	                            'value' => function($model){
-	                            	return Html::activeTextInput($model, 'order', ['style'=>'width:50px', 'data-id'=>$model->id]);
+	                            	return Html::activeTextInput($model, 'order', ['style'=>'width:50px', 'data-id'=>$model->id, 'id'=>'', 'class'=>'cms-order']);
 	                            },
                             ], [
 // 	                            'class' => 'yii\grid\DataColumn',
