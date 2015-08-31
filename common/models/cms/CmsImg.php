@@ -31,6 +31,8 @@ use yii\behaviors\TimestampBehavior;
 class CmsImg extends \yii\db\ActiveRecord
 {
 	const MAX_PAGE_SIZE = 20;
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
 	
 	/**
 	 * 以行为的方式处理操作时间

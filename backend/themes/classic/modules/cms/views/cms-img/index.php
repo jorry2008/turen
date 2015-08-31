@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 
 use common\models\cms\CmsClass;
 use common\models\cms\CmsFlag;
+use common\models\cms\CmsImg;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\cms\CmsImgSearch */
@@ -64,8 +65,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'attribute' => 'title',
                         		'format' => 'raw',
                         		'value' => function($model){
-                        			$length = Yii::$app->params['config']['config_site_title_length'];
-                        			return '<span title="'.$model->title.'" style="color:'.$model->colorval.';font-weight:'.$model->boldval.';">'.StringHelper::truncate($model->title, $length).'</span>';
+	                        		$length = Yii::$app->params['config']['config_site_title_length'];
+	                        		$options = ['style'=>''];
+	                        		Html::addCssStyle($options, ['color'=>$model->colorval, 'font-weight'=>$model->boldval]);
+	                        		$title = '<span title="'.$model->title.'" style="'.$options['style'].'">'.StringHelper::truncate($model->title, $length).'</span>';
+	                        		return Html::a($title, ['update', 'id'=>$model->id]);
                         		},
                         	], [
                             		'attribute' => 'cms_class_id',
@@ -92,6 +96,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         	[
                         		'attribute' => 'status',
                         		'format' => 'html',
+                        		'filter' => [CmsImg::STATUS_YES=>Yii::t('cms', 'Yes'), CmsImg::STATUS_NO=>Yii::t('cms', 'No')],
                         		'value' => function($model){
                         			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
                         			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
@@ -103,6 +108,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                             [
                                 'class' => 'yii\grid\ActionColumn',
+                            	'template' => '{view} {delete}',
                                 'header' => Yii::t('common', 'Opration'),
                             ],
                         ],

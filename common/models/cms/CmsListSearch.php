@@ -50,7 +50,7 @@ class CmsListSearch extends CmsList
         	],
         	'sort' => [
         		'defaultOrder' => [
-        			'updated_at' => SORT_ASC
+        			'updated_at' => SORT_DESC
         		],
         	],
         ]);

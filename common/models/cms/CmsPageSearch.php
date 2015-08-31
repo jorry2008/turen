@@ -20,8 +20,8 @@ class CmsPageSearch extends CmsPage
     public function rules()
     {
         return [
-            [['id', 'cms_class_id', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['pic_url', 'content'], 'safe'],
+            [['id', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
+            [['pic_url', 'cms_class_id', 'content'], 'safe'],
         ];
     }
 

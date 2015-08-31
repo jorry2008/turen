@@ -62,7 +62,7 @@ return [
     'Search' => '搜索',
     'Seo Title' => 'SEO标题',
     'Source' => '源地址',
-    'Status' => '可视状态',
+    'Status' => '发布状态',
     'Text' => '内容',
     'Title' => '标题',
     'Update' => '更新',
@@ -92,6 +92,9 @@ return [
 	'Column Type' => '栏目类型',
 	'Linkurl' => '链接地址',
 	'Update Status' => '更新状态',
+		
+	'Yes' => '已发布',
+	'No' => '未发布',
 		
 	'Under this column subtopic, are not allowed to delete directly!' => '此分类下有子分类，不允许直接删除.',
 	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',

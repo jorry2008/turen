@@ -19,6 +19,9 @@ use Yii;
  */
 class CmsPage extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */
@@ -33,7 +36,7 @@ class CmsPage extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cms_class_id', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
+            [['order', 'status', 'updated_at', 'created_at'], 'integer'],
             [['content'], 'string'],
             [['title'], 'string', 'max' => 80],
             [['pic_url'], 'string', 'max' => 100],

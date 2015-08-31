@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use common\models\cms\CmsPage;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\cms\CmsPageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -52,11 +54,25 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
                 
                             // 'id',
-                            'cmsClass.name',
-//                             'content:ntext',
                         	[
+                        		'attribute' => 'cms_class_id',
+                        		'format' => 'raw',
+                        		'header' => Yii::t('cms', 'Cms Class'),
+                        		'value' => function($model){
+                        			return Html::a($model->cmsClass->name, ['update', 'id'=>$model->id]);
+                        		},
+                        	],
+//                             'content:ntext',
+							[
+								'attribute' => 'order',
+								'format' => 'raw',
+								'value' => function($model){
+									return Html::activeTextInput($model, 'order', ['style'=>'width:50px', 'data-id'=>$model->id]);
+								},
+							], [
                         		'attribute' => 'status',
                         		'format' => 'html',
+								'filter' => [CmsPage::STATUS_YES=>Yii::t('cms', 'Yes'), CmsPage::STATUS_NO=>Yii::t('cms', 'No')],
                         		'value' => function($model){
                         			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
                         			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
@@ -65,11 +81,11 @@ $this->params['breadcrumbs'][] = $this->title;
                         	],
                             'updated_at:datetime',
                             // 'created_at:datetime',
-                            [
-                                'class' => 'yii\grid\ActionColumn',
-                                'template' => '{update}',
-                                'header' => Yii::t('common', 'Opration'),
-                            ],
+//                             [
+//                                 'class' => 'yii\grid\ActionColumn',
+//                                 'template' => '{update}',
+//                                 'header' => Yii::t('common', 'Opration'),
+//                             ],
                         ],
                     ]); ?>
                                 

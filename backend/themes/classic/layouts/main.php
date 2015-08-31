@@ -38,7 +38,14 @@ $baseUrl = Yii::getAlias('@web');
                     </span>
                     <!-- logo for regular state and mobile devices -->
                     <span class="logo-lg">
-                        <b>土人系统 <?= YII_ENV_PROD?'':' <span class="label label-warning" style="font-size: 10px; padding: 1px;">Beta</span>'; ?></b>
+                    	<?php 
+                    	$env = 'Prod';
+                    	if(YII_ENV_DEV)
+                    		$env = 'Dev';
+                    	elseif(YII_ENV_TEST)
+                    		$env = 'Test';
+                    	?>
+                        <b>土人系统 <span class="label label-warning" style="font-size: 10px; padding: 1px;"><?= $env?></span></b>
                     </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->

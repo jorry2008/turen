@@ -81,7 +81,7 @@ return [
             // 重点，当开始基于cookie登录时，这个数组就是初始化系列化持久的cookie初始值
             // 即专为身份验证的cookie配置专用的cookie对象，以下就是对象的初始化参数
             'identityCookie' => [
-                'name' => '_yjt_identity',
+                'name' => '_turen_identity',
                 'httpOnly' => true
             ], // 可以实现如子站点同时登录
             // 是否启用基于cookie的登录，即保持cookie和session的相互恢复，所以它是基于session
@@ -101,10 +101,10 @@ return [
             ],
             
             // 以下是以session来存储相关的参数值的
-            'authTimeoutParam' => '__yjt_expire', // 过期时间session标识
+            'authTimeoutParam' => '__turen_expire', // 过期时间session标识
             'idParam' => '__id', // 用户登录会话id的session标识
-            'absoluteAuthTimeoutParam' => '__yjt_absoluteExpire',
-            'returnUrlParam' => '__yjt_returnUrl' // 这个是重点，实现无权访问再登录后跳转到原来的rul，这个url就是__returnUrl，记录在session中
+            'absoluteAuthTimeoutParam' => '__turen_absoluteExpire',
+            'returnUrlParam' => '__turen_returnUrl' // 这个是重点，实现无权访问再登录后跳转到原来的rul，这个url就是__returnUrl，记录在session中
         ],
         
         //主题配置(module目录下的views > 根目录下的views > 主题下的模板)
@@ -165,7 +165,7 @@ return [
         // session配置
         'session' => [
             'class' => 'yii\web\DbSession',//也可以转移到memcache缓存，CacheSession
-            'name' => 'yjt_session',
+            'name' => 'turen_session',
             'sessionTable' => '{{%session}}',
             'timeout' => 3600 // 超时设置
         ],
