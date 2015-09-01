@@ -164,7 +164,7 @@ $baseUrl = Yii::getAlias('@web');
                     				['label' => '<i class="fa fa-list"></i><span>列表信息管理</span>', 'url' => ['/cms/cms-list/index']],
                     				['label' => '<i class="fa fa-picture-o"></i><span>图片信息管理</span>', 'url' => ['/cms/cms-img/index']],
                     				['label' => '<i class="fa fa-arrow-circle-o-down"></i><span>资源下载管理</span>', 'url' => ['/cms/cms-download/index']],
-                    				['label' => '<i class="fa fa-cube"></i><span>产品信息管理</span>', 'url' => ['/cms/cms-product/index']],
+                    				// ['label' => '<i class="fa fa-cube"></i><span>产品信息管理</span>', 'url' => ['/cms/cms-product/index']],
                     				// ['label' => '<i class="fa fa-leaf"></i><span>数据碎片管理</span>', 'url' => ['/cms//']],
                     			]
                     		], ['label' => '<i class="fa fa-film"></i><span>广告管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
