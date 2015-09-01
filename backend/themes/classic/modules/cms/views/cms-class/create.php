@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <div class="col-md-12">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-               <li data-original-title="<?= Yii::t('common', 'Click').'('.Yii::t('common', 'Create').')'?>" data-toggle="tooltip">
+               <li data-original-title="<?= Yii::t('common', 'Click').'('.Yii::t('common', 'Index').')'?>" data-toggle="tooltip">
                     <?= Html::a(Yii::t('common', 'Index'), ['index']) ?>
                </li>
                

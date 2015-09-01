@@ -30,7 +30,7 @@ class CmsClass extends \yii\db\ActiveRecord
     const CMS_TYPE_LIST = 2;
     const CMS_TYPE_IMG = 3;
     const CMS_TYPE_DOWNLOAD = 4;
-    const CMS_TYPE_PROD = 5;
+//     const CMS_TYPE_PROD = 5;
     
     public $cmsType = [];
     public $relativeClass = [];
@@ -47,7 +47,7 @@ class CmsClass extends \yii\db\ActiveRecord
             self::CMS_TYPE_LIST => Yii::t('cms', 'List'),
             self::CMS_TYPE_IMG => Yii::t('cms', 'Image'),
         	self::CMS_TYPE_DOWNLOAD => Yii::t('cms', 'Download'),
-        	self::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
+//         	self::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
         ];
         
         $this->relativeClass = [
@@ -55,7 +55,7 @@ class CmsClass extends \yii\db\ActiveRecord
         	self::CMS_TYPE_LIST => 'CmsList',
         	self::CMS_TYPE_IMG => 'CmsImg',
         	self::CMS_TYPE_DOWNLOAD => 'CmsDownload',
-        	self::CMS_TYPE_PROD => 'CmsProduct',
+//         	self::CMS_TYPE_PROD => 'CmsProduct',
         ];
     }
     
