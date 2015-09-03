@@ -52,7 +52,6 @@ class General
         return $arr;
     }
     
-    
     /**
      * 对象无限级递归
      *
@@ -101,9 +100,9 @@ class General
      * @param string $dir
      * @param string $mailDir
      * @return string $str
-     * web/images/default/....
+     * web/upload/default/....
      */
-    public static function uploadToWebFilePath($files, $dir = 'default', $mailDir = 'images')
+    public static function uploadToWebFilePath($files, $dir = 'default', $mailDir = 'upload')
     {
         $pathArr = [];
         foreach ($files as $file) {
@@ -131,14 +130,14 @@ class General
                 if($file->saveAs($basePath.$path.$fileName)) {
                     //Image::thumbnail($path, 100, 30)->save($newPath, ['quality' => 50]);//图片处理
                     //注意：这里非常重要，兼容通用平台
-                    $pathArr[] = str_replace('\\', '/', $path.$fileName);
+                	$pathArr[] = FileHelper::normalizePath($path.$fileName);
                 } else {
-                    return ['error'=>Yii::t('common', 'Please check your upload file or file name!')];
+                    throw new UnknownClassException(Yii::t('common', 'Please check your upload file or file name!'));
                 }
             } else {
                 throw new UnknownClassException('Is Not UploadedFile Instance!');
             }
-            return implode(',', $pathArr);
+            return $pathArr;
         }
     }
     

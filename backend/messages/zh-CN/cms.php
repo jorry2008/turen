@@ -57,12 +57,13 @@ return [
     'Pic Height' => '图片高',
     'Pic Url' => '图片地址',
     'Pic Width' => '图片宽',
-    'Picarr' => '图片组',
+    'Picarr' => '组图',
     'Reset' => '重置',
     'Search' => '搜索',
     'Seo Title' => 'SEO标题',
-    'Source' => '源地址',
-    'Status' => '发布状态',
+    'Source' => '来源',
+	'Article Source' => '文章来源',
+    'Status' => '发布',
     'Text' => '内容',
     'Title' => '标题',
     'Update' => '更新',
@@ -98,4 +99,10 @@ return [
 		
 	'Under this column subtopic, are not allowed to delete directly!' => '此分类下有子分类，不允许直接删除.',
 	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',
+		
+	'Title is required' => '注意：标题为必填项.',
+	'Title Color' => '标题颜色',
+	'Title Bold' => '标题加粗',
+	'With a blank or ", "between multiple keywords' => '多个关键词之间使用空格或逗号","隔开.',
+	'Don\'t show in the frontend,If you don\'t choose' => '如果不选择，在前台将不会显示.',
 ];

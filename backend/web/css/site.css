@@ -107,6 +107,10 @@ span.select2-container--classic .select2-selection--single .select2-selection__r
     color: #444;
     line-height: 35px;
 }
+span .select2-selection--single .select2-selection__rendered {
+    color: #444;
+    line-height: 35px;
+}
 table.table span.bank {
 	display: inline-block;
 	width: 20px;
@@ -115,7 +119,45 @@ table.table span.name {
     background: url('../img/subTypeBg.gif') no-repeat scroll 0 0;
     padding-left: 30px;
 }
-
+.has-error .error-none {
+	display: none;
+}
+.form-horizontal {
+	padding-top: 1em;
+}
 .cms-class-index .type {
 	color: #BBB;
 }
+.cms-list-form .form-group .color, .cms-list-form .form-group .blod, .cms-list-form .form-group .clear {
+    background-repeat: no-repeat;
+    cursor: pointer;
+    display: inline-block;
+    height: 16px;
+    width: 15px;
+}
+.cms-list-form .form-group .color {
+    background-image: url("../img/bg/colorBg.png");
+}
+.cms-list-form .form-group .blod {
+    background-image: url("../img/bg/boldBg.png");
+    position: relative;
+    left: 4px;
+    top: 2px;
+}
+.cms-list-form .form-group .clear {
+    color: #09f;
+    font: 12px Verdana;
+    position: relative;
+    top: -5px;
+}
+
+
+
+
+
+
+
+
+
+
+

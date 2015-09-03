@@ -75,6 +75,7 @@ class CmsList extends \yii\db\ActiveRecord
         		
         	[['hits'], 'default', 'value'=>$defaultValue],
         	[['title', 'content'], 'required'],
+        	[['source', 'linkurl'], 'url'],
         ];
     }
 
@@ -90,7 +91,7 @@ class CmsList extends \yii\db\ActiveRecord
             'colorval' => Yii::t('cms', 'Colorval'),
             'boldval' => Yii::t('cms', 'Boldval'),
             'cms_flag_id' => Yii::t('cms', 'Flag'),
-            'source' => Yii::t('cms', 'Source'),
+            'source' => Yii::t('cms', 'Article Source'),
             'author' => Yii::t('cms', 'Author'),
             'linkurl' => Yii::t('cms', 'Linkurl'),
             'keywords' => Yii::t('cms', 'Keywords'),

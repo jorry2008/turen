@@ -19,7 +19,7 @@ class CmsFlag extends \yii\db\ActiveRecord
 	const FLAG_C = 2;//推荐
 	const FLAG_F = 3;//幻灯
 	const FLAG_A = 4;//特荐
-	const FLAG_S = 5;//滚动	
+	const FLAG_S = 5;//滚动
 	const FLAG_J = 6;//跳转
 	
     /**
@@ -36,7 +36,7 @@ class CmsFlag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order', 'cms_flag_id'], 'integer'],
+            [['order', 'cms_flag_id', 'deleted'], 'integer'],
             [['name'], 'string', 'max' => 30]
         ];
     }
@@ -50,6 +50,7 @@ class CmsFlag extends \yii\db\ActiveRecord
             'id' => Yii::t('cms', 'ID'),
             'flag' => Yii::t('cms', 'Flag'),
             'name' => Yii::t('cms', 'Flag Name'),
+        	'deleted' => Yii::t('cms', 'Deleted'),
             'order' => Yii::t('cms', 'Order'),
         ];
     }
