@@ -8,7 +8,7 @@ use yii\helpers\StringHelper;
 /* @var $model common\models\cms\CmsImg */
 
 $length = Yii::$app->params['config']['config_site_title_length'];
-$this->title = Yii::t('cms', 'Update:') . StringHelper::truncate($model->title, $length-5);
+$this->title = StringHelper::truncate($model->title, $length-5);
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Imgs'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
@@ -51,8 +51,11 @@ $this->params['breadcrumbs'][] = $this->title;
 		                		'attribute' => 'title',
 		                		'format' => 'raw',
 		                		'value' => '<span title="'.$model->title.'" style="color:'.$model->colorval.';font-weight:'.$model->boldval.';">'.$model->title.'</span>',
+		                	], [
+		                		'attribute' => 'cms_flag',
+		                		'format' => 'raw',
+		            			'value' => $model->cmsFlag->cms_flag,
 		                	],
-		                	'cmsFlag.name',
 				            'source',
 				            'author',
 				            'link_url:url',
@@ -62,7 +65,11 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'pic_url:url',
 				            'picarr:ntext',
 				            'hits',
-				            'status',
+				            [
+		                		'attribute' => 'status',
+		                		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
+		                	],
+		                	'publish_at:datetime',
 				            'updated_at:datetime',
 				            'created_at:datetime',
 		                ],

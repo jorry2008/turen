@@ -66,7 +66,7 @@ class CmsImg extends \yii\db\ActiveRecord
     {
         return [
             [['cms_class_id', 'hits', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['content', 'cms_flag', 'picarr'], 'string'],
+            [['content', 'picarr'], 'string'],
             [['title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],

@@ -17,6 +17,12 @@ use backend\assets\BootstrapDatePickerAsset;
 /* @var $model common\models\cms\CmsImg */
 /* @var $form yii\widgets\ActiveForm */
 
+//注入相关插件
+ColorPickerAsset::register($this);
+// iCheckAsset::register($this);
+// Select2Asset::register($this);
+BootstrapDatePickerAsset::register($this);
+
 if($model->isNewRecord) {
 	$model->status = true;
 	$model->hits = 100;

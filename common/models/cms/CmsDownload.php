@@ -74,7 +74,7 @@ class CmsDownload extends \yii\db\ActiveRecord
     {
         return [
             [['cms_class_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
-            [['content', 'cms_flag', 'picarr'], 'string'],
+            [['content', 'picarr'], 'string'],
             [['title'], 'string', 'max' => 80],
             [['colorval', 'boldval', 'language', 'accredit', 'file_size'], 'string', 'max' => 10],
             [['file_type'], 'string', 'max' => 5],

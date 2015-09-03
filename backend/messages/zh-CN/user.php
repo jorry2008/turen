@@ -35,4 +35,5 @@ return [
     'Log on to your session' => '登录到您的会话',
     'Login' => '登录',
     'Config Admin' => '配置管理',
+	'About Us' => '关于我们',
 ];

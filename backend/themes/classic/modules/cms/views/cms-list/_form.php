@@ -123,6 +123,7 @@ $this->registerJs("
 	    	'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><span class="color title-colorpicker" title="'.Yii::t('cms', 'Title Color').'"></span> <span class="blod" title="'.Yii::t('cms', 'Title Bold').'"></span> <span class="clear" title="'.Yii::t('cms', 'Clear').'">#</span></span></div>',
     	])->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Title is required'), ['class'=>'help-block error-none'])->textInput(['maxlength' => true, 'style'=>!empty($titleOptions)?$titleOptions['style']:'']);//直接对长度限制
 	    ?>
+	    
 	    <?= Html::activeHiddenInput($model, 'colorval') ?>
 	    <?= Html::activeHiddenInput($model, 'boldval') ?>
 	
