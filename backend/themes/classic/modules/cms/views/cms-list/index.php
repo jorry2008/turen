@@ -77,7 +77,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                            	return $model->cmsClass->name;
 	                            },
                             ],
-                            // 'cms_flag_id',
+                            // 'cms_flag',
                             // 'source',
                             'author',
                             // 'linkurl:url',
@@ -87,10 +87,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             // 'pic_url:url',
                             // 'picarr:ntext',
                             [
-                            	'attribute' => 'cms_flag_id',
-                            	'filter' => ArrayHelper::map(CmsFlag::find()->orderBy('order')->all(), 'id', 'name'),
+                            	'attribute' => 'cms_flag',
+                            	'filter' => ArrayHelper::map(CmsFlag::find()->orderBy('order')->all(), 'flag', 'name'),
                             	'value' => function($model){
-                            		return $model->cmsFlag->name;
+                            		return $model->cmsFlag->cms_flag;
                             	},
                             ],
                             'hits',

@@ -69,6 +69,7 @@ return [
     'Update' => '更新',
     'Update:' => '更新：',
     'Updated At' => '更新时间',
+	'Publish At' => '发布时间',
     'Width' => '宽度',
 	'Top Class' => '顶级栏目',
 	

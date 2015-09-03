@@ -3,6 +3,7 @@
 namespace common\models\cms;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -13,7 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $title
  * @property string $colorval
  * @property string $boldval
- * @property integer $cms_flag_id
+ * @property string $cms_flag
  * @property string $file_type
  * @property string $language
  * @property string $accredit
@@ -32,6 +33,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $hits
  * @property string $order
  * @property integer $status
+ * @property integer $publish_at
  * @property integer $deleted
  * @property string $updated_at
  * @property string $created_at
@@ -71,8 +73,8 @@ class CmsDownload extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cms_class_id', 'cms_flag_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
-            [['content', 'picarr'], 'string'],
+            [['cms_class_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
+            [['content', 'cms_flag', 'picarr'], 'string'],
             [['title'], 'string', 'max' => 80],
             [['colorval', 'boldval', 'language', 'accredit', 'file_size'], 'string', 'max' => 10],
             [['file_type'], 'string', 'max' => 5],
@@ -80,8 +82,10 @@ class CmsDownload extends \yii\db\ActiveRecord
             [['run_os', 'source', 'author', 'keywords'], 'string', 'max' => 50],
             [['down_url', 'link_url', 'description'], 'string', 'max' => 255],
             [['picurl'], 'string', 'max' => 100],
-        		
-        	[['title', 'content'], 'required'],
+        	
+        	[['link_url', 'source'], 'url'],
+        	[['title', 'content', 'publish_at'], 'required'],
+        	[['cms_flag'], 'safe'],
         ];
     }
 
@@ -96,7 +100,7 @@ class CmsDownload extends \yii\db\ActiveRecord
             'title' => Yii::t('cms', 'Title'),
             'colorval' => Yii::t('cms', 'Colorval'),
             'boldval' => Yii::t('cms', 'Boldval'),
-            'cms_flag_id' => Yii::t('cms', 'Flag'),
+            'cms_flag' => Yii::t('cms', 'Flag'),
             'file_type' => Yii::t('cms', 'File Type'),
             'language' => Yii::t('cms', 'Language'),
             'accredit' => Yii::t('cms', 'Accredit'),
@@ -116,9 +120,32 @@ class CmsDownload extends \yii\db\ActiveRecord
             'order' => Yii::t('cms', 'Order'),
             'status' => Yii::t('cms', 'Status'),
             'deleted' => Yii::t('cms', 'Deleted'),
+        	'publish_at' => Yii::t('cms', 'Publish At'),
             'updated_at' => Yii::t('cms', 'Updated At'),
             'created_at' => Yii::t('cms', 'Created At'),
         ];
+    }
+    
+    /**
+     * @see \yii\db\BaseActiveRecord::beforeSave($insert)
+     */
+    public function beforeSave($insert)
+    {
+    	if(parent::beforeSave($insert)) {
+    		//处理时间
+    		$this->publish_at = strtotime($this->publish_at);
+    
+    		//处理标记
+    		if($this->cms_flag && is_array($this->cms_flag)) {
+    			$this->cms_flag = implode(',', $this->cms_flag);
+    		} else {
+    			$this->cms_flag = CmsFlag::FLAG_G;
+    		}
+    
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     /**
@@ -128,15 +155,19 @@ class CmsDownload extends \yii\db\ActiveRecord
     {
     	return $this->hasOne(CmsClass::className(), ['id' => 'cms_class_id']);
     }
-    
+
     /**
      * 一对一
      */
     public function getCmsFlag()
     {
-    	return $this->hasOne(CmsFlag::className(), ['id' => 'cms_flag_id']);
+    	$this->cms_flag = explode(',', $this->cms_flag);
+    	$models = CmsFlag::find()->where(['in', 'flag', $this->cms_flag])->all();
+    	$names = ArrayHelper::map($models, 'name', 'id');
+    	$this->cms_flag = implode(',', array_keys($names));
+    	return $this;
     }
-
+    
     /**
      * @inheritdoc
      * @return CmsDownloadQuery the active query used by this AR class.

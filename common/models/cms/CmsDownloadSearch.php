@@ -18,8 +18,8 @@ class CmsDownloadSearch extends CmsDownload
     public function rules()
     {
         return [
-            [['id', 'cms_class_id', 'cms_flag_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'file_type', 'language', 'accredit', 'file_size', 'unit', 'run_os', 'down_url', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'picurl', 'picarr'], 'safe'],
+            [['id', 'cms_class_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
+            [['title', 'cms_flag', 'colorval', 'boldval', 'file_type', 'language', 'accredit', 'file_size', 'unit', 'run_os', 'down_url', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'picurl', 'picarr'], 'safe'],
         ];
     }
 
@@ -66,7 +66,6 @@ class CmsDownloadSearch extends CmsDownload
         $query->andFilterWhere([
             'id' => $this->id,
             'cms_class_id' => $this->cms_class_id,
-            'cms_flag_id' => $this->cms_flag_id,
             'hits' => $this->hits,
             'order' => $this->order,
             'status' => $this->status,
@@ -76,6 +75,7 @@ class CmsDownloadSearch extends CmsDownload
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+        	->andFilterWhere(['like', 'cms_flag', $this->cms_flag])
             ->andFilterWhere(['like', 'colorval', $this->colorval])
             ->andFilterWhere(['like', 'boldval', $this->boldval])
             ->andFilterWhere(['like', 'file_type', $this->file_type])

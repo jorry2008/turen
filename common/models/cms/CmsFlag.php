@@ -14,13 +14,13 @@ use Yii;
  */
 class CmsFlag extends \yii\db\ActiveRecord
 {
-	const FLAG_G = 0;//普通
-	const FLAG_H = 1;//头条
-	const FLAG_C = 2;//推荐
-	const FLAG_F = 3;//幻灯
-	const FLAG_A = 4;//特荐
-	const FLAG_S = 5;//滚动
-	const FLAG_J = 6;//跳转
+	const FLAG_G = 'g';//普通
+	const FLAG_H = 'h';//头条
+	const FLAG_C = 'c';//推荐
+	const FLAG_F = 'f';//幻灯
+	const FLAG_A = 'a';//特荐
+	const FLAG_S = 's';//滚动
+	const FLAG_J = 'j';//跳转
 	
     /**
      * @inheritdoc

@@ -3,6 +3,7 @@
 namespace common\models\cms;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
 /**
@@ -13,7 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $title
  * @property string $colorval
  * @property string $boldval
- * @property integer $cms_flag_id
+ * @property string $cms_flag
  * @property string $source
  * @property string $author
  * @property string $link_url
@@ -25,6 +26,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $hits
  * @property string $order
  * @property integer $status
+ * @property integer $publish_at
  * @property string $updated_at
  * @property string $created_at
  */
@@ -63,14 +65,17 @@ class CmsImg extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cms_class_id', 'cms_flag_id', 'hits', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'cms_flag_id', 'source', 'author', 'keywords', 'description', 'content', 'picarr', 'hits'], 'required'],
-            [['content', 'picarr'], 'string'],
+            [['cms_class_id', 'hits', 'status', 'updated_at', 'created_at'], 'integer'],
+            [['content', 'cms_flag', 'picarr'], 'string'],
             [['title'], 'string', 'max' => 80],
             [['colorval', 'boldval'], 'string', 'max' => 10],
             [['source', 'author', 'keywords'], 'string', 'max' => 50],
             [['link_url', 'description'], 'string', 'max' => 255],
-            [['pic_url'], 'string', 'max' => 100]
+            [['pic_url'], 'string', 'max' => 100],
+        	
+        	[['title', 'content', 'publish_at'], 'required'],
+        	[['link_url', 'source'], 'url'],
+        	[['cms_flag'], 'safe'],
         ];
     }
 
@@ -85,7 +90,7 @@ class CmsImg extends \yii\db\ActiveRecord
             'title' => Yii::t('cms', 'Title'),
             'colorval' => Yii::t('cms', 'Colorval'),
             'boldval' => Yii::t('cms', 'Boldval'),
-        	'cms_flag_id' => Yii::t('cms', 'Flag'),
+        	'cms_flag' => Yii::t('cms', 'Flag'),
             'source' => Yii::t('cms', 'Source'),
             'author' => Yii::t('cms', 'Author'),
             'link_url' => Yii::t('cms', 'Link Url'),
@@ -96,9 +101,32 @@ class CmsImg extends \yii\db\ActiveRecord
             'picarr' => Yii::t('cms', 'Picarr'),
             'hits' => Yii::t('cms', 'Hits'),
             'status' => Yii::t('cms', 'Status'),
+        	'publish_at' => Yii::t('cms', 'Publish At'),
             'updated_at' => Yii::t('cms', 'Updated At'),
             'created_at' => Yii::t('cms', 'Created At'),
         ];
+    }
+    
+    /**
+     * @see \yii\db\BaseActiveRecord::beforeSave($insert)
+     */
+    public function beforeSave($insert)
+    {
+    	if(parent::beforeSave($insert)) {
+    		//处理时间
+    		$this->publish_at = strtotime($this->publish_at);
+    
+    		//处理标记
+    		if($this->cms_flag && is_array($this->cms_flag)) {
+    			$this->cms_flag = implode(',', $this->cms_flag);
+    		} else {
+    			$this->cms_flag = CmsFlag::FLAG_G;
+    		}
+    
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     /**
@@ -108,15 +136,19 @@ class CmsImg extends \yii\db\ActiveRecord
     {
         return $this->hasOne(CmsClass::className(), ['id' => 'cms_class_id']);
     }
-    
+
     /**
      * 一对一
      */
     public function getCmsFlag()
     {
-    	return $this->hasOne(CmsFlag::className(), ['id' => 'cms_flag_id']);
+    	$this->cms_flag = explode(',', $this->cms_flag);
+    	$models = CmsFlag::find()->where(['in', 'flag', $this->cms_flag])->all();
+    	$names = ArrayHelper::map($models, 'name', 'id');
+    	$this->cms_flag = implode(',', array_keys($names));
+    	return $this;
     }
-
+    
     /**
      * @inheritdoc
      * @return CmsImgQuery the active query used by this AR class.

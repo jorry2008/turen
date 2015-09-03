@@ -11,6 +11,7 @@ use common\models\cms\CmsFlag;
 use backend\assets\ColorPickerAsset;
 // use backend\assets\iCheckAsset;
 // use backend\assets\Select2Asset;
+use backend\assets\BootstrapDatePickerAsset;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsList */
@@ -20,16 +21,21 @@ use backend\assets\ColorPickerAsset;
 ColorPickerAsset::register($this);
 // iCheckAsset::register($this);
 // Select2Asset::register($this);
+BootstrapDatePickerAsset::register($this);
 
 if($model->isNewRecord) {
 	$model->status = true;
 	$model->hits = 100;
 	$model->author = Yii::$app->getUser()->identity->username;
+	$model->publish_at = date('Y-m-d H:i');//Yii::$app->getFormatter()->asDatetime(time(), 'Y-m-d H:i');
 } else {
 	$titleOptions = ['style'=>''];
 	Html::addCssStyle($titleOptions, ['color'=>$model->colorval, 'font-weight'=>$model->boldval]);
+	$model->publish_at = date('Y-m-d H:i', $model->publish_at);
+	$model->cms_flag = explode(',', $model->cms_flag);
 }
 
+$languge = Yii::$app->language;
 $this->registerJs("
 // 	$('input[type=\"checkbox\"].minimal, input[type=\"radio\"].minimal').iCheck({
 // 		checkboxClass: 'icheckbox_minimal-blue',
@@ -62,6 +68,24 @@ $this->registerJs("
 		boldval.val('400');
 	});
 		
+	//时间插件
+	$('#cmslist-publish_at').datetimepicker({
+		language:  '$languge',
+		format: 'yyyy-mm-dd hh:ii',// P
+		showMeridian: 1,//开启上下午选择项
+		todayBtn:  1,
+		todayHighlight: 1,
+		autoclose: 1,//选中后，自动关闭
+		pickerPosition: \"top-left\",//面板位置
+// 		startDate: '',//开始日期
+// 		endDate: '',//结束日期
+// 		startView: '',//首次显示的是哪个面板：年/月/日/上午下午/时/分
+// 		initialDate: '',//初始化默认日期
+//      weekStart: 1,//显示多少周
+// 		forceParse: 0,//强制转化
+// 		linkField: \"mirror_field\",//关联表单
+//      linkFormat: \"yyyy-mm-dd hh:ii\",//关联表单的显示格式
+	});
 ");
 ?>
 
@@ -99,11 +123,10 @@ $this->registerJs("
 	    	'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><span class="color title-colorpicker" title="'.Yii::t('cms', 'Title Color').'"></span> <span class="blod" title="'.Yii::t('cms', 'Title Bold').'"></span> <span class="clear" title="'.Yii::t('cms', 'Clear').'">#</span></span></div>',
     	])->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Title is required'), ['class'=>'help-block error-none'])->textInput(['maxlength' => true, 'style'=>!empty($titleOptions)?$titleOptions['style']:'']);//直接对长度限制
 	    ?>
-	    
 	    <?= Html::activeHiddenInput($model, 'colorval') ?>
 	    <?= Html::activeHiddenInput($model, 'boldval') ?>
 	
-	    <?= $form->field($model, 'cms_flag_id')->inline()->checkboxList(ArrayHelper::map(CmsFlag::find()->orderBy('order')->alive()->all(), 'id', 'name')) ?>
+	    <?= $form->field($model, 'cms_flag')->inline()->checkboxList(ArrayHelper::map(CmsFlag::find()->orderBy('order')->alive()->all(), 'flag', 'name')) ?>
 	
 	    <?= $form->field($model, 'source')->textInput(['maxlength' => true]) ?>
 	
@@ -123,9 +146,9 @@ $this->registerJs("
 	
 	    <?= $form->field($model, 'hits')->input('number', ['maxlength' => true]) ?>
 	    
-	    <?= $form->field($model, 'created_at', [
+	    <?= $form->field($model, 'publish_at', [
 	    	'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><i class="fa fa-clock-o"></i></span></div>',
-	    ])->textInput() ?>
+	    ])->textInput(['data-date'=>$model->publish_at]) ?>
 	
 	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Don\'t show in the frontend,If you don\'t choose')) ?>
 

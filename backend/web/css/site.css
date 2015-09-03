@@ -128,23 +128,23 @@ table.table span.name {
 .cms-class-index .type {
 	color: #BBB;
 }
-.cms-list-form .form-group .color, .cms-list-form .form-group .blod, .cms-list-form .form-group .clear {
+.input-group-addon .color, .input-group-addon .blod, .input-group-addon .clear {
     background-repeat: no-repeat;
     cursor: pointer;
     display: inline-block;
     height: 16px;
     width: 15px;
 }
-.cms-list-form .form-group .color {
+.input-group-addon .color {
     background-image: url("../img/bg/colorBg.png");
 }
-.cms-list-form .form-group .blod {
+.input-group-addon .blod {
     background-image: url("../img/bg/boldBg.png");
     position: relative;
     left: 4px;
     top: 2px;
 }
-.cms-list-form .form-group .clear {
+.input-group-addon .clear {
     color: #09f;
     font: 12px Verdana;
     position: relative;

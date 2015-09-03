@@ -79,19 +79,6 @@ class CmsImgController extends Controller
     }
 
     /**
-     * Deletes an existing CmsImg model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param string $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
-    }
-
-    /**
      * Finds the CmsImg model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param string $id

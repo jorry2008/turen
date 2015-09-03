@@ -18,8 +18,8 @@ class CmsListSearch extends CmsList
     public function rules()
     {
         return [
-            [['id', 'cms_class_id', 'cms_flag_id', 'hits', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'colorval', 'boldval', 'source', 'author', 'linkurl', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
+            [['id', 'cms_class_id', 'hits', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
+            [['title', 'cms_flag', 'colorval', 'boldval', 'source', 'author', 'linkurl', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
         ];
     }
 
@@ -66,7 +66,6 @@ class CmsListSearch extends CmsList
         $query->andFilterWhere([
             'id' => $this->id,
             'cms_class_id' => $this->cms_class_id,
-        	'cms_flag_id' => $this->cms_flag_id,
             'hits' => $this->hits,
             'status' => $this->status,
         	'deleted' => $this->deleted,
@@ -75,6 +74,7 @@ class CmsListSearch extends CmsList
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
+        	->andFilterWhere(['like', 'cms_flag', $this->cms_flag])
             ->andFilterWhere(['like', 'colorval', $this->colorval])
             ->andFilterWhere(['like', 'boldval', $this->boldval])
             ->andFilterWhere(['like', 'source', $this->source])

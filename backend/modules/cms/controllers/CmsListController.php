@@ -3,11 +3,12 @@
 namespace backend\modules\cms\controllers;
 
 use Yii;
+use yii\web\NotFoundHttpException;
+
 use common\models\cms\CmsList;
 use common\models\cms\CmsListSearch;
 use backend\components\Controller;
-use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
+
 
 /**
  * CmsListController implements the CRUD actions for CmsList model.
@@ -68,13 +69,13 @@ class CmsListController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
+        
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        	return $this->redirect(['view', 'id' => $model->id]);
         } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        	return $this->render('update', [
+        		'model' => $model,
+        	]);
         }
     }
 

@@ -78,10 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
                             			return $model->cmsClass->name;
                             		},
                             ], [
-                        		'attribute' => 'cms_flag_id',
+                        		'attribute' => 'cms_flag',
                         		'filter' => ArrayHelper::map(CmsFlag::find()->orderBy('order')->all(), 'id', 'name'),
                         		'value' => function($model){
-                        			return $model->cmsFlag->name;
+                        			return $model->cmsFlag->cms_flag;
                         		},
                         	],
                             // 'source',
