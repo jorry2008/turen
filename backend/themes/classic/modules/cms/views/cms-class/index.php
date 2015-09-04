@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use common\models\cms\CmsClass;
+
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
@@ -31,7 +33,6 @@ $('.cms-class-index .cms-order').focus(function() {
 	}
 });
 ");
-
 ?>
 
 <div class="row">
@@ -79,20 +80,19 @@ $('.cms-class-index .cms-order').focus(function() {
                                 'attribute' => 'name',
                                 'format' => 'html',
                                 'value' => function($model){
-                                	$type = !empty($model->cmsType[$model->type])?$model->cmsType[$model->type]:Yii::t('cms', 'Top Class');
-                                    return $model->name.'<i class="type">['.$type.']</i>';
+                                	$type = !empty(CmsClass::getType()[$model->type])?CmsClass::getType()[$model->type]:Yii::t('cms', 'Null');
+                                	$className = empty(CmsClass::getRelativeClass()[$model->type])?'':CmsClass::getRelativeClass()[$model->type];
+                                	
+                                	$name = $model->name;
+                                	if($className) {
+                                		$name = Html::a($name, ['/cms/'.strtolower(str_replace('Cms', 'cms-', $className)).'/index', $className.'Search[cms_class_id]'=>$model->id]);
+                                	}
+                                	
+                                    return $name.'<i class="type">['.$type.']</i>';
                                 },
                             ],
-//                             'parent_id',
-//                             'parent_str',
-//                             [
-//                                 'class' => 'yii\grid\DataColumn',
-//                                 'attribute' => 'type',
-//                                 //'format' => 'html',
-//                                 'value' => function($model){
-//                                     return !empty($model->cmsType[$model->type])?$model->cmsType[$model->type]:Yii::t('cms', 'Top Class');
-//                                 },
-//                             ],
+// 							'parent_id',
+// 							'type',
                             // 'link_url:url',
                             // 'pic_url:url',
                             // 'pic_width',

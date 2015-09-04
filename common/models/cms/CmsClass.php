@@ -32,33 +32,6 @@ class CmsClass extends \yii\db\ActiveRecord
     const CMS_TYPE_DOWNLOAD = 4;
 //     const CMS_TYPE_PROD = 5;
     
-    public $cmsType = [];
-    public $relativeClass = [];
-    
-    /**
-     * 初始化栏目类型（应该写入到配置）
-     * 注意：系统中栏目的所有类型，都是由这里决定的，为了统一，不可额外延伸
-     * @see \yii\db\BaseActiveRecord::init()
-     */
-    public function init()
-    {
-        $this->cmsType = [
-            self::CMS_TYPE_PAGE => Yii::t('cms', 'Page'),
-            self::CMS_TYPE_LIST => Yii::t('cms', 'List'),
-            self::CMS_TYPE_IMG => Yii::t('cms', 'Image'),
-        	self::CMS_TYPE_DOWNLOAD => Yii::t('cms', 'Download'),
-//         	self::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
-        ];
-        
-        $this->relativeClass = [
-        	self::CMS_TYPE_PAGE => 'CmsPage',
-        	self::CMS_TYPE_LIST => 'CmsList',
-        	self::CMS_TYPE_IMG => 'CmsImg',
-        	self::CMS_TYPE_DOWNLOAD => 'CmsDownload',
-//         	self::CMS_TYPE_PROD => 'CmsProduct',
-        ];
-    }
-    
     /**
      * 以行为的方式处理操作时间
      * @see \yii\base\Component::behaviors()
@@ -139,16 +112,16 @@ class CmsClass extends \yii\db\ActiveRecord
     			//当前分类下，有子分类，有没有内容
     			if($this->getOldAttribute('deleted') != $this->getAttribute('deleted')) {
     				//当前分类下有没有子分类
-    				if($this->deleted && CmsClass::find()->where(['parent_id'=>$this->id])->exists()) {
+    				if($this->deleted && CmsClass::find()->where(['parent_id'=>$this->id])->alive()->exists()) {
     					Yii::$app->getSession()->setFlash('warning', Yii::t('cms', 'Under this column subtopic, are not allowed to delete directly!'));
     					return false;
     				}
     				
     				if($this->type != self::CMS_TYPE_PAGE) {
     					//判断当前分类下有没有内容
-    					$class = $this->relativeClass[$this->type];//由type关联到相应的模型
+    					$class = static::getRelativeClass()[$this->type];//由type关联到相应的模型
     					$class = 'common\\models\\cms\\'.$class;
-    					if($this->deleted && $class::find()->where(['cms_class_id'=>$this->id])->exists()) {
+    					if($this->deleted && $class::find()->where(['cms_class_id'=>$this->id])->alive()->exists()) {
     						Yii::$app->getSession()->setFlash('warning', Yii::t('cms', 'Under this category contains content, cannot be deleted!'));
     						return false;
     					}
@@ -188,6 +161,44 @@ class CmsClass extends \yii\db\ActiveRecord
     	}
     }
 
+    /**
+     * 栏目类型
+     * @return array
+     */
+    public static function getType()
+    {
+    	return [
+    		static::CMS_TYPE_PAGE => Yii::t('cms', 'Page'),
+    		static::CMS_TYPE_LIST => Yii::t('cms', 'List'),
+    		static::CMS_TYPE_IMG => Yii::t('cms', 'Image'),
+    		static::CMS_TYPE_DOWNLOAD => Yii::t('cms', 'Download'),
+//         	static::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
+    	];
+    }
+    
+    /**
+     * 与类型相对应的栏目类
+     * @return array
+     */
+    public static function getRelativeClass()
+    {
+    	return [
+    		static::CMS_TYPE_PAGE => 'CmsPage',
+    		static::CMS_TYPE_LIST => 'CmsList',
+    		static::CMS_TYPE_IMG => 'CmsImg',
+    		static::CMS_TYPE_DOWNLOAD => 'CmsDownload',
+//         	static::CMS_TYPE_PROD => 'CmsProduct',
+    	];
+    }
+    
+    /**
+     * 自我表关联
+     */
+    public function getMySelf()
+    {
+    	return $this->hasOne(CmsClass::className(), ['id' => 'parent_id']);
+    }
+    
     /**
      * @inheritdoc
      * @return CmsClassQuery the active query used by this AR class.

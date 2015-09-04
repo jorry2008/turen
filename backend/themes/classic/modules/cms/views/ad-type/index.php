@@ -58,9 +58,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'format' => 'raw',
                         		'value' => function($model){
                         			$length = Yii::$app->params['config']['config_site_title_length'];
-                        			$title = StringHelper::truncate($model->name, $length);
-//                         			return Html::a($title, ['update', 'id'=>$model->id]);
-                        			return $title;
+                        			$title = StringHelper::truncate($model->name, $length);//'<span class="fa fa-list-ol"></span> '.
+                        			return Html::a($title, ['/cms/ad/index', 'CmsAdSearch[cms_ad_type_id]'=>$model->id]);
                         		},
                         	],
                         	'short_code',

@@ -2,7 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
 
+use common\models\cms\CmsClass;
 use common\models\cms\CmsPage;
 
 /* @var $this yii\web\View */
@@ -57,7 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         	[
                         		'attribute' => 'cms_class_id',
                         		'format' => 'raw',
-                        		'header' => Yii::t('cms', 'Class'),
+                        		'filter' => ArrayHelper::map(CmsClass::find()->where(['type'=>CmsClass::CMS_TYPE_PAGE])->alive()->all(), 'id', 'name'),
+                        		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
                         		'value' => function($model){
                         			return Html::a($model->cmsClass->name, ['update', 'id'=>$model->id]);
                         		},

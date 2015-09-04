@@ -45,7 +45,7 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Class')], ArrayHelper::
 		]);
 		?>
         
-        <?= $form->field($model, 'type')->dropDownList((new CmsClass)->cmsType) ?>
+        <?= $form->field($model, 'type')->dropDownList(CmsClass::getType()) ?>
         
         <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>
 		

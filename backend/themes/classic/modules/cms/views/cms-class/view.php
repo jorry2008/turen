@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
+use common\models\cms\CmsClass;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsClass */
@@ -44,8 +45,13 @@ $this->params['breadcrumbs'][] = $this->title;
 		                'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
 		                'attributes' => [
 		                    'id',
-		                	'type',
-				            'parent_id',
+		                	[
+		                		'attribute' => 'type',
+		                		'value' => empty(CmsClass::getType()[$model->type])?'Null':CmsClass::getType()[$model->type],
+		                	], [
+                				'attribute' => 'parent_id',
+                				'value' => empty($model->mySelf)?Yii::t('cms', 'Top Class'):$model->mySelf->name,
+	                		],
 				            'name',
 		                	'description',
 				            'link_url:url',
