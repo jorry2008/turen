@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsDownload */
 
-$this->title = Yii::t('cms', 'Create Cms Download');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Download List'), 'url' => ['index']];
+$this->title = Yii::t('cms', 'Create Download');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Download List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

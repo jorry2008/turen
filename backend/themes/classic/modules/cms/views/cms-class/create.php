@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsClass */
 
-$this->title = Yii::t('cms', 'Create Cms Class');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Classes'), 'url' => ['index']];
+$this->title = Yii::t('cms', 'Create Class');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Class List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

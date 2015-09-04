@@ -75,7 +75,7 @@ class CmsAd extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cms', 'ID'),
-            'cms_ad_type_id' => Yii::t('cms', 'Cms Ad Type'),
+            'cms_ad_type_id' => Yii::t('cms', 'Ad Type'),
             'title' => Yii::t('cms', 'Title'),
             'mode' => Yii::t('cms', 'Mode'),
             'pic_url' => Yii::t('cms', 'Pic Url'),

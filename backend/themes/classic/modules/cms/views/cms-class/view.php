@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\cms\CmsClass */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Classes'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Class List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

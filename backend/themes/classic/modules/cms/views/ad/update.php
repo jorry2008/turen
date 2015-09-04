@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\cms\CmsAd */
 
 $this->title = Yii::t('cms', 'Update:') . $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Ads'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('cms', 'Update');
 ?>

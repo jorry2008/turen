@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\cms\CmsAd */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Ads'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -20,9 +20,23 @@ if($model->isNewRecord) {
 ?>
 
 <div class="row cms-page-form">
-    <div class="col-md-1"></div>
-    <div class="col-md-12 col-lg-6">
-        <?php $form = ActiveForm::begin(); ?>
+    <div class="col-md-12">
+        <?php 
+		//广泛布局
+		$form = ActiveForm::begin([
+			'layout' => 'horizontal',
+			'fieldConfig' => [
+				'template' => "{label} {beginWrapper} {input} {hint} {error} {endWrapper}",
+				'horizontalCssClasses' => [
+					'label' => 'col-sm-2',
+					'offset' => 'col-sm-offset-2',
+					'wrapper' => 'col-sm-8',
+					'error' => '',//col-sm-8 col-sm-offset-2
+					'hint' => '',//col-sm-8 col-sm-offset-2
+				],
+			],
+		]);
+		?>
         
         <?php //echo $form->field($model, 'cms_class_id')->dropDownList($items) ?>
         <?php //echo $form->field($model, 'cmsClass.name')->textInput(['maxlength' => true]) ?>
@@ -33,10 +47,12 @@ if($model->isNewRecord) {
     
         <?= $form->field($model, 'order')->input('number') ?>
     
-        <?= $form->field($model, 'status')->checkbox() ?>
-
+        <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Don\'t show in the frontend,If you don\'t choose')) ?>
+        
         <div class="form-group">
-            <?= Html::submitButton($model->isNewRecord ? Yii::t('cms', 'Create') : Yii::t('cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	        <div class="col-sm-8 col-sm-offset-2">
+	        	<?= Html::submitButton($model->isNewRecord ? Yii::t('cms', 'Create') : Yii::t('cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+			</div>
         </div>
     
         <?php ActiveForm::end(); ?>

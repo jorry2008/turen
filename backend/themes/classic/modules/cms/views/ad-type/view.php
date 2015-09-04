@@ -9,7 +9,7 @@ use common\models\cms\CmsAdType;
 /* @var $model common\models\cms\CmsAdType */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Ad Types'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad Type List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

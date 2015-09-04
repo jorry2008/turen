@@ -6,7 +6,7 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Classe List');
+$this->title = Yii::t('cms', 'Class List');
 $this->params['breadcrumbs'][] = $this->title;
 
 $orderUrl = Yii::$app->getUrlManager()->createUrl(['/cms/cms-class/order']);
@@ -52,7 +52,7 @@ $('.cms-class-index .cms-order').focus(function() {
                 
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms Class'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create Class'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             

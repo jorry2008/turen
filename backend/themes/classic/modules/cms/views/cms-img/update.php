@@ -8,7 +8,7 @@ use yii\helpers\StringHelper;
 
 $length = Yii::$app->params['config']['config_site_title_length'];
 $this->title = Yii::t('cms', 'Update:') . StringHelper::truncate($model->title, $length-5);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Imgs'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Img List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('cms', 'Update');
 ?>

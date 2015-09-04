@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsAdType */
 
-$this->title = Yii::t('cms', 'Create Cms Ad Type');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Ad Types'), 'url' => ['index']];
+$this->title = Yii::t('cms', 'Create Ad Type');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad Type List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

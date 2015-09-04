@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel common\models\cms\CmsAdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Ad List');
+$this->title = Yii::t('cms', 'Ad List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms Ad'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create Ad'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             

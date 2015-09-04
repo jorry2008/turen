@@ -13,7 +13,7 @@ use common\models\cms\CmsImg;
 /* @var $searchModel common\models\cms\CmsImgSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Img List');
+$this->title = Yii::t('cms', 'Img List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -38,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms Img'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create Img'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             

@@ -9,7 +9,7 @@ use common\models\cms\CmsPage;
 /* @var $searchModel common\models\cms\CmsPageSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Page List');
+$this->title = Yii::t('cms', 'Page List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms Page'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create Page'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             
@@ -57,7 +57,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         	[
                         		'attribute' => 'cms_class_id',
                         		'format' => 'raw',
-                        		'header' => Yii::t('cms', 'Cms Class'),
+                        		'header' => Yii::t('cms', 'Class'),
                         		'value' => function($model){
                         			return Html::a($model->cmsClass->name, ['update', 'id'=>$model->id]);
                         		},

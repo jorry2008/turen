@@ -52,7 +52,7 @@ class CmsPage extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cms', 'ID'),
-            'cms_class_id' => Yii::t('cms', 'Cms Class ID'),
+            'cms_class_id' => Yii::t('cms', 'Class'),
             'title' => Yii::t('cms', 'Title'),
             'pic_url' => Yii::t('cms', 'Pic Url'),
             'content' => Yii::t('cms', 'Content'),

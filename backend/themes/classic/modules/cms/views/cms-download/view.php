@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\cms\CmsDownload */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Download List'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Download List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -89,7 +89,7 @@ class CmsList extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cms', 'ID'),
-            'cms_class_id' => Yii::t('cms', 'Cms Class'),
+            'cms_class_id' => Yii::t('cms', 'Class'),
             'title' => Yii::t('cms', 'Title'),
             'colorval' => Yii::t('cms', 'Colorval'),
             'boldval' => Yii::t('cms', 'Boldval'),

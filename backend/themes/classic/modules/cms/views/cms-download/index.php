@@ -13,7 +13,7 @@ use common\models\cms\CmsDownload;
 /* @var $searchModel common\models\cms\CmsDownloadSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Download List');
+$this->title = Yii::t('cms', 'Download List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                        
 		            <!-- 
 		                <p>
-		                    <?= Html::a(Yii::t('cms', 'Create Cms Download'), ['create'], ['class' => 'btn btn-success']) ?>
+		                    <?= Html::a(Yii::t('cms', 'Create Download'), ['create'], ['class' => 'btn btn-success']) ?>
 		                </p>
 		             -->
 	            

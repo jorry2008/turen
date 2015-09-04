@@ -9,7 +9,7 @@ use common\models\cms\CmsAdType;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms Ad Type List');
+$this->title = Yii::t('cms', 'Ad Type List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms Ad Type'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create Ad Type'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             

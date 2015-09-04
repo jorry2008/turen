@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsFlag */
 
-$this->title = Yii::t('cms', 'Create Cms Flag');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Flags'), 'url' => ['index']];
+$this->title = Yii::t('cms', 'Create Flag');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Flag List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

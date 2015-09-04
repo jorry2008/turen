@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\cms\CmsFlag */
 
 $this->title = $model->name;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Flags'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Flag List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\cms\CmsPage */
 
 $this->title = $model->title;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Cms Pages'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Page List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -38,7 +38,10 @@ $this->params['breadcrumbs'][] = $this->title;
 		            'pic_url:url',
 		            'content:ntext',
 		            'order',
-		            'status',
+                	[
+                		'attribute' => 'status',
+                		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
+                	],
 		            'updated_at:datetime',
 		            'created_at:datetime',
                 ],

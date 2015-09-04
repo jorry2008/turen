@@ -13,7 +13,7 @@ use common\models\cms\CmsList;
 /* @var $searchModel common\models\cms\CmsListSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'Cms List List');
+$this->title = Yii::t('cms', 'List List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         
                     <!-- 
                         <p>
-                            <?= Html::a(Yii::t('cms', 'Create Cms List'), ['create'], ['class' => 'btn btn-success']) ?>
+                            <?= Html::a(Yii::t('cms', 'Create List'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
             
