@@ -28,6 +28,11 @@ class CmsAd extends \yii\db\ActiveRecord
 	
 	const MAX_PAGE_SIZE = 20;
 	
+	const AD_IMG = 1;
+	const AD_FLASH = 2;
+	const AD_VIDEO = 3;
+	const AD_HTML_CODE = 4;
+	
 	/**
 	 * 以行为的方式处理操作时间
 	 * @see \yii\base\Component::behaviors()
@@ -65,6 +70,7 @@ class CmsAd extends \yii\db\ActiveRecord
             [['link_url'], 'string', 'max' => 255],
         	
         	[['title'], 'required'],
+        	[['link_url'], 'url'],
         ];
     }
 
@@ -94,6 +100,20 @@ class CmsAd extends \yii\db\ActiveRecord
     public function getAdType()
     {
     	return $this->hasOne(CmsAdType::className(), ['id' => 'cms_ad_type_id']);
+    }
+    
+    /**
+     * 获取广告的模型
+     * @return multitype:string
+     */
+    public static function getAdMode()
+    {
+    	return [
+    		static::AD_IMG => Yii::t('cms', 'Image'),
+    		static::AD_FLASH => Yii::t('cms', 'Flash'),
+    		static::AD_VIDEO => Yii::t('cms', 'Video'),
+    		static::AD_HTML_CODE => Yii::t('cms', 'HTML Code'),
+    	];
     }
 
     /**

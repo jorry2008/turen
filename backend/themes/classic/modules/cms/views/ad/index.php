@@ -2,6 +2,11 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\ArrayHelper;
+use yii\helpers\StringHelper;
+
+use common\models\cms\CmsAd;
+use common\models\cms\CmsAdType;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\cms\CmsAdSearch */
@@ -54,21 +59,59 @@ $this->params['breadcrumbs'][] = $this->title;
                         'columns' => [
                             ['class' => 'yii\grid\SerialColumn'],
                 
-                            // 'id',
-                            'title',
-                            'cms_ad_type_id',
-                            'mode',
-                            'pic_url:url',
-                            // 'text:ntext',
-                            // 'link_url:url',
-                            'order',
-                            'status',
-                            'updated_at:datetime',
-                            // 'created_at:datetime',
-                
+//                             'id',
+                        	[
+                        		'attribute' => 'title',
+                        		'format' => 'raw',
+                        		'value' => function($model){
+                        			$length = Yii::$app->params['config']['config_site_title_length'];
+                        			$title = StringHelper::truncate($model->title, $length);
+                        			return Html::a($title, ['update', 'id'=>$model->id]);
+                        		},
+                        	], [
+                        		'attribute' => 'cms_ad_type_id',
+                        		'filter' => ArrayHelper::map(CmsAdType::find()->alive()->all(), 'id', 'name'),
+                        		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+                        		'value' => function($model){
+                        			return $model->adType->name;
+                        		},
+                        	], [
+	                            'attribute' => 'mode',
+                        		'format' => 'raw',
+                        		'filter' => CmsAd::getAdMode(),
+                        		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+	                            'value' => function($model){
+	                            	$modes = CmsAd::getAdMode();
+	                            	return empty($modes[$model->mode])?'':$modes[$model->mode];
+	                            },
+                            ],
+//                             'pic_url:url',
+//                             'text:ntext',
+//                             'link_url:url',
                             [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => Yii::t('common', 'Opration'),
+	                            'attribute' => 'order',
+	                            'format' => 'raw',
+	                            'value' => function($model){
+	                            	return Html::activeTextInput($model, 'order', ['style'=>'width:50px', 'data-id'=>$model->id, 'id'=>'', 'class'=>'cms-order']);
+	                            },
+                            ], [
+	                            'attribute' => 'status',
+	                            'format' => 'html',
+	                            'filter' => [CmsAd::STATUS_YES=>Yii::t('cms', 'Yes'), CmsAd::STATUS_NO=>Yii::t('cms', 'No')],
+	                            'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+	                            'value' => function($model){
+	                            	$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+	                            	$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+	                            	return $model->status?$on:$off;
+	                            },
+                            ],
+                            'updated_at:datetime',
+//                             'created_at:datetime',
+                			
+                            [
+	                            'class' => 'yii\grid\ActionColumn',
+	                            'template' => '{delete}',
+	                            'header' => Yii::t('common', 'Opration'),
                             ],
                         ],
                     ]); ?>
