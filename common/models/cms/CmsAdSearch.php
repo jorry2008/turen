@@ -41,10 +41,18 @@ class CmsAdSearch extends CmsAd
      */
     public function search($params)
     {
-        $query = CmsAd::find();
+        $query = CmsAd::find()->alive();
 
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+        	'pagination' => [
+        		//'pageSize' => static::MAX_PAGE_SIZE,
+        	],
+        	'sort' => [
+        		'defaultOrder' => [
+        			'updated_at' => SORT_DESC
+        		],
+        	],
         ]);
 
         $this->load($params);

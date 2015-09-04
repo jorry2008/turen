@@ -52,4 +52,5 @@ return [
 	'No' => 'No',
 	'Yes' => 'Yes',
 	'turen' => '土人',
+	'All' => '全部',
 ];

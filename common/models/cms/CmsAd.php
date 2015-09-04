@@ -3,6 +3,7 @@
 namespace common\models\cms;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%cms_ad}}".
@@ -16,11 +17,32 @@ use Yii;
  * @property string $link_url
  * @property integer $order
  * @property integer $status
+ * @property integer $deleted
  * @property string $updated_at
  * @property string $created_at
  */
 class CmsAd extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
+	const MAX_PAGE_SIZE = 20;
+	
+	/**
+	 * 以行为的方式处理操作时间
+	 * @see \yii\base\Component::behaviors()
+	 */
+	public function behaviors()
+	{
+		return [
+			'timemap' => [
+				'class' => TimestampBehavior::className(),
+				'createdAtAttribute' => 'created_at',
+				'updatedAtAttribute' => 'updated_at'
+			]
+		];
+	}
+	
     /**
      * @inheritdoc
      */
@@ -35,13 +57,14 @@ class CmsAd extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cms_ad_type_id', 'order', 'status', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'text'], 'required'],
+            [['cms_ad_type_id', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
             [['text'], 'string'],
             [['title'], 'string', 'max' => 30],
             [['mode'], 'string', 'max' => 10],
             [['pic_url'], 'string', 'max' => 100],
-            [['link_url'], 'string', 'max' => 255]
+            [['link_url'], 'string', 'max' => 255],
+        	
+        	[['title'], 'required'],
         ];
     }
 
@@ -52,7 +75,7 @@ class CmsAd extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('cms', 'ID'),
-            'cms_ad_type_id' => Yii::t('cms', 'Cms Ad Type ID'),
+            'cms_ad_type_id' => Yii::t('cms', 'Cms Ad Type'),
             'title' => Yii::t('cms', 'Title'),
             'mode' => Yii::t('cms', 'Mode'),
             'pic_url' => Yii::t('cms', 'Pic Url'),
@@ -63,6 +86,14 @@ class CmsAd extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('cms', 'Updated At'),
             'created_at' => Yii::t('cms', 'Created At'),
         ];
+    }
+    
+    /**
+     * 一对一
+     */
+    public function getAdType()
+    {
+    	return $this->hasOne(CmsAdType::className(), ['id' => 'cms_ad_type_id']);
     }
 
     /**

@@ -17,6 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+	'ID' => 'ID',
     'Are you sure you want to delete this item?' => '你确定要删除选中的项吗？',
     'Author' => '作者',
     'Boldval' => '字号',
@@ -44,9 +45,8 @@ return [
     'Description' => '描述',
     'Flag' => '标记',
 	'Flag Name' => '标记名',
-    'Height' => '高',
+    'Height' => '高度',
     'Hits' => '点击次数',
-    'ID' => 'ID',
     'Keywords' => '关键词',
     'Link Url' => '链接',
     'Mode' => '类型',
@@ -121,4 +121,12 @@ return [
 	'Request is failure!' => '请求失败！',
 	'Run Os' => '支持的操作系统',
 	'Unit' => '单元',
+		
+	'Short Code' => '调用简码',
+	'Size Type' => '尺寸类型',
+	'Pixel' => '像素',
+	'Percent' => '百分比',
+	'If is blank, default as 100%' => '如果留空，则默认为100%',
+	'Unit is pixel,' => '单位为像素，',
+	'Click on the column headings first access this link' => '点击栏目标题优先访问此链接，留空则正常访问',
 ];

@@ -2,6 +2,9 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
+
+use common\models\cms\CmsAdType;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -50,17 +53,48 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
                 
                             // 'id',
-                            'name',
-                            'parent_id',
-                            'parent_str',
-                            'width',
-                            // 'height',
-                            'order',
-                            'status',
-                            
+                        	[
+                        		'attribute' => 'name',
+                        		'format' => 'raw',
+                        		'value' => function($model){
+                        			$length = Yii::$app->params['config']['config_site_title_length'];
+                        			$title = StringHelper::truncate($model->name, $length);
+//                         			return Html::a($title, ['update', 'id'=>$model->id]);
+                        			return $title;
+                        		},
+                        	],
+                        	'short_code',
+                        	[
+	                        	'attribute' => 'wh_type',
+	                        	'value' => function($model){
+	                        		return ($model->wh_type == CmsAdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent');
+	                        	},
+                        	], [
+	                        	'attribute' => 'width',
+	                        	'value' => function($model){
+	                        		$unit = ($model->wh_type == CmsAdType::WH_TYPE_PX)?'px':'%';
+	                        		return $model->width.$unit;
+	                        	},
+                        	], [
+	                        	'attribute' => 'height',
+	                        	'value' => function($model){
+	                        		$unit = ($model->wh_type == CmsAdType::WH_TYPE_PX)?'px':'%';
+	                        		return $model->height.$unit;
+	                        	},
+                        	], [
+                        		'attribute' => 'status',
+                        		'format' => 'html',
+                        		'value' => function($model){
+                        			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			return $model->status?$on:$off;
+                        		},
+                        	],
+                        	'updated_at:datetime',
                             [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => Yii::t('common', 'Opration'),
+	                            'class' => 'yii\grid\ActionColumn',
+	                            'template' => '{update} {delete}',
+	                            'header' => Yii::t('common', 'Opration'),
                             ],
                         ],
                     ]); ?>

@@ -73,7 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         	], [
 	                            'attribute' => 'cms_class_id',
                         		'filter' => ArrayHelper::map(CmsClass::find()->where(['type'=>CmsClass::CMS_TYPE_LIST])->alive()->all(), 'id', 'name'),
-	                            'value' => function($model){
+                        		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+                        		'value' => function($model){
 	                            	return $model->cmsClass->name;
 	                            },
                             ],
@@ -89,6 +90,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             [
                             	'attribute' => 'cms_flag',
                             	'filter' => ArrayHelper::map(CmsFlag::find()->orderBy('order')->all(), 'flag', 'name'),
+                            	'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
                             	'value' => function($model){
                             		return $model->cmsFlag->cms_flag;
                             	},
@@ -98,6 +100,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'attribute' => 'status',
                         		'format' => 'html',
                         		'filter' => [CmsList::STATUS_YES=>Yii::t('cms', 'Yes'), CmsList::STATUS_NO=>Yii::t('cms', 'No')],
+                        		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
                         		'value' => function($model){
                         			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
                         			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);

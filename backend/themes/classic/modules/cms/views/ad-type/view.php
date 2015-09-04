@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
+use common\models\cms\CmsAdType;
+
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsAdType */
 
@@ -44,13 +46,20 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-            'parent_id',
-            'parent_str',
-            'name',
-            'width',
-            'height',
-            'order',
-            'status',
+		            'name',
+                	'short_code',
+                	[
+                		'attribute' => 'wh_type',
+                		'value' => ($model->wh_type == CmsAdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent'),
+                	],
+		            'width:integer',
+		            'height:integer',
+                	[
+                		'attribute' => 'status',
+                		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
+                	],
+                	'updated_at:datetime',
+                	'created_at:datetime',
                 ],
             ]) ?>
                 </div>

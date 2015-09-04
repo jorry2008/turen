@@ -152,7 +152,7 @@ $this->registerJs("
 	    	'inputTemplate' => '<div class="input-group">{input}<span class="input-group-addon"><i class="fa fa-clock-o"></i></span></div>',
 	    ])->textInput(['data-date'=>$model->publish_at]) ?>
 	
-	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').'&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Don\'t show in the frontend,If you don\'t choose')) ?>
+	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Don\'t show in the frontend,If you don\'t choose')) ?>
 	
         <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">

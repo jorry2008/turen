@@ -46,7 +46,6 @@ $this->params['breadcrumbs'][] = $this->title;
 		                    'id',
 		                	'type',
 				            'parent_id',
-// 				            'parent_str',
 				            'name',
 		                	'description',
 				            'link_url:url',
@@ -58,7 +57,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'keywords',
 				            
 				            'order',
-				            'status',
+		                	[
+		                		'attribute' => 'status',
+		                		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
+		                	],
 		                ],
 		            ]) ?>
                 </div>

@@ -73,7 +73,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'attribute' => 'status',
                         		'format' => 'html',
 								'filter' => [CmsPage::STATUS_YES=>Yii::t('cms', 'Yes'), CmsPage::STATUS_NO=>Yii::t('cms', 'No')],
-                        		'value' => function($model){
+								'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+								'value' => function($model){
                         			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
                         			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
                         			return $model->status?$on:$off;

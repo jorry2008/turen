@@ -21,7 +21,7 @@ class AdTypeController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => CmsAdType::find(),
+            'query' => CmsAdType::find()->alive(),
         ]);
 
         return $this->render('index', [
@@ -76,19 +76,6 @@ class AdTypeController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing CmsAdType model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**
