@@ -7,7 +7,7 @@ return [
 	// 提交的图片表单名称
 	'imageFieldName' => 'upfile',
 	// 上传大小限制，单位B
-	'imageMaxSize' => 2048000,
+	'imageMaxSize' => 1024000,//1M
 	// 上传图片格式显示
 	'imageAllowFiles' => [ 
 			'.png',
@@ -49,7 +49,7 @@ return [
 	// 上传保存路径,可以自定义保存路径和文件名格式
 	'scrawlPathFormat' => '/upload/image/scrawl/{yyyy}{mm}{dd}/{time}{rand:6}',
 	// 上传大小限制，单位B
-	'scrawlMaxSize' => 2048000,
+	'scrawlMaxSize' => 1024000,
 	//图鸦类型
 	'scrawlAllowFiles' => [
 			'.png',
@@ -88,7 +88,7 @@ return [
 	// 图片访问路径前缀
 	'catcherUrlPrefix' => '',
 	// 上传大小限制，单位B
-	'catcherMaxSize' => 2048000,
+	'catcherMaxSize' => 1024000,
 	// 抓取图片格式显示
 	'catcherAllowFiles' => [ 
 			'.png',

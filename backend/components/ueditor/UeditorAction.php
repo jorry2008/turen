@@ -5,6 +5,7 @@ namespace backend\components\ueditor;
 use Yii;
 use yii\base\Action;
 use yii\helpers\ArrayHelper;
+use yii\helpers\FileHelper;
 use yii\helpers\Json;
 
 class UeditorAction extends Action
@@ -58,7 +59,7 @@ class UeditorAction extends Action
 
             	/* 抓取远程文件 */
             case 'catchimage':
-                $result = $this->crawler();
+                $result = $this->remoteSave();
                 break;
 
             default:
@@ -151,7 +152,7 @@ class UeditorAction extends Action
     protected function fileList()
     {
         /* 判断类型 */
-        switch ($_GET['action']) {
+        switch (Yii::$app->getRequest()->get('action')) {
             /* 列出文件 */
             case 'listfile':
                 $allowFiles = $this->config['fileManagerAllowFiles'];
@@ -168,14 +169,16 @@ class UeditorAction extends Action
         $allowFiles = substr(str_replace('.', '|', join('', $allowFiles)), 1);
 
         /* 获取参数 */
-        $size = isset($_GET['size']) ? htmlspecialchars($_GET['size']) : $listSize;
-        $start = isset($_GET['start']) ? htmlspecialchars($_GET['start']) : 0;
+        $size = Yii::$app->getRequest()->get('size', $listSize);
+        $start = Yii::$app->getRequest()->get('start', 0);
         $end = (int)$start + (int)$size;
 
         /* 获取文件列表 */
-        $path = $_SERVER['DOCUMENT_ROOT'] . (substr($path, 0, 1) == '/' ? '' : '/') . $path;
+        $path = FileHelper::normalizePath(Yii::getAlias('@backend/web/upload/image/'));
         $files = $this->getfiles($path, $allowFiles);
-        if (!count($files)) {
+        
+        //如果没有找到文件
+        if (empty($files)) {
             return Json::encode([
                 'state' => Yii::t('ueditor', 'No match file'),
                 'list' => [],
@@ -218,22 +221,26 @@ class UeditorAction extends Action
 
         /* 抓取远程图片 */
         $list = [];
-        if (isset($_POST[$fieldName])) {
-            $source = $_POST[$fieldName];
+        if (Yii::$app->getRequest()->post($fieldName)) {
+            $source = Yii::$app->getRequest()->post($fieldName);
         } else {
-            $source = $_GET[$fieldName];
+            $source = Yii::$app->getRequest()->get($fieldName);
         }
+        
         foreach ($source as $imgUrl) {
-            $item = new Uploader($imgUrl, $config, 'remote');
-            $info = $item->getFileInfo();
-            array_push($list, [
-                'state' => $info['state'],
-                'url' => $info['url'],
-                'size' => $info['size'],
-                'title' => htmlspecialchars($info['title']),
-                'original' => htmlspecialchars($info['original']),
-                'source' => htmlspecialchars($imgUrl)
-            ]);
+            $uploader = new Uploader($imgUrl, $config, 'remote');
+            $info = $uploader->getFileInfo();
+            
+            if($info['state'] == 'SUCCESS') {
+            	array_push($list, [
+            			'state' => $info['state'],
+            			'url' => $info['url'],
+            			'size' => $info['size'],
+            			'title' => htmlspecialchars($info['title']),
+            			'original' => htmlspecialchars($info['original']),
+            			'source' => htmlspecialchars($imgUrl)
+            	]);
+            }
         }
 
         /* 返回抓取数据 */
@@ -254,6 +261,7 @@ class UeditorAction extends Action
     {
         if (!is_dir($path)) return null;
         if (substr($path, strlen($path) - 1) != '/') $path .= '/';
+        
         $handle = opendir($path);
         while (false !== ($file = readdir($handle))) {
             if ($file != '.' && $file != '..') {
@@ -263,7 +271,7 @@ class UeditorAction extends Action
                 } else {
                     if (preg_match('/\.(' . $allowFiles . ')$/i', $file)) {
                         $files[] = [
-                            'url' => substr($path2, strlen($_SERVER['DOCUMENT_ROOT'])),
+                            'url' => Yii::getAlias('@web').'/'.str_replace('\\', '/', substr($path2, strlen(Yii::getAlias('@backend/web/')))),
                             'mtime' => filemtime($path2)
                         ];
                     }

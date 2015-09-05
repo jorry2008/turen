@@ -36,7 +36,7 @@ return [
 	'Failed to upload file' => '上传文件失败',
 	'Http link error' => 'http链接错误',
 	'Http head error' => 'http请求头部错误',
-	'' => '',
+	'Http content type error' => 'http请求内容类型错误',
 	'' => '',
 	'' => '',
 	'' => '',

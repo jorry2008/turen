@@ -42,7 +42,7 @@ class Uploader {
 	 * 上传文件的主处理方法
 	 * @return mixed
 	 */
-	private function uploadFile() {
+	protected function uploadFile() {
 		$uploadedFile = UploadedFile::getInstanceByName($this->field);
 		
 		//文件未找到
@@ -104,7 +104,7 @@ class Uploader {
 	 * 
 	 * @return mixed
 	 */
-	private function uploadBase64() {
+	protected function uploadBase64() {
 		$base64Data = Yii::$app->getRequest()->post($this->field);
 		if($base64Data) {
 			$img = base64_decode($base64Data);//图片内容，png
@@ -155,7 +155,7 @@ class Uploader {
 	 * 
 	 * @return mixed
 	 */
-	private function saveRemote() {
+	protected function saveRemote() {
 		$imgUrl = htmlspecialchars($this->field);
 		$imgUrl = str_replace('&amp;', '&', $imgUrl);
 		
@@ -164,16 +164,29 @@ class Uploader {
 			$this->state = Yii::t('ueditor', 'Http link error');
 			return false;
 		}
+		
 		// 获取请求头并检测死链
-		$heads = get_headers($imgUrl);
+		//解析http head
+		$imgHeader = [];
+		$fp = fopen($imgUrl, 'r');
+		$heads = stream_get_meta_data($fp);
+		$heads = $heads['wrapper_data'];
+		
 		if(!(stristr($heads[0], '200') && stristr($heads[0], 'OK'))) {
-			$this->state = Yii::t('ueditor', 'Http head error');//'ERROR_DEAD_LINK');
+			$this->state = Yii::t('ueditor', 'Http head error');
 			return false;
 		}
+		
 		// 格式验证(扩展名验证和Content-Type验证)
-		$type = strtolower(strrchr($imgUrl, '.'));
-		if(!in_array($type, $this->config['allowFiles']) || stristr($heads['Content-Type'], 'image')) {
-			$this->state = '';//'ERROR_HTTP_CONTENTTYPE');
+		$type = stristr($heads[4], 'image');
+		if(empty($type)) {
+			$this->state = Yii::t('ueditor', 'Http content type error');
+			return false;
+		}
+		
+		$ext = strtolower(strrchr($imgUrl, '.'));
+		if(!in_array($ext, $this->config['allowFiles'])) {
+			Yii::t('ueditor', 'Ueditor not allowed file types');
 			return false;
 		}
 		
@@ -181,41 +194,48 @@ class Uploader {
 		ob_start();
 		$context = stream_context_create([ 
 				'http' =>[ 
-						'follow_location' => false 
+					'follow_location' => false 
 				] // don't follow redirects
- 
 		]);
 		readfile($imgUrl, false, $context);
 		$img = ob_get_contents();
 		ob_end_clean();
+		
 		preg_match('/[\/]([^\/]*)[\.]?[^\.\/]*$/', $imgUrl, $m);
 		
 		$this->originalName = $m?$m[1]:'';
 		$this->size = strlen($img);
-		$this->type = $this->getFileExt();
-		$this->url = $this->renameFullFile();
-		$this->filePath = $this->getFilePath();
-		$this->title = $this->gettitle();
+		$this->type = $type;
+		$this->url = FileHelper::normalizePath($this->renameFullFile().$ext);//重命名文件
+		$pathinfo = pathinfo($this->url);
+		$basePath = Yii::getAlias('@backend/web/');
+		$this->filePath = FileHelper::normalizePath($basePath.$pathinfo['dirname'].DIRECTORY_SEPARATOR.$pathinfo['basename']);
+		$this->title = $pathinfo['basename'];
+			
+		//转化为web路径
+		$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+			
 		$dirname = dirname($this->filePath);
-		
-		// 检查文件大小是否超出限制
-		if(!$this->checkSize()) {
-			$this->state = '';//'ERROR_SIZE_EXCEED');
+			
+		//配置文件大小限制
+		if($this->size > $this->config['maxSize']) {
+			$this->state = Yii::t('ueditor', 'File size beyond ueditor limit');
 			return false;
 		}
-		
+			
 		// 创建目录失败
-		if(!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-			$this->state = '';//'ERROR_CREATE_DIR');
+		if(!is_dir($dirname) && !FileHelper::createDirectory($dirname)) {
+			$this->state = Yii::t('ueditor', 'Failed to create the upload directory');
 			return false;
 		} else if(!is_writeable($dirname)) {
-			$this->state = '';//'ERROR_DIR_NOT_WRITEABLE');
+			$this->state = Yii::t('ueditor', 'Do not write to upload directory');
 			return false;
 		}
 		
-		// 移动文件
+		// 存储远程文件到指定文件
 		if(!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { // 移动失败
-			$this->state = '';//'ERROR_WRITE_CONTENT');
+			$this->state = Yii::t('ueditor', 'Failed to upload file');
+			return false;
 		}
 	}
 	
