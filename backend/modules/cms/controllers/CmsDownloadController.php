@@ -14,6 +14,21 @@ use yii\filters\VerbFilter;
  */
 class CmsDownloadController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'uploadify' => [
+				'class' => 'backend\components\uploadify\UploadifyAction',
+			],
+			'ueditor' => [
+				'class' => 'backend\components\ueditor\UeditorAction',
+			]
+		];
+	}
+	
     /**
      * Lists all CmsDownload models.
      * @return mixed

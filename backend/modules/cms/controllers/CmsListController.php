@@ -15,6 +15,21 @@ use backend\components\Controller;
  */
 class CmsListController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'uploadify' => [
+				'class' => 'backend\components\uploadify\UploadifyAction',
+			],
+			'ueditor' => [
+				'class' => 'backend\components\ueditor\UeditorAction',
+			]
+		];
+	}
+	
     /**
      * Lists all CmsList models.
      * @return mixed

@@ -19,6 +19,22 @@ use common\components\helpers\General;
 class CmsClassController extends Controller
 {
     const MAX_PAGE_SIZE = 200;//设置为200个栏目，最大值，相当于all
+    
+    /**
+     * @inheritdoc
+     */
+    public function actions()
+    {
+    	return [
+    		'uploadify' => [
+    			'class' => 'backend\components\uploadify\UploadifyAction',
+    		],
+    		'ueditor' => [
+    			'class' => 'backend\components\ueditor\UeditorAction',
+    		]
+    	];
+    }
+    
     /**
      * Lists all CmsClass models.
      * @return mixed

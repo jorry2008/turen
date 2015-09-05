@@ -112,8 +112,19 @@ $this->params['breadcrumbs'][] = $this->title;
                 
                             [
                                 'class' => 'yii\grid\ActionColumn',
+                            	'header' => Yii::t('common', 'Opration'),
                             	'template' => '{delete}',
-                                'header' => Yii::t('common', 'Opration'),
+                            	'buttons' => [
+                            		'link' => function ($url, $model, $key) {
+                            			$url = ['test', 'id'=>$model->id];
+                            			$options = [
+                            				'title' => Yii::t('cms', 'Preview in frontend'),
+                            				'aria-label' => Yii::t('cms', 'Preview in frontend'),
+                            				'data-pjax' => '0',
+                            			];
+                            			return Html::a('<span class="fa fa-external-link"></span>', $url, $options);
+                            		},
+                            	],
                             ],
                         ],
                     ]); ?>

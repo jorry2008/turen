@@ -2,341 +2,301 @@
 
 namespace backend\components\ueditor;
 
-class Uploader
-{
-    private $fileField; //文件域名
-    private $file; //文件上传对象
-    private $base64; //文件上传对象
-    private $config; //配置信息
-    private $oriName; //原始文件名
-    private $fileName; //新文件名
-    private $fullName; //完整文件名,即从当前配置目录开始的URL
-    private $filePath; //完整文件名,即从当前配置目录开始的URL
-    private $fileSize; //文件大小
-    private $fileType; //文件类型
-    private $stateInfo; //上传状态信息,
-    private $stateMap = array( //上传状态映射表，国际化用户需考虑此处数据的国际化
-        "SUCCESS", //上传成功标记，在Ueditor中内不可改变，否则flash判断会出错
-        "文件大小超出 upload_max_filesize 限制",
-        "文件大小超出 MAX_FILE_SIZE 限制",
-        "文件未被完整上传",
-        "没有文件被上传",
-        "上传文件为空",
-        "ERROR_TMP_FILE"           => "临时文件错误",
-        "ERROR_TMP_FILE_NOT_FOUND" => "找不到临时文件",
-        "ERROR_SIZE_EXCEED"        => "文件大小超出网站限制",
-        "ERROR_TYPE_NOT_ALLOWED"   => "文件类型不允许",
-        "ERROR_CREATE_DIR"         => "目录创建失败",
-        "ERROR_DIR_NOT_WRITEABLE"  => "目录没有写权限",
-        "ERROR_FILE_MOVE"          => "文件保存时出错",
-        "ERROR_FILE_NOT_FOUND"     => "找不到上传文件",
-        "ERROR_WRITE_CONTENT"      => "写入文件内容错误",
-        "ERROR_UNKNOWN"            => "未知错误",
-        "ERROR_DEAD_LINK"          => "链接不可用",
-        "ERROR_HTTP_LINK"          => "链接不是http链接",
-        "ERROR_HTTP_CONTENTTYPE"   => "链接contentType不正确"
-    );
+use Yii;
+use yii\web\UploadedFile;
+use yii\helpers\FileHelper;
+use yii\helpers\StringHelper;
 
-    /**
-     * 构造函数
-     * @param $fileField  表单名称
-     * @param $config 配置项
-     * @param string $type 是否解析base64编码，可省略。若开启，则$fileField代表的是base64编码的字符串表单名
-     */
-    public function __construct($fileField, $config, $type = "upload")
-    {
-        $this->fileField = $fileField;
-        $this->config = $config;
-        $this->type = $type;
-        if ($type == "remote") {
-            $this->saveRemote();
-        } else if ($type == "base64") {
-            $this->upBase64();
-        } else {
-            $this->upFile();
-        }
-//        $this->stateMap['ERROR_TYPE_NOT_ALLOWED'] = iconv('unicode', 'utf-8', $this->stateMap['ERROR_TYPE_NOT_ALLOWED']);
-    }
-
-    /**
-     * 上传文件的主处理方法
-     * @return mixed
-     */
-    private function upFile()
-    {
-        $file = $this->file = $_FILES[$this->fileField];
-        if (!$file) {
-            $this->stateInfo = $this->getStateInfo("ERROR_FILE_NOT_FOUND");
-            return;
-        }
-        if ($this->file['error']) {
-            $this->stateInfo = $this->getStateInfo($file['error']);
-            return;
-        } else if (!file_exists($file['tmp_name'])) {
-            $this->stateInfo = $this->getStateInfo("ERROR_TMP_FILE_NOT_FOUND");
-            return;
-        } else if (!is_uploaded_file($file['tmp_name'])) {
-            $this->stateInfo = $this->getStateInfo("ERROR_TMPFILE");
-            return;
-        }
-
-        $this->oriName = $file['name'];
-        $this->fileSize = $file['size'];
-        $this->fileType = $this->getFileExt();
-        $this->fullName = $this->getFullName();
-        $this->filePath = $this->getFilePath();
-        $this->fileName = $this->getFileName();
-        $dirname = dirname($this->filePath);
-
-        //检查文件大小是否超出限制
-        if (!$this->checkSize()) {
-            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
-            return;
-        }
-
-        //检查是否不允许的文件格式
-        if (!$this->checkType()) {
-            $this->stateInfo = $this->getStateInfo("ERROR_TYPE_NOT_ALLOWED");
-            return;
-        }
-
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
-        //移动文件
-        if (!(move_uploaded_file($file["tmp_name"], $this->filePath) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_FILE_MOVE");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
-    }
-
-    /**
-     * 处理base64编码的图片上传
-     * @return mixed
-     */
-    private function upBase64()
-    {
-        $base64Data = $_POST[$this->fileField];
-        $img = base64_decode($base64Data);
-
-        $this->oriName = $this->config['oriName'];
-        $this->fileSize = strlen($img);
-        $this->fileType = $this->getFileExt();
-        $this->fullName = $this->getFullName();
-        $this->filePath = $this->getFilePath();
-        $this->fileName = $this->getFileName();
-        $dirname = dirname($this->filePath);
-
-        //检查文件大小是否超出限制
-        if (!$this->checkSize()) {
-            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
-            return;
-        }
-
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
-
-        //移动文件
-        if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
-
-    }
-
-    /**
-     * 拉取远程图片
-     * @return mixed
-     */
-    private function saveRemote()
-    {
-        $imgUrl = htmlspecialchars($this->fileField);
-        $imgUrl = str_replace("&amp;", "&", $imgUrl);
-
-        //http开头验证
-        if (strpos($imgUrl, "http") !== 0) {
-            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_LINK");
-            return;
-        }
-        //获取请求头并检测死链
-        $heads = get_headers($imgUrl);
-        if (!(stristr($heads[0], "200") && stristr($heads[0], "OK"))) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DEAD_LINK");
-            return;
-        }
-        //格式验证(扩展名验证和Content-Type验证)
-        $fileType = strtolower(strrchr($imgUrl, '.'));
-        if (!in_array($fileType, $this->config['allowFiles']) || stristr($heads['Content-Type'], "image")) {
-            $this->stateInfo = $this->getStateInfo("ERROR_HTTP_CONTENTTYPE");
-            return;
-        }
-
-        //打开输出缓冲区并获取远程图片
-        ob_start();
-        $context = stream_context_create(
-            array('http' => array(
-                'follow_location' => false // don't follow redirects
-            ))
-        );
-        readfile($imgUrl, false, $context);
-        $img = ob_get_contents();
-        ob_end_clean();
-        preg_match("/[\/]([^\/]*)[\.]?[^\.\/]*$/", $imgUrl, $m);
-
-        $this->oriName = $m ? $m[1] : "";
-        $this->fileSize = strlen($img);
-        $this->fileType = $this->getFileExt();
-        $this->fullName = $this->getFullName();
-        $this->filePath = $this->getFilePath();
-        $this->fileName = $this->getFileName();
-        $dirname = dirname($this->filePath);
-
-        //检查文件大小是否超出限制
-        if (!$this->checkSize()) {
-            $this->stateInfo = $this->getStateInfo("ERROR_SIZE_EXCEED");
-            return;
-        }
-
-        //创建目录失败
-        if (!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_CREATE_DIR");
-            return;
-        } else if (!is_writeable($dirname)) {
-            $this->stateInfo = $this->getStateInfo("ERROR_DIR_NOT_WRITEABLE");
-            return;
-        }
-
-        //移动文件
-        if (!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { //移动失败
-            $this->stateInfo = $this->getStateInfo("ERROR_WRITE_CONTENT");
-        } else { //移动成功
-            $this->stateInfo = $this->stateMap[0];
-        }
-
-    }
-
-    /**
-     * 上传错误检查
-     * @param $errCode
-     * @return string
-     */
-    private function getStateInfo($errCode)
-    {
-        return !$this->stateMap[$errCode] ? $this->stateMap["ERROR_UNKNOWN"] : $this->stateMap[$errCode];
-    }
-
-    /**
-     * 获取文件扩展名
-     * @return string
-     */
-    private function getFileExt()
-    {
-        return strtolower(strrchr($this->oriName, '.'));
-    }
-
-    /**
-     * 重命名文件
-     * @return string
-     */
-    private function getFullName()
-    {
-        //替换日期事件
-        $t = time();
-        $d = explode('-', date("Y-y-m-d-H-i-s"));
-        $format = $this->config["pathFormat"];
-        $format = str_replace("{yyyy}", $d[0], $format);
-        $format = str_replace("{yy}", $d[1], $format);
-        $format = str_replace("{mm}", $d[2], $format);
-        $format = str_replace("{dd}", $d[3], $format);
-        $format = str_replace("{hh}", $d[4], $format);
-        $format = str_replace("{ii}", $d[5], $format);
-        $format = str_replace("{ss}", $d[6], $format);
-        $format = str_replace("{time}", $t, $format);
-
-        //过滤文件名的非法自负,并替换文件名
-        $oriName = substr($this->oriName, 0, strrpos($this->oriName, '.'));
-        $oriName = preg_replace("/[\|\?\"\<\>\/\*\\\\]+/", '', $oriName);
-        $format = str_replace("{filename}", $oriName, $format);
-
-        //替换随机字符串
-        $randNum = rand(1, 10000000000) . rand(1, 10000000000);
-        if (preg_match("/\{rand\:([\d]*)\}/i", $format, $matches)) {
-            $format = preg_replace("/\{rand\:[\d]*\}/i", substr($randNum, 0, $matches[1]), $format);
-        }
-
-        $ext = $this->getFileExt();
-        return $format . $ext;
-    }
-
-    /**
-     * 获取文件名
-     * @return string
-     */
-    private function getFileName()
-    {
-        return substr($this->filePath, strrpos($this->filePath, '/') + 1);
-    }
-
-    /**
-     * 获取文件完整路径
-     * @return string
-     */
-    private function getFilePath()
-    {
-        $fullname = $this->fullName;
-        $rootPath = $_SERVER['DOCUMENT_ROOT'];
-
-        if (substr($fullname, 0, 1) != '/') {
-            $fullname = '/' . $fullname;
-        }
-
-        return $rootPath . $fullname;
-    }
-
-    /**
-     * 文件类型检测
-     * @return bool
-     */
-    private function checkType()
-    {
-        return in_array($this->getFileExt(), $this->config["allowFiles"]);
-    }
-
-    /**
-     * 文件大小检测
-     * @return bool
-     */
-    private function  checkSize()
-    {
-        return $this->fileSize <= ($this->config["maxSize"]);
-    }
-
-    /**
-     * 获取当前上传成功文件的各项信息
-     * @return array
-     */
-    public function getFileInfo()
-    {
-        return array(
-            "state"    => $this->stateInfo,
-            "url"      => $this->fullName,
-            "title"    => $this->fileName,
-            "original" => $this->oriName,
-            "type"     => $this->fileType,
-            "size"     => $this->fileSize
-        );
-    }
+class Uploader {
+	private $field; // 文件域名
+	private $config; // 配置信息
+	
+	private $originalName; // 原始文件名
+	private $title; // 新文件名
+	private $url; // 完整文件名,即从当前配置目录开始的URL
+	private $size; // 文件大小
+	private $type; // 文件类型
+	private $state = 'SUCCESS'; // 上传状态信息,默认为成功
+	
+	/**
+	 * 构造函数
+	 * 是否解析base64编码，可省略。若开启，则$field代表的是base64编码的字符串表单名
+	 * @param $field 表单名称        	
+	 * @param $config 配置项        	
+	 * @param string $type
+	 */
+	public function __construct($field, $config, $mode = 'upload') {
+		$this->field = $field;
+		$this->config = $config;
+		
+		if($mode == 'remote') {
+			$this->saveRemote();//抓取远程图片
+		} else if($mode == 'base64') {
+			$this->uploadBase64(); // 涂鸦编码
+		} else if($mode == 'upload') {
+			$this->uploadFile(); // 正常的文件
+		}
+	}
+	
+	/**
+	 * 上传文件的主处理方法
+	 * @return mixed
+	 */
+	private function uploadFile() {
+		$uploadedFile = UploadedFile::getInstanceByName($this->field);
+		
+		//文件未找到
+		if(!$uploadedFile) {
+			$this->state = Yii::t('ueditor', 'Not found file');
+			return false;
+		}
+		
+		//上传过程中的错误
+		if($uploadedFile->getHasError()) {
+			$this->state = $this->getServerError($uploadedFile->error);
+			return false;
+		}
+		
+		//配置文件大小限制
+		if($uploadedFile->size > $this->config['maxSize']) {
+			$this->state = Yii::t('ueditor', 'File size beyond ueditor limit');
+			return false;
+		}
+		
+		//文件类型检查
+		if(!in_array('.'.$uploadedFile->getExtension(), $this->config['allowFiles'])) {
+			$this->state = Yii::t('ueditor', 'Ueditor not allowed file types');
+			return false;
+		}
+		
+		$this->originalName = $uploadedFile->name;
+		$this->size = $uploadedFile->size;
+		$this->type = $uploadedFile->type;//image/jpeg
+		
+		$this->url = FileHelper::normalizePath($this->renameFullFile().'.'.$uploadedFile->getExtension());//重命名文件
+		$pathinfo = pathinfo($this->url);
+		$basePath = Yii::getAlias('@backend/web/');
+		$this->filePath = FileHelper::normalizePath($basePath.$pathinfo['dirname'].DIRECTORY_SEPARATOR.$pathinfo['basename']);
+		$this->title = $pathinfo['basename'];
+		
+		//转化为web路径
+		$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+		
+		$dirname = dirname($this->filePath);
+		
+		// 创建目录失败
+		if(!is_dir($dirname) && !FileHelper::createDirectory($dirname)) {
+			$this->state = Yii::t('ueditor', 'Failed to create the upload directory');
+			return false;
+		} else if(!is_writeable($dirname)) {
+			$this->state = Yii::t('ueditor', 'Do not write to upload directory');
+			return false;
+		}
+				
+		if(!$uploadedFile->saveAs($this->filePath)) {
+			$this->state = Yii::t('ueditor', 'Failed to upload file');
+			return false;
+		}
+	}
+	
+	/**
+	 * 处理base64编码的图片上传
+	 * 
+	 * @return mixed
+	 */
+	private function uploadBase64() {
+		$base64Data = Yii::$app->getRequest()->post($this->field);
+		if($base64Data) {
+			$img = base64_decode($base64Data);//图片内容，png
+			
+			$this->originalName = $this->config['oriName'];//涂鸦原始名称
+			$this->size = strlen($img);
+			$this->type = 'image/png';
+			
+			$this->url = FileHelper::normalizePath($this->renameFullFile().'.png');//重命名文件
+			$pathinfo = pathinfo($this->url);
+			$basePath = Yii::getAlias('@backend/web/');
+			$this->filePath = FileHelper::normalizePath($basePath.$pathinfo['dirname'].DIRECTORY_SEPARATOR.$pathinfo['basename']);
+			$this->title = $pathinfo['basename'];
+			
+			//转化为web路径
+			$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+			
+			$dirname = dirname($this->filePath);
+			
+			//配置文件大小限制
+			if($this->size > $this->config['maxSize']) {
+				$this->state = Yii::t('ueditor', 'File size beyond ueditor limit');
+				return false;
+			}
+			
+			// 创建目录失败
+			if(!is_dir($dirname) && !FileHelper::createDirectory($dirname)) {
+				$this->state = Yii::t('ueditor', 'Failed to create the upload directory');
+				return false;
+			} else if(!is_writeable($dirname)) {
+				$this->state = Yii::t('ueditor', 'Do not write to upload directory');
+				return false;
+			}
+			
+			// 存储涂鸦到指定文件
+			if(!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { // 移动失败
+				$this->state = Yii::t('ueditor', 'Failed to upload file');
+				return false;
+			}
+		} else {
+			$this->state = Yii::t('ueditor', 'Not found file');
+			return false;
+		}
+	}
+	
+	/**
+	 * 拉取远程图片
+	 * 
+	 * @return mixed
+	 */
+	private function saveRemote() {
+		$imgUrl = htmlspecialchars($this->field);
+		$imgUrl = str_replace('&amp;', '&', $imgUrl);
+		
+		// http开头验证
+		if(strpos($imgUrl, 'http') !== 0) {
+			$this->state = Yii::t('ueditor', 'Http link error');
+			return false;
+		}
+		// 获取请求头并检测死链
+		$heads = get_headers($imgUrl);
+		if(!(stristr($heads[0], '200') && stristr($heads[0], 'OK'))) {
+			$this->state = Yii::t('ueditor', 'Http head error');//'ERROR_DEAD_LINK');
+			return false;
+		}
+		// 格式验证(扩展名验证和Content-Type验证)
+		$type = strtolower(strrchr($imgUrl, '.'));
+		if(!in_array($type, $this->config['allowFiles']) || stristr($heads['Content-Type'], 'image')) {
+			$this->state = '';//'ERROR_HTTP_CONTENTTYPE');
+			return false;
+		}
+		
+		// 打开输出缓冲区并获取远程图片
+		ob_start();
+		$context = stream_context_create([ 
+				'http' =>[ 
+						'follow_location' => false 
+				] // don't follow redirects
+ 
+		]);
+		readfile($imgUrl, false, $context);
+		$img = ob_get_contents();
+		ob_end_clean();
+		preg_match('/[\/]([^\/]*)[\.]?[^\.\/]*$/', $imgUrl, $m);
+		
+		$this->originalName = $m?$m[1]:'';
+		$this->size = strlen($img);
+		$this->type = $this->getFileExt();
+		$this->url = $this->renameFullFile();
+		$this->filePath = $this->getFilePath();
+		$this->title = $this->gettitle();
+		$dirname = dirname($this->filePath);
+		
+		// 检查文件大小是否超出限制
+		if(!$this->checkSize()) {
+			$this->state = '';//'ERROR_SIZE_EXCEED');
+			return false;
+		}
+		
+		// 创建目录失败
+		if(!file_exists($dirname) && !mkdir($dirname, 0777, true)) {
+			$this->state = '';//'ERROR_CREATE_DIR');
+			return false;
+		} else if(!is_writeable($dirname)) {
+			$this->state = '';//'ERROR_DIR_NOT_WRITEABLE');
+			return false;
+		}
+		
+		// 移动文件
+		if(!(file_put_contents($this->filePath, $img) && file_exists($this->filePath))) { // 移动失败
+			$this->state = '';//'ERROR_WRITE_CONTENT');
+		}
+	}
+	
+	/**
+	 * 获取服务器级别错误
+	 * @param $errCode 来自服务器上的错误代码
+	 * @return string
+	 */
+	private function getServerError($errCode)
+	{
+		$info = [
+			UPLOAD_ERR_OK => Yii::t('ueditor', 'Upload success'),
+			UPLOAD_ERR_INI_SIZE => Yii::t('ueditor', 'File size over server size configuration'),
+			UPLOAD_ERR_FORM_SIZE => Yii::t('ueditor', 'File size over form size configuration'),
+			UPLOAD_ERR_PARTIAL => Yii::t('ueditor', 'Local server error'),
+			UPLOAD_ERR_NO_FILE => Yii::t('ueditor', 'Not found upload file'),
+			UPLOAD_ERR_NO_TMP_DIR => Yii::t('ueditor', 'Not found tmp file'),
+			UPLOAD_ERR_CANT_WRITE => Yii::t('ueditor', 'Tmp file cannot be read'),
+			UPLOAD_ERR_EXTENSION => Yii::t('ueditor', 'File type was limited by the server'),
+		];
+		
+		return !empty($info[$errCode])?$info[$errCode]:Yii::t('ueditor', 'Unknown Error');
+	}
+	
+	/**
+	 * 重命名文件
+	 * 
+	 * @return string
+	 */
+	private function renameFullFile() {
+		// 替换日期事件
+		$format = $this->config['pathFormat'];
+		$format = str_replace('{yyyy}', date('Y'), $format);
+		$format = str_replace('{yy}', date('y'), $format);
+		$format = str_replace('{mm}', date('m'), $format);
+		$format = str_replace('{dd}', date('d'), $format);
+		$format = str_replace('{hh}', date('H'), $format);
+		$format = str_replace('{ii}', date('i'), $format);
+		$format = str_replace('{ss}', date('s'), $format);
+		$format = str_replace('{time}', time(), $format);
+		
+		// 过滤文件名的非法自负,并替换文件名
+		$originalName = substr($this->originalName, 0, strrpos($this->originalName, '.'));
+		$originalName = preg_replace('/[\|\?\'\<\>\/\*\\\\]+/', '', $originalName);
+		$format = str_replace('{title}', $originalName, $format);
+		
+		// 替换随机字符串
+		$randNum = rand(1, 10000000000) . rand(1, 10000000000);
+		if(preg_match('/\{rand\:([\d]*)\}/i', $format, $matches)) {
+			$format = preg_replace('/\{rand\:[\d]*\}/i', substr($randNum, 0, $matches[1]), $format);
+		}
+		
+		return $format;
+	}
+	
+	/**
+	 * 获取当前上传成功文件的各项信息
+	 * 
+	 * @return array
+	 */
+	public function getFileInfo() {
+		return array(
+				'state' => $this->state,//上传状态，上传成功时必须返回'SUCCESS'
+				'url' => $this->url,//返回的真实文件地址
+				'title' => $this->title,//新文件名
+				'original' => $this->originalName,//原始文件名
+				'type' => $this->type,//文件类型
+				'size' => $this->size, //文件大小
+		);
+	}
+	
+	/**
+	 * 过滤所有通过此插件上传的文件，
+	 * 从而实现localhost和域名的形式都可以正常显示文件
+	 */
+	public static function filterContentSrc($content)
+	{
+		
+		
+		
+		
+		return $content;
+	}
 }

@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 
 use common\models\cms\CmsClass;
 use common\components\helpers\General;
+use backend\components\uploadify\UploadifyWidget;
+use backend\components\ueditor\UeditorWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\CmsPage */
@@ -43,7 +45,13 @@ if($model->isNewRecord) {
     
         <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
     
-        <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+        <?php 
+        echo $form->field($model, 'content')->widget(UeditorWidget::className(), [
+            'clientOptions' => [
+                'serverUrl' => yii\helpers\Url::to(['ueditor']),
+            ],
+        ]);
+        ?>
     
         <?= $form->field($model, 'order')->input('number') ?>
     

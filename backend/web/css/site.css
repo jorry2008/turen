@@ -128,27 +128,16 @@ table.table span.name {
 .cms-class-index .type {
 	color: #BBB;
 }
-.input-group-addon .color, .input-group-addon .blod, .input-group-addon .clear {
-    background-repeat: no-repeat;
+.input-group-addon .blod, .input-group-addon .clear {
     cursor: pointer;
-    display: inline-block;
-    height: 16px;
-    width: 15px;
-}
-.input-group-addon .color {
-    background-image: url("../img/bg/colorBg.png");
-}
-.input-group-addon .blod {
-    background-image: url("../img/bg/boldBg.png");
     position: relative;
-    left: 4px;
-    top: 2px;
+    top: -2px;
 }
-.input-group-addon .clear {
-    color: #09f;
-    font: 12px Verdana;
-    position: relative;
-    top: -5px;
+.input-group-addon .color i {
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+    background-color: red;
 }
 
 

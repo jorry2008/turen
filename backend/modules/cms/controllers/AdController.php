@@ -14,6 +14,18 @@ use yii\filters\VerbFilter;
  */
 class AdController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'uploadify' => [
+				'class' => 'backend\components\uploadify\UploadifyAction',
+			],
+		];
+	}
+	
     /**
      * Lists all CmsAd models.
      * @return mixed
