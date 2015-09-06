@@ -129,4 +129,6 @@ return [
 	'Flash' => 'Flash动画',
     'Video' => '视频',
     'HTML Code' => 'HTML代码',
+	'Null' => '未设置',
+	'Preview in frontend' => '在前台预览',
 ];

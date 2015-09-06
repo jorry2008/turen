@@ -37,11 +37,7 @@ return [
 	'Http link error' => 'http链接错误',
 	'Http head error' => 'http请求头部错误',
 	'Http content type error' => 'http请求内容类型错误',
-	'' => '',
-	'' => '',
-	'' => '',
-	'' => '',
-	'' => '',
+	'No match file' => '没有匹配的文件',
 ];
 
 
