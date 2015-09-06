@@ -43,20 +43,20 @@ $this->registerJs("
 // 	});
 	
 	//select2
-// 	$('#cmslist-column_id').select2({
+// 	$('#post-column_id').select2({
 //         theme: 'classic',
 //         width: '400px',
 //     });
 
-	var title = $('#cmslist-title');
-	var colorval = $('#cmslist-colorval');
-	var boldval = $('#cmslist-boldval');
+	var title = $('#post-title');
+	var colorval = $('#post-colorval');
+	var boldval = $('#post-boldval');
 	$('.title-colorpicker').colorpicker().on('changeColor', function(obColor){
 		var weight = title.css('font-weight');
 		title.css({\"color\": obColor.color.toHex(), \"font-weight\": weight});
 		colorval.val(obColor.color.toHex());
 	});
-	$('.field-cmslist-title').on('click' ,'.blod', function(){
+	$('.field-post-title').on('click' ,'.blod', function(){
 		var color = title.css('color');
 		var bold = title.css('font-weight');
 		bold = (bold == '700')?'400':'700';
@@ -69,7 +69,7 @@ $this->registerJs("
 	});
 		
 	//时间插件
-	$('#cmslist-publish_at').datetimepicker({
+	$('#post-publish_at').datetimepicker({
 		language:  '$languge',
 		format: 'yyyy-mm-dd hh:ii',// P
 		showMeridian: 1,//开启上下午选择项
@@ -89,7 +89,7 @@ $this->registerJs("
 ");
 ?>
 
-<div class="row cms-list-form">
+<div class="row cms-post-form">
     <div class="col-md-12">
 		<?php 
 		//广泛布局

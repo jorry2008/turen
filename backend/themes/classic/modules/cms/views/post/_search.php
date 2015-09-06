@@ -9,7 +9,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="cms-list-search">
+<div class="cms-post-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],

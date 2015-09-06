@@ -13,7 +13,7 @@ use common\models\cms\Post;
 /* @var $searchModel common\models\cms\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('cms', 'List List');
+$this->title = Yii::t('cms', 'Post List');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -31,7 +31,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active cms-list-index">
+                <div class="tab-pane active cms-post-index">
                 
 					<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
                         

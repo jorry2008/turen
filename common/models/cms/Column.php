@@ -169,7 +169,7 @@ class Column extends \yii\db\ActiveRecord
     {
     	return [
     		static::CMS_TYPE_PAGE => Yii::t('cms', 'Page'),
-    		static::CMS_TYPE_LIST => Yii::t('cms', 'List'),
+    		static::CMS_TYPE_LIST => Yii::t('cms', 'Post'),
     		static::CMS_TYPE_IMG => Yii::t('cms', 'Image'),
     		static::CMS_TYPE_DOWNLOAD => Yii::t('cms', 'Download'),
 //         	static::CMS_TYPE_PROD => Yii::t('cms', 'Product'),
@@ -184,7 +184,7 @@ class Column extends \yii\db\ActiveRecord
     {
     	return [
     		static::CMS_TYPE_PAGE => 'Page',
-    		static::CMS_TYPE_LIST => 'List',
+    		static::CMS_TYPE_LIST => 'Post',
     		static::CMS_TYPE_IMG => 'Img',
     		static::CMS_TYPE_DOWNLOAD => 'Download',
 //         	static::CMS_TYPE_PROD => 'Product',

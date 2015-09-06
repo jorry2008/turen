@@ -143,7 +143,7 @@ class Post extends \yii\db\ActiveRecord
     /**
      * 一对一
      */
-    public function getFlagModelModel()
+    public function getFlagModel()
     {
     	$this->flag = explode(',', $this->flag);
     	$models = Flag::find()->where(['in', 'flag', $this->flag])->all();

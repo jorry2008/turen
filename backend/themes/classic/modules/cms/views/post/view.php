@@ -9,7 +9,7 @@ use yii\helpers\StringHelper;
 
 $length = Yii::$app->params['config']['config_site_title_length'];
 $this->title = StringHelper::truncate($model->title, $length-5);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'List List'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Post List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -29,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active cms-list-view">
+                <div class="tab-pane active cms-post-view">
             <p>
                 <?= Html::a(Yii::t('cms', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
                 <?= Html::a(Yii::t('cms', 'Delete'), ['delete', 'id' => $model->id], [

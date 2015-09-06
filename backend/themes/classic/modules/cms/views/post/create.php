@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model common\models\cms\Post */
 
 $this->title = Yii::t('cms', 'Create List');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'List List'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Post List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active cms-list-create">
+                <div class="tab-pane active cms-post-create">
                     
                     <?= $this->render('_form', [
                         'model' => $model,

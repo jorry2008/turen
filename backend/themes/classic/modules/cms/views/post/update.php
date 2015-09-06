@@ -8,7 +8,7 @@ use yii\helpers\StringHelper;
 
 $length = Yii::$app->params['config']['config_site_title_length'];
 $this->title = Yii::t('cms', 'Update:') . StringHelper::truncate($model->title, $length-5);
-$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'List List'), 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Post List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $this->title, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = Yii::t('cms', 'Update');
 ?>
@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = Yii::t('cms', 'Update');
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active cms-list-update">
+                <div class="tab-pane active cms-post-update">
                     
                     <?= $this->render('_form', [
                         'model' => $model,

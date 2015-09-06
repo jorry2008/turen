@@ -27,7 +27,6 @@ return [
     'Column List' => '栏目列表',
     'Flag List' => '标记列表',
     'Img List' => '图片类型列表',
-    'List List' => '内容类型列表',
     'Page List' => '单页面列表',
     'Colorval' => '颜色',
     'Content' => '主体内容',
@@ -71,7 +70,7 @@ return [
 	'Top Column' => '顶级栏目',
 	
 	'Page' => '单页面',
-    'List' => '文章列表',
+    'Post' => '文章',
 	'Download' => '资源下载',
 	
 	'Add Column' => '添加栏目',
@@ -80,7 +79,7 @@ return [
 	'Column List' => '栏目列表',
 	'Flag List' => '标识列表',
 	'Img List' => '图片列表',
-	'List List' => '文章列表',
+	'Post List' => '文章列表',
 	'Page List' => '单页面列表',
 	'Column Description' => '栏目描述',
 	'Column Keywords' => '栏目关键词',
