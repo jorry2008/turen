@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
-use common\models\cms\CmsAdType;
+use common\models\cms\AdType;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAdType */
+/* @var $model common\models\cms\AdType */
 /* @var $form yii\widgets\ActiveForm */
 if($model->isNewRecord) {
 	$model->status = true;
@@ -36,7 +36,7 @@ if($model->isNewRecord) {
 	    
 	    <?= $form->field($model, 'short_code')->textInput() ?>
 	    
-	    <?= $form->field($model, 'wh_type')->dropDownList([CmsAdType::WH_TYPE_PX=>Yii::t('cms', 'Pixel'), CmsAdType::WH_TYPE_PERCENT=>Yii::t('cms', 'Percent')]) ?>
+	    <?= $form->field($model, 'wh_type')->dropDownList([AdType::WH_TYPE_PX=>Yii::t('cms', 'Pixel'), AdType::WH_TYPE_PERCENT=>Yii::t('cms', 'Percent')]) ?>
 	
 	    <?= $form->field($model, 'width')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'If is blank, default as 100%'))->input('number') ?>
 	

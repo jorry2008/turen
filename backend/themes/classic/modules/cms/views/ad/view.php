@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAd */
+/* @var $model common\models\cms\Ad */
 
 $this->title = $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad List'), 'url' => ['index']];
@@ -44,7 +44,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-            'cms_ad_type_id',
+            'ad_type_id',
             'title',
             'mode',
             'pic_url:url',

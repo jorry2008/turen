@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\StringHelper;
 
-use common\models\cms\CmsAdType;
+use common\models\cms\AdType;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -59,25 +59,25 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'value' => function($model){
                         			$length = Yii::$app->params['config']['config_site_title_length'];
                         			$title = StringHelper::truncate($model->name, $length);//'<span class="fa fa-list-ol"></span> '.
-                        			return Html::a($title, ['/cms/ad/index', 'CmsAdSearch[cms_ad_type_id]'=>$model->id]);
+                        			return Html::a($title, ['/cms/ad/index', 'AdSearch[ad_type_id]'=>$model->id]);
                         		},
                         	],
                         	'short_code',
                         	[
 	                        	'attribute' => 'wh_type',
 	                        	'value' => function($model){
-	                        		return ($model->wh_type == CmsAdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent');
+	                        		return ($model->wh_type == AdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent');
 	                        	},
                         	], [
 	                        	'attribute' => 'width',
 	                        	'value' => function($model){
-	                        		$unit = ($model->wh_type == CmsAdType::WH_TYPE_PX)?'px':'%';
+	                        		$unit = ($model->wh_type == AdType::WH_TYPE_PX)?'px':'%';
 	                        		return $model->width.$unit;
 	                        	},
                         	], [
 	                        	'attribute' => 'height',
 	                        	'value' => function($model){
-	                        		$unit = ($model->wh_type == CmsAdType::WH_TYPE_PX)?'px':'%';
+	                        		$unit = ($model->wh_type == AdType::WH_TYPE_PX)?'px':'%';
 	                        		return $model->height.$unit;
 	                        	},
                         	], [

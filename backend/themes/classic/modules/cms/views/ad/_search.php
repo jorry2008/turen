@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAdSearch */
+/* @var $model common\models\cms\AdSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -18,7 +18,7 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'cms_ad_type_id') ?>
+    <?= $form->field($model, 'ad_type_id') ?>
 
     <?= $form->field($model, 'title') ?>
 

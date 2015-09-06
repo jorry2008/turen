@@ -5,11 +5,11 @@ use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
 use yii\helpers\StringHelper;
 
-use common\models\cms\CmsAd;
-use common\models\cms\CmsAdType;
+use common\models\cms\Ad;
+use common\models\cms\AdType;
 
 /* @var $this yii\web\View */
-/* @var $searchModel common\models\cms\CmsAdSearch */
+/* @var $searchModel common\models\cms\AdSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = Yii::t('cms', 'Ad List');
@@ -69,8 +69,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         			return Html::a($title, ['update', 'id'=>$model->id]);
                         		},
                         	], [
-                        		'attribute' => 'cms_ad_type_id',
-                        		'filter' => ArrayHelper::map(CmsAdType::find()->alive()->all(), 'id', 'name'),
+                        		'attribute' => 'ad_type_id',
+                        		'filter' => ArrayHelper::map(AdType::find()->alive()->all(), 'id', 'name'),
                         		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
                         		'value' => function($model){
                         			return $model->adType->name;
@@ -78,10 +78,10 @@ $this->params['breadcrumbs'][] = $this->title;
                         	], [
 	                            'attribute' => 'mode',
                         		'format' => 'raw',
-                        		'filter' => CmsAd::getAdMode(),
+                        		'filter' => Ad::getAdMode(),
                         		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
 	                            'value' => function($model){
-	                            	$modes = CmsAd::getAdMode();
+	                            	$modes = Ad::getAdMode();
 	                            	return empty($modes[$model->mode])?'':$modes[$model->mode];
 	                            },
                             ],
@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ], [
 	                            'attribute' => 'status',
 	                            'format' => 'html',
-	                            'filter' => [CmsAd::STATUS_YES=>Yii::t('cms', 'Yes'), CmsAd::STATUS_NO=>Yii::t('cms', 'No')],
+	                            'filter' => [Ad::STATUS_YES=>Yii::t('cms', 'Yes'), Ad::STATUS_NO=>Yii::t('cms', 'No')],
 	                            'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
 	                            'value' => function($model){
 	                            	$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-stauts', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);

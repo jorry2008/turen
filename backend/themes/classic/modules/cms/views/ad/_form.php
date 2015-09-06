@@ -5,11 +5,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use common\models\cms\CmsAd;
-use common\models\cms\CmsAdType;
+use common\models\cms\Ad;
+use common\models\cms\AdType;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAd */
+/* @var $model common\models\cms\Ad */
 /* @var $form yii\widgets\ActiveForm */
 
 if($model->isNewRecord) {
@@ -36,9 +36,9 @@ if($model->isNewRecord) {
 		]);
 		?>
     
-        <?= $form->field($model, 'cms_ad_type_id')->dropDownList(ArrayHelper::map(CmsAdType::find()->alive()->all(), 'id', 'name')) ?>
+        <?= $form->field($model, 'ad_type_id')->dropDownList(ArrayHelper::map(AdType::find()->alive()->all(), 'id', 'name')) ?>
         
-        <?= $form->field($model, 'mode')->dropDownList(CmsAd::getAdMode()) ?>
+        <?= $form->field($model, 'mode')->dropDownList(Ad::getAdMode()) ?>
 
 	    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 	

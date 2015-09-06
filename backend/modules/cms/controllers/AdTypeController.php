@@ -3,25 +3,25 @@
 namespace backend\modules\cms\controllers;
 
 use Yii;
-use common\models\cms\CmsAdType;
+use common\models\cms\AdType;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * AdTypeController implements the CRUD actions for CmsAdType model.
+ * AdTypeController implements the CRUD actions for AdType model.
  */
 class AdTypeController extends Controller
 {
     /**
-     * Lists all CmsAdType models.
+     * Lists all AdType models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => CmsAdType::find()->alive(),
+            'query' => AdType::find()->alive(),
         ]);
 
         return $this->render('index', [
@@ -30,7 +30,7 @@ class AdTypeController extends Controller
     }
 
     /**
-     * Displays a single CmsAdType model.
+     * Displays a single AdType model.
      * @param integer $id
      * @return mixed
      */
@@ -42,13 +42,13 @@ class AdTypeController extends Controller
     }
 
     /**
-     * Creates a new CmsAdType model.
+     * Creates a new AdType model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new CmsAdType();
+        $model = new AdType();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -60,7 +60,7 @@ class AdTypeController extends Controller
     }
 
     /**
-     * Updates an existing CmsAdType model.
+     * Updates an existing AdType model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -79,15 +79,15 @@ class AdTypeController extends Controller
     }
 
     /**
-     * Finds the CmsAdType model based on its primary key value.
+     * Finds the AdType model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return CmsAdType the loaded model
+     * @return AdType the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = CmsAdType::findOne($id)) !== null) {
+        if (($model = AdType::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

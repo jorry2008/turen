@@ -3,10 +3,10 @@
 use yii\helpers\Html;
 use yii\widgets\DetailView;
 
-use common\models\cms\CmsAdType;
+use common\models\cms\AdType;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAdType */
+/* @var $model common\models\cms\AdType */
 
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad Type List'), 'url' => ['index']];
@@ -50,7 +50,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 	'short_code',
                 	[
                 		'attribute' => 'wh_type',
-                		'value' => ($model->wh_type == CmsAdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent'),
+                		'value' => ($model->wh_type == AdType::WH_TYPE_PX)?Yii::t('cms', 'Pixel'):Yii::t('cms', 'Percent'),
                 	],
 		            'width:integer',
 		            'height:integer',

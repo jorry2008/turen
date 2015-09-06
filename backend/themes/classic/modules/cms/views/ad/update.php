@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\cms\CmsAd */
+/* @var $model common\models\cms\Ad */
 
 $this->title = Yii::t('cms', 'Update:') . $model->title;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Ad List'), 'url' => ['index']];
