@@ -75,9 +75,44 @@ $this->params['breadcrumbs'][] = $this->title;
                             'updated_at:datetime',
     
                             [
-                                'class' => 'yii\grid\ActionColumn',
-                                'header' => Yii::t('common', 'Opration'),
-                            ],
+	                            'class' => 'yii\grid\ActionColumn',
+	                            'header' => Yii::t('common', 'Opration'),
+	                            
+	                            'template' => '{view} {update} {delete}',
+	                            'buttons' => [
+                            		'view' => function ($url, $model, $key) {
+                            			$url = ['view', 'name'=>$model->name];//用户id取用户地址
+                            			$options = [
+                            					'title' => Yii::t('yii', 'View'),
+                            					'aria-label' => Yii::t('yii', 'View'),
+                            					'data-pjax' => '0',
+//                             					'target' => '_blank',
+                            			];
+                            			return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                            		},
+                            		'update' => function ($url, $model, $key) {
+                            			$url = ['update', 'name'=>$model->name];//用户id取用户地址
+                            			$options = [
+                            					'title' => Yii::t('yii', 'Add'),
+                            					'aria-label' => Yii::t('yii', 'Add'),
+                            					'data-pjax' => '0',
+//                             					'target' => '_blank',
+                            			];
+                            			return Html::a('<span class="glyphicon glyphicon-pencil"></span>', $url, $options);
+                            		},
+                            		'delete' => function ($url, $model, $key) {
+                            			$url = ['delete', 'name'=>$model->name];//用户id取用户地址
+                            			$options = [
+                            					'title' => Yii::t('yii', 'Delete'),
+                            					'aria-label' => Yii::t('yii', 'Delete'),
+                            					'data-pjax' => '0',
+                            					'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+//                             					'target' => '_blank',
+                            			];
+                            			return Html::a('<span class="glyphicon glyphicon-trash"></span>', $url, $options);
+                            		}
+	                            ],
+                            ]
                         ],
                     ]); ?>
                                 

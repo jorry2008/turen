@@ -69,7 +69,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                 'template' => '{config} {update}',
                                 'buttons' => [
                                     'config' => function ($url, $model, $key) {
-                                        $url = ['config', 'id'=>$model->name];
+                                        $url = ['config', 'name'=>$model->name];
                                         $options = [
                                             'title' => Yii::t('auth', 'Auth'),
                                             'aria-label' => Yii::t('auth', 'Auth Config'),
@@ -78,7 +78,7 @@ $this->params['breadcrumbs'][] = $this->title;
                                         return Html::a('<span class="glyphicon glyphicon-cog"></span>', $url, $options);
                                     },
                                     'update' => function ($url, $model, $key) {
-                                        $url = ['auth-item/update', 'id'=>$model->name];
+                                        $url = ['auth-item/update', 'name'=>$model->name];
                                         $options = [
                                             'title' => Yii::t('common', 'Update'),
                                             'aria-label' => Yii::t('common', 'Update'),

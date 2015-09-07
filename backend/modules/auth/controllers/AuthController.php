@@ -40,9 +40,9 @@ class AuthController extends Controller
     /**
      * 添加权限到角色
      */
-    public function actionConfig($id)
+    public function actionConfig($name)
     {
-        $role = $id;
+        $role = $name;
         $authManager = Yii::$app->getAuthManager();
         $roleModel = $this->findAuthItemModel($role);
         
@@ -78,7 +78,7 @@ class AuthController extends Controller
             'tasksAndPermissions' => $tasksAndPermissions,
             'selectItems' => $selectItems,
             'model' => $roleModel,
-            'id' => $role,
+            'name' => $role,
         ]);
     }
     
@@ -90,9 +90,9 @@ class AuthController extends Controller
      * @return AuthItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findAuthItemModel($id)
+    protected function findAuthItemModel($name)
     {
-        if (($model = AuthItem::findOne($id)) !== null) {
+        if (($model = AuthItem::findOne(['name'=>$name])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

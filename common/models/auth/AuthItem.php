@@ -66,7 +66,7 @@ class AuthItem extends \yii\db\ActiveRecord
      * @param string $role
      * @return boolean
      */
-    public function isExist($role)
+    public function existByUser($role)
     {
         return User::find()->where(['role_name'=>$role])->exists();
     }
@@ -103,6 +103,28 @@ class AuthItem extends \yii\db\ActiveRecord
         } else {
             return false;
         }
+    }
+    
+    /**
+     * 更新一个权限项
+     * @return boolean
+     */
+    public function updateItem()
+    {
+    	if($this->validate()) {
+    		$this->deleteItem();//先删除
+    		$this->createItem();//再创建一个新的
+    		
+    		return true;
+//     		$authManager = Yii::$app->getAuthManager();
+//     		$object = new Item();
+//     		$object->name = $this->name;
+//     		$object->type = $this->type;
+//     		$object->description = $this->description;
+//     		return $authManager->add($object);
+    	} else {
+    		return false;
+    	}
     }
     
     /**

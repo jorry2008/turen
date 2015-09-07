@@ -28,7 +28,6 @@ $this->registerJs("
 ");
 ?>
 
-
 <div class="row">
     <div class="col-md-12">
         <!-- Custom Tabs -->
@@ -51,47 +50,53 @@ $this->registerJs("
                             
                             <?php $form = ActiveForm::begin([
                                 'method' => 'post',
-                                'action' => ['config', 'id'=>$id],
+                                'action' => ['config', 'name'=>$name],
                             ]); ?>
-            	            <?php 
-            	            $col = 3;//$selectItems
-            	            if(count($tasksAndPermissions) > 0) {
-            	            	foreach ($tasksAndPermissions as $key => $value) {
-                                    
-            	            		$task = $value['task'];
-            	            		$permissions = $value['permissions'];
-            	            		
-            	            		echo (($key)%$col == 0)?'<div class="row">':'';
-            	            		?>
-            	            		
-            	            		<div class="col-md-4 col-sm-12">
-                                    	<div class="box box-solid normal_font">
-                                    		<div class="box-header with-border">
-                                    			<?php echo Html::checkBox($task->name.'[]', in_array($task->name, $selectItems), array('id'=>$task->name, 'class'=>'task_on', 'value'=>$task->name, 'data-type'=>'task'));?>
-                                    			<h3 class="box-title"><?php echo Html::label(Yii::t('common', $task->description), $task->name);?></h3>
-                                    		</div><!-- /.box-header -->
-                                    		<div class="box-body">
-                                    			<ul>
-                                    				<?php 
-                                    				foreach ($permissions as $operation) {
-                                    					echo '<li>';
-                                    					echo Html::checkBox($task->name.'[]', (in_array($task->name, $selectItems) || in_array($operation->name, $selectItems)), array('id'=>$operation->name, 'class'=>'operation_on', 'value'=>$operation->name, 'data-type'=>'operation'));
-                                    					echo '&nbsp;';
-                                    					echo Html::label(Yii::t('common', $operation->description), $operation->name);
-                                    					echo '</li>';
-                                    				}
-                                    				?>
-                                    			</ul>
-                                    		</div><!-- /.box-body -->
-                                    	</div><!-- /.box -->
-                                    </div><!-- ./col -->
-                                    
-            	            		<?php 
-            	            		echo (($key+1)%$col == 0)?'</div>':'';
-            	            		
-            	            	}
-            	            }
-            	            ?>
+                            
+                            <div class="box-body">
+							    <table class="table table-bordered">
+							        <tbody>
+							            <tr>
+							                <th style="width: 170px">全选/取消</th>
+							                <th>权限节点</th>
+							            </tr>
+							            
+							            <?php 
+			            	            if(count($tasksAndPermissions) > 0) {
+			            	            	foreach ($tasksAndPermissions as $key => $value) {
+			                                    
+			            	            		$task = $value['task'];
+			            	            		$permissions = $value['permissions'];
+			            	            ?>
+							            <tr>
+							                <td>
+							                	<label for="<?=$task->name?>">
+							                    <?php echo Html::checkBox($task->name.'[]', in_array($task->name, $selectItems), array('id'=>$task->name, 'class'=>'task_on', 'value'=>$task->name, 'data-type'=>'task'));?>
+                                    			<span><?=Yii::t('common', $task->description)?></span>
+                                    			<?php //echo Html::label(Yii::t('common', $task->description), $task->name);?>
+                                    			</label>
+							                </td>
+							                <td class="tr_body">
+												<?php 
+												foreach ($permissions as $operation) {
+													echo '<label for="'.$operation->name.'">';
+													echo Html::checkBox($task->name.'[]', (in_array($task->name, $selectItems) || in_array($operation->name, $selectItems)), array('id'=>$operation->name, 'class'=>'operation_on', 'value'=>$operation->name, 'data-type'=>'operation'));
+													echo '<span>'.Yii::t('common', $operation->description).'</span>';
+// 													echo Html::label(Yii::t('common', $operation->description), $operation->name);
+													echo '</label>';
+												}
+												?>
+							                </td>
+							            </tr>
+							            <?php 
+			            	            	}
+			            	            }
+			            	            ?>
+							            
+							        </tbody>
+							    </table>
+							</div>
+            	            
             	            <div class="row">
                 	            <div class="form-group" style="margin-left: 2em">
                                     <?= Html::submitButton(Yii::t('auth', 'Auth for {des}', ['des'=>$model->description]), ['class' => 'btn btn-primary']) ?>

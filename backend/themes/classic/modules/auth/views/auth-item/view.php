@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="tab-content clearfix">
                 <div class="tab-pane active auth-item-view">
             <p>
-                <?= Html::a(Yii::t('auth', 'Update'), ['update', 'id' => $model->name], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('auth', 'Delete'), ['delete', 'id' => $model->name], [
+                <?= Html::a(Yii::t('auth', 'Update'), ['update', 'name' => $model->name], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('auth', 'Delete'), ['delete', 'name' => $model->name], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => Yii::t('auth', 'Are you sure you want to delete this item?'),

@@ -139,7 +139,11 @@ table.table span.name {
 	height: 15px;
     background-color: red;
 }
-
+.auth-config .tr_body label {
+	font-weight: normal;
+	display: inline-block;
+    width: 25%;
+}
 
 
 

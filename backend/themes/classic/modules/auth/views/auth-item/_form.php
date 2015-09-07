@@ -52,32 +52,14 @@ $this->registerJs("
         
         <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
     
-        <?php //echo $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
+        <?php echo $form->field($model, 'rule_name')->textInput(['maxlength' => true]) ?>
     
-        <?php //echo $form->field($model, 'data')->textarea(['rows' => 6]) ?>
-    
-        <?php //echo $form->field($model, 'created_at')->textInput() ?>
-    
-        <?php //echo $form->field($model, 'updated_at')->textInput() ?>
+        <?php echo $form->field($model, 'data')->textarea(['rows' => 6]) ?>
 
         <div class="form-group">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') : Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
     
         <?php ActiveForm::end(); ?>
-    </div>
-    <div class="col-md-5">
-        <blockquote>注意事项：</blockquote>
-        <p>如果当前编辑的是角色，那么请将名称尽量使用英文名，</p>
-        <p>另外，修改角色名时应当注意，当然角色没有被管理员使用过，否则修改失败，</p>
-        <p>如何是普通的权限项时，那么可修改的只有描述，其它的内容是由系统自动生成的，</p>
-        <p>添加则内类不限。</p>
-        
-        <p>
-        <?php 
-        echo Html::button(Yii::t('auth', 'Reset Auth'), ['class' => 'btn btn-warning', 'id' => 'btn_reset_auth']);
-        
-        ?>
-        </p>
     </div>
 </div>

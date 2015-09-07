@@ -35,10 +35,10 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($name)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($name),
         ]);
     }
 
@@ -52,7 +52,7 @@ class AuthItemController extends Controller
         $model = new AuthItem();
 
         if ($model->load(Yii::$app->request->post()) && $model->createItem()) {
-            return $this->redirect(['view', 'id' => $model->name]);
+            return $this->redirect(['view', 'name' => $model->name]);
         } else {
             return $this->render('create', [
                 'model' => $model,
@@ -66,24 +66,18 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($name)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($name);
         if ($model->load(Yii::$app->request->post())) {
-            if($model->type == (Item::TYPE_ROLE) && $model->isExist($id)) {
-                if($model->getOldAttribute('name') != $model->getAttribute('name')) {
-                    Yii::$app->getSession()->setFlash('warning', Yii::t('auth', 'Update failure,this role has been used,do not modify the role name!'));
-                    $model->refresh();
-                } else {
-                    if($model->save()) {
-                        return $this->redirect(['view', 'id' => $model->name]);
-                    }
-                }
-            } else {
-                if($model->save()) {
-                    return $this->redirect(['view', 'id' => $model->name]);
-                }
-            }
+	        //如果是角色，则有改name的风险
+	        if($model->getOldAttribute('type') == Item::TYPE_ROLE && ($model->getOldAttribute('name') != $model->getAttribute('name'))) {
+	        	Yii::$app->getSession()->setFlash('warning', Yii::t('auth', 'Update failure,this role has been used,do not modify the role name!'));
+	        	$model->refresh();
+	        } else {
+	        	//使用api更新
+	        	$model->updateItem();
+	        }
         }
         
         return $this->render('update', [
@@ -97,10 +91,10 @@ class AuthItemController extends Controller
      * @param string $id
      * @return mixed
      */
-    public function actionDelete($id)
+    public function actionDelete($name)
     {
-        $model = $this->findModel($id);
-        if($model->type == (Item::TYPE_ROLE) && $model->isExist($id)) {
+        $model = $this->findModel($name);
+        if($model->type == (Item::TYPE_ROLE) && $model->existByUser($name)) {
             Yii::$app->getSession()->setFlash('warning', Yii::t('auth', 'Delete failure,this role has been used!'));
         } else {
             $model->deleteItem();
@@ -116,9 +110,9 @@ class AuthItemController extends Controller
      * @return AuthItem the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($name)
     {
-        if (($model = AuthItem::findOne($id)) !== null) {
+        if (($model = AuthItem::findOne(['name'=>$name])) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
