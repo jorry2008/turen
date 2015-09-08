@@ -11,6 +11,7 @@ use yii\web\IdentityInterface;
  * User model
  *
  * @property integer $id
+ * @property integer $is_admin
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
@@ -102,7 +103,10 @@ class User extends ActiveRecord implements IdentityInterface
 //                 Yii::$app->getSession()->setFlash('denger', 'You do not have permission to modify the user permissions!');
 //                 return false;
             } else {//更新
-                if(!Yii::$app->getUser()->can('auth/auth')) {
+            	$is_admin = Yii::$app->getUser()->getIdentity()->attributes['is_admin'];
+            	
+                if(!$is_admin && !Yii::$app->getUser()->can('auth/auth')) {//无权修改
+                	fb('ddd');exit;
                     //如果修改了权限则
                     if($this->getAttribute('role_name') != $this->getOldAttribute('role_name')) {
                         $this->setAttribute('role_name', $this->getOldAttribute('role_name'));//恢复并提示

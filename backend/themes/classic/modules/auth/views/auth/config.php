@@ -44,7 +44,7 @@ $this->registerJs("
             <div class="tab-content clearfix">
                 <div id="role_box" class="tab-pane active auth-config">
                     <div class="row">
-                        <div class="col-md-12 col-lg-9">
+                        <div class="col-md-12 col-lg-12">
                             
                             <!-- <p><?= Html::a(Yii::t('auth', 'Create Auth Item'), ['create'], ['class' => 'btn btn-success']) ?></p> -->
                             
@@ -105,7 +105,7 @@ $this->registerJs("
                             
             	            <?php ActiveForm::end(); ?>
             	        </div>
-            	        <div class="col-lg-3 hidden-xs hidden-sm hidden-md visible-lg-3">
+            	        <div class="col-lg-8 col-md-8">
                             <blockquote>注意事项：</blockquote>
                             <p>最小单位是权限，</p>
                             <p>父级单位是任务，</p>

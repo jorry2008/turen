@@ -79,9 +79,11 @@ class AuthItem extends \yii\db\ActiveRecord
     {
         $authManager = Yii::$app->getAuthManager();
         if($this->type == Item::TYPE_PERMISSION) {
-            $object = $authManager->getPermission($this->name);
+            $object = $authManager->getPermission($this->getOldAttribute('name'));
         } elseif ($this->type == Item::TYPE_ROLE) {
-            $object = $authManager->getRole($this->name);
+            $object = $authManager->getRole($this->getOldAttribute('name'));
+        } elseif($this->type == \backend\components\Task::TYPE_TASK) {
+        	$object = $authManager->getTask($this->getOldAttribute('name'));
         }
         
         return $authManager->remove($object);

@@ -71,12 +71,14 @@ class AuthItemController extends Controller
         $model = $this->findModel($name);
         if ($model->load(Yii::$app->request->post())) {
 	        //如果是角色，则有改name的风险
-	        if($model->getOldAttribute('type') == Item::TYPE_ROLE && ($model->getOldAttribute('name') != $model->getAttribute('name'))) {
+	        if($model->getOldAttribute('type') == Item::TYPE_ROLE && $model->existByUser($name) && ($model->getOldAttribute('name') != $model->getAttribute('name'))) {
 	        	Yii::$app->getSession()->setFlash('warning', Yii::t('auth', 'Update failure,this role has been used,do not modify the role name!'));
-	        	$model->refresh();
+// 	        	$model->refresh();
+	        	return $this->redirect(['update', 'name'=>$model->getOldAttribute('name')]);
 	        } else {
 	        	//使用api更新
 	        	$model->updateItem();
+	        	return $this->redirect(['view', 'name'=>$model->name]);
 	        }
         }
         
@@ -100,7 +102,7 @@ class AuthItemController extends Controller
             $model->deleteItem();
         }
 
-        return $this->redirect(['index', 'AuthItemSearch[type]'=>$model->type]);
+        return $this->redirect(['index']);
     }
 
     /**

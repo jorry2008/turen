@@ -93,11 +93,14 @@ class UserController extends Controller
             }
             if($model->save()) {
                 Yii::$app->getAuthManager()->revokeAll($id);
-                Yii::$app->getAuthManager()->assign(Yii::$app->getAuthManager()->getRole($model->role_name), $id);//授权操作
-                return $this->redirect(['view', 'id' => $model->id]);
-            } else {
-                Yii::$app->getSession()->setFlash('warning', Yii::t('common', 'Update Failure!'));
+                if($model->role_name) {
+                	$role = Yii::$app->getAuthManager()->getRole($model->role_name);
+                	if($role)
+                		Yii::$app->getAuthManager()->assign($role, $id);//授权操作
+                }
             }
+            
+            return $this->redirect(['index']);
         } else {
             return $this->render('update', [
                 'model' => $model,
