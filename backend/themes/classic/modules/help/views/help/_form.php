@@ -8,6 +8,9 @@ use yii\bootstrap\ActiveForm;
 /* @var $model common\models\help\Help */
 /* @var $form yii\widgets\ActiveForm */
 
+if($model->isNewRecord) {
+	$model->status = true;
+}
 ?>
 
 <div class="row help-form">

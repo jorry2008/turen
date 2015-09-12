@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     'filterModel' => $searchModel,
         			'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-// 							'Id',
+// 							'id',
         					[
 	        					'attribute' => 'title',
 	        					'format' => 'raw',
@@ -85,7 +85,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
                         [
                             'class' => 'yii\grid\ActionColumn',
-                        	'template' => '{view} {delete}',
+                        	'template' => '{delete}',
                             'header' => Yii::t('common', 'Opration'),
                         ],
                     ],
