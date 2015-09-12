@@ -7,7 +7,6 @@ use common\models\cms\Img;
 use common\models\cms\ImgSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * ImgController implements the CRUD actions for Img model.

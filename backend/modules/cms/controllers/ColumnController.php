@@ -7,7 +7,6 @@ use Yii;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 use yii\helpers\Json;
 
 use common\models\cms\Column;

@@ -4,10 +4,10 @@ namespace backend\modules\extend\controllers;
 
 use Yii;
 use common\models\extend\LinkType;
+use common\models\extend\Link;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * LinkTypeController implements the CRUD actions for LinkType model.
@@ -76,6 +76,24 @@ class LinkTypeController extends Controller
                 'model' => $model,
             ]);
         }
+    }
+    
+    /**
+     * 假删除动作(重写)
+     * @param integer $id
+     * @return \yii\web\Response
+     */
+    public function actionDelete($id)
+    {
+    	if(Link::find()->where(['link_type_id'=>$id])->alive()->exists()) {
+    		Yii::$app->getSession()->setFlash('warning', Yii::t('extend', 'Have links under the link type, cannot be deleted'));
+    	} else {
+    		$model = $this->findModel($id);
+    		$model->deleted = 1;
+    		$model->save(false);//更新
+    	}
+    	
+    	return $this->redirect(['index']);
     }
 
     /**

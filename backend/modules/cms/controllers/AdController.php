@@ -7,7 +7,6 @@ use common\models\cms\Ad;
 use common\models\cms\AdSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AdController implements the CRUD actions for Ad model.

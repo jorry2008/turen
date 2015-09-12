@@ -69,11 +69,11 @@ class LinkType extends \yii\db\ActiveRecord
             'id' => Yii::t('extend', 'ID'),
             'name' => Yii::t('extend', 'Name'),
         	'short_code' => Yii::t('extend', 'Short Code'),
-            'order' => Yii::t('extend', 'Order'),
-            'status' => Yii::t('extend', 'Status'),
-            'deleted' => Yii::t('extend', 'Deleted'),
-            'created_at' => Yii::t('extend', 'Created At'),
-            'updated_at' => Yii::t('extend', 'Updated At'),
+            'order' => Yii::t('common', 'Order'),
+            'status' => Yii::t('common', 'Status'),
+            'deleted' => Yii::t('common', 'Deleted'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
     

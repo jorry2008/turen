@@ -64,6 +64,15 @@ class Nav extends \yii\db\ActiveRecord
     }
 
     /**
+     * 一对一
+     * 自我联表
+     */
+    public function getMySelf()
+    {
+        return $this->hasOne(static::className(), ['id' => 'parent_id']);
+    }
+    
+    /**
      * @inheritdoc
      */
     public function attributeLabels()
@@ -76,11 +85,11 @@ class Nav extends \yii\db\ActiveRecord
             're_link_url' => Yii::t('extend', 'Re Link Url'),
             'pic_url' => Yii::t('extend', 'Pic Url'),
             'target' => Yii::t('extend', 'Target'),
-            'order' => Yii::t('extend', 'Order'),
-            'status' => Yii::t('extend', 'Status'),
-            'deleted' => Yii::t('extend', 'Deleted'),
-            'created_at' => Yii::t('extend', 'Created At'),
-            'updated_at' => Yii::t('extend', 'Updated At'),
+            'order' => Yii::t('common', 'Order'),
+            'status' => Yii::t('common', 'Status'),
+            'deleted' => Yii::t('common', 'Deleted'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 

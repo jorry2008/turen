@@ -7,7 +7,6 @@ use common\models\cms\Flag;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * FlagController implements the CRUD actions for Flag model.

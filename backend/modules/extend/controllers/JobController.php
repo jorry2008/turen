@@ -7,7 +7,6 @@ use common\models\extend\Job;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * JobController implements the CRUD actions for Job model.

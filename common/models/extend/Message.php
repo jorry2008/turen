@@ -55,12 +55,13 @@ class Message extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['nickname', 'contact', 'content', 'ip'], 'required'],
             [['content'], 'string'],
             [['is_top', 'is_recommend', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['nickname'], 'string', 'max' => 30],
             [['contact'], 'string', 'max' => 50],
-            [['ip'], 'string', 'max' => 20]
+            [['ip'], 'string', 'max' => 20],
+        	
+        	[['contact'], 'required'],
         ];
     }
 
@@ -77,11 +78,11 @@ class Message extends \yii\db\ActiveRecord
             'is_top' => Yii::t('extend', 'Is Top'),
             'is_recommend' => Yii::t('extend', 'Is Recommend'),
             'ip' => Yii::t('extend', 'Ip'),
-            'order' => Yii::t('extend', 'Order'),
-            'status' => Yii::t('extend', 'Status'),
-            'deleted' => Yii::t('extend', 'Deleted'),
-            'created_at' => Yii::t('extend', 'Created At'),
-            'updated_at' => Yii::t('extend', 'Updated At'),
+            'order' => Yii::t('common', 'Order'),
+            'status' => Yii::t('common', 'Status'),
+            'deleted' => Yii::t('common', 'Deleted'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 

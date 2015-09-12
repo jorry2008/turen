@@ -7,7 +7,6 @@ use common\models\cms\AdType;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * AdTypeController implements the CRUD actions for AdType model.

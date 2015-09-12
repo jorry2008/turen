@@ -57,11 +57,12 @@ class Comment extends \yii\db\ActiveRecord
     {
         return [
             [['relative_id', 'mode', 'customer_id', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
-            [['content', 'reply', 'link', 'ip'], 'required'],
             [['content', 'reply'], 'string'],
             [['customer_name'], 'string', 'max' => 20],
             [['link'], 'string', 'max' => 200],
-            [['ip'], 'string', 'max' => 30]
+            [['ip'], 'string', 'max' => 30],
+        	
+        	[['content'], 'required'],
         ];
     }
 
@@ -80,10 +81,10 @@ class Comment extends \yii\db\ActiveRecord
             'reply' => Yii::t('extend', 'Reply'),
             'link' => Yii::t('extend', 'Link'),
             'ip' => Yii::t('extend', 'Ip'),
-            'status' => Yii::t('extend', 'Status'),
-            'deleted' => Yii::t('extend', 'Deleted'),
-            'created_at' => Yii::t('extend', 'Created At'),
-            'updated_at' => Yii::t('extend', 'Updated At'),
+            'status' => Yii::t('common', 'Status'),
+            'deleted' => Yii::t('common', 'Deleted'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
     }
 

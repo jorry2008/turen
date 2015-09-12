@@ -7,7 +7,6 @@ use common\models\cms\Page;
 use common\models\cms\PageSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PageController implements the CRUD actions for Page model.

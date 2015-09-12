@@ -7,7 +7,6 @@ use common\models\cms\Download;
 use common\models\cms\DownloadSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * DownloadController implements the CRUD actions for Download model.

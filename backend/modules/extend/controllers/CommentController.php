@@ -7,7 +7,6 @@ use common\models\extend\Comment;
 use common\models\extend\CommentSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * CommentController implements the CRUD actions for Comment model.

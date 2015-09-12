@@ -7,7 +7,6 @@ use common\models\extend\Message;
 use common\models\extend\MessageSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * MessageController implements the CRUD actions for Message model.

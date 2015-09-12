@@ -53,4 +53,9 @@ return [
 	'turen' => '土人',
 	'All' => '全部',
 	'Update Status' => '更新发布状态',
+	'Order' => '排序',
+	'Status' => '发布状态',
+	'Deleted' => '删除',
+	'Created At' => '添加时间',
+	'Updated At' => '更新时间',
 ];

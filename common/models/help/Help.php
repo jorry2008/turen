@@ -60,6 +60,7 @@ class Help extends \yii\db\ActiveRecord
         	
         	[['url'], 'url'],
         	[['title' ,'short_code'], 'required'],
+        	[['short_code'], 'unique'],
         ];
     }
 

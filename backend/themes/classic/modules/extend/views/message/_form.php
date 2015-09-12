@@ -8,6 +8,10 @@ use yii\bootstrap\ActiveForm;
 /* @var $model common\models\extend\Message */
 /* @var $form yii\widgets\ActiveForm */
 
+if($model->isNewRecord) {
+	$model->status = true;
+	$model->order = 10;
+}
 ?>
 
 <div class="row message-form">
@@ -27,31 +31,25 @@ use yii\bootstrap\ActiveForm;
 		]);
 		?>
     
-	        <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'nickname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'is_top')->textInput() ?>
-
-    <?= $form->field($model, 'is_recommend')->textInput() ?>
-
-    <?= $form->field($model, 'ip')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'order')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'status')->textInput() ?>
-
-    <?= $form->field($model, 'deleted')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'updated_at')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
+	
+	    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+	
+	    <?= $form->field($model, 'is_top')->textInput() ?>
+	
+	    <?= $form->field($model, 'is_recommend')->textInput() ?>
+	
+	    <?= $form->field($model, 'ip')->textInput(['maxlength' => true]) ?>
+	
+	    <?= $form->field($model, 'order')->input('number', ['maxlength' => true]) ?>
+	
+	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Don\'t show in the frontend,If you don\'t choose')) ?>
 
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">
-	        	<?= Html::submitButton($model->isNewRecord ? Yii::t('extend', 'Create') : Yii::t('extend', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+	        	<?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') : Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
 			</div>
         </div>
     
