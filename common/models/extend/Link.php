@@ -5,6 +5,8 @@ namespace common\models\extend;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
+use common\models\extend\LinkType;
+
 /**
  * This is the model class for table "{{%extend_link}}".
  *
@@ -22,6 +24,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Link extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */
@@ -55,7 +60,10 @@ class Link extends \yii\db\ActiveRecord
             [['name'], 'string', 'max' => 30],
             [['description'], 'string', 'max' => 200],
             [['pic_url'], 'string', 'max' => 100],
-            [['link_url'], 'string', 'max' => 255]
+            [['link_url'], 'string', 'max' => 255],
+        	
+        	[['name', 'link_url'], 'required'],
+        	[['link_url'], 'url'],
         ];
     }
 
@@ -72,11 +80,19 @@ class Link extends \yii\db\ActiveRecord
             'pic_url' => Yii::t('extend', 'Pic Url'),
             'link_url' => Yii::t('extend', 'Link Url'),
             'order' => Yii::t('extend', 'Order'),
-            'status' => Yii::t('extend', 'Status'),
-            'deleted' => Yii::t('extend', 'Deleted'),
-            'created_at' => Yii::t('extend', 'Created At'),
-            'updated_at' => Yii::t('extend', 'Updated At'),
+            'status' => Yii::t('common', 'Status'),
+            'deleted' => Yii::t('common', 'Deleted'),
+            'created_at' => Yii::t('common', 'Created At'),
+            'updated_at' => Yii::t('common', 'Updated At'),
         ];
+    }
+    
+    /**
+     * 一对一
+     */
+    public function getLinkType()
+    {
+    	return $this->hasOne(LinkType::className(), ['id' => 'link_type_id']);
     }
 
     /**

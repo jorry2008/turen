@@ -30,6 +30,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Job extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */
@@ -59,11 +62,12 @@ class Job extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['title', 'treatment', 'usefullife', 'experience', 'education', 'workdesc', 'content'], 'required'],
             [['num', 'sex', 'post_time', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['workdesc', 'content'], 'string'],
             [['title', 'description', 'treatment', 'usefullife', 'experience', 'lang'], 'string', 'max' => 50],
-            [['address', 'education'], 'string', 'max' => 80]
+            [['address', 'education'], 'string', 'max' => 80],
+        	
+        	[['title', 'content'], 'required'],
         ];
     }
 

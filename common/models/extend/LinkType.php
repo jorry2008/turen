@@ -9,8 +9,8 @@ use yii\behaviors\TimestampBehavior;
  * This is the model class for table "{{%extend_link_type}}".
  *
  * @property integer $id
- * @property integer $parent_id
  * @property string $name
+ * @property string $short_code
  * @property integer $order
  * @property integer $status
  * @property integer $deleted
@@ -19,6 +19,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class LinkType extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */
@@ -48,8 +51,12 @@ class LinkType extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['parent_id', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
-            [['name'], 'string', 'max' => 30]
+            [['order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
+            [['name'], 'string', 'max' => 30],
+        	[['short_code'], 'string', 'max' => 50],
+        	
+        	[['name', 'short_code'], 'required'],
+        	[['short_code'], 'unique'],
         ];
     }
 
@@ -60,8 +67,8 @@ class LinkType extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('extend', 'ID'),
-            'parent_id' => Yii::t('extend', 'Parent ID'),
             'name' => Yii::t('extend', 'Name'),
+        	'short_code' => Yii::t('extend', 'Short Code'),
             'order' => Yii::t('extend', 'Order'),
             'status' => Yii::t('extend', 'Status'),
             'deleted' => Yii::t('extend', 'Deleted'),
@@ -69,7 +76,7 @@ class LinkType extends \yii\db\ActiveRecord
             'updated_at' => Yii::t('extend', 'Updated At'),
         ];
     }
-
+    
     /**
      * @inheritdoc
      * @return LinkTypeQuery the active query used by this AR class.

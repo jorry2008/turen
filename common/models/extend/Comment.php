@@ -24,6 +24,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Comment extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */

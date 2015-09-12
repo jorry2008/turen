@@ -23,6 +23,9 @@ use yii\behaviors\TimestampBehavior;
  */
 class Nav extends \yii\db\ActiveRecord
 {
+	const STATUS_YES = 1;
+	const STATUS_NO = 0;
+	
     /**
      * @inheritdoc
      */
