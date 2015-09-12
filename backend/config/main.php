@@ -43,29 +43,35 @@ return [
     
     // 模块配置
     'modules' => [
+    	'user' => [ // 后台管理员模块
+    		'class' => 'backend\modules\user\UserModule',
+    		//'viewPath' => '@app/themes/classic/user',//强制模块的主题
+    		//'controllerNamespace' => ''//优先使用默认命名空间
+    	],
         'auth' => [ // 权限模块
             'class' => 'backend\modules\auth\AuthModule'
         ],
-        'user' => [ // 管理员模块
-            'class' => 'backend\modules\user\UserModule',
-            //'viewPath' => '@app/themes/classic/user',//强制模块的主题
-            //'controllerNamespace' => ''//优先使用默认命名空间
-        ],
-        'system' => [//系统核心模块
+        'system' => [// 系统核心模块
             'class' => 'backend\modules\system\SystemModule',
         ],
-        'customer' => [// 会员模块
+        'customer' => [// 用户模块
             'class' => 'backend\modules\customer\CustomerModule',
         ],
-        'catalog' => [
+        'catalog' => [// 产品模块
             'class' => 'backend\modules\catalog\CatalogModule',
         ],
-        'cms' => [
+        'cms' => [// 内容模块
             'class' => 'backend\modules\cms\CmsModule',
         ],
+    	'extend' => [// 非常独立的拓展（一些独立的小功能）
+    		'class' => 'backend\modules\extend\ExtendModule',
+    	],
+    	'help' => [// 内嵌式帮助模块
+    		'class' => 'backend\modules\help\HelpModule',
+    	],
     ],
     
-    // 配置维护模式配置
+    // 维护模式配置
     // 'catchAll'=>[
     // 'offline/notice',
     // 'param1'=>'value1',
@@ -102,7 +108,7 @@ return [
             
             // 以下是以session来存储相关的参数值的
             'authTimeoutParam' => '__turen_expire', // 过期时间session标识
-            'idParam' => '__id', // 用户登录会话id的session标识
+            'idParam' => '__turen_id', // 用户登录会话id的session标识
             'absoluteAuthTimeoutParam' => '__turen_absoluteExpire',
             'returnUrlParam' => '__turen_returnUrl' // 这个是重点，实现无权访问再登录后跳转到原来的rul，这个url就是__returnUrl，记录在session中
         ],
@@ -184,7 +190,7 @@ return [
         //url规则管理
         'urlManager' => [
             'enablePrettyUrl' => true,//开启路由的路径化
-            'showScriptName' => false,//是否显示入口脚本index.php（This property is used only if [[enablePrettyUrl]] is true.）
+//             'showScriptName' => false,//是否显示入口脚本index.php（This property is used only if [[enablePrettyUrl]] is true.）
             // 'suffix' => '.html',//
             'rules' => [],
         ],

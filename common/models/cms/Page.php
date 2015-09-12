@@ -64,6 +64,17 @@ class Page extends \yii\db\ActiveRecord
     }
     
     /**
+     * @see \yii\db\BaseActiveRecord::beforeSave($insert)
+     */
+    public function beforeSave($insert)
+    {
+    	//处理上传路径为基础路径
+//     	$this->content = preg_replace('/(<img.+src=\"?)(.+)(\/upload\/.+\.(jpg|gif|bmp|bnp|png)\"?.+>)/i',"\${1}\${3}", $this->content);
+    	
+    	return true;
+    }
+    
+    /**
      * 一对一
      */
     public function getColumn()

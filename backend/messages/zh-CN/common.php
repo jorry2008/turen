@@ -33,7 +33,6 @@ return [
     'Created At' => '添加改时间',
     'Create Failure!' => '添加失败',
     'Create Success!' => '添加成功',
-    'Update Failure!' => '修改失败',
     'On' => '开启',
     'Off' => '关闭',
     'Male' => '男',
@@ -53,4 +52,5 @@ return [
 	'Yes' => 'Yes',
 	'turen' => '土人',
 	'All' => '全部',
+	'Update Status' => '更新发布状态',
 ];

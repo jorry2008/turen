@@ -45,8 +45,5 @@ return [
     'Reset Auth' => '重置权限',
     'Update Role Success' => '修改角色成功',
     'Task' => '任务',
-    'Auth Path is Empty!' => '授权路径不能为空！',
     'Progress...' => '处理中...',
-    'Reset Auth Success' => '重置权限成功',
-    'You are not the super administrator can\'t do this!' => '您不是超级管理员，不能进行此操作！',
 ];

@@ -1,41 +1,26 @@
 <?php
 
-namespace backend\modules\cms\controllers;
+namespace backend\modules\help\controllers;
 
 use Yii;
-use common\models\cms\Page;
-use common\models\cms\PageSearch;
+use common\models\help\Help;
+use common\models\help\HelpSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * PageController implements the CRUD actions for Page model.
+ * HelpController implements the CRUD actions for Help model.
  */
-class PageController extends Controller
+class HelpController extends Controller
 {
-	/**
-	 * @inheritdoc
-	 */
-	public function actions()
-	{
-		return [
-			'uploadify' => [
-				'class' => 'backend\components\uploadify\UploadifyAction',
-			],
-			'ueditor' => [
-				'class' => 'backend\components\ueditor\UeditorAction',
-			]
-		];
-	}
-	
     /**
-     * Lists all Page models.
+     * Lists all Help models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new PageSearch();
+        $searchModel = new HelpSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +30,7 @@ class PageController extends Controller
     }
 
     /**
-     * Displays a single Page model.
+     * Displays a single Help model.
      * @param integer $id
      * @return mixed
      */
@@ -57,7 +42,25 @@ class PageController extends Controller
     }
 
     /**
-     * Updates an existing Page model.
+     * Creates a new Help model.
+     * If creation is successful, the browser will be redirected to the 'view' page.
+     * @return mixed
+     */
+    public function actionCreate()
+    {
+        $model = new Help();
+
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['view', 'id' => $model->Id]);
+        } else {
+            return $this->render('create', [
+                'model' => $model,
+            ]);
+        }
+    }
+
+    /**
+     * Updates an existing Help model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -67,10 +70,8 @@ class PageController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->Id]);
         } else {
-//         	$web = Yii::getAlias('@web');
-//         	$model->content = preg_replace('/(<img.+src=\"?)(.+)(\/upload\/.+\.(jpg|gif|bmp|bnp|png)\"?.+>)/i',"\${1}".$web."\${3}", $model->content);
             return $this->render('update', [
                 'model' => $model,
             ]);
@@ -78,15 +79,15 @@ class PageController extends Controller
     }
 
     /**
-     * Finds the Page model based on its primary key value.
+     * Finds the Help model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Page the loaded model
+     * @return Help the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Page::findOne($id)) !== null) {
+        if (($model = Help::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

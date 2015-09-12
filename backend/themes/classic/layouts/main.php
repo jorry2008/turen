@@ -181,11 +181,13 @@ $baseUrl = Yii::getAlias('@web');
                                     ['label' => '<i class="fa fa-leaf"></i><span>品牌管理</span>', 'url' => ['/catalog/brand/index']],
                                 ]
                             ],
-                    		['label' => '<i class="fa fa-leaf"></i><span>扩展模块</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    		['label' => '<i class="fa fa-plug"></i><span>扩展模块</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                     			'items' => [
-                    				['label' => '<i class="fa fa-leaf"></i><span>评论管理</span>', 'url' => ['/comment/product/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>友情链接管理</span>', 'url' => ['/link/product/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>客户留言管理</span>', 'url' => ['/message/product/index']],
+                    				['label' => '<i class="fa fa-outdent"></i><span>菜单管理</span>', 'url' => ['/extend/nav/index']],
+                    				['label' => '<i class="fa fa-external-link"></i><span>友情链接管理</span>', 'url' => ['/extend/link/index']],
+                    				['label' => '<i class="fa fa-thumbs-o-up"></i><span>招聘信息管理</span>', 'url' => ['/extend/job/index']],
+                    				['label' => '<i class="fa fa-envelope-o"></i><span>客户留言管理</span>', 'url' => ['/extend/message/index']],
+                    				['label' => '<i class="fa fa-comments"></i><span>评论管理</span>', 'url' => ['/extend/comment/index']],
                     			]
                     		],
                             ['label' => '<i class="fa fa-user-plus"></i><span>用户&地址</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
@@ -193,10 +195,16 @@ $baseUrl = Yii::getAlias('@web');
                                     ['label' => '<i class="fa fa-user"></i><span>用户列表</span>', 'url' => ['/customer/customer/index']],
                                     ['label' => '<i class="fa fa-users"></i><span>用户组列表</span>', 'url' => ['/customer/customer-group/index']],
                                     ['label' => '<i class="fa fa-map-marker"></i><span>地址批量管理</span>', 'url' => ['/customer/customer-address/index']],
+                                	['label' => '<i class="fa fa-leaf"></i><span>用户收藏</span>', 'url' => ['##']],
                                 ]
                             ],
 							['label' => '<i class="fa fa-leaf"></i><span>微信公众平台</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
-                    		['label' => '<i class="fa fa-leaf"></i><span>土人帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
+                    		['label' => '<i class="fa fa-leaf"></i><span>帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    			'items' => [
+                    				['label' => '<i class="fa fa-leaf"></i><span>帮助管理</span>', 'url' => ['/help/help/index']],
+                    				['label' => '<i class="fa fa-leaf"></i><span>添加帮助</span>', 'url' => ['/help/help/create']],
+                    			]
+                    		],
                     		['label' => '<i class="fa fa-users"></i><span>管理员管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                         		'items' => [
                             		['label' => '<i class="fa fa-user"></i><span>管理员列表</span>', 'url' => ['/user/user/index']],
@@ -211,7 +219,6 @@ $baseUrl = Yii::getAlias('@web');
                             		['label' => '<i class="fa fa-folder-open-o"></i><span>缓存管理</span>', 'url' => ['/system/cache/index']],
                             		['label' => '<i class="fa fa-database"></i><span>数据库管理</span>', 'url' => ['/system/db/index']],
                             		['label' => '<i class="fa fa-folder-open-o"></i><span>公共数据</span>', 'url' => ['/system/cascade-data/index']],
-                            		['label' => '<i class="fa fa-folder-open-o"></i><span>菜单系统</span>', 'url' => ['/system/menu/index']],
                             		['label' => '<i class="fa fa-folder-open-o"></i><span>操作日志</span>', 'url' => ['/system/log/index']],
                         		    ['label' => '<i class="fa fa-trash-o"></i><span>回收总站</span>', 'url' => ['/system/trash/index']],
                         		]
