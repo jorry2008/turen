@@ -29,8 +29,8 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="tab-content clearfix">
                 <div class="tab-pane active nav-view">
             <p>
-                <?= Html::a(Yii::t('extend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('extend', 'Delete'), ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('common', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('common', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => Yii::t('extend', 'Are you sure you want to delete this item?'),
@@ -44,17 +44,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-            'parent_id',
-            'name',
-            'link_url:url',
-            're_link_url:url',
-            'pic_url:url',
-            'target',
-            'order',
-            'status',
-            'deleted',
-            'created_at',
-            'updated_at',
+                	[
+                		'attribute' => 'parent_id',
+                		'value' => empty($model->mySelf)?Yii::t('extend', 'Top Nav'):$model->mySelf->name,
+                	],
+		            'name',
+		            'link_url:url',
+		            're_link_url:url',
+		            'pic_url:url',
+		            'target',
+		            'order',
+		            [
+                		'attribute' => 'status',
+                		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
+                	],
+		            'created_at:datetime',
+		            'updated_at:datetime',
                 ],
             ]) ?>
                 </div>

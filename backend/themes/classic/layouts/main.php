@@ -188,6 +188,7 @@ $baseUrl = Yii::getAlias('@web');
                     				['label' => '<i class="fa fa-thumbs-o-up"></i><span>招聘信息管理</span>', 'url' => ['/extend/job/index']],
                     				['label' => '<i class="fa fa-envelope-o"></i><span>客户留言管理</span>', 'url' => ['/extend/message/index']],
                     				['label' => '<i class="fa fa-comments"></i><span>评论管理</span>', 'url' => ['/extend/comment/index']],
+									['label' => '<i class="fa fa-bookmark-o"></i><span>碎片管理</span>', 'url' => ['/extend/fragment/index']],
                     			]
                     		],
                             ['label' => '<i class="fa fa-user-plus"></i><span>用户&地址</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',

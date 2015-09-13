@@ -3,24 +3,17 @@
 use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
-use yii\helpers\ArrayHelper;
-
-use common\components\helpers\General;
-use common\models\extend\Nav;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\extend\Nav */
+/* @var $model common\models\extend\Fragment */
 /* @var $form yii\widgets\ActiveForm */
 
 if($model->isNewRecord) {
 	$model->status = true;
-	$model->order = 10;
 }
-
-$parentIds = ArrayHelper::merge(['0'=>Yii::t('extend', 'Top Nav')], ArrayHelper::map(General::recursiveObj(Nav::find()->orderBy(['order'=>SORT_ASC])->all()), 'id', 'name'));
 ?>
 
-<div class="row nav-form">
+<div class="row fragment-form">
     <div class="col-md-12">
         <?php $form = ActiveForm::begin([
 			'layout' => 'horizontal',
@@ -37,22 +30,18 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('extend', 'Top Nav')], ArrayHelper:
 		]);
 		?>
     	
-        <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>
-
-	    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-	
-	    <?= $form->field($model, 'link_url')->textInput(['maxlength' => true]) ?>
-	
-	    <?= $form->field($model, 're_link_url')->textInput(['maxlength' => true]) ?>
-	
+        <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+        
+        <?= $form->field($model, 'short_code')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Frontend call basis for Developer'))->textInput(['maxlength' => true]) ?>
+        
+        <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+		
 	    <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
-	
-	    <?= $form->field($model, 'target')->textInput(['maxlength' => true]) ?>
-	
-	    <?= $form->field($model, 'order')->input('number', ['maxlength' => true]) ?>
-	
+		
+	    <?= $form->field($model, 'link_url')->textInput(['maxlength' => true]) ?>
+		
 	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Don\'t show in the frontend,If you don\'t choose')) ?>
-
+		
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">
 	        	<?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') : Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

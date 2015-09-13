@@ -60,4 +60,7 @@ return [
 	'Create Comment' => '添加评论',
 	'Nav List' => '菜单列表',
 	'Create Nav' => '添加菜单',
+	'Create Fragment' => '添加碎片',
+	'Fragment List' => '碎片列表',
+	'Top Nav' => '顶级菜单',
 ];

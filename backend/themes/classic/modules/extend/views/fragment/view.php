@@ -4,10 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\DetailView;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\extend\Message */
+/* @var $model common\models\extend\Fragment */
 
-$this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => Yii::t('extend', 'Message List'), 'url' => ['index']];
+$this->title = $model->title;
+$this->params['breadcrumbs'][] = ['label' => Yii::t('extend', 'Fragment List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -27,10 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active message-view">
+                <div class="tab-pane active fragment-view">
             <p>
-                <?= Html::a(Yii::t('extend', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-                <?= Html::a(Yii::t('extend', 'Delete'), ['delete', 'id' => $model->id], [
+                <?= Html::a(Yii::t('common', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+                <?= Html::a(Yii::t('common', 'Delete'), ['delete', 'id' => $model->id], [
                     'class' => 'btn btn-danger',
                     'data' => [
                         'confirm' => Yii::t('extend', 'Are you sure you want to delete this item?'),
@@ -44,14 +44,12 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-		            'nickname',
-		            'contact',
+		            'title',
+                	'short_code',
+		            'pic_url:url',
+		            'link_url:url',
 		            'content:ntext',
-		            'is_top',
-		            'is_recommend',
-		            'ip',
-		            'order',
-		            [
+                	[
                 		'attribute' => 'status',
                 		'value' => $model->status?Yii::t('common', 'Yes'):Yii::t('common', 'No'),
                 	],
