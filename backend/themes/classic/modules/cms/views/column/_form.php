@@ -1,5 +1,6 @@
 <?php
 
+use yii\base\Object;
 use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
@@ -7,11 +8,15 @@ use yii\helpers\ArrayHelper;
 
 use common\components\helpers\General;
 use common\models\cms\Column;
-use yii\base\Object;
+use backend\components\uploadify\UploadifyWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\Column */
 /* @var $form yii\widgets\ActiveForm */
+
+$this->registerJs("
+	$('.upload_picture').css(\"cursor\",\"pointer\");
+");
 
 if($model->isNewRecord) {
     $model->status = true;
@@ -57,7 +62,7 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Column')], ArrayHelper:
         
         <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
         
-        <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
+		<?= $form->field($model, 'pic_url')->widget(UploadifyWidget::className(), ['route'=>'cms/column/uploadify', 'dir'=>'cms', 'num'=>'1', 'btnClassName'=>'upload_picture', 'type'=>'single']) ?>
     
         <?= $form->field($model, 'pic_width')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Unit is pixel,').Yii::t('cms', 'If is blank, default as 100%'))->textInput(['maxlength' => true]) ?>
     

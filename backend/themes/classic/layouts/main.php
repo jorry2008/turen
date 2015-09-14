@@ -235,13 +235,13 @@ $baseUrl = Yii::getAlias('@web');
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
 	    		<?php 
-	    		if(!empty(Yii::$app->getSession()->getFlash('danger'))) {
+	    		if(Yii::$app->getSession()->hasFlash('danger')) {
                     echo '<div class="box-body"><div class="alert alert-danger alert-dismissable"><i class="icon fa fa-ban"></i>'.Yii::$app->getSession()->getFlash('danger').'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button></div></div>';
-                } elseif (!empty(Yii::$app->getSession()->getFlash('info'))) {
+                } elseif (Yii::$app->getSession()->hasFlash('info')) {
                     echo '<div class="box-body"><div class="alert alert-info alert-dismissable"><i class="icon fa fa-info"></i>'.Yii::$app->getSession()->getFlash('info').'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button></div></div>';
-                } elseif (!empty(Yii::$app->getSession()->getFlash('warning'))) {
+                } elseif (Yii::$app->getSession()->hasFlash('warning')) {
                     echo '<div class="box-body"><div class="alert alert-warning alert-dismissable"><i class="icon fa fa-warning"></i>'.Yii::$app->getSession()->getFlash('warning').'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button></div></div>';
-                } elseif (!empty(Yii::$app->getSession()->getFlash('success'))) {
+                } elseif (Yii::$app->getSession()->hasFlash('success')) {
                     echo '<div class="box-body"><div class="alert alert-success alert-dismissable"><i class="icon fa fa-check"></i>'.Yii::$app->getSession()->getFlash('success').'<button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button></div></div>';
                 }
 	    		?>

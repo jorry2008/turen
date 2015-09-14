@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <div class="tab-content clearfix">
                 <div class="tab-pane active comment-index">
                 
-            <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+            	<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
                 
 	            <!-- 
 	                <p>
@@ -36,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                </p>
 	             -->
             
-                            <?= GridView::widget([
+				<?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
                     'options' => ['class' => 'grid-view box-body table-responsive no-padding'],//整个grid view样式//\yii\helpers\Html::renderTagAttributes()
@@ -51,22 +51,21 @@ $this->params['breadcrumbs'][] = $this->title;
                     'layout' => "{summary}\n{errors}\n{items}\n{pager}",//布局
                     
                     'filterModel' => $searchModel,
-        'columns' => [
+        			'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
-            
-			                        'id',
-            'relative_id',
-            'mode',
-            'customer_id',
-            'customer_name',
-            // 'content:ntext',
-            // 'reply:ntext',
-            // 'link',
-            // 'ip',
-            // 'status',
-            // 'deleted',
-            // 'created_at',
-            // 'updated_at',
+// 			                'id',
+				            'relative_id',
+				            'mode',
+				            'customer_id',
+				            'customer_name',
+				            // 'content:ntext',
+				            // 'reply:ntext',
+				            // 'link',
+				            // 'ip',
+				            'status',
+				            // 'deleted',
+				            // 'created_at',
+				            'updated_at:datetime',
             
                         [
                             'class' => 'yii\grid\ActionColumn',

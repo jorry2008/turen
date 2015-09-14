@@ -121,7 +121,7 @@ $('.cms-class-index .cms-order').focus(function() {
 	                            'class' => 'yii\grid\ActionColumn',
 	                            'header' => Yii::t('common', 'Opration'),
 	                            
-	                            'template' => '{add} {view} {update} {delete}',
+	                            'template' => '{add} {update} {delete}',
 	                            'buttons' => [
                             		'add' => function ($url, $model, $key) {
                             			$url = ['create', 'id'=>$model->id];

@@ -9,11 +9,25 @@ namespace common\models\extend;
  */
 class FragmentQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+    /**
+	 * 前台显示
+	 * @return \common\models\extend\NavQuery
+	 */
+    public function active()
     {
-        $this->andWhere('[[status]]=1');
+        $this->andWhere(['status'=>1,'deleted'=>0]);
         return $this;
-    }*/
+    }
+    
+    /**
+     * 没有被删除
+     * @return \common\models\extend\NavQuery
+     */
+    public function alive()
+    {
+    	$this->andWhere('[[deleted]]=0');
+    	return $this;
+    }
 
     /**
      * @inheritdoc

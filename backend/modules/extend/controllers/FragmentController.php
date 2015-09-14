@@ -7,25 +7,12 @@ use common\models\extend\Fragment;
 use yii\data\ActiveDataProvider;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * FragmentController implements the CRUD actions for Fragment model.
  */
 class FragmentController extends Controller
 {
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['post'],
-                ],
-            ],
-        ];
-    }
-
     /**
      * Lists all Fragment models.
      * @return mixed
@@ -33,7 +20,7 @@ class FragmentController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Fragment::find(),
+            'query' => Fragment::find()->alive(),
         ]);
 
         return $this->render('index', [
@@ -88,19 +75,6 @@ class FragmentController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    /**
-     * Deletes an existing Fragment model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
-    {
-        $this->findModel($id)->delete();
-
-        return $this->redirect(['index']);
     }
 
     /**

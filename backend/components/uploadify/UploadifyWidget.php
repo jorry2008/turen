@@ -8,6 +8,7 @@ use yii\helpers\Html;
 // use yii\web\View;
 use yii\widgets\InputWidget;
 
+
 /**
  * Upload Widget
  *
@@ -31,7 +32,17 @@ class UploadifyWidget extends InputWidget {
      */
     public $num = 1;
     
-    protected $btnClassName = 'file_add_button';
+    /**
+     * 上传类型：单图或多图
+     * @var string
+     */
+    public $type = 'multi';//or single
+    
+    /**
+     * 触发的按键类名
+     * @var string
+     */
+    public $btnClassName = 'file_add_button';
     
     /**
      * Initializes the widget.
@@ -45,11 +56,13 @@ class UploadifyWidget extends InputWidget {
      */
     public function run() {
         $this->registerScripts();
-        
         echo $this->renderTag();
-        //fb($this->options['id']);
-        $params = ['model'=>$this->model,'widgetId'=>$this->options['id'], 'attribute'=>$this->attribute, 'btnClassName'=>$this->btnClassName, 'dir'=>$this->dir, 'num'=>$this->num, 'route'=>$this->route, 'baseUrl' => $this->getView()->context->baseUrl];
-        echo $this->render('@app/components/uploadify/views/widget_upload', $params);
+        
+//         if($this->type == 'multi') {
+//         	echo $this->render('@app/components/uploadify/views/widget_upload', $params);
+//         } elseif($this->type == 'single') {
+//         	//nothing
+//         }
     }
 
     /**
@@ -58,12 +71,20 @@ class UploadifyWidget extends InputWidget {
      */
     private function renderTag() {
         //兼容普通模式和模型模式两种
-        if ($this->hasModel()) {
-            return Html::activeHiddenInput($this->model, $this->attribute, $this->options);
-        } else {
-            return Html::hiddenInput($this->id, $this->value, $this->options);
+        if($this->type == 'multi') {
+//         	if ($this->hasModel()) {
+//         		return Html::activeHiddenInput($this->model, $this->attribute, $this->options);
+//         	} else {
+//         		return Html::hiddenInput($this->id, $this->value, $this->options);
+//         	}
+        } elseif($this->type == 'single') {
+        	$attr = 'data-widget="'.$this->options['id'].'" data-frame="'.$this->attribute.'_frame" data-dir="'.$this->dir.'" data-num="'.$this->num.'" data-url="'.Yii::$app->getUrlManager()->createUrl($this->route).'" baseUrl="'.Yii::getAlias('@web').'"';
+        	if ($this->hasModel()) {
+        		return '<div class="input-group">'.Html::activeTextInput($this->model, $this->attribute, ['class'=>'form-control']).'<span class="input-group-addon '.$this->btnClassName.'" '.$attr.'><span title="'.Yii::t('uploadify', 'Upload picture').'"><i class="fa fa-upload"></i></span></div>';
+        	} else {
+        		throw new \Exception('请使用boostrap开发图片上传ui');
+        	}
         }
-        //return Html::activeHiddenInput($this->model, $this->attribute, $this->options);
     }
 
     /**
@@ -128,9 +149,5 @@ EOF;
         $this->getView()->registerJs($script);//, View::POS_LOAD
     }
 }
-
-
-
-
 
 
