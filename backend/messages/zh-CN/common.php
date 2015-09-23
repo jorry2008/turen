@@ -48,8 +48,8 @@ return [
     'Please check your upload file or file name!' => '请检查您上传的文件或者文件名！',
     'Failed to create the images directory!' => '创建图片路径不成功！',
     'Blank' => '未找到',
-	'No' => 'No',
-	'Yes' => 'Yes',
+	'No' => '否',
+	'Yes' => '是',
 	'turen' => '土人',
 	'All' => '全部',
 	'Update Status' => '更新发布状态',
@@ -58,4 +58,5 @@ return [
 	'Deleted' => '删除',
 	'Created At' => '添加时间',
 	'Updated At' => '更新时间',
+	'Don\'t show in the frontend,If you don\'t choose' => '如果没有选择，在前台就不会显示',
 ];

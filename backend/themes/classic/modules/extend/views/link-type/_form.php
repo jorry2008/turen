@@ -40,7 +40,7 @@ if($model->isNewRecord) {
 	
 	    <?= $form->field($model, 'order')->input('number') ?>
 	
-	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('help', 'Don\'t show in the frontend,If you don\'t choose')) ?>
+		<?= $form->field($model, 'status')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('common', 'Don\'t show in the frontend,If you don\'t choose'))->radioList([1=>Yii::t('common', 'Yes'), 0=>Yii::t('common', 'No')]) ?>
 	
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">

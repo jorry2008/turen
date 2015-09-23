@@ -63,4 +63,6 @@ return [
 	'Create Fragment' => '添加碎片',
 	'Fragment List' => '碎片列表',
 	'Top Nav' => '顶级菜单',
+	'Link Type List' => '链接分类列表',
+	'Order' => '排序',
 ];

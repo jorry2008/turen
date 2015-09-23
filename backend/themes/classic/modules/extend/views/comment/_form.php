@@ -45,9 +45,9 @@ if($model->isNewRecord) {
 	    <?= $form->field($model, 'link')->textInput(['maxlength' => true]) ?>
 	
 	    <?= $form->field($model, 'ip')->textInput(['maxlength' => true]) ?>
+	    
+	    <?= $form->field($model, 'status')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('common', 'Don\'t show in the frontend,If you don\'t choose'))->radioList([1=>Yii::t('common', 'Yes'), 0=>Yii::t('common', 'No')]) ?>
 	
-	    <?= $form->field($model, 'status')->checkbox()->label($model->getAttributeLabel('status').str_repeat('&nbsp;', 6).'<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Don\'t show in the frontend,If you don\'t choose')) ?>
-
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">
 	        	<?= Html::submitButton($model->isNewRecord ? Yii::t('common', 'Create') : Yii::t('common', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

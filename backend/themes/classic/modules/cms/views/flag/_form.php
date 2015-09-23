@@ -16,11 +16,11 @@ use yii\bootstrap\ActiveForm;
         <?php $form = ActiveForm::begin(); ?>
     
         <?= $form->field($model, 'flag_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'order')->textInput() ?>
-
+	
+	    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+	
+	    <?= $form->field($model, 'order')->textInput() ?>
+	
         <div class="form-group">
             <?= Html::submitButton($model->isNewRecord ? Yii::t('cms', 'Create') : Yii::t('cms', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
         </div>
