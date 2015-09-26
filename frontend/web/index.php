@@ -19,9 +19,8 @@ $config = yii\helpers\ArrayHelper::merge(
 );
 
 $app = new yii\web\Application($config);
-
-// echo Yii::getAlias('@lte');exit;
-//fb($app->getView()->theme);
-// fb($app->params['config']);
-
 $app->run();
+
+fb(Yii::$app->params);
+
+

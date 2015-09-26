@@ -65,4 +65,5 @@ return [
 	'Top Nav' => '顶级菜单',
 	'Link Type List' => '链接分类列表',
 	'Order' => '排序',
+	'Through the title calls this menu' => '这个标题是前台调用的依据，所以如果是菜单的首项时就应当为英文。',
 ];

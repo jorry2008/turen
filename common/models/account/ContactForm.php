@@ -1,6 +1,6 @@
 <?php
 
-namespace frontend\models;
+namespace common\models\account;
 
 use Yii;
 use yii\base\Model;

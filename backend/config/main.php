@@ -11,12 +11,14 @@ $params = array_merge(
 
 return [
     'id' => 'app-backend',
+	'timeZone' => 'Asia/Shanghai',
     'basePath' => dirname(__DIR__),
     'name' => Yii::t('common', 'turen'),
     'version' => '1.0',
     'charset' => 'UTF-8',
     'sourceLanguage' => 'en-US', // 默认源语言
     'language' => 'zh-CN', // 默认当前环境使用的语言
+    
     'controllerNamespace' => 'backend\modules\user\controllers',//默认预加载控制器类的命名空间()
     'defaultRoute' => 'user/common/default', // 默认路由，后台默认首页
     

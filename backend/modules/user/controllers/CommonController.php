@@ -15,16 +15,7 @@ use common\models\user\LoginForm;
  * Site controller
  */
 class CommonController extends \backend\components\Controller
-{
-    /**
-     * 用于自动化处理权限
-     * @return multitype:string
-     */
-    public static function getRbac()
-    {
-        return ['error', 'captcha'];
-    }
-    
+{   
     /**
      * @inheritdoc
      */

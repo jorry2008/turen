@@ -39,7 +39,7 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('extend', 'Top Nav')], ArrayHelper:
     	
         <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>
 
-	    <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'name')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Through the title calls this menu'))->textInput(['maxlength' => true]) ?>
 	
 	    <?= $form->field($model, 'link_url')->textInput(['maxlength' => true]) ?>
 	
