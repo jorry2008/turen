@@ -38,9 +38,6 @@ class HomeController extends Controller
 
     public function actionIndex()
     {
-//     	fb(Yii::getAlias('@app'));
-//     	fb(Yii::getAlias('@frontend'));
-    	
         return $this->render('index');
     }
 

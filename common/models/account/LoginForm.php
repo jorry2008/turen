@@ -58,7 +58,7 @@ class LoginForm extends Model
      * @return boolean whether the user is logged in successfully
      */
     public function login()
-    {//fb($this->getUser());exit;
+    {
         if ($this->validate()) {//这一步，已经实现了登录验证
         	//fb('验证之后');
         	//这一步只是将认证以指定的方式记录下来即可。即作登录的操作
@@ -76,7 +76,7 @@ class LoginForm extends Model
     public function getUser()
     {
         if ($this->_user === false) {
-            $this->_user = User::findByUsername($this->username);
+            $this->_user = Customer::findByUsername($this->username);
         }
 
         return $this->_user;
