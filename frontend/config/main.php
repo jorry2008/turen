@@ -9,7 +9,7 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-	'name' => Yii::t('common', 'turen'),
+	'name' => Yii::t('common', '集方科技'),
 	'version' => '1.0',
 	'charset' => 'UTF-8',
 	'sourceLanguage' => 'zh-CN', // 默认源语言
@@ -33,6 +33,22 @@ return [
             'identityClass' => 'common\models\account\Customer',
             'enableAutoLogin' => true,
         ],
+    		
+    	// 多语言配置
+    	'i18n' => [
+    		'translations' => [
+    			'*' => [ // 界面翻译
+    				'class' => 'yii\i18n\PhpMessageSource',
+    				// 'sourceLanguage' => 'en-US',
+    				'basePath' => '@app/messages',
+    				'fileMap' => [ // 简单的映射
+    					'common' => 'common.php',
+    					'site' => 'site.php',
+    					'account' => 'account.php',
+    				]
+    			],
+    		]
+    	],
     	
     	//url规则管理
     	'urlManager' => [

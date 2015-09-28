@@ -13,18 +13,14 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class BaseAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@bower';
     public $css = [
-    	'css/site.css',
+        'normalize-css/normalize.css',
+    	'font-awesome/css/font-awesome.min.css'
     ];
-    public $js = [
-    	'js/site.js',
-    ];
-    
     public $depends = [
-        '\frontend\assets\BaseAsset',
+        'yii\web\YiiAsset',
     ];
 }
