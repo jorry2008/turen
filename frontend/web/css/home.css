@@ -1,0 +1,47 @@
+.slider {
+    float: left;
+    height: 309px;
+    position: relative;
+    width: 685px;
+    background: red;
+}
+.quick_order {
+    float: right;
+    width: 323px;
+}
+.yellow_button {
+    background: #ffe323 none repeat scroll 0 0;
+    border-bottom: 2px solid #daa940;
+    border-radius: 4px;
+    color: #6f2c22;
+    float: left;
+    font-size: 16px;
+    height: 30px;
+    line-height: 30px;
+    padding: 8px 10px;
+}
+.yellow_button:hover {
+    background: #ffed6f none repeat scroll 0 0;
+    color: #6f2c22;
+}
+.icon_fg {
+    background: url("../images/n_fg.png") no-repeat scroll right center;
+    margin-right: 8px;
+    padding-right: 10px;
+}
+.quick_order .order {
+	height: 250px;
+	background: green;
+}
+.service_list {
+	width: 100%;
+	height: 300px;
+	float: left;
+	background: yellow;
+}
+.top10 {
+	width: 100%;
+	height: 300px;
+	float: left;
+	background: pink;
+}

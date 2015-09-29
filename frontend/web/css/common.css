@@ -1,0 +1,236 @@
+html,
+body {
+    color: #333;
+    height: 100%;
+    font: 14px/22px Arial,"Hiragino Sans GB","微软雅黑","宋体";
+    word-wrap: break-word;
+}
+a {
+	text-decoration: none;
+}
+.container::after {
+    clear: both;
+    content: " ";
+    display: block;
+    height: 0;
+}
+.n_blue_font {
+    color: #01af63;
+}
+.mar-b10 {
+	margin-bottom: 10px;
+}
+.mar-t18 {
+    margin-top: 18px;
+}
+.mar-r12 {
+	margin-right: 12px;
+}
+.mar-b11 {
+    margin-bottom: 11px;
+}
+.mar-b18 {
+    margin-bottom: 18px;
+}
+ul, li, ol {
+    list-style: outside none none;
+}
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: " ";
+}
+.clearfix:after {
+	clear: both;
+}
+
+#header {
+    background: #fff none repeat scroll 0 0;
+    min-width: 1024px;
+}
+.header_top {
+    background: #f9f9f9 none repeat scroll 0 0;
+    border-bottom: 1px solid #eee;
+    height: 35px;
+    width: 100%;
+}
+.header_top a:hover {
+	color: #f25618;
+}
+.header_top_center {
+    height: 35px;
+    margin: 0 auto;
+    width: 1024px;
+}
+.header_top_right, .header_top_left {
+	line-height: 35px;
+}
+.header_top_right {
+    display: inline;
+    float: right;
+    height: 35px;
+}
+.header_top_right a, .header_top_right em {
+    padding: 0 12px;
+}
+.header_top_right a, .header_top_right span, .header_top_right em {
+    color: #999;
+    display: inline;
+    float: left;
+}
+.header_top_right .htr_line {
+    background-color: #eee;
+    height: 12px;
+    margin-top: 11px;
+    overflow: hidden;
+    width: 1px;
+}
+.header_top_left .fa {
+	color: #01af63;
+}
+.header_top_left span {
+	color: #999;
+    font-weight: bold;
+}
+
+.header_wrapper {
+	width: 1024px;
+	height: 100px;
+	margin: 0 auto;
+}
+.header_wrapper .logo_layout {
+    float: left;
+    margin-right: 40px;
+    margin-top: 28px;
+}
+.header_wrapper .logo_layout a {
+	display: block;
+	height: 65px;
+    width: 200px;
+    background: url(../images/logo.png) no-repeat;
+    text-indent: -9999px;
+}
+.content {
+	margin: 0 auto;
+    width: 1024px;
+}
+.blue-foot {
+    background-color: #01af63;
+    overflow: hidden;
+    width: 100%;
+}
+.f-tit-h3 {
+    color: #fff;
+    float: left;
+    font-size: 18px;
+    font-weight: normal;
+    height: 26px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    width: 100%;
+}
+.blue-pic-ul {
+    width: 100%;
+}
+.blue-pic-ul li {
+    float: left;
+    height: 60px;
+    margin: 0 20px 15px 0;
+    width: 105px;
+}
+.blue-link-box {
+    width: 100%;
+}
+.blue-link-box ul li {
+    float: left;
+    margin: 0 15px 10px 0;
+}
+.blue-link-box ul li a {
+    color: #fff;
+}
+.blue-link-box ul li a:hover {
+    text-decoration: underline;
+}
+.footer {
+    background-color: #383838;
+    color: #fff;
+    overflow: hidden;
+    padding: 20px 0 0;
+    width: 100%;
+}
+.black-left {
+    background: url("../images/n_fenge.png") no-repeat scroll right center;
+    float: left;
+    padding-right: 30px;
+    width: 150px;
+}
+.black-left .f-logo {
+	display: block;
+    height: 62px;
+    width: 143px;
+    background: url("../images/logo.png") no-repeat;
+    text-indent: -9999em;
+}
+.black-left .a-font {
+    color: #fff;
+    float: left;
+    line-height: 35px;
+}
+.black-left .a-font:hover {
+    text-decoration: underline;
+}
+.mar-r27 {
+    margin-right: 27px;
+}
+.black-center {
+    background: url("../images/n_fenge.png") no-repeat scroll right center;
+    float: left;
+    line-height: 30px;
+    margin: 0 40px;
+    padding-right: 40px;
+    width: 420px;
+}
+.black-right {
+    float: right;
+    width: 304px;
+}
+.foot_r_dl dd {
+    background: url("../images/n_wechat.png") no-repeat scroll 0 0;
+    float: left;
+    height: 155px;
+    margin-right: 12px;
+    width: 120px;
+    margin-left: 20px;
+}
+.foot_r_dl dt {
+    float: left;
+    line-height: 28px;
+    width: 141px;
+}
+.foot_r_dl {
+	margin-bottom: 0;
+}
+.foot_r_dl dt p {
+	margin-top: 0;
+	margin-bottom: 0;
+}
+.n_foot-box {
+    margin: 0 auto;
+    padding: 15px 0;
+    width: 1024px;
+}
+.n_copyright {
+    border-top: 1px solid #4c4c4c;
+    color: #9b9b9b;
+    padding-top: 15px;
+    text-align: center;
+}
+.back_top {
+    background: url("../images/n_icon1.png") no-repeat scroll -8px -115px;
+    bottom: 300px;
+    height: 47px;
+    padding: 9px;
+    position: fixed;
+    right: 20px;
+    text-indent: -999999px;
+    width: 24px;
+}
