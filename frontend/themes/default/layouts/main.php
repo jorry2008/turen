@@ -52,6 +52,43 @@ AppAsset::register($this);
 			<div class="logo_layout">
 				<a class="logo" href="">快兔搬家网</a>
 			</div>
+			
+			<div class="top_menu">
+			    <div class="menu">
+			        <ul>
+			            <li class="active">
+			                <a href="http://sz.to8to.com/" class="nav_fzlink">
+			                    首页
+			                </a>
+			            </li>
+			            <li>
+			                <a href="http://sz.to8to.com/zb/" class="nav_fzlink">
+			                    设计与报价
+			                </a>
+			            </li>
+			            <li>
+			                <a href="http://sz.to8to.com/company/" class="nav_fzlink">
+			                    装修公司
+			                </a>
+			            </li>
+			            <li>
+			                <a href="http://mall.to8to.com/">
+			                    家居商城
+			                </a>
+			            </li>
+			            <li>
+			                <a href="http://mall.to8to.com/">
+			                    家居商城
+			                </a>
+			            </li>
+			        </ul>
+			        
+			        <div class="q_code">
+			            <a rel="nofollow" class="q_code_applnk" href="http://www.to8to.com/apps/">
+			            </a>
+			        </div>
+			    </div>
+			</div>
     		
     		<?php
 // 			echo Menu::widget([

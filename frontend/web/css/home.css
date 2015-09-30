@@ -9,6 +9,9 @@
     float: right;
     width: 323px;
 }
+.order {
+	width: 323px;
+}
 .yellow_button {
     background: #ffe323 none repeat scroll 0 0;
     border-bottom: 2px solid #daa940;

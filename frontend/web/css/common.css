@@ -17,6 +17,9 @@ a {
 .n_blue_font {
     color: #01af63;
 }
+.mar-t11 {
+	margin-top: 11px;
+}
 .mar-b10 {
 	margin-bottom: 10px;
 }
@@ -25,6 +28,9 @@ a {
 }
 .mar-r12 {
 	margin-right: 12px;
+}
+.mar-r15 {
+	margin-right: 15px;
 }
 .mar-b11 {
     margin-bottom: 11px;
@@ -109,6 +115,63 @@ ul, li, ol {
     background: url(../images/logo.png) no-repeat;
     text-indent: -9999px;
 }
+.top_menu {
+    display: table;
+    float: left;
+    height: 40px;
+    width: 784px;
+    margin-top: 28px;
+    border-bottom: 2px solid #01af63;
+    position: relative;
+    z-index: 999;
+}
+.top_menu .menu {
+    height: 40px;
+    margin: 0 auto;
+}
+.top_menu .menu ul, .top_menu .menu dl, .top_menu .menu ol {
+	margin: 0;
+	padding: 0;
+}
+
+.top_menu .menu ul li {
+    float: left;
+    font-size: 16px;
+    height: 40px;
+    line-height: 40px;
+    padding: 0 10px;
+    position: relative;
+}
+.top_menu .menu ul li.on, .top_menu .menu ul li.active, .top_menu .menu ul li:hover {
+    background: #01af63 none repeat scroll 0 0;
+}
+.top_menu .menu ul li a {
+    color: #333;
+    display: block;
+    padding: 0 25px;
+    text-decoration: none;
+}
+.top_menu .menu .q_code {
+	position: absolute;
+    top: 9px;
+    right: 0;
+    height: 31px;
+    width: 115px;
+    cursor: pointer;
+    overflow: visible;
+}
+.top_menu .menu .q_code .q_code_applnk {
+	background: url("../images/mobile.png") no-repeat scroll 0 0;
+    display: block;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+
+
+
 .content {
 	margin: 0 auto;
     width: 1024px;

@@ -8,8 +8,8 @@ $this->title = '广州快兔搬家';
 </div>
 
 <div class="quick_order">
-	<div class="button mar-b11 clearfix">
-	    <a class="yellow_button mar-r12" target="_blank" href="###">
+	<div class="button clearfix">
+	    <a class="yellow_button mar-r15" target="_blank" href="###">
 	        <i class="fa fa-paw icon_fg"></i>
 	        <font>专业人才加盟</font>
 	    </a>
@@ -19,7 +19,7 @@ $this->title = '广州快兔搬家';
 	    </a>
     </div>
     
-    <div class="order">
+    <div class="order mar-t11">
     	quick_order
     </div>
 </div>
