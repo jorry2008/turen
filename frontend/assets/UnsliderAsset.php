@@ -13,20 +13,13 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class UnsliderAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
-    public $css = [
-    	'css/common.css',
-    	'css/home.css',
-    ];
+    public $sourcePath = '@bower/unslider';
     public $js = [
-    	'js/site.js',
+        'src/unslider.min.js',
     ];
-    
     public $depends = [
-        '\frontend\assets\NormalizeCssAsset',
-    	'\frontend\assets\FontAwesomeAsset',
+        'yii\web\YiiAsset',
     ];
 }

@@ -13,12 +13,14 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class BaseAsset extends AssetBundle
+class FlexsliderAsset extends AssetBundle
 {
-    public $sourcePath = '@bower';
+    public $sourcePath = '@bower/flexslider';
     public $css = [
-        'normalize-css/normalize.css',
-    	'font-awesome/css/font-awesome.min.css'
+        'flexslider.css',
+    ];
+    public $js = [
+    	'jquery.flexslider-min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

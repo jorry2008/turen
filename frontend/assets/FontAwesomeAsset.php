@@ -13,20 +13,13 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class FontAwesomeAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@bower/font-awesome';
     public $css = [
-    	'css/common.css',
-    	'css/home.css',
+    	'css/font-awesome.min.css'
     ];
-    public $js = [
-    	'js/site.js',
-    ];
-    
     public $depends = [
-        '\frontend\assets\NormalizeCssAsset',
-    	'\frontend\assets\FontAwesomeAsset',
+        'yii\web\YiiAsset',
     ];
 }

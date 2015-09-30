@@ -38,6 +38,9 @@ a {
 .mar-b18 {
     margin-bottom: 18px;
 }
+.mar-t0 {
+	margin-top: 0;
+}
 ul, li, ol {
     list-style: outside none none;
 }
@@ -166,11 +169,6 @@ ul, li, ol {
     height: 100%;
     width: 100%;
 }
-
-
-
-
-
 
 .content {
 	margin: 0 auto;
