@@ -13,21 +13,17 @@ use yii\web\AssetBundle;
  * @author Qiang Xue <qiang.xue@gmail.com>
  * @since 2.0
  */
-class AppAsset extends AssetBundle
+class SweetAlertAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@bower/sweetalert/dist';
     public $css = [
-    	'css/common.css',
-    	'css/home.css',
+        'sweetalert.css',
+    	'../google/google.css',
     ];
     public $js = [
-    	'js/site.js',
+    	'sweetalert.min.js',
     ];
-    
     public $depends = [
-        '\frontend\assets\NormalizeCssAsset',
-    	'\frontend\assets\FontAwesomeAsset',
-    	'\frontend\assets\ToTopAsset',
+        'yii\web\YiiAsset',
     ];
 }

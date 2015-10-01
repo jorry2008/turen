@@ -56,7 +56,7 @@ $this->registerJs("
 		    <div class="sec_topr_form index_form">
 		        <div class="form_hd">
 		            <p class="mar-t0">
-		                10秒预约，咨询报价，获得免费电话回拨
+		                10秒预约，咨询报价，获得免费电话回拨，或者直接拨打热线电话：13725514524
 		            </p>
 		        </div>
 		        <div class="form_line">
@@ -69,20 +69,152 @@ $this->registerJs("
 		        </div>
 		        <input type="button" value="预约搬家" class="form_btn">
 		    </div>
-		    <div class="sec_topr_list">
-		        <ul>
-		            <li>风投C轮投资2亿美金，互联网装修领导者</li>
-		        </ul>
-		    </div>
 		</div>
 		
     </div>
 </div>
 
 <div class="service_list mar-b18">
-	service
+	
+	<ul class="index_zxlc_list clearfix">
+	    <li class="first">
+	        <a rel="nofollow" href="http://sz.to8to.com/zb/index6.html">
+	            <i class="index_zxlc_ico1">
+	            </i>
+	            <span>
+	                合理报价
+	            </span>
+	        </a>
+	    </li>
+	    <li>
+	        <a rel="nofollow" href="http://sz.to8to.com/zb/">
+	            <i class="index_zxlc_ico4">
+	            </i>
+	            <span>
+	                附加服务
+	            </span>
+	        </a>
+	    </li>
+	    <li>
+	        <a rel="nofollow" href="http://mall.to8to.com/">
+	            <i class="index_zxlc_ico5">
+	            </i>
+	            <span>
+	                搬家套餐
+	            </span>
+	        </a>
+	    </li>
+	    <li>
+	        <a rel="nofollow" href="http://www.to8to.com/riji/">
+	            <i class="index_zxlc_ico6">
+	            </i>
+	            <span>
+	                施工阶段
+	            </span>
+	        </a>
+	    </li>
+	    <li class="last">
+	        <a rel="nofollow" href="http://www.to8to.com/company/zxb.php">
+	            <i class="index_zxlc_ico7">
+	            </i>
+	            <span>
+	                售后验收
+	            </span>
+	        </a>
+	    </li>
+	</ul>
+
 </div>
 
-<div class="top10">
+<div class="about_news mar-b18">
+	<div class="_about">
+		<img width="154" height="83" style="float:left;padding-right: 15px;margin-top: 14px;" src="<?php echo Yii::getAlias('@web/upload/').'about.jpg'; ?>">
+		<p><span class="title">深圳市快兔搬家有限公司</span>是一家具有独立法人资格的专业搬家公司，成立于1996年。公司拥有各种大小厢式货车、吊车、叉车、平板车等专业搬家车辆数十台，并拥有一支训练有素的搬家队伍，他们经过严格的专业培训，熟练掌握物品的包装、拆卸及搬运的技能，让客户在搬家时省心、放心。</p>
+		<p>鹏程蚂蚁搬家公司将是您最佳的选择，我们将真诚为您服务。
+本公司的主要业务是大型企业搬迁、工厂搬迁、写字楼搬迁、学院搬迁、个人搬家、拆装空调、拆装家具等。
+本公司自成立迄今，深蒙广大客户支持鼓励，业绩不断成长，口碑尚称良好。我们以服务客户为己任，追求安全、高效、及时、认真的服务宗旨。<a href="">[详情...]</a></p>
+	</div>
+	<div class="_list">
+		<ul class="nav">
+			<li class="tab_1 active"><a href="">搬家常识</a></li>
+			<li class="tab_2"><a href="">公司新闻</a></li>
+			<li class="tab_3"><a href="">行业动态</a></li>
+			<li class="tab_4"><a href="">企业公告</a></li>
+			<li class="tab_5"><a href="">专题报道</a></li>
+		</ul>
+		
+		<a class="more" href="">更多</a>
+		
+		<div class="con content_1">
+			<ul class="recommend">
+			    <li>
+			        <a title="深圳木门厂家哪家好？深圳木门品牌哪个好？" target="_blank" href="http://sz.to8to.com/company/z49059.html">
+			            <i>·</i>
+			            深圳木门厂家哪家好？深圳木门品牌哪个好？<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳装修协会活动2015年9月22日开启" target="_blank" href="http://sz.to8to.com/company/z48660.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳装修协会活动2015年9月22日开启<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳展厅装修预算如何审核？展厅装修报价怎样比较？" target="_blank" href="http://sz.to8to.com/company/z48657.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳展厅装修预算如何审核？展厅装修报价怎样比较？<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳会所装修要注意的和深圳会所装修费用是多少？" target="_blank" href="http://sz.to8to.com/company/z48654.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳会所装修要注意的和深圳会所装修费用是多少？<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳办公楼装修方案 办公楼各个空间细节装修" target="_blank" href="http://sz.to8to.com/company/z48652.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳办公楼装修方案 办公楼各个空间细节装修<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳室内装修公司哪家好？" target="_blank" href="http://sz.to8to.com/company/z48648.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳室内装修公司哪家好？<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			    <li>
+			        <a title="深圳室内装修公司哪家好？" target="_blank" href="http://sz.to8to.com/company/z48648.html">
+			            <i>
+			                ·
+			            </i>
+			            深圳室内装修公司哪家好？<span class="right_date">2015-09-30</span>
+			        </a>
+			    </li>
+			</ul>
+		</div>
+		<div class="con content_2 hide">content_2</div>
+		<div class="con content_3 hide">content_3</div>
+		<div class="con content_4 hide">content_4</div>
+		<div class="con content_5 hide">content_5</div>
+	</div>
+</div>
+
+<div class="scene mar-b18">
+	scene
+</div>
+
+<div class="top10 mar-b18">
 	top10
 </div>
+

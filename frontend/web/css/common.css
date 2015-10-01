@@ -41,6 +41,9 @@ a {
 .mar-t0 {
 	margin-top: 0;
 }
+.hide {
+	display: none;
+}
 ul, li, ol {
     list-style: outside none none;
 }
@@ -51,7 +54,6 @@ ul, li, ol {
 .clearfix:after {
 	clear: both;
 }
-
 #header {
     background: #fff none repeat scroll 0 0;
     min-width: 1024px;
@@ -100,7 +102,9 @@ ul, li, ol {
 	color: #999;
     font-weight: bold;
 }
-
+.header_top_left a {
+    color: #00af63;
+}
 .header_wrapper {
 	width: 1024px;
 	height: 100px;
@@ -136,7 +140,6 @@ ul, li, ol {
 	margin: 0;
 	padding: 0;
 }
-
 .top_menu .menu ul li {
     float: left;
     font-size: 16px;
@@ -169,7 +172,6 @@ ul, li, ol {
     height: 100%;
     width: 100%;
 }
-
 .content {
 	margin: 0 auto;
     width: 1024px;

@@ -10,6 +10,18 @@ use frontend\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
+//使用插件
+$this->registerJs("
+	$('.back_top').toTop({
+		autohide: true,  //boolean 'true' or 'false'
+		offset: 200,     //numeric value (as pixels) for scrolling length from top to hide automatically
+		speed: 500,      //numeric value (as mili-seconds) for duration
+		position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+		right: 30,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+		bottom: 100       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+	});
+");
+
 ?>
 
 <?php $this->beginPage() ?>
@@ -44,6 +56,7 @@ AppAsset::register($this);
 		        
 		        <div class="header_top_left">
                     <span><i class="fa fa-map-marker"></i> 广州</span>
+                    <a rel="nofollow" href="">[切换]</a>
 		        </div>
 		    </div>
 		</div>
@@ -63,22 +76,22 @@ AppAsset::register($this);
 			            </li>
 			            <li>
 			                <a href="http://sz.to8to.com/zb/" class="nav_fzlink">
-			                    设计与报价
+			                    服务项目
 			                </a>
 			            </li>
 			            <li>
 			                <a href="http://sz.to8to.com/company/" class="nav_fzlink">
-			                    装修公司
+			                    搬家流程
 			                </a>
 			            </li>
 			            <li>
 			                <a href="http://mall.to8to.com/">
-			                    家居商城
+			                    搬家案例
 			                </a>
 			            </li>
 			            <li>
 			                <a href="http://mall.to8to.com/">
-			                    家居商城
+			                    关于快兔
 			                </a>
 			            </li>
 			        </ul>
