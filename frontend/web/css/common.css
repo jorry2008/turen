@@ -44,6 +44,13 @@ a {
 .hide {
 	display: none;
 }
+.fl {
+	float: left;
+	display: inline;
+}
+.fr {
+	float: right;
+}
 ul, li, ol {
     list-style: outside none none;
 }
@@ -149,7 +156,7 @@ ul, li, ol {
     position: relative;
 }
 .top_menu .menu ul li.on, .top_menu .menu ul li.active, .top_menu .menu ul li:hover {
-    background: #01af63 none repeat scroll 0 0;
+    background: #01af63;
 }
 .top_menu .menu ul li a {
     color: #333;

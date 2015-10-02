@@ -21,7 +21,6 @@ $this->registerJs("
 		bottom: 100       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
 	});
 ");
-
 ?>
 
 <?php $this->beginPage() ?>
@@ -41,22 +40,22 @@ $this->registerJs("
 	    <div class="header_top">
 		    <div class="header_top_center">
 		        <div class="header_top_right">
-                    <a rel="nofollow" class="htr_login" href="">登录</a>
+                    <?= Html::a(Yii::t('common', '登录'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <a rel="nofollow" class="htr_reg" href="">注册</a>
+                    <?= Html::a(Yii::t('common', '注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <a rel="nofollow" class="nav_fzlink" href="">快速下单</a>
+                    <?= Html::a(Yii::t('common', '快速下单'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <a target="_blank" href="">服务流程</a>
+                    <?= Html::a(Yii::t('common', '服务流程'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <a target="_blank" href="">新闻中心</a>
+                    <?= Html::a(Yii::t('common', '新闻中心'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <a target="_blank" href="">搬家百科</a>
+                    <?= Html::a(Yii::t('common', '搬家百科'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
 		        </div>
 		        
 		        <div class="header_top_left">
                     <span><i class="fa fa-map-marker"></i> 广州</span>
-                    <a rel="nofollow" href="">[切换]</a>
+                    <a rel="nofollow" href="javascript:;">[切换]</a>
 		        </div>
 		    </div>
 		</div>
@@ -68,56 +67,25 @@ $this->registerJs("
 			
 			<div class="top_menu">
 			    <div class="menu">
-			        <ul>
-			            <li class="active">
-			                <a href="http://sz.to8to.com/" class="nav_fzlink">
-			                    首页
-			                </a>
-			            </li>
-			            <li>
-			                <a href="http://sz.to8to.com/zb/" class="nav_fzlink">
-			                    服务项目
-			                </a>
-			            </li>
-			            <li>
-			                <a href="http://sz.to8to.com/company/" class="nav_fzlink">
-			                    搬家流程
-			                </a>
-			            </li>
-			            <li>
-			                <a href="http://mall.to8to.com/">
-			                    搬家案例
-			                </a>
-			            </li>
-			            <li>
-			                <a href="http://mall.to8to.com/">
-			                    关于快兔
-			                </a>
-			            </li>
-			        </ul>
-			        
+		    		<?php
+					echo Menu::widget([
+						'items' => [
+						    ['label' => Yii::t('common','首页'), 'url' => ['/site/home/index']],
+						    ['label' => Yii::t('common','关于我们'), 'url' => ['/site/page/about']],
+						    ['label' => Yii::t('common','搬家流程'), 'url' => ['/account/login'], 'visible' => Yii::$app->user->isGuest],
+							['label' => Yii::t('common','收费标准'), 'url' => ['product/index']],
+							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
+						],
+						'options' => ['id'=>'nav-header', 'class'=>'reset'],
+// 						'activeCssClass' => 'current',
+					]);
+					?>
 			        <div class="q_code">
-			            <a rel="nofollow" class="q_code_applnk" href="http://www.to8to.com/apps/">
-			            </a>
+			            <a rel="nofollow" class="q_code_applnk" href="http://m.banjia-la.com"></a>
 			        </div>
 			    </div>
 			</div>
-    		
-    		<?php
-// 			echo Menu::widget([
-// 				'items' => [
-// 				    ['label' => Yii::t('common','首页'), 'url' => ['/site/home/index']],
-// 				    ['label' => Yii::t('common','关于我们'), 'url' => ['/site/page/about']],
-// 				    ['label' => Yii::t('common','搬家流程'), 'url' => ['/account/login'], 'visible' => Yii::$app->user->isGuest],
-// 					['label' => Yii::t('common','收费标准'), 'url' => ['product/index']],
-// 					['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
-// 					['label' => Yii::t('common','搬家答疑'), 'url' => ['product/index']],
-// 					['label' => Yii::t('common','联系我们'), 'url' => ['product/index']],
-// 				],
-// 				'options' => ['id'=>'nav-header', 'class'=>'reset'],
-// 				'activeCssClass' => 'current',
-// 			]);
-			?>
+
     	</div>
     </div>
     
@@ -127,6 +95,7 @@ $this->registerJs("
 	
 	<div class="blue-foot clearfix mar-t18">
 	    <div class="n_foot-box clearfix">
+	    <!-- 
 	        <h3 class="f-tit-h3">
 	            合作伙伴
 	        </h3>
@@ -172,6 +141,8 @@ $this->registerJs("
 	                </a>
 	            </li>
 	        </ul>
+	         -->
+	        
 	        <h3 class="f-tit-h3 mar-t5">
 	            友情链接
 	        </h3>

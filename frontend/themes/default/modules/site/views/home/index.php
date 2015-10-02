@@ -3,8 +3,10 @@
 $this->title = '搬家啦（广州）';
 
 use frontend\assets\FlexsliderAsset;
+use frontend\assets\JcarouselliteAsset;
 
 FlexsliderAsset::register($this);
+JcarouselliteAsset::register($this);
 
 //使用插件
 $this->registerJs("
@@ -13,6 +15,16 @@ $this->registerJs("
 		controlsContainer: $(\".custom-controls-container\"),
 		customDirectionNav: $(\".custom-navigation a\")
 	});
+	
+    $('#xianchang').jCarouselLite({
+        btnNext: \".next\",
+        btnPrev: \".prev\",
+		mouseWheel: true,//支持鼠标滚动
+		auto: 2500,//自动开始
+		speed: 400,//滚动速度
+		visible: 4,//可见几个
+		scroll: 1,//一次滚动多少个
+    });
 ");
 
 ?>
@@ -211,10 +223,75 @@ $this->registerJs("
 </div>
 
 <div class="scene mar-b18">
-	scene
-</div>
-
-<div class="top10 mar-b18">
-	top10
+    <ul class="nav">
+		<li class="active"><a href="">现场案例</a></li>
+	</ul>
+    <a class="more" href="">更多</a>
+    <div id="xianchang">
+	    <a href="javascript:void(0)" class="prev"><</a>
+	    <a href="javascript:void(0)" class="next">></a>
+        <ul>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/xiaoxianrou2015/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'1.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            2015年度最热名企与小鲜肉勾搭大会！
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/top-position/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'2.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            设计圈高级职位专场！
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/job/O2O2015/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'3.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            O2O企业设计师招聘专场
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/job/hongshanziben2015/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'4.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            红杉资本企业成员设计师招聘专场
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/job/idg2014/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'5.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            IDG资本企业成员设计师招聘专场
+                    </span>
+                </a>
+            </li>
+            <li>
+                <a target="_blank" href="http://www.zcool.com.cn/special/job/xiaomi/">
+                    <span class="pic-box">
+                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'6.jpg'; ?>">
+                    </span>
+                    <span class="text-box">
+                            小米设计师招聘专场
+                    </span>
+                </a>
+            </li>
+        </ul>
+    </div>
 </div>
 

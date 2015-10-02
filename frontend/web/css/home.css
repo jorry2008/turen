@@ -225,18 +225,81 @@
 	height: 228px;
 }
 .scene {
-	width: 100%;
-	height: 200px;
+	width: 1022px;
+	border: 1px solid #eee;
 	float: left;
-	background: #ccc;
+	position: relative;
 }
-
-
-
-
-
-
-
+.scene .nav {
+	margin: 0 10px;
+	padding: 0;
+    border-bottom: 1px solid #eee;
+    height: 40px;
+    line-height: 40px;
+}
+.scene .nav li {
+    float: left;
+}
+.scene .nav li.active {
+    border-bottom: 2px solid #01af63;
+}
+.scene .nav li a {
+    color: #333;
+    display: block;
+    font-size: 16px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.scene .more {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+}
+.scene .nav li.active a {
+    color: #01af63;
+}
+#xianchang {
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+#xianchang li {
+    float: left;
+    overflow: hidden;
+    padding: 0 13px;
+}
+#xianchang li a {
+    color: #666;
+}
+#xianchang li a span {
+	display: block;
+}
+#xianchang img {
+    border: 0 none;
+    vertical-align: middle;
+    transition: opacity 0.1s linear 0s;
+}
+#xianchang a:hover img {
+    opacity: 0.85;
+}
+#xianchang .prev, #xianchang .next {
+	display: block;
+	font-size: 50px;
+	height: 50px;
+	line-height: 50px;
+	width: 30px;
+    color: #666;
+    position: absolute;
+    text-align: center;
+    top: 28%;
+    z-index: 999;
+    font-family: 宋体,微软雅黑,Arial,Helvetica,sans-serif;
+}
+#xianchang .prev {
+	left: 0;
+}
+#xianchang .next {
+	right: 0;
+}
 
 
 .top10 {
@@ -245,5 +308,4 @@
 	float: left;
 	background: pink;
 }
-
 
