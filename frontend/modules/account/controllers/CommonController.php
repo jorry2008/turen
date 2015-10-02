@@ -59,8 +59,8 @@ class CommonController extends Controller
     {
         $model = new SignupForm();
         if ($model->load(Yii::$app->request->post())) {
-            if ($user = $model->signup()) {
-                if (Yii::$app->getUser()->login($user)) {
+            if ($customer = $model->signup()) {
+                if (Yii::$app->getUser()->login($customer)) {
                     return $this->goHome();
                 }
             }

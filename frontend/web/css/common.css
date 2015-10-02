@@ -54,6 +54,12 @@ a {
 ul, li, ol {
     list-style: outside none none;
 }
+.has-error input {
+	border: 1px solid #ff6767;
+}
+.has-error .help-block {
+	color: #ff6767;
+}
 .clearfix:before, .clearfix:after {
 	display: table;
 	content: " ";
@@ -64,6 +70,13 @@ ul, li, ol {
 #header {
     background: #fff none repeat scroll 0 0;
     min-width: 1024px;
+}
+#code_pic {
+	background: #FFF;
+	position: absolute;
+	right: 0;
+	top: 0;
+	display: none;
 }
 .header_top {
     background: #f9f9f9 none repeat scroll 0 0;
@@ -161,15 +174,18 @@ ul, li, ol {
 .top_menu .menu ul li a {
     color: #333;
     display: block;
-    padding: 0 25px;
+    padding: 0 10px;
     text-decoration: none;
+}
+.top_menu .menu ul li.active a, .top_menu .menu ul li a:hover {
+	color: #FFF;
 }
 .top_menu .menu .q_code {
 	position: absolute;
     top: 9px;
     right: 0;
     height: 31px;
-    width: 115px;
+    width: 40px;
     cursor: pointer;
     overflow: visible;
 }
@@ -304,3 +320,94 @@ ul, li, ol {
     text-indent: -999999px;
     width: 24px;
 }
+
+
+/* 在线客服 */
+.ronsever2 {
+    position: fixed;
+    right: 6px;
+    top: 130px;
+    z-index: 9999;
+}
+.ronsever2 .ros_m {
+    text-align: center;
+}
+.ronsever2 .ros_m .ros_top, .ronsever2 .ros_m .ros_bottom, .ronsever2 .ros_m .ros_main, .ronsever2 .ros_m .ros_close, .ronsever2 .ros_butt, .ronsever2 .ros_m .ros_main .rosm_tel p em {
+    background-image: url("../images/ronsever_bg2.png");
+    background-repeat: no-repeat;
+}
+.ronsever2 .ros_m .ros_close {
+    background-position: 0 -93px;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    height: 21px;
+    position: absolute;
+    right: -3px;
+    top: 55px;
+    width: 21px;
+    z-index: 2147483647;
+}
+.ronsever2 .ros_m .ros_top {
+    background-position: 0 0;
+    display: block;
+    height: 75px;
+    overflow: hidden;
+    width: 127px;
+}
+.ronsever2 .ros_m .ros_main {
+    background-position: -127px 0;
+    background-repeat: repeat-y;
+    padding: 0 12px;
+    text-align: center;
+    width: 103px;
+}
+.ronsever2 .ros_m .ros_main .rosm_tel {
+    font-family: microsoft yahei;
+    padding: 8px 0 2px;
+    text-align: center;
+}
+.ronsever2 .ros_m .ros_main .rosm_tel p {
+    line-height: 22px;
+    word-wrap: break-word;
+}
+.ronsever2 .ros_m .ros_main .rosm_tel p b {
+    color: #e10;
+    font-size: 15px;
+    letter-spacing: -0.5px;
+}
+.ronsever2 .ros_m .ros_main .rosm_qq {
+    border-top: 1px solid #eee;
+    margin-top: 2px;
+    padding-bottom: 3px;
+    padding-top: 5px;
+    text-align: center;
+}
+.ronsever2 .ros_m .ros_main .rosm_qq p {
+    font-size: 13px;
+    line-height: 22px;
+    padding-bottom: 5px;
+    word-wrap: break-word;
+}
+.ronsever2 .ros_m .ros_bottom {
+    background-position: 0 -75px;
+    display: block;
+    height: 18px;
+    overflow: hidden;
+    width: 127px;
+}
+.ronsever2 .ros_butt {
+    background-position: -254px 0;
+    cursor: pointer;
+    display: block;
+    font-size: 0;
+    height: 146px;
+    overflow: hidden;
+    position: fixed;
+    right: 0;
+    top: 285px;
+    width: 31px;
+    z-index: 2147483647;
+}
+
+

@@ -6,24 +6,59 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-$this->title = 'Signup';
+$this->title = Yii::t('account', '新用户注册');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-signup">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>Please fill out the following fields to signup:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
-                <?= $form->field($model, 'username') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'password')->passwordInput() ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Signup', ['class' => 'btn btn-primary', 'name' => 'signup-button']) ?>
-                </div>
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>
+<div class="header_title container clearfix">
+	<span class="hcc_title"><?= Html::encode($this->title) ?></span>
 </div>
+
+<div class="container clearfix">
+    <div class="login_img fl">
+        <img width="390" height="310" alt="美好生活从这里开始" src="<?= Yii::getAlias('@web/images/').'zcdl_img.jpg' ?>">
+    </div>
+    
+	<div class="login_box reg_box fl">
+	    <div class="reg_tab">
+	        <ul>
+	            <li class="on">
+	                <a href="javascript:;"><?= Html::encode($this->title) ?></a>
+	            </li>
+	        </ul>
+	    </div>
+	    
+	    <?php $form = ActiveForm::begin(['id' => 'form-signup']); ?>
+	        <div class="login_wrap">
+	            <div class="login_select clearfix">
+	            	<?= $form->field($model, 'email')->label(false) ?>
+	                <span>邮箱/手机</span>
+	            </div>
+	            <div class="login_select clearfix">
+	            <?= $form->field($model, 'username')->label(false) ?>
+	                <span>用户名</span>
+	            </div>
+	            <div class="login_select clearfix">
+	                <span>密码</span>
+	                <?= $form->field($model, 'password')->passwordInput()->label(false) ?>
+	            </div>
+	            
+	            <div class="login_select clearfix ls_yzm">
+	                <input type="text" name="mobile_yzm" autocomplete="off" class="autoCode" id="autoCode">
+	                <span>验证码</span>
+	                <input type="button" id="hqyzm" value="发送验证码到邮箱/手机" class="send_auto">
+	            </div>
+	            <div class="safe accept_service clearfix">
+	                <span class="safe_login">
+	                    <input type="checkbox" checked="checked" id="as_service">
+	                    <label>我已阅读并接受<a target="_blank" href="/about/law.html">《快兔搬家用户服务协议》</a></label>
+	                </span>
+	            </div>
+	            <?= Html::submitButton(Yii::t('account', '立即注册'), ['class' => 'btn_login', 'name' => 'signup-button']) ?>
+	        </div>
+	    <?php ActiveForm::end(); ?>
+	</div>
+	
+</div>
+
+            

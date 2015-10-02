@@ -2,9 +2,10 @@
 namespace common\models\account;
 
 use Yii;
+use yii\base\Object;
 use yii\base\Model;
 
-use common\models\account\User;
+use common\models\account\Customer;
 
 /**
  * Signup form
@@ -23,17 +24,29 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => Yii::t('model', '此用户名已经被占用。')],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => Yii::t('model', '此邮箱已经被注册。')],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
         ];
+    }
+    
+    /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+    	return [
+    		'username' => Yii::t('model', '用户名'),
+    		'email' => Yii::t('model', '手机/邮箱'),
+    		'password' => Yii::t('model', '密码'),
+    	];
     }
 
     /**
@@ -44,7 +57,7 @@ class SignupForm extends Model
     public function signup()
     {
         if ($this->validate()) {
-            $user = new User();
+            $user = new Customer();
             $user->username = $this->username;
             $user->email = $this->email;
             $user->setPassword($this->password);

@@ -43,10 +43,10 @@
     width: 323px;
 }
 .yellow_button {
-    background: #ffe323 none repeat scroll 0 0;
-    border-bottom: 2px solid #daa940;
+    background: #01af63 none repeat scroll 0 0;
+    border-bottom: 2px solid #19732e;
     border-radius: 4px;
-    color: #6f2c22;
+    color: #FFF;
     float: left;
     font-size: 16px;
     height: 30px;
@@ -54,8 +54,7 @@
     padding: 8px 10px;
 }
 .yellow_button:hover {
-    background: #ffed6f none repeat scroll 0 0;
-    color: #6f2c22;
+    background: #00a85f;
 }
 .icon_fg {
     background: url("../images/n_fg.png") no-repeat scroll right center;
@@ -223,6 +222,10 @@
 .about_news ._list .con {
 	padding: 15px;
 	height: 228px;
+	display: none;
+}
+.about_news ._list .con.on {
+	display: block;
 }
 .scene {
 	width: 1022px;

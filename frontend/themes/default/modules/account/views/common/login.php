@@ -17,7 +17,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="container clearfix">
     <div class="login_img fl">
-        <img width="390" height="310" alt="美好生活从这里开始" src="<?= Yii::getAlias('@web/images/').'zcdl_img.jpg' ?>">
+        <img width="390" height="310" alt="" src="<?= Yii::getAlias('@web/images/').'zcdl_img.jpg' ?>">
     </div>
     <div class="login_box fl">
         <div class="login_tab">
@@ -47,17 +47,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?= Html::submitButton(Yii::t('account', '立即登录'), ['class' => 'btn_login', 'name' => 'login-button']) ?>
             <?php ActiveForm::end(); ?>
             <ul class="entries">
-                <li class="other_login">
-                    <a href="http://www.to8to.com/loginfromsina/" title="微博帐号登录" class="weibo_login">
-                        <i></i>微博登录
-                    </a>
-                    <a href="http://www.to8to.com/loginfromqq/oauth/redirect_to_login.php"
-                    title="QQ账户登录" class="qq_login">
-                        <i></i>QQ登录
-                    </a>
-                </li>
                 <li class="register">
-                    <a href="http://www.to8to.com/reg/reg_new.php">免费注册</a>
+                	<?= Html::a(Yii::t('account', '免费注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
                 </li>
             </ul>
         </div>

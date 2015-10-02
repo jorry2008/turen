@@ -18,7 +18,7 @@ class SweetAlertAsset extends AssetBundle
     public $sourcePath = '@bower/sweetalert/dist';
     public $css = [
         'sweetalert.css',
-    	'../google/google.css',
+    	//'../google/google.css',
     ];
     public $js = [
     	'sweetalert.min.js',

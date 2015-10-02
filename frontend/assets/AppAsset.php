@@ -30,5 +30,6 @@ class AppAsset extends AssetBundle
         '\frontend\assets\NormalizeCssAsset',
     	'\frontend\assets\FontAwesomeAsset',
     	'\frontend\assets\ToTopAsset',
+    	'\frontend\assets\SweetAlertAsset',//全局弹出窗
     ];
 }

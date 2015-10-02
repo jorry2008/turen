@@ -10,6 +10,7 @@ use frontend\assets\AppAsset;
 /* @var $content string */
 
 AppAsset::register($this);
+
 //使用插件
 $this->registerJs("
 	$('.back_top').toTop({
@@ -19,6 +20,28 @@ $this->registerJs("
 		position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
 		right: 30,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
 		bottom: 100       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+	});
+	
+	$('.header_top_left a').click(function(){
+		swal({
+			title: '目前只开通了广州地区的服务',
+			text: '其它地区正在努力开通，请耐心等待...',
+			type: '',//info,warning,success
+			//showCancelButton: true,
+			confirmButtonColor: '#00af63',
+			confirmButtonText: '知道了',
+			// closeOnConfirm: false
+		});
+		// swal('目前只开通了广州地区的服务', '其它地区正在努力开通，请耐心等待...');
+	});
+	
+	//二维码
+	var code = $('#code_pic');
+	$('.q_code_applnk').hover(function(){
+		code.css('top', $(document).scrollTop());
+		code.slideDown('fast');
+	}, function(){
+		code.slideUp('fast');
 	});
 ");
 ?>
@@ -37,20 +60,33 @@ $this->registerJs("
 <body id="<?= Yii::$app->controller->id ?>-<?= Yii::$app->controller->action->id ?>">
     <?php $this->beginBody() ?>
     <div id="header">
+    	<div id="code_pic"><img src="<?php echo Yii::getAlias('@web/images/')?>code.png" /></div>
+    	
 	    <div class="header_top">
 		    <div class="header_top_center">
 		        <div class="header_top_right">
-                    <?= Html::a(Yii::t('common', '登录'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+		        	<?php if(Yii::$app->getUser()->isGuest) { ?>
+	                    <?= Html::a(Yii::t('common', '登录'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+	                    <span class="htr_line"></span>
+	                    <?= Html::a(Yii::t('common', '注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
+                    <?php } else { ?>
+                    	<?= Html::a(Yii::t('common', '您好：').Yii::$app->getUser()->getIdentity()->username, ['/account/common/center'], ['rel'=>'nofollow']) ?>
+                    <?php } ?>
+                    
                     <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
-                    <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '快速下单'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a(Yii::t('common', '快速下单'), ['/site/qick-order/create-order'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
                     <?= Html::a(Yii::t('common', '服务流程'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
                     <?= Html::a(Yii::t('common', '新闻中心'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
                     <?= Html::a(Yii::t('common', '搬家百科'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?php 
+                    if(!Yii::$app->getUser()->isGuest) {
+                    	echo '<span class="htr_line"></span>';
+                    	echo Html::a(Yii::t('common', '[退出]'), ['/account/common/logout']);
+                    }
+                    ?>
 		        </div>
 		        
 		        <div class="header_top_left">
@@ -72,16 +108,17 @@ $this->registerJs("
 						'items' => [
 						    ['label' => Yii::t('common','首页'), 'url' => ['/site/home/index']],
 						    ['label' => Yii::t('common','关于我们'), 'url' => ['/site/page/about']],
-						    ['label' => Yii::t('common','搬家流程'), 'url' => ['/account/login'], 'visible' => Yii::$app->user->isGuest],
+						    ['label' => Yii::t('common','搬家流程'), 'url' => ['/account/login']],
 							['label' => Yii::t('common','收费标准'), 'url' => ['product/index']],
+							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
+							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
 							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
 						],
 						'options' => ['id'=>'nav-header', 'class'=>'reset'],
-// 						'activeCssClass' => 'current',
 					]);
 					?>
 			        <div class="q_code">
-			            <a rel="nofollow" class="q_code_applnk" href="http://m.banjia-la.com"></a>
+			            <a rel="nofollow" class="q_code_applnk" href="javascript:;"></a>
 			        </div>
 			    </div>
 			</div>
@@ -316,7 +353,26 @@ $this->registerJs("
 	    </div>
 	</div>
 	
-	<a class="back_top" href="#">返回顶部</a>
+	<div class="ronsever2">
+	    <div id="ros_on2" class="ros_m" style="display: block;">
+	        <span title="点击收起" onclick="ros_on2.style.display='none';ros_off2.style.display='block';" class="ros_close"></span>
+	        <div class="ros_top"></div>
+	        <div class="ros_main">
+	            <div class="rosm_tel">
+	                <p>服务热线</p>
+	                <p><b>400-800-0011</b></p>
+	            </div>
+	            <div class="rosm_qq">
+	                <p>业务咨询</p>
+	                <p>售后服务</p>
+	            </div>
+	        </div>
+	        <div class="ros_bottom"></div>
+	    </div>
+	    <div title="点击展开" onclick="ros_on2.style.display='block';ros_off2.style.display='none';" id="ros_off2" style="display: none;" class="ros_butt"></div>
+	</div>
+	
+	<a class="back_top" href="javascript:;">返回顶部</a>
 
     <?php $this->endBody() ?>
 </body>

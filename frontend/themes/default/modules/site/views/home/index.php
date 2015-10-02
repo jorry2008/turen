@@ -25,6 +25,19 @@ $this->registerJs("
 		visible: 4,//可见几个
 		scroll: 1,//一次滚动多少个
     });
+	
+	//tabs
+	var nav = $('.about_news .nav li');
+	var con = $('.about_news .con');
+	nav.hover(function(){
+		nav.removeClass('active');
+		$(this).addClass('active');
+		var i = $(this).index();
+		con.removeClass('on');
+		$('.content_'+i).addClass('on');
+	}, function(){
+		//nothing
+	});
 ");
 
 ?>
@@ -68,7 +81,7 @@ $this->registerJs("
 		    <div class="sec_topr_form index_form">
 		        <div class="form_hd">
 		            <p class="mar-t0">
-		                10秒预约，咨询报价，获得免费电话回拨，或者直接拨打热线电话：13725514524
+		                10秒预约，咨询报价，获得免费电话回拨，或者直接拨打热线电话：<span style="color: #f25618; font-weight: bold; font-size: 18px;">13725514524</span>
 		            </p>
 		        </div>
 		        <div class="form_line">
@@ -157,7 +170,7 @@ $this->registerJs("
 		
 		<a class="more" href="">更多</a>
 		
-		<div class="con content_1">
+		<div class="con content_0 on">
 			<ul class="recommend">
 			    <li>
 			        <a title="深圳木门厂家哪家好？深圳木门品牌哪个好？" target="_blank" href="http://sz.to8to.com/company/z49059.html">
@@ -215,10 +228,10 @@ $this->registerJs("
 			    </li>
 			</ul>
 		</div>
-		<div class="con content_2 hide">content_2</div>
-		<div class="con content_3 hide">content_3</div>
-		<div class="con content_4 hide">content_4</div>
-		<div class="con content_5 hide">content_5</div>
+		<div class="con content_1">content_2</div>
+		<div class="con content_2">content_3</div>
+		<div class="con content_3">content_4</div>
+		<div class="con content_4">content_5</div>
 	</div>
 </div>
 
@@ -230,7 +243,7 @@ $this->registerJs("
     <div id="xianchang">
 	    <a href="javascript:void(0)" class="prev"><</a>
 	    <a href="javascript:void(0)" class="next">></a>
-        <ul>
+        <ul class="clearfix">
             <li>
                 <a target="_blank" href="http://www.zcool.com.cn/special/xiaoxianrou2015/">
                     <span class="pic-box">
