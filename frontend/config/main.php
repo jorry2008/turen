@@ -9,16 +9,21 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-	'name' => Yii::t('common', '集方科技'),
+	'name' => Yii::t('common', '默认系统名'),
 	'version' => '1.0',
 	'charset' => 'UTF-8',
 	'sourceLanguage' => 'en-US', // 默认源语言
 	'language' => 'zh-CN', // 默认当前环境使用的语言
-    'bootstrap' => ['log'],
 	//这个命名空间非常重要，是用来加载控制器类的（本质是用来指定路径的）
     'controllerNamespace' => 'frontend\modules\site\controllers',
 	'defaultRoute' => 'site/home/index', // 默认路由
-		
+	
+	'bootstrap' => [
+		'log',
+		// 详情查看：yii\base\Application::init();
+		'common\components\InitSystem', // 引入一个配置类，用户初始化系统Yii::$app->params
+	],
+	
 	'modules' => [
 		'site' => [
 			'class' => 'frontend\modules\site\Module',

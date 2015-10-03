@@ -241,8 +241,8 @@ $this->registerJs("
 	</ul>
     <a class="more" href="">更多</a>
     <div id="xianchang">
-	    <a href="javascript:void(0)" class="prev"><</a>
-	    <a href="javascript:void(0)" class="next">></a>
+	    <a href="javascript:void(0)" class="prev"></a>
+	    <a href="javascript:void(0)" class="next"></a>
         <ul class="clearfix">
             <li>
                 <a target="_blank" href="http://www.zcool.com.cn/special/xiaoxianrou2015/">
@@ -308,3 +308,8 @@ $this->registerJs("
     </div>
 </div>
 
+<div id="index_banner_botton">
+	<a href="">
+		<img traget="_blank" href="" alt="" src="<?php echo Yii::getAlias('@web/upload/banner/').'sbc.gif'; ?>">
+	</a>
+</div>

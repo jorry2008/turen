@@ -286,23 +286,25 @@
 }
 #xianchang .prev, #xianchang .next {
 	display: block;
-	font-size: 50px;
 	height: 50px;
-	line-height: 50px;
-	width: 30px;
-    color: #666;
+	width: 23px;
     position: absolute;
-    text-align: center;
     top: 28%;
+    background: url("../images/sprite.png") no-repeat scroll 0 0;
     z-index: 999;
-    font-family: 宋体,微软雅黑,Arial,Helvetica,sans-serif;
+    opacity: 0.5;
+}
+#xianchang a.prev:hover, #xianchang a.next:hover {
+	opacity: 1;
 }
 #xianchang .prev {
 	left: 0;
 }
 #xianchang .next {
 	right: 0;
+	background-position: -27px 0;
 }
+
 
 
 .top10 {
