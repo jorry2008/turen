@@ -1,4 +1,7 @@
 <?php
+/**
+ * 网站的cms部分
+ */
 
 namespace frontend\modules\site;
 

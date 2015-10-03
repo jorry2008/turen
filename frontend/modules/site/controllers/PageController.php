@@ -2,7 +2,7 @@
 
 namespace frontend\modules\site\controllers;
 
-class PageController extends \yii\web\Controller
+class PageController extends \frontend\components\Controller
 {
     public function actionIndex()
     {

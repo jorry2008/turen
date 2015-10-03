@@ -2,7 +2,7 @@
 
 namespace frontend\modules\site\controllers;
 
-class ContactController extends \yii\web\Controller
+class ContactController extends \frontend\components\Controller
 {
     public function actionIndex()
     {

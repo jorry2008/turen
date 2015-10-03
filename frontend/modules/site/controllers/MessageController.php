@@ -2,7 +2,7 @@
 
 namespace frontend\modules\site\controllers;
 
-class MessageController extends \yii\web\Controller
+class MessageController extends \frontend\components\Controller
 {
     public function actionIndex()
     {

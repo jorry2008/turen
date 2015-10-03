@@ -1,4 +1,7 @@
 <?php
+/**
+ * 所有与用户登录的工作都在此模块
+ */
 
 namespace frontend\modules\account;
 

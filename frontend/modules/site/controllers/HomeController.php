@@ -7,8 +7,6 @@ use yii\web\BadRequestHttpException;
 // use yii\filters\VerbFilter;
 // use yii\filters\AccessControl;
 
-
-use frontend\components\Controller;//前端控制器
 use common\models\account\LoginForm;
 use common\models\account\PasswordResetRequestForm;
 use common\models\account\ResetPasswordForm;
@@ -18,7 +16,7 @@ use common\models\account\ContactForm;
 /**
  * Site controller
  */
-class HomeController extends Controller
+class HomeController extends \frontend\components\Controller
 {
     /**
      * @inheritdoc

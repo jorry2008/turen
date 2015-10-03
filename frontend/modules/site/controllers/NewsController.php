@@ -2,7 +2,7 @@
 
 namespace frontend\modules\site\controllers;
 
-class NewsController extends \yii\web\Controller
+class NewsController extends \frontend\components\Controller
 {
     public function actionIndex()
     {

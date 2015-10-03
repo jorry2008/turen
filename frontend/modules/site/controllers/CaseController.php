@@ -2,7 +2,7 @@
 
 namespace frontend\modules\site\controllers;
 
-class CaseController extends \yii\web\Controller
+class CaseController extends \frontend\components\Controller
 {
     public function actionIndex()
     {
