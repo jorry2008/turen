@@ -6,6 +6,7 @@ $this->title = Yii::t('uploadify', 'File Upload');
 
 UploadifyAsset::register($this);
 
+//使用非常到位
 $assetUrl = $this->getAssetManager()->getBundle(UploadifyAsset::className())->baseUrl;
 
 $baseUrl = Yii::getAlias('@web');
@@ -98,9 +99,9 @@ $this->registerJs("
 			$('#uploadify').uploadify('settings', 'formData', {'iswatermark':$(\"#iswatermark\").attr(\"checked\")});
 		},
 		'onUploadSuccess':function(file, data, response){
-// 		      console.debug(file);//返回文件具体对象
-// 		      console.debug(data);//返回echo出来的数据
-// 		      console.debug(response);//返回响应结果，true、false
+		      console.debug(file);//返回文件具体对象
+		      console.debug(data);//返回echo出来的数据
+		      console.debug(response);//返回响应结果，true、false
             if($num > 1) {
                 $(\".fileWarp ul\").append(SetImgContent(data));
             } else {
@@ -136,7 +137,16 @@ $this->registerJs("
             parent.find(\"#$widget\").next().find(\"#file_list\").append(fileurl_tmp);//相对位置
             //写入hidden input
             var oldValue = parent.find(\"#$widget\").val();
-            parent.find(\"#$widget\").val(oldValue+','+list);
+			if(oldValue == '') {
+				var images = list;
+			} else {
+				var images = oldValue+','+list;
+			}
+			
+			images.
+			
+			
+            parent.find(\"#$widget\").val(images);
         } else {
             //保存，把图片传递给图片展示框
             parent.find(\"#$widget\").next().find(\"#file_list\").html(fileurl_tmp);//相对位置

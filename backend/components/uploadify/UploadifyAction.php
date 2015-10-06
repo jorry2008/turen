@@ -52,19 +52,21 @@ class UploadifyAction extends Action
                 default:
                     //开始上传
                     //Yii::$app->getRequest()->post('iswatermark')//水印
-                    $file = UploadedFile::getInstanceByName($this->fileData);
+                    $file = UploadedFile::getInstanceByName($this->fileData);//uploadify一个一个请求，一次返回的一个文件
                     $result = General::uploadToWebFilePath([$file], Yii::$app->getRequest()->post('dir'));
-                    if(is_array($result)) {
+                    
+//                     $this->log($result);exit;
+                    
+                    if(!empty($result['error'])) {
                         echo $result['error'];
                         //Json::encode(['status'=>0, 'msg'=>$result['error']]);
                     } else {
-                        $pathInfo = $result;
+                        echo str_replace('\\', '/', $result[0]);
                         
                         //调试
-                        //file_put_contents(Yii::getAlias('@runtime').DIRECTORY_SEPARATOR.'test.txt', $pathInfo);
-                        
+//                         $this->log($pathInfo);
                     }
-                    echo $pathInfo;
+//                     echo $pathInfo;
                     //Json::encode(['status'=>0, 'msg'=>$pathInfo]);
             }
             
@@ -145,5 +147,13 @@ class UploadifyAction extends Action
         $request = Yii::$app->getRequest();
         $time = $request->post('timestamp');
         return $this->timeOut > (time()-$time);
+    }
+    
+    protected function log($data)
+    {
+    	if(is_array($data))
+    		@file_put_contents(Yii::getAlias('@webroot').'/log.txt', print_r($data,true));
+    	else 
+    		@file_put_contents(Yii::getAlias('@webroot').'/log.txt', ($data));
     }
 }
