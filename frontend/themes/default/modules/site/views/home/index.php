@@ -40,6 +40,14 @@ $this->registerJs("
 	});
 ");
 
+// $assetUrl = $this->getAssetManager()->getBundle(JcarouselliteAsset::className())->baseUrl;
+// Yii::$app->getAssetManager()->assetMap = ['jquery.js' => substr($assetUrl, strpos($assetUrl, '/assets/')+8).'/jquery.min.js'];
+
+// fb(Yii::$app->getAssetManager());
+// $asset = Yii::$app->getAssetManager();
+// $asset->bundles['yii\web\JqueryAsset'];
+// fb($asset->bundles['yii\web\JqueryAsset']);
+// fb($asset);
 ?>
 
 <div class="slider mar-b18">

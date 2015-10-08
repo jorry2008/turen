@@ -6,20 +6,18 @@
  */
 
 namespace frontend\assets;
-
 use yii\web\AssetBundle;
 
 /**
- * @author Qiang Xue <qiang.xue@gmail.com>
- * @since 2.0
+ * @author xia.q
  */
-class ToTopAsset extends AssetBundle
+class YiiAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/jQuery.toTop';
+    public $sourcePath = '@yii/assets';
     public $js = [
-        'jquery.toTop.min.js',
+        'yii.js',
     ];
     public $depends = [
-        'frontend\assets\YiiAsset',
+        'frontend\assets\JqueryAsset',
     ];
 }

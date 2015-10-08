@@ -20,6 +20,6 @@ class FontAwesomeAsset extends AssetBundle
     	'css/font-awesome.min.css'
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }

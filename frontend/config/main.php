@@ -131,7 +131,14 @@ return [
 			//'renderers'//定义模板引擎
     	],
     	
-    	//日志
+    	//资源组件配置
+    	'assetManager' => [
+    		'bundles' => [
+    			'yii\web\JqueryAsset' => false,//禁用原生的jquery版本
+    		],
+    	],
+    	
+    	//日志组件配置
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [

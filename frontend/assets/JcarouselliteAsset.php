@@ -20,6 +20,6 @@ class JcarouselliteAsset extends AssetBundle
     	'jquery.jcarousellite.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }

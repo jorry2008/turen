@@ -20,6 +20,6 @@ class UnsliderAsset extends AssetBundle
         'src/unslider.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }

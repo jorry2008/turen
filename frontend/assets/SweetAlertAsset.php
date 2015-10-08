@@ -24,6 +24,6 @@ class SweetAlertAsset extends AssetBundle
     	'sweetalert.min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }

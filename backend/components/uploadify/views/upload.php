@@ -13,6 +13,7 @@ $baseUrl = Yii::getAlias('@web');
 
 //临时去掉原生jquery//assets临时处理
 Yii::$app->getAssetManager()->assetMap = ['jquery.js' => substr($assetUrl, strpos($assetUrl, '/assets/')+8).'/jquery.min.js'];
+// fb(Yii::$app->getAssetManager()->assetMap);
 
 $uploaderUrl = Yii::$app->getUrlManager()->createUrl(Yii::$app->requestedRoute);
 
@@ -128,7 +129,10 @@ $this->registerJs("
 
 		$(\"li.img\").each(function(i){
         	fileurl_tmp += '<li rel=\"'+ fileurl_val[i] +'\"><img height=\"140px\" src=\"$baseUrl'+fileurl_val[i]+'\" /><a href=\"javascript:void(0);\" class=\"delete\" data-url=\"'+fileurl_val[i]+'\">$delText</a></li>';
-            list += fileurl_val[i]+',';
+        	if($(\"li.img\").length > 1)    
+				list += fileurl_val[i]+',';
+			else
+				list += fileurl_val[i];
         });
         
         var parent = $(window.parent.document);
@@ -142,9 +146,6 @@ $this->registerJs("
 			} else {
 				var images = oldValue+','+list;
 			}
-			
-			images.
-			
 			
             parent.find(\"#$widget\").val(images);
         } else {

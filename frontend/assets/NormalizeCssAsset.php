@@ -20,6 +20,6 @@ class NormalizeCssAsset extends AssetBundle
         'normalize.css',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }

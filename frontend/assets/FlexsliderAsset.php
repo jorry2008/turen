@@ -23,6 +23,6 @@ class FlexsliderAsset extends AssetBundle
     	'jquery.flexslider-min.js',
     ];
     public $depends = [
-        'yii\web\YiiAsset',
+        'frontend\assets\YiiAsset',
     ];
 }
