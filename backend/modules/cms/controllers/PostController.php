@@ -26,6 +26,21 @@ class PostController extends Controller
 			],
 			'ueditor' => [
 				'class' => 'backend\components\ueditor\UeditorAction',
+			],
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Post::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+				//'route' => '/cms/column/index',
+			],
+			'delete' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Post::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'deleted',
+				'value' => 1,
+				//'route' => '/cms/column/index',
 			]
 		];
 	}

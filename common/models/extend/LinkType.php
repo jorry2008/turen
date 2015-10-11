@@ -78,6 +78,32 @@ class LinkType extends \yii\db\ActiveRecord
     }
     
     /**
+     * (non-PHPdoc)
+     * @see \yii\db\BaseActiveRecord::beforeSave($insert)
+     */
+    public function beforeSave($insert)
+    {
+    	if(parent::beforeSave($insert)) {
+    		if($insert) {//创建
+    
+    		} else {//更新
+    			//判断是否为假删除操作
+    			if(!empty(Yii::$app->requestedAction->feild) && Yii::$app->requestedAction->feild == 'deleted') {
+    				//当前分类下有没有子分类
+    				if(Link::find()->where(['link_type_id'=>$this->id])->alive()->exists()) {
+    					Yii::$app->getSession()->setFlash('warning', Yii::t('extend', 'Under this category contains content, cannot be deleted!'));
+    					return false;
+    				}
+    			}
+    		}
+    
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+    
+    /**
      * @inheritdoc
      * @return LinkTypeQuery the active query used by this AR class.
      */

@@ -23,6 +23,7 @@ $this->registerJs("
 	});
 	
 	$('.header_top_left a').click(function(){
+		//if(jQuery.browser.msie && ($.browser.version == \"8.0\" || $.browser.version == \"7.0\"))
 		swal({
 			title: '目前只开通了广州地区的服务',
 			text: '其它地区正在努力开通，请耐心等待...',

@@ -50,12 +50,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             ['class' => 'yii\grid\SerialColumn'],
                 
                             // 'id',
+                        	[
+                        		'attribute' => 'name',
+                        		'format' => 'raw',
+                        		'value' => function($model){
+                        			return Html::a($model->name, ['update', 'id'=>$model->id]);
+                        		},
+                        	],
                             'name',
-                            'flag_id',
+                            'flag',
                             'order',
-                
                             [
                                 'class' => 'yii\grid\ActionColumn',
+                            	'template' => '{delete}',
                                 'header' => Yii::t('common', 'Opration'),
                             ],
                         ],

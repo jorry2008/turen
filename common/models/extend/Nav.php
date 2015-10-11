@@ -56,11 +56,36 @@ class Nav extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
-            [['target'], 'required'],
             [['name', 'target'], 'string', 'max' => 30],
             [['link_url', 're_link_url'], 'string', 'max' => 255],
             [['pic_url'], 'string', 'max' => 100]
         ];
+    }
+    
+    /**
+     * (non-PHPdoc)
+     * @see \yii\db\BaseActiveRecord::beforeSave($insert)
+     */
+    public function beforeSave($insert)
+    {
+    	if(parent::beforeSave($insert)) {
+    		if($insert) {//创建
+    			 
+    		} else {//更新
+    			//判断是否为假删除操作
+    			if(!empty(Yii::$app->requestedAction->feild) && Yii::$app->requestedAction->feild == 'deleted') {
+    				//当前分类下有没有子分类
+    				if(Nav::find()->where(['parent_id'=>$this->id])->alive()->exists()) {
+    					Yii::$app->getSession()->setFlash('warning', Yii::t('extend', 'Have links under the link type, cannot be deleted.'));
+    					return false;
+    				}
+    			}
+    		}
+    
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
 
     /**

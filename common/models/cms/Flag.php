@@ -36,8 +36,8 @@ class Flag extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order', 'flag_id', 'deleted'], 'integer'],
-            [['name'], 'string', 'max' => 30]
+            [['order', 'deleted'], 'integer'],
+            [['name', 'flag'], 'string', 'max' => 30]
         ];
     }
 

@@ -3,12 +3,14 @@
 namespace backend\modules\extend\controllers;
 
 use Yii;
-use common\models\extend\Nav;
+
 use yii\data\ActiveDataProvider;
-use backend\components\Controller;
 use yii\web\NotFoundHttpException;
 
+use common\models\extend\Nav;
 use common\components\helpers\General;
+use backend\components\Controller;
+
 
 /**
  * NavController implements the CRUD actions for Nav model.
@@ -16,6 +18,30 @@ use common\components\helpers\General;
 class NavController extends Controller
 {
 	const MAX_PAGE_SIZE = 200;//设置为200个栏目，最大值，相当于all
+	
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Nav::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+// 				'route' => '/extend/nav/index',
+			],
+			'delete' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Nav::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'deleted',
+				'value' => 1,
+				//'route' => '/cms/column/index',
+			]
+		];
+	}
 	
     /**
      * Lists all Nav models.
@@ -65,7 +91,6 @@ class NavController extends Controller
     public function actionCreate()
     {
         $model = new Nav();
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -92,24 +117,6 @@ class NavController extends Controller
                 'model' => $model,
             ]);
         }
-    }
-    
-    /**
-     * 假删除动作(重写)
-     * @param integer $id
-     * @return \yii\web\Response
-     */
-    public function actionDelete($id)
-    {
-    	if(Nav::find()->where(['parent_id'=>$id])->alive()->exists()) {
-    		Yii::$app->getSession()->setFlash('warning', Yii::t('extend', 'Have links under the link type, cannot be deleted'));
-    	} else {
-    		$model = $this->findModel($id);
-    		$model->deleted = 1;
-    		$model->save(false);//更新
-    	}
-    	 
-    	return $this->redirect(['index']);
     }
 
     /**

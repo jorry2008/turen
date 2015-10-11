@@ -65,5 +65,13 @@ return [
 	'Top Nav' => '顶级菜单',
 	'Link Type List' => '链接分类列表',
 	'Order' => '排序',
+	'Re Link Url' => '重写地址',
+	'URL Rewrite' => '伪静态地址，用于推广优化，要在系统中配置中开启',
 	'Through the title calls this menu' => '这个标题是前台调用的依据，所以如果是菜单的首项时就应当为英文。',
+	'Open Type' => '打开方式',
+	'Blank' => '新页面打开',
+	'Parent' => '你页面打开',
+	'Self' => '当前页面打开',
+	'Have links under the link type, cannot be deleted.' => '此项目下还有子项目，不能直接删除。',
+	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',
 ];

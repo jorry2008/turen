@@ -13,6 +13,30 @@ use yii\web\NotFoundHttpException;
  */
 class AdTypeController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => AdType::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+//     			'route' => '/cms/column/index',
+			],
+			'delete' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => AdType::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'deleted',
+				'value' => 1,
+//     			'route' => '/cms/column/index',
+			]
+		];
+	}
+	
     /**
      * Lists all AdType models.
      * @return mixed

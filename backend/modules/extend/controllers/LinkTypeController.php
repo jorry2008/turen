@@ -14,6 +14,30 @@ use yii\web\NotFoundHttpException;
  */
 class LinkTypeController extends Controller
 {
+	/**
+	 * @inheritdoc
+	 */
+	public function actions()
+	{
+		return [
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => LinkType::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+// 				'route' => '/extend/nav/index',
+			],
+			'delete' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => LinkType::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'deleted',
+				'value' => 1,
+//				'route' => '/cms/column/index',
+			]
+		];
+	}
+	
     /**
      * Lists all LinkType models.
      * @return mixed

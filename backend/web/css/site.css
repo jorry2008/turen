@@ -145,9 +145,38 @@ table.table span.name {
     width: 25%;
 }
 
+.table-responsive table.table thead th a {
+    background: url("../images/sort/sort_both.png") no-repeat scroll right center;
+    display: block;
+    float: left;
+    padding-right: 1.2em;
+}
+.table-responsive table.table thead th a.asc {
+    background: url("../images/sort/sort_asc.png") no-repeat scroll right center;
+}
+.table-responsive table.table thead th a.desc {
+    background: url("../images/sort/sort_desc.png") no-repeat scroll right center;
+}
 
-
-
+/*
+字体图标
+a.asc::after, a.desc::after {
+    display: inline-block;
+    font-family: "Glyphicons Halflings";
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+    position: relative;
+    top: 1px;
+}
+a.asc::after {
+    content: "";
+}
+a.desc::after {
+    content: "";
+}
+*/
 
 
 

@@ -22,6 +22,21 @@ class AdController extends Controller
 			'uploadify' => [
 				'class' => 'backend\components\uploadify\UploadifyAction',
 			],
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Ad::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+// 				'route' => '/extend/nav/index',
+			],
+			'delete' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Ad::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'deleted',
+				'value' => 1,
+//				'route' => '/cms/column/index',
+			]
 		];
 	}
 	

@@ -8,17 +8,14 @@
 namespace backend\components;
 
 use Yii;
-use backend\assets\BackendAsset;
 
 //use yii\filters\VerbFilter;
-//use common\models\user\User;
 //use yii\filters\AccessControl;
+//use yii\web\ForbiddenHttpException;
+//use common\models\user\User;
+use yii\helpers\ArrayHelper;
 use backend\components\AccessControl;
 use backend\components\AccessRule;
-use yii\helpers\ArrayHelper;
-
-
-//use yii\web\ForbiddenHttpException;
 
 /**
  * @author jorry
@@ -150,34 +147,6 @@ class Controller extends \yii\web\Controller
         $roles = [];//指定一些权限项不可访问
         //fb(Yii::$app->getUrlManager()->parseRequest(Yii::$app->getRequest()));
         return ArrayHelper::merge($roles, ['^_^']);//默认是匹配的，同上;这里比较特殊，只要不为空，才能进行到下一步
-    }
-    
-    
-    /**
-     * 切换状态
-     * @param int $id
-     * @return \yii\web\Response
-     */
-    public function actionSwitchStauts($id)
-    {
-    	$model = $this->findModel($id);
-    	$model->status = $model->status?0:1;//取反
-    	$model->save(false);
-    	return $this->redirect(['index']);
-    }
-    
-    /**
-     * 假删除动作
-     * @param integer $id
-     * @return \yii\web\Response
-     */
-    public function actionDelete($id)
-    {
-    	$model = $this->findModel($id);
-    	$model->deleted = 1;
-    	$model->save(false);//更新
-    
-    	return $this->redirect(['index']);
     }
 }
 

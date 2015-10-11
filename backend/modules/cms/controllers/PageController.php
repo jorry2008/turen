@@ -24,7 +24,14 @@ class PageController extends Controller
 			],
 			'ueditor' => [
 				'class' => 'backend\components\ueditor\UeditorAction',
-			]
+			],
+			'switch-status' => [
+				'class' => 'backend\components\SwitchAction',
+				'className' => Page::className(),
+				'id' => Yii::$app->getRequest()->get('id'),
+				'feild' => 'status',
+				//'route' => '/cms/column/index',
+			],
 		];
 	}
 	

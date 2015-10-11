@@ -171,12 +171,12 @@ return [
         ],
         
         // session配置
-        'session' => [
-            'class' => 'yii\web\DbSession',//也可以转移到memcache缓存，CacheSession
-            'name' => 'turen_session',
-            'sessionTable' => '{{%session}}',
-            'timeout' => 3600 // 超时设置
-        ],
+//         'session' => [
+//             'class' => 'yii\web\DbSession',//也可以转移到memcache缓存，CacheSession
+//             'name' => 'turen_session',
+//             'sessionTable' => '{{%session}}',
+//             'timeout' => 3600 // 超时设置
+//         ],
         
         // rbac权限配置
         'authManager' => [
@@ -192,7 +192,7 @@ return [
         //url规则管理
         'urlManager' => [
             'enablePrettyUrl' => true,//开启路由的路径化
-//             'showScriptName' => false,//是否显示入口脚本index.php（This property is used only if [[enablePrettyUrl]] is true.）
+            'showScriptName' => false,//是否显示入口脚本index.php（This property is used only if [[enablePrettyUrl]] is true.）
             // 'suffix' => '.html',//
             'rules' => [],
         ],
@@ -219,6 +219,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => [
+                    	'info',
                         'error',
                         'warning'
                     ]
