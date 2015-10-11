@@ -24,13 +24,13 @@ class SignupForm extends Model
         return [
             ['username', 'filter', 'filter' => 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => Yii::t('model', '此用户名已经被占用。')],
+            ['username', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => '此用户名已经被占用。'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'filter', 'filter' => 'trim'],
             ['email', 'required'],
             ['email', 'email'],
-            ['email', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => Yii::t('model', '此邮箱已经被注册。')],
+            ['email', 'unique', 'targetClass' => '\common\models\account\Customer', 'message' => '此邮箱已经被注册。'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
@@ -43,9 +43,9 @@ class SignupForm extends Model
     public function attributeLabels()
     {
     	return [
-    		'username' => Yii::t('model', '用户名'),
-    		'email' => Yii::t('model', '手机/邮箱'),
-    		'password' => Yii::t('model', '密码'),
+    		'username' => '用户名',
+    		'email' => '手机/邮箱',
+    		'password' => '密码',
     	];
     }
 

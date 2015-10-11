@@ -4,7 +4,7 @@ namespace frontend\modules\site\controllers;
 
 use Yii;
 use yii\web\NotFoundHttpException;
-use common\models\cms\Page;
+use common\models\cms\Column;
 
 class PageController extends \frontend\components\Controller
 {
@@ -18,10 +18,10 @@ class PageController extends \frontend\components\Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($name)
     {
     	return $this->render('view', [
-    			'model' => $this->findModel($id),
+    			'model' => $this->findModel($name),
     	]);
     }
     
@@ -32,12 +32,12 @@ class PageController extends \frontend\components\Controller
      * @return Page the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($name)
     {
-    	if (($model = Page::findOne($id)) !== null) {
+    	if (($model = Column::find()->with('page')->active()->andWhere(['short_code'=>trim($name)])->one()) !== null) {
     		return $model;
     	} else {
-    		throw new NotFoundHttpException(Yii::t('common', '该请求对应的页面不存在。'));
+    		throw new NotFoundHttpException('该请求对应的页面不存在。');
     	}
     }
 }

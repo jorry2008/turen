@@ -13,6 +13,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $parent_id
  * @property string $parent_str
  * @property integer $type
+ * @property integer $short_code
  * @property string $name
  * @property string $link_url
  * @property string $pic_url
@@ -62,7 +63,7 @@ class Column extends \yii\db\ActiveRecord
     {
         return [
             [['parent_id', 'type', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
-            [['parent_str', 'keywords'], 'string', 'max' => 50],
+            [['parent_str', 'keywords', 'short_code'], 'string', 'max' => 50],
             [['name'], 'string', 'max' => 30],
             [['link_url', 'description'], 'string', 'max' => 255],
             [['pic_url'], 'string', 'max' => 100],
@@ -83,6 +84,7 @@ class Column extends \yii\db\ActiveRecord
             'id' => Yii::t('cms', 'ID'),
             'parent_id' => Yii::t('cms', 'Belong Column'),
             'type' => Yii::t('cms', 'Column Type'),
+        	'short_code' => Yii::t('cms', 'Short Code'),
             'name' => Yii::t('cms', 'Column Name'),
             'link_url' => Yii::t('cms', 'Link Url'),
             'pic_url' => Yii::t('cms', 'Pic Url'),
@@ -197,6 +199,14 @@ class Column extends \yii\db\ActiveRecord
     public function getMySelf()
     {
     	return $this->hasOne(Column::className(), ['id' => 'parent_id']);
+    }
+    
+    /**
+     * 一对一
+     */
+    public function getPage()
+    {
+    	return $this->hasOne(Page::className(), ['column_id'=>'id']);
     }
     
     /**

@@ -15,6 +15,8 @@ use common\models\extend\Nav;
 if($model->isNewRecord) {
 	$model->status = true;
 	$model->order = 10;
+	$model->link_url = 'http://turen.pw?r=';
+	$model->re_link_url = 'http://turen.pw?r=';
 }
 
 $parentIds = ArrayHelper::merge(['0'=>Yii::t('extend', 'Top Nav')], ArrayHelper::map(General::recursiveObj(Nav::find()->orderBy(['order'=>SORT_ASC])->all()), 'id', 'name'));

@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-$this->title = '搬家啦（广州）';
+$this->title = '广州搬家';
 
 use frontend\assets\FlexsliderAsset;
 use frontend\assets\JcarouselliteAsset;

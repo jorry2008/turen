@@ -65,7 +65,7 @@ class NavController extends Controller
     	$dataProvider->models = General::recursiveObj($dataProvider->models, 0, 0, '' ,'<span class="bank"></span>', false);
 //     	$keys = General::getModelsKeys($dataProvider->models, 'id');
 //     	$dataProvider->setKeys($keys);
-
+    	
         return $this->render('index', [
             'dataProvider' => $dataProvider,
         ]);

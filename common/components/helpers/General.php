@@ -16,6 +16,8 @@ use yii\helpers\FileHelper;
  */
 class General
 {
+	static $tree = [];//菜单静态变量
+	
     /**
      * 客户端接收到的数据以指定['/', ' ', '_']整理为'-'
      */
@@ -55,14 +57,13 @@ class General
     /**
      * 对象无限级递归
      *
-     * @param UserGroup $models
+     * @param array $models
      * @param int $pid
      * @param int $level
      * @param string $html
      */
     public static function recursiveObj($models, $pid=0, $level=0, $tip='|' ,$line='--.', $is_select = true)
     {
-        static $tree = array();
         foreach($models as $model) {
             if($model->parent_id == $pid) {
                 if($level != 0) {
@@ -73,11 +74,12 @@ class General
                     }
                 }
     
-                $tree[] = $model;
+                self::$tree[] = $model;
                 self::recursiveObj($models, $model->id, $level+1, $tip ,$line, $is_select);
             }
         }
-        return $tree;
+        
+        return self::$tree;
     }
     
     /**
@@ -194,7 +196,31 @@ class General
     }
     
     
-    
+    /**
+     * 解析后台菜单链接地址
+     * @param string $link 标准的url
+     * @return unknown|multitype:mixed unknown
+     */
+    public static function parseUrl($link)
+    {
+    	$url = [];
+    	if(empty($link)) {
+    		return $url;
+    	} else {
+    		$str = substr($link, strpos($link, '?')+1);
+    		if(empty($str)) return $url;
+    		foreach (explode('&', $str) as $v) {
+    			list($name, $value) = explode('=', $v);
+    			if($name == 'r') {
+    				$url[] = '/'.ltrim(str_replace(['/', '\\'], '/', $value), '/');
+    			} else {
+    				$url[$name] = $value;
+    			}
+    		}
+    		
+    		return $url;
+    	}
+    }
 }
 
 

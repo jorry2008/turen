@@ -61,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    		},
                     		],
 // 				            'parent_id',
-				            'link_url:url',
+				            'link_url',
 // 				            're_link_url:url',
 				            // 'pic_url:url',
 				            'target',

@@ -7,12 +7,12 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
-$this->title = Yii::t('account', '欢迎登录');
+$this->title = '欢迎登录';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="header_title container clearfix">
-	<span class="hcc_title"><?= Html::encode($this->title) ?></span>
+	<span class="hcc_title"><?= Html::encode($this->title)?></span>
 </div>
 
 <div class="container clearfix">
@@ -23,7 +23,7 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="login_tab">
             <ul>
                 <li id="nomallogin" class="on">
-                    <a href="javascript:;"><?= Yii::t('account', '帐号登录') ?></a>
+                    <a href="javascript:;"><?= '帐号登录'?></a>
                 </li>
             </ul>
         </div>
@@ -31,24 +31,23 @@ $this->params['breadcrumbs'][] = $this->title;
         	<?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
                 <div class="login_select">
                 	<?= $form->field($model, 'username')->label(false) ?>
-                    <span><?= Yii::t('account', '用户名/手机号/邮箱')?></span>
+                    <span><?= '用户名/手机号/邮箱'?></span>
                 </div>
                 <div class="login_select">
                     <?= $form->field($model, 'password')->label(false)->passwordInput() ?>
-                    <span><?= Yii::t('account', ' 密码')?></span>
+                    <span><?= ' 密码'?></span>
                 </div>
                 <div class="safe">
                     <span class="safe_login">
-                    	<?= $form->field($model, 'rememberMe')->checkbox(['label'=>Yii::t('account', '下次自动登录')]) ?>
-                        
+                    	<?= $form->field($model, 'rememberMe')->checkbox(['label'=>'下次自动登录']) ?>
                     </span>
-                    <?= Html::a(Yii::t('account', '忘记密码?'), ['/account/common/request-password-reset'], ['class'=>'forget_pw']) ?>
+                    <?= Html::a('忘记密码?', ['/account/common/request-password-reset'], ['class'=>'forget_pw']) ?>
                 </div>
-                <?= Html::submitButton(Yii::t('account', '立即登录'), ['class' => 'btn_login', 'name' => 'login-button']) ?>
+                <?= Html::submitButton('立即登录', ['class' => 'btn_login', 'name' => 'login-button']) ?>
             <?php ActiveForm::end(); ?>
             <ul class="entries">
                 <li class="register">
-                	<?= Html::a(Yii::t('account', '免费注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
+                	<?= Html::a('免费注册', ['/account/common/signup'], ['rel'=>'nofollow']) ?>
                 </li>
             </ul>
         </div>

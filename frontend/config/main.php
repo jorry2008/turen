@@ -9,10 +9,10 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-	'name' => Yii::t('common', '默认系统名'),
+	'name' => '土人系统',
 	'version' => '1.0',
 	'charset' => 'UTF-8',
-	'sourceLanguage' => 'en-US', // 默认源语言
+	'sourceLanguage' => 'zh-CN', // 默认源语言
 	'language' => 'zh-CN', // 默认当前环境使用的语言
 	//这个命名空间非常重要，是用来加载控制器类的（本质是用来指定路径的）
     'controllerNamespace' => 'frontend\modules\site\controllers',
@@ -68,23 +68,23 @@ return [
     		'returnUrlParam' => '__frontend_returnUrl' // 这个是重点，实现无权访问再登录后跳转到原来的rul，这个url就是__returnUrl，记录在session中
     	],
     		
-    	// 多语言配置
-    	'i18n' => [
-    		'translations' => [
-    			'*' => [ // 界面翻译
-    				'class' => 'yii\i18n\PhpMessageSource',
-    				// 'sourceLanguage' => 'en-US',
-    				'basePath' => '@app/messages',
-//     				'fileMap' => [ // 简单的映射
-//     					'common' => 'common.php',
-//     					'site' => 'site.php',
-//     					'account' => 'account.php',
-//     					'customer' => 'customer.php',
-//     					'user' => 'user.php',
-//     				]
-    			],
-    		]
-    	],
+    	// 多语言配置【前台关闭多语言】
+//     	'i18n' => [
+//     		'translations' => [
+//     			'*' => [ // 界面翻译
+//     				'class' => 'yii\i18n\PhpMessageSource',
+//     				'sourceLanguage' => 'zh-CN',
+//     				'basePath' => '@app/messages',
+// //     				'fileMap' => [ // 简单的映射
+// //     					'common' => 'common.php',
+// //     					'site' => 'site.php',
+// //     					'account' => 'account.php',
+// //     					'customer' => 'customer.php',
+// //     					'user' => 'user.php',
+// //     				]
+//     			],
+//     		]
+//     	],
     	
     	//url规则管理
     	'urlManager' => [

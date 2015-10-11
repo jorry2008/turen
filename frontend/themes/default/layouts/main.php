@@ -1,9 +1,12 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\Menu;
+use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 
+use common\components\helpers\General;
+use common\models\extend\Nav;
 // use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
@@ -67,25 +70,25 @@ $this->registerJs("
 		    <div class="header_top_center">
 		        <div class="header_top_right">
 		        	<?php if(Yii::$app->getUser()->isGuest) { ?>
-	                    <?= Html::a(Yii::t('common', '登录'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+	                    <?= Html::a('登录', ['/account/common/login'], ['rel'=>'nofollow']) ?>
 	                    <span class="htr_line"></span>
-	                    <?= Html::a(Yii::t('common', '注册'), ['/account/common/signup'], ['rel'=>'nofollow']) ?>
+	                    <?= Html::a('注册', ['/account/common/signup'], ['rel'=>'nofollow']) ?>
                     <?php } else { ?>
-                    	<?= Html::a(Yii::t('common', '您好：').Yii::$app->getUser()->getIdentity()->username, ['/account/common/center'], ['rel'=>'nofollow']) ?>
+                    	<?= Html::a('您好：'.Yii::$app->getUser()->getIdentity()->username, ['/account/common/center'], ['rel'=>'nofollow']) ?>
                     <?php } ?>
                     
                     <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '快速下单'), ['/site/qick-order/create-order'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('快速下单', ['/site/qick-order/create-order'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '服务流程'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('服务流程', ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '新闻中心'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('新闻中心', ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a(Yii::t('common', '搬家百科'), ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('搬家百科', ['/account/common/login'], ['rel'=>'nofollow']) ?>
                     <?php 
                     if(!Yii::$app->getUser()->isGuest) {
                     	echo '<span class="htr_line"></span>';
-                    	echo Html::a(Yii::t('common', '[退出]'), ['/account/common/logout']);
+                    	echo Html::a('[退出]', ['/account/common/logout']);
                     }
                     ?>
 		        </div>
@@ -99,22 +102,23 @@ $this->registerJs("
 		
     	<div class="header_wrapper">
 			<div class="logo_layout">
-				<a class="logo" href="">快兔搬家网</a>
+				<?= Html::a(Yii::$app->name, Yii::$app->homeUrl, ['class'=>'logo'])?>
 			</div>
 			
 			<div class="top_menu">
 			    <div class="menu">
 		    		<?php
+		    		$mainMenu = (new Nav)->TgetNav('main');
+		    		$items = [];
+		    		foreach ($mainMenu as $key=>$menu) {
+		    			$items[$key]['label'] = $menu->name;
+		    			//这里要作url解析
+		    			$url = General::parseUrl($menu->link_url);
+		    			$items[$key]['url'] = empty($menu->re_link_url)?$url:$menu->re_link_url;
+		    		}
+		    		$items = ArrayHelper::merge([['label'=>'首页', 'url'=>['/site/home/index']]], $items);//Yii::$app->homeUrl
 					echo Menu::widget([
-						'items' => [
-						    ['label' => Yii::t('common','首页'), 'url' => ['/site/home/index']],
-						    ['label' => Yii::t('common','关于我们'), 'url' => ['/site/page/about']],
-						    ['label' => Yii::t('common','搬家流程'), 'url' => ['/account/login']],
-							['label' => Yii::t('common','收费标准'), 'url' => ['product/index']],
-							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
-							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
-							['label' => Yii::t('common','案例展示'), 'url' => ['product/index']],
-						],
+						'items' => $items,
 						'options' => ['id'=>'nav-header', 'class'=>'reset'],
 					]);
 					?>

@@ -15,7 +15,7 @@ class ColumnQuery extends \yii\db\ActiveQuery
 	 */
     public function active()
     {
-        $this->andWhere('[[status]]=1');
+        $this->andWhere(['status'=>1,'deleted'=>0]);
         return $this;
     }
     

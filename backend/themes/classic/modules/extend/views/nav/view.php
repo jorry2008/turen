@@ -49,9 +49,9 @@ $this->params['breadcrumbs'][] = $this->title;
                 		'value' => empty($model->mySelf)?Yii::t('extend', 'Top Nav'):$model->mySelf->name,
                 	],
 		            'name',
-		            'link_url:url',
-		            're_link_url:url',
-		            'pic_url:url',
+		            'link_url',
+		            're_link_url',
+		            'pic_url',
 		            'target',
 		            'order',
 		            [

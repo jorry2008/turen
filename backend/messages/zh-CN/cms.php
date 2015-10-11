@@ -130,4 +130,5 @@ return [
     'HTML Code' => 'HTML代码',
 	'Null' => '未设置',
 	'Preview in frontend' => '在前台预览',
+	'Used for the frontend call.' => '用于前台调用，只有在创建的时候可编辑[选填]。',
 ];

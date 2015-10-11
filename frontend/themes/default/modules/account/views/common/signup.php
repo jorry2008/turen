@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-$this->title = Yii::t('account', '新用户注册');
+$this->title = '新用户注册';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -54,7 +54,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    <label>我已阅读并接受<a target="_blank" href="/about/law.html">《快兔搬家用户服务协议》</a></label>
 	                </span>
 	            </div>
-	            <?= Html::submitButton(Yii::t('account', '立即注册'), ['class' => 'btn_login', 'name' => 'signup-button']) ?>
+	            <?= Html::submitButton('立即注册', ['class' => 'btn_login', 'name' => 'signup-button']) ?>
 	        </div>
 	    <?php ActiveForm::end(); ?>
 	</div>

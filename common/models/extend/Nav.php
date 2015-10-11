@@ -3,7 +3,9 @@
 namespace common\models\extend;
 
 use Yii;
+use yii\base\ErrorException;
 use yii\behaviors\TimestampBehavior;
+use common\components\helpers\General;
 
 /**
  * This is the model class for table "{{%extend_nav}}".
@@ -25,6 +27,8 @@ class Nav extends \yii\db\ActiveRecord
 {
 	const STATUS_YES = 1;
 	const STATUS_NO = 0;
+	
+	private $tree = [];//菜单变量
 	
     /**
      * @inheritdoc
@@ -58,6 +62,7 @@ class Nav extends \yii\db\ActiveRecord
             [['parent_id', 'order', 'status', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['name', 'target'], 'string', 'max' => 30],
             [['link_url', 're_link_url'], 'string', 'max' => 255],
+        	[['link_url', 're_link_url'], 'url'],
             [['pic_url'], 'string', 'max' => 100]
         ];
     }
@@ -116,6 +121,39 @@ class Nav extends \yii\db\ActiveRecord
             'created_at' => Yii::t('common', 'Created At'),
             'updated_at' => Yii::t('common', 'Updated At'),
         ];
+    }
+    
+    /**
+     * 返回指定标记的子菜单
+     * @param string $name
+     * @return multitype:array
+     */
+    public function TgetNav($name)
+    {
+    	$model = Nav::find()->where(['name'=>$name])->active()->one();
+    	if($model) {
+    		return $this->recursive(Nav::find()->active()->orderBy('order ASC')->all(), $model->id);
+    	} else {
+    		throw new ErrorException('Not found menu:'.$name);
+    	}
+    }
+    
+    /**
+     * 递归菜单
+     * @param array $models
+     * @param number $pid
+     * @param number $level
+     * @return Ambigous <multitype:, unknown>
+     */
+    public function recursive($models, $pid = 0, $level = 0)
+    {
+    	foreach($models as $model) {
+    		if($model->parent_id == $pid) {
+    			$this->tree[] = $model;
+    			$this->recursive($models, $model->id, $level+1);
+    		}
+    	}
+    	return $this->tree;
     }
 
     /**
