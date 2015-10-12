@@ -1,0 +1,100 @@
+.breadcrumb {
+    border-bottom: 1px solid #eee;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    margin-bottom: 10px;
+}
+.breadcrumb li {
+    display: inline;
+    float: left;
+}
+.breadcrumb li .jian {
+	display: inline;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.breadcrumb li a {
+    color: #999;
+}
+.breadcrumb li a:hover {
+    color: #f25618;
+}
+.breadcrumb li.active {
+    color: #333;
+}
+.content .side {
+    float: left;
+    width: 240px;
+}
+.content .main {
+    float: right;
+    width: 760px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.btn_yuyue {
+    background: #33c182;
+    color: #fff;
+    display: block;
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+    margin-bottom: 20px;
+    width: 240px;
+    text-align: center;
+}
+.btn_yuyue:hover {
+    background: #018d50 none repeat scroll 0 0;
+    color: #fff;
+}
+.btn_liuyan {
+    background-color: #fff;
+    border: 1px solid #33c182;
+    color: #33c182;
+    display: block;
+    font-size: 14px;
+    height: 38px;
+    line-height: 38px;
+    margin-bottom: 20px;
+    width: 238px;
+    text-align: center;
+}
+.btn_liuyan:hover {
+    border-color: #018d50;
+    color: #018d50;
+}
+
+.side_box {
+    border: 1px solid #e8e8e8;
+    margin-bottom: 20px;
+    padding: 19px;
+    width: 200px;
+}
+.side_box .box_title {
+    color: #333;
+    font-size: 20px;
+    font-weight: normal;
+    margin: 0;
+    margin-bottom: 18px;
+}
+.side_box .box_content {
+    border-top: 1px solid #e8e8e8;
+    padding-left: 6px;
+    padding-top: 10px;
+}
+
+.side_box .list_page ul {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+
+
+
+
+
+
+

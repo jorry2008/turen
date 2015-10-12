@@ -133,13 +133,13 @@ ul, li, ol {
 .header_wrapper .logo_layout {
     float: left;
     margin-right: 40px;
-    margin-top: 28px;
+    margin-top: 5px;
 }
 .header_wrapper .logo_layout a {
 	display: block;
 	height: 65px;
     width: 200px;
-    background: url(../images/logo.png) no-repeat;
+    background: url(../images/logo.png) no-repeat 0 10px;
     text-indent: -9999px;
 }
 .top_menu {

@@ -6,7 +6,7 @@ use yii\widgets\DetailView;
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\Page */
 
-$this->title = $model->title;
+$this->title = $model->column->name;
 $this->params['breadcrumbs'][] = ['label' => Yii::t('cms', 'Page List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>

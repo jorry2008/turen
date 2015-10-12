@@ -132,6 +132,24 @@ $this->registerJs("
     </div>
     
     <div class="content container">
+	    <?php
+	    if (!empty($this->params['breadcrumbs'])) {
+			$params = [
+				'tag' => 'ul',
+				'encodeLabels' => false, // 不转义
+				'itemTemplate' => "<li>{link}<span class=\"jian\">></span></li>\n",
+				'options' => ['class' => 'breadcrumb clearfix'],
+				'homeLink' => [
+					'label' => '首页',//<i class="fa fa-dashboard"></i> 
+					'url' => Yii::$app->homeUrl
+				],
+				'links' => $this->params['breadcrumbs'],
+			];
+			
+			echo Breadcrumbs::widget($params);
+		}
+		?>
+		
         <?= $content ?>
 	</div>
 	
