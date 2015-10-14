@@ -28,6 +28,6 @@ class AppAsset extends AssetBundle
     	'\backend\assets\FontAwesomeAsset',//字体1
     	'\backend\assets\IoniconsAsset',//字体2
     	'\backend\assets\AdminLTEAsset',//adminLTE
-//     	'\backend\assets\ToTopAsset',//返回顶部
+    	'\backend\assets\ToTopAsset',//返回顶部
     ];
 }

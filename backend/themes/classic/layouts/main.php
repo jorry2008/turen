@@ -12,6 +12,18 @@ use backend\assets\SlimScrollAsset;
 AppAsset::register($this);
 SlimScrollAsset::register($this);
 
+$this->registerJs("
+	$('.to-top').toTop({
+		//options with default values
+		autohide: true,  //boolean 'true' or 'false'
+		offset: 200,     //numeric value (as pixels) for scrolling length from top to hide automatically
+		speed: 300,      //numeric value (as mili-seconds) for duration
+		position:true,   //boolean 'true' or 'false'. Set this 'false' if you want to add custom position with your own css
+		right: 15,       //numeric value (as pixels) for position from right. It will work only if the 'position' is set 'true'
+		bottom: 30       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
+	});
+");
+
 //$baseUrl = $this->context->baseUrl;
 $baseUrl = Yii::getAlias('@web');
 ?>
@@ -286,6 +298,7 @@ $baseUrl = Yii::getAlias('@web');
                 </i>
             </footer>
         </div>
+        <a class="to-top">Top &uarr;</a>
         <!-- ./wrapper -->
     
     <?php $this->endBody(); ?>
