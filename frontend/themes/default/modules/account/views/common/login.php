@@ -23,7 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="login_tab">
             <ul>
                 <li id="nomallogin" class="on">
-                    <a href="javascript:;"><?= '帐号登录'?></a>
+                    <a href="javascript:;"><?= $this->title ?></a>
+                </li>
+                <li>
+                	<?= Html::a('免费注册', ['/account/common/signup']) ?>
                 </li>
             </ul>
         </div>

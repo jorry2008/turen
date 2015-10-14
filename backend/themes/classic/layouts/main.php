@@ -3,11 +3,13 @@
 use yii\helpers\Html;
 use yii\widgets\Menu;
 use yii\widgets\Breadcrumbs;
+use backend\assets\AppAsset;
 use backend\assets\SlimScrollAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
+AppAsset::register($this);
 SlimScrollAsset::register($this);
 
 //$baseUrl = $this->context->baseUrl;

@@ -1,9 +1,4 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace backend\assets;
 
@@ -11,12 +6,13 @@ use Yii;
 use yii\web\AssetBundle;
 
 /**
- * @author Qiang Xue <qiang.xue@gmail.com>
+ * @author Jorry <980522557@qq.com>
  * @since 2.0
  */
+ 
 class BootstrapDatePickerAsset extends AssetBundle
 {
-    public $sourcePath = '@app/extensions/AdminLTE/plugins/bootstrap-datetimepicker/';
+    public $sourcePath = '@bower/smalot-bootstrap-datetimepicker';
     public $css = [
         'css/bootstrap-datetimepicker.min.css',
     ];
@@ -26,7 +22,7 @@ class BootstrapDatePickerAsset extends AssetBundle
     ];
     
     public $depends = [
-        'backend\assets\BackendAsset'
+        'yii\web\YiiAsset',
     ];
     
 	public function init()

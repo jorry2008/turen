@@ -65,7 +65,7 @@
     height: 35px;
     line-height: 35px;
     text-align: center;
-    width: 124px;
+    width: 50%;
 }
 .login_tab ul li a, .reg_tab ul li a {
     color: #333;

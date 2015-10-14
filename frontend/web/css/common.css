@@ -84,7 +84,7 @@ ul, li, ol {
     height: 35px;
     width: 100%;
 }
-.header_top a:hover {
+.header_top a:hover, .header_top a.active {
 	color: #f25618;
 }
 .header_top_center {

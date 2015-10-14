@@ -1,15 +1,15 @@
 <?php
 
 use yii\helpers\Html;
-use backend\assets\BackendAsset;
+use backend\assets\AppAsset;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-BackendAsset::register($this);
+AppAsset::register($this);
 
 //方法一：
-$baseUrl = (new BackendAsset)->baseUrl;
+$baseUrl = (new AppAsset)->baseUrl;
 //方法二：
 //fb($this->context->baseUrl);
 ?>

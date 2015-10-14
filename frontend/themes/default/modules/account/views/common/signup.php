@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 /* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \frontend\models\SignupForm */
 
-$this->title = '新用户注册';
+$this->title = '免费注册';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -24,6 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        <ul>
 	            <li class="on">
 	                <a href="javascript:;"><?= Html::encode($this->title) ?></a>
+	            </li>
+	            <li>
+	            	<?= Html::a('用户登录', ['/account/common/login']) ?>
 	            </li>
 	        </ul>
 	    </div>
@@ -61,4 +64,10 @@ $this->params['breadcrumbs'][] = $this->title;
 	
 </div>
 
-            
+<?php 
+
+fb(Yii::$app->assetManager->bundles);
+
+
+
+?>    

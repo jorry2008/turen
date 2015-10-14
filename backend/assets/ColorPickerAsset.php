@@ -1,21 +1,17 @@
 <?php
-/**
- * @link http://www.yiiframework.com/
- * @copyright Copyright (c) 2008 Yii Software LLC
- * @license http://www.yiiframework.com/license/
- */
 
 namespace backend\assets;
 
 use yii\web\AssetBundle;
 
 /**
- * @author Qiang Xue <qiang.xue@gmail.com>
+ * @author Jorry <980522557@qq.com>
  * @since 2.0
  */
+ 
 class ColorPickerAsset extends AssetBundle
 {
-    public $sourcePath = '@app/extensions/AdminLTE/plugins/colorpicker/';
+    public $sourcePath = '@bower/AdminLTE/plugins/colorpicker';
     public $css = [
         'bootstrap-colorpicker.min.css',
     ];
@@ -25,7 +21,7 @@ class ColorPickerAsset extends AssetBundle
     ];
     
     public $depends = [
-        'backend\assets\BackendAsset'
+        'yii\web\YiiAsset',
     ];
 }
 

@@ -9,15 +9,13 @@ use yii\web\AssetBundle;
  * @since 2.0
  */
  
-class SlimScrollAsset extends AssetBundle
+class ToTopAsset extends AssetBundle
 {
-    public $sourcePath = '@bower/AdminLTE/plugins/slimScroll';
+    public $sourcePath = '@bower/jQuery.toTop';
     public $js = [
-        'jquery.slimscroll.min.js',
+        'jquery.toTop.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
     ];
 }
-
-

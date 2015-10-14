@@ -134,7 +134,9 @@ return [
     	//资源组件配置
     	'assetManager' => [
     		'bundles' => [
-    			'yii\web\JqueryAsset' => false,//禁用原生的jquery版本
+    			'yii\web\JqueryAsset' => [
+    				'class' => 'frontend\assets\JqueryAsset',//这点很重要
+    			],//禁用原生的jquery版本
     		],
     	],
     	
