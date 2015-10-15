@@ -17,19 +17,5 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Are you sure you want to delete this item?' => '你确定要删除选中项吗？',
-    'Create Help' => '添加帮助文档',
-    'Deleted' => '已删除',
-    'Dev Content' => '开发帮助',
-    'Help List' => '帮助列表',
-    'ID' => 'ID',
-    'Reset' => '重置',
-    'Search' => '搜索',
-    'Short Code' => '调用码',
-    'Status' => '发布状态',
-    'Title' => '标题',
-    'Update' => '更新',
-    'Update:' => '更新：',
-    'Url' => '官方跳转链接',
-    'User Content' => '用户帮助',
+    '用户名或密码错误。' => '',
 ];

@@ -2,7 +2,7 @@
 
 namespace backend\modules\help;
 
-class HelpModule extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\help\controllers';
 

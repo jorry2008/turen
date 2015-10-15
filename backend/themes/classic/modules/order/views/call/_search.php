@@ -5,11 +5,11 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model common\models\extend\MessageSearch */
+/* @var $model common\models\order\CallSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="message-search">
+<div class="call-search">
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
@@ -18,21 +18,13 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'id') ?>
 
-    <?= $form->field($model, 'nickname') ?>
+    <?= $form->field($model, 'customer_id') ?>
+
+    <?= $form->field($model, 'username') ?>
 
     <?= $form->field($model, 'contact') ?>
 
-    <?= $form->field($model, 'content') ?>
-
-    <?= $form->field($model, 'is_top') ?>
-
-    <?php // echo $form->field($model, 'is_recommend') ?>
-
-    <?php // echo $form->field($model, 'ip') ?>
-
-    <?php // echo $form->field($model, 'order') ?>
-
-    <?php // echo $form->field($model, 'status') ?>
+    <?= $form->field($model, 'order_note') ?>
 
     <?php // echo $form->field($model, 'deleted') ?>
 

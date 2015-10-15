@@ -38,4 +38,5 @@ return [
     'frame parameter not found' => 'frame参数未找到',
     'widget parameter not found' => 'widget参数未找到',
     'Delete File Success' => '删除文件成功',
+	'Upload picture' => '图片上传',
 ];

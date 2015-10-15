@@ -46,30 +46,33 @@ return [
     // 模块配置
     'modules' => [
     	'user' => [ // 后台管理员模块
-    		'class' => 'backend\modules\user\UserModule',
+    		'class' => 'backend\modules\user\Module',
     		//'viewPath' => '@app/themes/classic/user',//强制模块的主题
     		//'controllerNamespace' => ''//优先使用默认命名空间
     	],
         'auth' => [ // 权限模块
-            'class' => 'backend\modules\auth\AuthModule'
+            'class' => 'backend\modules\auth\Module'
         ],
         'system' => [// 系统核心模块
-            'class' => 'backend\modules\system\SystemModule',
+            'class' => 'backend\modules\system\Module',
         ],
         'customer' => [// 用户模块
-            'class' => 'backend\modules\customer\CustomerModule',
+            'class' => 'backend\modules\customer\Module',
         ],
-        'catalog' => [// 产品模块
-            'class' => 'backend\modules\catalog\CatalogModule',
-        ],
+//         'catalog' => [// 产品模块
+//             'class' => 'backend\modules\catalog\Module',
+//         ],
         'cms' => [// 内容模块
-            'class' => 'backend\modules\cms\CmsModule',
+            'class' => 'backend\modules\cms\Module',
         ],
     	'extend' => [// 非常独立的拓展（一些独立的小功能）
-    		'class' => 'backend\modules\extend\ExtendModule',
+    		'class' => 'backend\modules\extend\Module',
     	],
-    	'help' => [// 内嵌式帮助模块
-    		'class' => 'backend\modules\help\HelpModule',
+//     	'help' => [// 内嵌式帮助模块
+//     		'class' => 'backend\modules\help\Module',
+//     	],
+    	'order' => [//订单模块
+    		'class' => 'backend\modules\order\Module',
     	],
     ],
     

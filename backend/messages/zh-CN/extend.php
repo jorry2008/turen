@@ -74,4 +74,12 @@ return [
 	'Self' => '当前页面打开',
 	'Have links under the link type, cannot be deleted.' => '此项目下还有子项目，不能直接删除。',
 	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',
+	'Are you sure you want to delete this item?' => '确定要删除此选中项吗？',
+	'Create Link Type' => '添加链接类型',
+	'Delete' => '删除',
+	'Have links under the link type, cannot be deleted' => '此链接类型下有链接存在，不能直接删除',
+	'Link Type List' => '链接类型列表',
+	'Relative ID' => '相关id',
+	'Treatment' => 'sssss',
+	'Usefullife' => 'sssss',
 ];

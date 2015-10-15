@@ -2,7 +2,7 @@
 
 namespace backend\modules\extend;
 
-class ExtendModule extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\extend\controllers';
 

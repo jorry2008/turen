@@ -54,8 +54,6 @@ return [
     'Pic Url' => '图片地址',
     'Pic Width' => '图片宽',
     'Picarr' => '组图',
-    'Reset' => '重置',
-    'Search' => '搜索',
     'Seo Title' => 'SEO标题',
     'Source' => '来源',
 	'Article Source' => '文章来源',
@@ -68,11 +66,9 @@ return [
 	'Publish At' => '发布时间',
     'Width' => '宽度',
 	'Top Column' => '顶级栏目',
-	
 	'Page' => '单页面',
     'Post' => '文章',
 	'Download' => '资源下载',
-	
 	'Add Column' => '添加栏目',
 	'Add New Column' => '添加新栏目',
 	'Belong Column' => '所属栏目',
@@ -87,18 +83,14 @@ return [
 	'Column Type' => '栏目类型',
 	'Linkurl' => '链接地址',
 	'Update Status' => '更新状态',
-		
 	'Yes' => '已发布',
 	'No' => '未发布',
-		
 	'Under this column subtopic, are not allowed to delete directly!' => '此分类下有子分类，不允许直接删除.',
 	'Under this category contains content, cannot be deleted!' => '此分类下包含有内容，不能删除.',
-		
 	'Title is required' => '注意：标题为必填项.',
 	'Title Color' => '标题颜色',
 	'Title Bold' => '标题加粗',
 	'With a blank or ", "between multiple keywords' => '多个关键词之间使用空格或逗号","隔开.',
-	'Don\'t show in the frontend,If you don\'t choose' => '如果不选择，在前台将不会显示.',
 	'Accredit' => '授权',
 	'Clear' => '清除',
 	'Ad Type' => '广告位',
@@ -115,7 +107,6 @@ return [
 	'Request is failure!' => '请求失败！',
 	'Run Os' => '支持的操作系统',
 	'Unit' => '单元',
-		
 	'Short Code' => '调用简码',
 	'Size Type' => '尺寸类型',
 	'Pixel' => '像素',

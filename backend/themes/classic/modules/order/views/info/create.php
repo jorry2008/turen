@@ -4,10 +4,10 @@ use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
-/* @var $model common\models\extend\LinkType */
+/* @var $model common\models\order\Info */
 
-$this->title = Yii::t('extend', 'Create Link Type');
-$this->params['breadcrumbs'][] = ['label' => Yii::t('extend', 'Link Type List'), 'url' => ['index']];
+$this->title = Yii::t('order', 'Create Info');
+$this->params['breadcrumbs'][] = ['label' => Yii::t('order', 'Info List'), 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -25,7 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </ul>
            
             <div class="tab-content clearfix">
-                <div class="tab-pane active link-type-create">
+                <div class="tab-pane active info-create">
                     
                     <?= $this->render('_form', [
                         'model' => $model,

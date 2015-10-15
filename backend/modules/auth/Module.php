@@ -2,7 +2,7 @@
 
 namespace backend\modules\auth;
 
-class AuthModule extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\auth\controllers';
 

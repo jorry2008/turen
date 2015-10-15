@@ -59,4 +59,8 @@ return [
 	'Created At' => '添加时间',
 	'Updated At' => '更新时间',
 	'Don\'t show in the frontend,If you don\'t choose' => '如果没有选择，在前台就不会显示',
+	'Parameter Error.' => '参数错误。',
+	'Reset' => '重置',
+	'Search' => '搜索',
+	'Update:' => '修改：',
 ];

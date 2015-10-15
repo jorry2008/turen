@@ -2,7 +2,7 @@
 
 namespace backend\modules\customer;
 
-class CustomerModule extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\customer\controllers';
 

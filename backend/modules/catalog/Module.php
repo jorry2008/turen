@@ -2,7 +2,7 @@
 
 namespace backend\modules\catalog;
 
-class CatalogModule extends \yii\base\Module
+class Module extends \yii\base\Module
 {
     public $controllerNamespace = 'backend\modules\catalog\controllers';
 

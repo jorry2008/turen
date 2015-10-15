@@ -171,6 +171,20 @@ $baseUrl = Yii::getAlias('@web');
                     	//局部设置
                     	'items' => [
                     		['label' => '<i class="fa fa-dashboard"></i><span>后台首页</span>', 'url' => ['/user/common/default']],
+                    		['label' => '<i class="fa fa-shopping-cart"></i><span>订单&预约</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    			'items' => [
+                    				['label' => '<i class="fa fa-building-o"></i><span>订单管理</span>', 'url' => ['/order/info/index']],
+                    				['label' => '<i class="fa fa-calendar"></i><span>预约管理</span>', 'url' => ['/order/call/index']],
+                    			]
+                    		],
+                    		['label' => '<i class="fa fa-user-plus"></i><span>用户&地址</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+                    			'items' => [
+                    				['label' => '<i class="fa fa-user"></i><span>用户列表</span>', 'url' => ['/customer/customer/index']],
+                    				['label' => '<i class="fa fa-users"></i><span>用户组列表</span>', 'url' => ['/customer/customer-group/index']],
+                    				['label' => '<i class="fa fa-map-marker"></i><span>地址批量管理</span>', 'url' => ['/customer/customer-address/index']],
+//                                 	['label' => '<i class="fa fa-leaf"></i><span>用户收藏</span>', 'url' => ['##']],
+                    			]
+                    		],
                     		['label' => '<i class="fa fa-wordpress"></i><span>内容管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                     			'items' => [
                     				['label' => '<i class="fa fa-th-large"></i><span>栏目管理</span>', 'url' => ['/cms/column/index']],
@@ -188,13 +202,13 @@ $baseUrl = Yii::getAlias('@web');
                     					['label' => '<i class="fa fa-line-chart"></i><span>广告统计</span>', 'url' => ['/cms//']],
                     			]
                     		],
-                            ['label' => '<i class="fa fa-cubes "></i><span>产品&分类</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
-                                'items' => [
-                                    ['label' => '<i class="fa fa-leaf"></i><span>产品管理</span>', 'url' => ['/catalog/product/index']],
-                                    ['label' => '<i class="fa fa-leaf"></i><span>分类管理</span>', 'url' => ['/catalog/category/index']],
-                                    ['label' => '<i class="fa fa-leaf"></i><span>品牌管理</span>', 'url' => ['/catalog/brand/index']],
-                                ]
-                            ],
+//                             ['label' => '<i class="fa fa-cubes "></i><span>产品&分类</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+//                                 'items' => [
+//                                     ['label' => '<i class="fa fa-leaf"></i><span>产品管理</span>', 'url' => ['/catalog/product/index']],
+//                                     ['label' => '<i class="fa fa-leaf"></i><span>分类管理</span>', 'url' => ['/catalog/category/index']],
+//                                     ['label' => '<i class="fa fa-leaf"></i><span>品牌管理</span>', 'url' => ['/catalog/brand/index']],
+//                                 ]
+//                             ],
                     		['label' => '<i class="fa fa-plug"></i><span>扩展模块</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                     			'items' => [
                     				['label' => '<i class="fa fa-outdent"></i><span>菜单管理</span>', 'url' => ['/extend/nav/index']],
@@ -205,21 +219,13 @@ $baseUrl = Yii::getAlias('@web');
 									['label' => '<i class="fa fa-bookmark-o"></i><span>碎片管理</span>', 'url' => ['/extend/fragment/index']],
                     			]
                     		],
-                            ['label' => '<i class="fa fa-user-plus"></i><span>用户&地址</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
-                                'items' => [
-                                    ['label' => '<i class="fa fa-user"></i><span>用户列表</span>', 'url' => ['/customer/customer/index']],
-                                    ['label' => '<i class="fa fa-users"></i><span>用户组列表</span>', 'url' => ['/customer/customer-group/index']],
-                                    ['label' => '<i class="fa fa-map-marker"></i><span>地址批量管理</span>', 'url' => ['/customer/customer-address/index']],
-                                	['label' => '<i class="fa fa-leaf"></i><span>用户收藏</span>', 'url' => ['##']],
-                                ]
-                            ],
-							['label' => '<i class="fa fa-leaf"></i><span>微信公众平台</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
-                    		['label' => '<i class="fa fa-leaf"></i><span>帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
-                    			'items' => [
-                    				['label' => '<i class="fa fa-leaf"></i><span>帮助管理</span>', 'url' => ['/help/help/index']],
-                    				['label' => '<i class="fa fa-leaf"></i><span>添加帮助</span>', 'url' => ['/help/help/create']],
-                    			]
-                    		],
+// 							['label' => '<i class="fa fa-leaf"></i><span>微信公众平台</span><i class="fa fa-angle-left pull-right"></i>', 'url' => ['###']],
+//                     		['label' => '<i class="fa fa-leaf"></i><span>帮助系统</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
+//                     			'items' => [
+//                     				['label' => '<i class="fa fa-leaf"></i><span>帮助管理</span>', 'url' => ['/help/help/index']],
+//                     				['label' => '<i class="fa fa-leaf"></i><span>添加帮助</span>', 'url' => ['/help/help/create']],
+//                     			]
+//                     		],
                     		['label' => '<i class="fa fa-users"></i><span>管理员管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                         		'items' => [
                             		['label' => '<i class="fa fa-user"></i><span>管理员列表</span>', 'url' => ['/user/user/index']],
@@ -231,11 +237,11 @@ $baseUrl = Yii::getAlias('@web');
                     		['label' => '<i class="fa fa-gears"></i><span>系统管理</span><i class="fa fa-angle-left pull-right"></i>', 'url' => 'javascript:;',
                         		'items' => [
                             		['label' => '<i class="fa fa-gear"></i><span>系统配置</span>', 'url' => ['/system/config/config']],
-                            		['label' => '<i class="fa fa-folder-open-o"></i><span>缓存管理</span>', 'url' => ['/system/cache/index']],
-                            		['label' => '<i class="fa fa-database"></i><span>数据库管理</span>', 'url' => ['/system/db/index']],
+//                             		['label' => '<i class="fa fa-folder-open-o"></i><span>缓存管理</span>', 'url' => ['/system/cache/index']],
+//                             		['label' => '<i class="fa fa-database"></i><span>数据库管理</span>', 'url' => ['/system/db/index']],
                             		['label' => '<i class="fa fa-folder-open-o"></i><span>公共数据</span>', 'url' => ['/system/cascade-data/index']],
-                            		['label' => '<i class="fa fa-folder-open-o"></i><span>操作日志</span>', 'url' => ['/system/log/index']],
-                        		    ['label' => '<i class="fa fa-trash-o"></i><span>回收总站</span>', 'url' => ['/system/trash/index']],
+//                             		['label' => '<i class="fa fa-folder-open-o"></i><span>操作日志</span>', 'url' => ['/system/log/index']],
+//                         		    ['label' => '<i class="fa fa-trash-o"></i><span>回收总站</span>', 'url' => ['/system/trash/index']],
                         		]
                     		],
                     		['label' => '<i class="fa fa-flag-o"></i><span>关于我们</span>', 'url' => ['/user/common/about']],
