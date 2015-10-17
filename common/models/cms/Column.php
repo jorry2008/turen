@@ -27,6 +27,7 @@ use yii\behaviors\TimestampBehavior;
  */
 class Column extends \yii\db\ActiveRecord
 {
+	const CMS_TYPE_STRUCT = 0;
     const CMS_TYPE_PAGE = 1;
     const CMS_TYPE_LIST = 2;
     const CMS_TYPE_IMG = 3;
@@ -207,6 +208,30 @@ class Column extends \yii\db\ActiveRecord
     public function getPage()
     {
     	return $this->hasOne(Page::className(), ['column_id'=>'id']);
+    }
+    
+    /**
+     * 一对多
+     */
+    public function getPost()
+    {
+    	return $this->hasMany(Post::className(), ['column_id' => 'id']);
+    }
+    
+    /**
+     * 一对多
+     */
+    public function getImg()
+    {
+    	return $this->hasMany(Img::className(), ['column_id' => 'id']);
+    }
+    
+    /**
+     * 一对多
+     */
+    public function getDownload()
+    {
+    	return $this->hasMany(Download::className(), ['column_id' => 'id']);
     }
     
     /**

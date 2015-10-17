@@ -116,7 +116,7 @@ $('.cms-class-index .cms-order').focus(function() {
 	                            	return $model->status?$on:$off;
 	                            },
                             ],
-                			'updated_at:datetime',
+                			'created_at:datetime',
                             [
 	                            'class' => 'yii\grid\ActionColumn',
 	                            'header' => Yii::t('common', 'Opration'),

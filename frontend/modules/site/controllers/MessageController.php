@@ -4,9 +4,9 @@ namespace frontend\modules\site\controllers;
 
 class MessageController extends \frontend\components\Controller
 {
-    public function actionIndex()
+    public function actionSend()
     {
-        return $this->render('index');
+        return $this->render('send');
     }
 
 }

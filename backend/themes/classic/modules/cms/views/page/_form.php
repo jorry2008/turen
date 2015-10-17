@@ -55,6 +55,7 @@ if($model->isNewRecord) {
     
         <?= $form->field($model, 'order')->input('number') ?>
         
+        <?php //->inline() ?>
         <?= $form->field($model, 'status')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('common', 'Don\'t show in the frontend,If you don\'t choose'))->radioList([1=>Yii::t('common', 'Yes'), 0=>Yii::t('common', 'No')]) ?>
     	
         <div class="form-group">

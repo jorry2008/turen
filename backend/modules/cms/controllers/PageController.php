@@ -73,7 +73,8 @@ class PageController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        	return $this->redirect(['index']);
+//             return $this->redirect(['view', 'id' => $model->id]);
         } else {
 //         	$web = Yii::getAlias('@web');
 //         	$model->content = preg_replace('/(<img.+src=\"?)(.+)(\/upload\/.+\.(jpg|gif|bmp|bnp|png)\"?.+>)/i',"\${1}".$web."\${3}", $model->content);

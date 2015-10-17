@@ -117,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
 					            },
 				            ],
 				            // 'deleted',
-				            'updated_at:datetime',
+				            'created_at:datetime',
 				            // 'created_at',
 	            
 	                        [

@@ -50,11 +50,12 @@ $parentIds = ArrayHelper::merge(['0'=>Yii::t('cms', 'Top Column')], ArrayHelper:
 		]);
 		?>
         
-        <?= $form->field($model, 'type')->dropDownList(Column::getType()) ?>
-        
         <?php 
-        if($model->isNewRecord)
+        if($model->isNewRecord) {
+        	$model->type = Column::CMS_TYPE_PAGE;
+        	echo $form->field($model, 'type')->dropDownList(ArrayHelper::merge(Column::getType(), [Column::CMS_TYPE_STRUCT=>Yii::t('cms', 'Struct')]));
         	echo $form->field($model, 'short_code')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Used for the frontend call.'))->textInput(['maxlength' => true]);
+        }
         ?>
         
         <?= $form->field($model, 'parent_id')->dropDownList($parentIds) ?>

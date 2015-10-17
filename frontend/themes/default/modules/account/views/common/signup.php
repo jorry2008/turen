@@ -46,11 +46,14 @@ $this->params['breadcrumbs'][] = $this->title;
 	                <?= $form->field($model, 'password')->passwordInput()->label(false) ?>
 	            </div>
 	            
+	            <!-- 
 	            <div class="login_select clearfix ls_yzm">
 	                <input type="text" name="mobile_yzm" autocomplete="off" class="autoCode" id="autoCode">
 	                <span>验证码</span>
 	                <input type="button" id="hqyzm" value="发送验证码到邮箱/手机" class="send_auto">
 	            </div>
+	             -->
+	             
 	            <div class="safe accept_service clearfix">
 	                <span class="safe_login">
 	                    <input type="checkbox" checked="checked" id="as_service">

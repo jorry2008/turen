@@ -68,6 +68,7 @@ return [
 	'Top Column' => '顶级栏目',
 	'Page' => '单页面',
     'Post' => '文章',
+	'Struct' => '结构',
 	'Download' => '资源下载',
 	'Add Column' => '添加栏目',
 	'Add New Column' => '添加新栏目',

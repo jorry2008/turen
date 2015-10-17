@@ -76,15 +76,14 @@ $this->registerJs("
                     <?php } else { ?>
                     	<?= Html::a('您好：'.Yii::$app->getUser()->getIdentity()->username, ['/account/common/center'], ['rel'=>'nofollow', 'class'=>('account/common/center' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <?php } ?>
-                    
                     <span class="htr_line"></span>
-                    <?= Html::a('快速下单', ['/site/qick-order/create-order'], ['rel'=>'nofollow', 'class'=>('site/qick-order/create-order' == Yii::$app->requestedRoute)?'active':'']) ?>
+                    <?= Html::a('快速下单', ['/site/order/qick-order'], ['class'=>('site/order/qick-order' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a('服务流程', ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('服务流程', ['/site/page/view', 'name'=>'service'], ['class'=>('site/page/view' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a('新闻中心', ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('新闻中心', ['/site/news/list'], ['class'=>('site/news/list' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a('搬家百科', ['/account/common/login'], ['rel'=>'nofollow']) ?>
+                    <?= Html::a('搬家百科', ['/site/baike/list'], ['class'=>('site/baike/list' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <?php 
                     if(!Yii::$app->getUser()->isGuest) {
                     	echo '<span class="htr_line"></span>';

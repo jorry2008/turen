@@ -12,6 +12,7 @@ use common\models\account\PasswordResetRequestForm;
 use common\models\account\ResetPasswordForm;
 use common\models\account\SignupForm;
 use common\models\account\ContactForm;
+use common\models\cms\Column;
 
 /**
  * Site controller
@@ -36,7 +37,10 @@ class HomeController extends \frontend\components\Controller
 
     public function actionIndex()
     {
-        return $this->render('index');
+    	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->all();
+    	return $this->render('index', [
+    		'columns' => $columns,//推荐栏目到首页
+    	]);
     }
 
     public function actionContact()
