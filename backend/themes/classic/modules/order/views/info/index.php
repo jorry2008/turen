@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use common\models\order\Info;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\order\InfoSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -73,8 +75,29 @@ $this->params['breadcrumbs'][] = $this->title;
 				            // 'mobile',
 				            // 'email:email',
 				            // 'order_note',
-				            'discount',
-        					'order_amount',
+				            'discount:currency',
+        					'order_amount:currency',
+        					[
+	        					'attribute' => 'is_view',
+	        					'format' => 'html',
+	        					'filter' => [Info::STATUS_YES=>Yii::t('common', 'Yes'), Info::STATUS_NO=>Yii::t('common', 'No')],
+	        					'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+	        					'value' => function($model){
+	        						$on = '<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>';
+	        						$off = '<small class="label bg-red">'.Yii::t('common', 'No').'</small>';
+	        						return $model->is_view?$on:$off;
+	        					},
+        					], [
+        						'attribute' => 'is_send',
+        						'format' => 'html',
+        						'filter' => [Info::STATUS_YES=>Yii::t('common', 'Yes'), Info::STATUS_NO=>Yii::t('common', 'No')],
+        						'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+        						'value' => function($model){
+        							$on = '<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>';
+        							$off = '<small class="label bg-red">'.Yii::t('common', 'No').'</small>';
+        							return $model->is_send?$on:$off;
+        						},
+        					],
 // 				            'cms_ad_id',
 				            // 'referer',
 // 				            'add_time',

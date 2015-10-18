@@ -18,7 +18,7 @@ class CallSearch extends Call
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'deleted', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'customer_id', 'deleted', 'created_at', 'is_send', 'is_view', 'updated_at'], 'integer'],
             [['username', 'contact', 'order_note'], 'safe'],
         ];
     }
@@ -64,6 +64,8 @@ class CallSearch extends Call
             'id' => $this->id,
             'customer_id' => $this->customer_id,
             'deleted' => $this->deleted,
+        	'is_send' => $this->is_send,
+        	'is_view' => $this->is_view,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

@@ -6,6 +6,9 @@ use yii\widgets\Breadcrumbs;
 use backend\assets\AppAsset;
 use backend\assets\SlimScrollAsset;
 
+use common\models\order\Call;
+use common\models\order\Info;
+
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -72,35 +75,67 @@ $baseUrl = Yii::getAlias('@web');
                     <div class="navbar-custom-menu">
                         <ul class="nav navbar-nav">
                         	
-                        	<!-- Notifications: style can be found in dropdown.less -->
+                        	<!-- 订单通知 -->
+                        	<?php 
+                            $orderInfos = Info::find()->where(['is_view'=>Info::STATUS_NO])->orderBy('created_at DESC')->all();
+                            ?>
                             <li class="dropdown notifications-menu">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-bell-o"></i>
-                                    <span class="label label-warning">1</span>
+                                    <span class="label label-warning"><?= count($orderInfos) ?></span>
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li class="header">您有一个通知</li>
+                                    <li class="header"><?php echo ($orderInfos)?'您有新订单':'没有订单'; ?></li>
                                     <li>
                                         <ul class="menu">
+                                        <?php 
+                                        foreach ($orderInfos as $key=>$info) {
+                                        ?>
                                             <li>
-                                                <a href="javascript:;">
-                                                    <i class="fa fa-users text-aqua"></i>今天有5个会员加入
+                                                <a href="<?= Yii::$app->getUrlManager()->createUrl(['/order/info/view', 'id'=>$info->id]) ?>">
+                                                    <small class="label bg-green"><?= ($key+1) ?></small> <?= $info->consignee ?>
                                                 </a>
                                             </li>
+                                        <?php } ?>
                                         </ul>
                                     </li>
                                     <li class="footer">
-                                        <a href="javascript:;">查看所有</a>
+                                   		<?= Html::a('查看所有订单' ,['/order/info/index']) ?>
                                     </li>
                                 </ul>
                             </li>
                             
+                            <!-- 预约通知 -->
+                            <?php 
+                            $orderCalls = Call::find()->where(['is_view'=>Call::STATUS_NO])->orderBy('created_at DESC')->all();
+                            ?>
                             <li class="notifications-menu">
                                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                     <i class="fa fa-comment-o"></i>
-                                    <span class="label label-warning">6</span>
+                                    <span class="label label-warning"><?= count($orderCalls) ?></span>
                                 </a>
+                                <ul class="dropdown-menu">
+                                    <li class="header"><?php echo ($orderCalls)?'您有新预约':'没有预约'; ?></li>
+                                    <li>
+                                        <ul class="menu">
+                                        <?php 
+                                        foreach ($orderCalls as $key=>$call) {
+                                        ?>
+                                            <li>
+                                                <a href="<?= Yii::$app->getUrlManager()->createUrl(['/order/call/view', 'id'=>$call->id]) ?>">
+                                                    <small class="label bg-green"><?= ($key+1) ?></small> <?= $call->username ?>
+                                                </a>
+                                            </li>
+                                        <?php } ?>
+                                        </ul>
+                                    </li>
+                                    <li class="footer">
+                                    	<?= Html::a('查看所有预约' ,['/order/call/index']) ?>
+                                    </li>
+                                </ul>
                             </li>
+                            
+                            <!-- github链接 -->
                             <li>
                                 <a href="https://github.com/turen-one/turen" target="_blank">
                                     <i class="fa fa-github"></i>
@@ -108,7 +143,7 @@ $baseUrl = Yii::getAlias('@web');
                                 </a>
                             </li>
                             
-                            <!-- User Account: style can be found in dropdown.less -->
+                            <!-- 管理员选项 -->
                             <li class="dropdown user user-menu">
                                 <a data-toggle="dropdown" href="javascript:;" class="dropdown-toggle" aria-expanded="false">
                                     <?= Html::img($baseUrl.'/images/user/user2-160x160.jpg', ['class'=>'user-image', 'alt'=>'User Image'])?>

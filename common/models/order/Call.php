@@ -13,6 +13,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $username
  * @property string $contact
  * @property string $order_note
+ * @property string $is_send
+ * @property string $is_view
  * @property integer $deleted
  * @property string $created_at
  * @property string $updated_at
@@ -51,7 +53,7 @@ class Call extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'deleted', 'created_at', 'updated_at'], 'integer'],
+            [['customer_id', 'deleted', 'created_at', 'is_send', 'is_view', 'updated_at'], 'integer'],
             [['username', 'contact'], 'string', 'max' => 60],
             [['order_note'], 'string', 'max' => 255]
         ];
@@ -69,6 +71,8 @@ class Call extends \yii\db\ActiveRecord
             'contact' => Yii::t('order', 'Contact'),
             'order_note' => Yii::t('order', 'Order Note'),
             'deleted' => Yii::t('order', 'Deleted'),
+        	'is_send' => Yii::t('order', 'Is Send'),
+        	'is_view' => Yii::t('order', 'Is View'),
             'created_at' => Yii::t('order', 'Created At'),
             'updated_at' => Yii::t('order', 'Updated At'),
         ];

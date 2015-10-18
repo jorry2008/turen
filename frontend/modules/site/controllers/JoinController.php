@@ -4,9 +4,13 @@ namespace frontend\modules\site\controllers;
 
 class JoinController extends \frontend\components\Controller
 {
-    public function actionIndex()
+	public function actionList()
+	{
+		return $this->render('list');
+	}
+	
+    public function actionView()
     {
-        return $this->render('index');
+        return $this->render('view');
     }
-
 }

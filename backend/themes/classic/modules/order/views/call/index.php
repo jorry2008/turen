@@ -3,6 +3,8 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 
+use common\models\order\Call;
+
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\order\CallSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -53,17 +55,39 @@ $this->params['breadcrumbs'][] = $this->title;
         			'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
 // 			                'id',
-        					[
-	        					'attribute' => 'username',
-	        					'format' => 'raw',
-	        					'value' => function($model){
-	        						return Html::a($model->username, ['update', 'id'=>$model->id]);
-	        					},
-        					],
-				            'customer_id',
+//         					[
+// 	        					'attribute' => 'username',
+// 	        					'format' => 'raw',
+// 	        					'value' => function($model){
+// 	        						return Html::a($model->username, ['update', 'id'=>$model->id]);
+// 	        					},
+//         					],
+				            'username',
 				            'contact',
 				            'order_note',
 				            // 'deleted',
+	        				'customer_id',
+        					[
+	        					'attribute' => 'is_view',
+	        					'format' => 'html',
+	        					'filter' => [Call::STATUS_YES=>Yii::t('common', 'Yes'), Call::STATUS_NO=>Yii::t('common', 'No')],
+	        					'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+	        					'value' => function($model){
+	        						$on = '<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>';
+	        						$off = '<small class="label bg-red">'.Yii::t('common', 'No').'</small>';
+	        						return $model->is_view?$on:$off;
+	        					},
+        					], [
+	        					'attribute' => 'is_send',
+	        					'format' => 'html',
+	        					'filter' => [Call::STATUS_YES=>Yii::t('common', 'Yes'), Call::STATUS_NO=>Yii::t('common', 'No')],
+	        					'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
+	        					'value' => function($model){
+	        						$on = '<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>';
+	        						$off = '<small class="label bg-red">'.Yii::t('common', 'No').'</small>';
+	        						return $model->is_send?$on:$off;
+	        					},
+        					],
 				            'created_at:datetime',
 				            // 'updated_at',
             

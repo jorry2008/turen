@@ -18,7 +18,7 @@ class InfoSearch extends Info
     public function rules()
     {
         return [
-            [['id', 'customer_id', 'country', 'province', 'city', 'district', 'cms_ad_id', 'add_time', 'confirm_time', 'payment_time', 'deleted', 'created_at', 'updated_at'], 'integer'],
+            [['id', 'customer_id', 'country', 'province', 'city', 'district', 'cms_ad_id', 'add_time', 'confirm_time', 'payment_time', 'is_send', 'is_view', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['order_no', 'consignee', 'address', 'zipcode', 'tel', 'mobile', 'email', 'order_note', 'referer', 'payment_note'], 'safe'],
             [['order_amount', 'discount'], 'number'],
         ];
@@ -75,6 +75,8 @@ class InfoSearch extends Info
             'confirm_time' => $this->confirm_time,
             'payment_time' => $this->payment_time,
             'deleted' => $this->deleted,
+        	'is_send' => $this->is_send,
+        	'is_view' => $this->is_view,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

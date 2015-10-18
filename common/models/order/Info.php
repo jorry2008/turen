@@ -30,6 +30,8 @@ use yii\behaviors\TimestampBehavior;
  * @property string $confirm_time
  * @property string $payment_time
  * @property string $payment_note
+ * @property string $is_send
+ * @property string $is_view
  * @property integer $deleted
  * @property string $created_at
  * @property string $updated_at
@@ -68,7 +70,7 @@ class Info extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['customer_id', 'country', 'province', 'city', 'district', 'cms_ad_id', 'add_time', 'confirm_time', 'payment_time', 'deleted', 'created_at', 'updated_at'], 'integer'],
+            [['customer_id', 'country', 'province', 'city', 'district', 'cms_ad_id', 'add_time', 'confirm_time', 'payment_time', 'is_send', 'is_view', 'deleted', 'created_at', 'updated_at'], 'integer'],
             [['order_amount', 'discount'], 'number'],
             [['order_no'], 'string', 'max' => 50],
             [['consignee', 'zipcode', 'tel', 'mobile', 'email'], 'string', 'max' => 60],
@@ -105,6 +107,8 @@ class Info extends \yii\db\ActiveRecord
             'payment_time' => Yii::t('order', 'Payment Time'),
             'payment_note' => Yii::t('order', 'Payment Note'),
             'deleted' => Yii::t('order', 'Deleted'),
+        	'is_send' => Yii::t('order', 'Is Send'),
+        	'is_view' => Yii::t('order', 'Is View'),
             'created_at' => Yii::t('order', 'Created At'),
             'updated_at' => Yii::t('order', 'Updated At'),
         ];

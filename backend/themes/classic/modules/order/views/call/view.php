@@ -48,6 +48,8 @@ $this->params['breadcrumbs'][] = $this->title;
 		            'username',
 		            'contact',
 		            'order_note',
+                	'is_send',
+                	'is_view',
 		            'deleted',
 		            'created_at:datetime',
 		            'updated_at:datetime',
