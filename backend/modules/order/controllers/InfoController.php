@@ -52,6 +52,10 @@ class InfoController extends Controller
      */
     public function actionView($id)
     {
+    	//更新已读
+    	$model = $this->findModel($id);
+    	$model->is_view = Info::STATUS_YES;
+    	$model->save(false);
         return $this->render('view', [
             'model' => $this->findModel($id),
         ]);

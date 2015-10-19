@@ -5,6 +5,8 @@ namespace common\models\order;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
+use common\models\account\Customer;
+
 /**
  * This is the model class for table "{{%order_call}}".
  *
@@ -76,6 +78,39 @@ class Call extends \yii\db\ActiveRecord
             'created_at' => Yii::t('order', 'Created At'),
             'updated_at' => Yii::t('order', 'Updated At'),
         ];
+    }
+    
+    /**
+     * 预约
+     * @param array $params
+     * @return number
+     */
+    public function call($params)
+    {
+    	$this->isNewRecord = true;//新建
+    	$this->username = empty($params['name'])?'未知':$params['name'];
+    	$this->contact = $params['phone'];
+    	
+    	//检查电话
+//     	return 2;//电话有误
+    	
+    	
+    	//判断用户是否登录
+    	if(!Yii::$app->getUser()->isGuest) {//已经登录
+    		$this->customer_id = Yii::$app->getUser()->id;
+    	}
+    	
+    	//入库
+    	$this->save(false);
+    	return 0;//入库成功
+    }
+    
+    /**
+     * 一对一
+     */
+    public function getCustomer()
+    {
+    	return $this->hasOne(Customer::className(), ['id' => 'customer_id']);
     }
 
     /**

@@ -44,7 +44,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'options' => ['class' => 'table table-hover table-striped table-bordered detail-view'],
                 'attributes' => [
                     'id',
-		            'customer_id',
+                	[
+                		'attribute' => 'customer_id',
+                		'format' => 'html',
+                		'value' => empty($model->customer)?'<i>[匿名客户]</i>':$model->customer->username,
+                	],
 		            'username',
 		            'contact',
 		            'order_note',

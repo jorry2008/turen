@@ -66,8 +66,13 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'contact',
 				            'order_note',
 				            // 'deleted',
-	        				'customer_id',
         					[
+	        					'attribute' => 'customer_id',
+	        					'format' => 'html',
+	        					'value' => function($model){
+	        						return empty($model->customer)?'<i>[匿名客户]</i>':$model->customer->username;
+	        					},
+        					], [
 	        					'attribute' => 'is_view',
 	        					'format' => 'html',
 	        					'filter' => [Call::STATUS_YES=>Yii::t('common', 'Yes'), Call::STATUS_NO=>Yii::t('common', 'No')],

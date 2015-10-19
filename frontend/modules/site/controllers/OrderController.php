@@ -2,8 +2,32 @@
 
 namespace frontend\modules\site\controllers;
 
+use Yii;
+use yii\helpers\Json;
+use common\models\order\Call;
+use common\models\order\Info;
+
 class OrderController extends \frontend\components\Controller
 {
+	/**
+	 * ajax预约
+	 * @return string
+	 */
+	public function actionCall()
+	{
+		if(Yii::$app->getRequest()->isAjax) {
+			$params = Yii::$app->getRequest()->get();
+			if($params) {
+				$model = new Call;
+				$result = $model->call($params);
+				echo Json::encode(['result'=>$result, 'msg'=>'']);
+			}
+			Yii::$app->end();
+		} else {
+			//异常
+		}
+	}
+	
 	/**
 	 * 快速创建订单
 	 */
@@ -13,10 +37,10 @@ class OrderController extends \frontend\components\Controller
     }
     
     /**
-     * 预约
+     * 在线预约
      * @return string
      */
-    public function actionCall()
+    public function actionOnlineCall()
     {
     	return $this->render('call');
     }

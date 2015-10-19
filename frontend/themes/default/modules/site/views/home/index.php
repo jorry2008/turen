@@ -9,6 +9,8 @@ use frontend\assets\JcarouselliteAsset;
 FlexsliderAsset::register($this);
 JcarouselliteAsset::register($this);
 
+$callUrl = Yii::$app->getUrlManager()->createUrl(['/site/order/call']);
+
 //使用插件
 $this->registerJs("
 	$('.flexslider').flexslider({
@@ -38,6 +40,36 @@ $this->registerJs("
 		$('.content_'+(i+1)).addClass('on');
 	}, function(){
 		//nothing
+	});
+	
+	$('.input-label').keydown(function(){
+		$(this).prev().css('left', '-999em');
+	}).blur(function(){
+		var val = $.trim($(this).val());
+		if(val == '') {
+			$(this).val('');
+			$(this).prev().css('left', '11px');
+		}
+	});
+	
+	//预约提交
+	$('#call-button').click(function(){
+		var name = $.trim($('#yourname').val());
+		var phone = $.trim($('#yourphone').val());
+		if(name != '' && phone != '') {
+			$.get('$callUrl', {name: name, phone: phone},function(data){
+				//data
+				console.debug('提交完成');
+				//0,预约成功，马安排给您回电
+				
+				//1,您已经预约，请耐心等待
+				
+				//2,您填写的电话号码格式有误，请检查后再预约
+				
+			});
+		} else {
+			alert('预约称呼或者电话不能为空，请填写后再预约。');
+		}
 	});
 ");
 
@@ -94,14 +126,14 @@ $this->registerJs("
 		            </p>
 		        </div>
 		        <div class="form_line">
-		            <label class="label" for="">您的称呼</label>
-		            <input type="text" class="text outcontrol" value="" name="yourname" style="border-color: rgb(221, 221, 221);">
+		            <label class="label" for="yourname">您的称呼</label>
+		            <input type="text" id="yourname" class="text outcontrol input-label" value="" name="yourname">
 		        </div>
 		        <div class="form_line">
-		            <label class="label" for="">您的电话</label>
-		            <input type="text" class="text outcontrol" value="" name="yourphone">
+		            <label class="label" for="yourphone">您的电话</label>
+		            <input type="text" id="yourphone" class="text outcontrol input-label" value="" name="yourphone">
 		        </div>
-		        <input type="button" value="预约搬家" class="form_btn">
+		        <input id="call-button" type="button" value="预约搬家" class="form_btn">
 		    </div>
 		</div>
 		
