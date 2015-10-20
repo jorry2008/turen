@@ -94,6 +94,7 @@ class Call extends \yii\db\ActiveRecord
     	$this->isNewRecord = true;//新建
     	$this->username = empty($params['name'])?'未知':$params['name'];
     	$this->contact = $params['phone'];
+    	$this->ip = Yii::$app->getRequest()->userIP;
     	
     	//检查电话
 //     	return 2;//电话有误
