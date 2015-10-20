@@ -62,9 +62,15 @@ $this->params['breadcrumbs'][] = $this->title;
 // 	        						return Html::a($model->username, ['update', 'id'=>$model->id]);
 // 	        					},
 //         					],
-				            'username',
+        					[
+	        					'attribute' => 'username',
+	        					'format' => 'raw',
+	        					'value' => function($model){
+	        						return Html::a(empty($model->username)?'<i>[未留名]</i>':$model->username, ['view', 'id'=>$model->id]);
+	        					},
+        					],
 				            'contact',
-				            'order_note',
+				            'call_note',
 				            // 'deleted',
         					[
 	        					'attribute' => 'customer_id',
@@ -98,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
                         [
                             'class' => 'yii\grid\ActionColumn',
-                        	'template' => '{view} {delete}',
+                        	'template' => '{update} {delete}',
                             'header' => Yii::t('common', 'Opration'),
                         ],
                     ],

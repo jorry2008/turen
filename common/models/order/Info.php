@@ -30,6 +30,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $confirm_time
  * @property string $payment_time
  * @property string $payment_note
+ * @property string $ip
  * @property string $is_send
  * @property string $is_view
  * @property integer $deleted
@@ -74,7 +75,8 @@ class Info extends \yii\db\ActiveRecord
             [['order_amount', 'discount'], 'number'],
             [['order_no'], 'string', 'max' => 50],
             [['consignee', 'zipcode', 'tel', 'mobile', 'email'], 'string', 'max' => 60],
-            [['address', 'order_note', 'referer', 'payment_note'], 'string', 'max' => 255]
+            [['address', 'order_note', 'referer', 'payment_note'], 'string', 'max' => 255],
+        	[['ip'], 'safe']
         ];
     }
 
@@ -106,6 +108,7 @@ class Info extends \yii\db\ActiveRecord
             'confirm_time' => Yii::t('order', 'Confirm Time'),
             'payment_time' => Yii::t('order', 'Payment Time'),
             'payment_note' => Yii::t('order', 'Payment Note'),
+        	'ip' => Yii::t('order', 'IP'),
             'deleted' => Yii::t('order', 'Deleted'),
         	'is_send' => Yii::t('order', 'Is Send'),
         	'is_view' => Yii::t('order', 'Is View'),

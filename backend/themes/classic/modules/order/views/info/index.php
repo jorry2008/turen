@@ -60,10 +60,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	        					'attribute' => 'order_no',
 	        					'format' => 'raw',
 	        					'value' => function($model){
-	        						return Html::a($model->order_no, ['update', 'id'=>$model->id]);
+	        						return Html::a($model->order_no, ['view', 'id'=>$model->id]);
 	        					},
         					],
-				            'customer_id',
 				            'consignee',
 // 				            'country',
 				            // 'province',
@@ -75,8 +74,10 @@ $this->params['breadcrumbs'][] = $this->title;
 				            // 'mobile',
 				            // 'email:email',
 				            // 'order_note',
-				            'discount:currency',
+// 				            'discount:currency',
         					'order_amount:currency',
+//         					'ip',
+        					'customer_id',
         					[
 	        					'attribute' => 'is_view',
 	        					'format' => 'html',
@@ -110,7 +111,7 @@ $this->params['breadcrumbs'][] = $this->title;
             
                         [
                             'class' => 'yii\grid\ActionColumn',
-                        	'template' => '{view} {delete}',
+                        	'template' => '{update} {delete}',
                             'header' => Yii::t('common', 'Opration'),
                         ],
                     ],

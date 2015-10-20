@@ -51,4 +51,6 @@ return [
     'Updated At' => '修改时间',
 	'Consignee' => '客户',
     'Username' => '称呼',
+	'IP' => 'IP地址',
+	'Call Note' => '预约备注',
 ];

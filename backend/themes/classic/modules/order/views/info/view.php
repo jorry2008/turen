@@ -65,7 +65,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		            'confirm_time:datetime',
 		            'payment_time:datetime',
 		            'payment_note:datetime',
-		            'deleted',
+                	'ip',
 		            'created_at:datetime',
 		            'updated_at:datetime',
                 ],

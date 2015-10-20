@@ -51,7 +51,7 @@ use yii\bootstrap\ActiveForm;
 	
 	    <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
 	
-	    <?= $form->field($model, 'order_note')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'order_note')->textarea(['maxlength' => true]) ?>
 	
 	    <?= $form->field($model, 'order_amount')->textInput(['maxlength' => true]) ?>
 	
@@ -67,7 +67,7 @@ use yii\bootstrap\ActiveForm;
 	
 	    <?= $form->field($model, 'payment_time')->textInput(['maxlength' => true]) ?>
 	
-	    <?= $form->field($model, 'payment_note')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'payment_note')->textarea(['maxlength' => true]) ?>
 
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">

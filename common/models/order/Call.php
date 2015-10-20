@@ -14,7 +14,8 @@ use common\models\account\Customer;
  * @property string $customer_id
  * @property string $username
  * @property string $contact
- * @property string $order_note
+ * @property string $call_note
+ * @property string $ip
  * @property string $is_send
  * @property string $is_view
  * @property integer $deleted
@@ -57,7 +58,9 @@ class Call extends \yii\db\ActiveRecord
         return [
             [['customer_id', 'deleted', 'created_at', 'is_send', 'is_view', 'updated_at'], 'integer'],
             [['username', 'contact'], 'string', 'max' => 60],
-            [['order_note'], 'string', 'max' => 255]
+            [['call_note'], 'string', 'max' => 255],
+        	[['ip'], 'safe'],
+        	[['contact'], 'required']
         ];
     }
 
@@ -71,7 +74,8 @@ class Call extends \yii\db\ActiveRecord
             'customer_id' => Yii::t('order', 'Customer ID'),
             'username' => Yii::t('order', 'Username'),
             'contact' => Yii::t('order', 'Contact'),
-            'order_note' => Yii::t('order', 'Order Note'),
+            'call_note' => Yii::t('order', 'Call Note'),
+        	'ip' => Yii::t('order', 'IP'),
             'deleted' => Yii::t('order', 'Deleted'),
         	'is_send' => Yii::t('order', 'Is Send'),
         	'is_view' => Yii::t('order', 'Is View'),

@@ -19,7 +19,7 @@ class CallSearch extends Call
     {
         return [
             [['id', 'customer_id', 'deleted', 'created_at', 'is_send', 'is_view', 'updated_at'], 'integer'],
-            [['username', 'contact', 'order_note'], 'safe'],
+            [['username', 'contact', 'call_note'], 'safe'],
         ];
     }
 
@@ -72,7 +72,7 @@ class CallSearch extends Call
 
         $query->andFilterWhere(['like', 'username', $this->username])
             ->andFilterWhere(['like', 'contact', $this->contact])
-            ->andFilterWhere(['like', 'order_note', $this->order_note]);
+            ->andFilterWhere(['like', 'call_note', $this->call_note]);
 
         return $dataProvider;
     }

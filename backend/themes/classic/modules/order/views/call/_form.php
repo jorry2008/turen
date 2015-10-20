@@ -33,7 +33,7 @@ use yii\bootstrap\ActiveForm;
 
 	    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 	
-	    <?= $form->field($model, 'order_note')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'call_note')->textarea(['maxlength' => true]) ?>
 	
 	    <div class="form-group">
 	        <div class="col-sm-8 col-sm-offset-2">

@@ -24,7 +24,7 @@ use yii\bootstrap\ActiveForm;
 
     <?= $form->field($model, 'contact') ?>
 
-    <?= $form->field($model, 'order_note') ?>
+    <?= $form->field($model, 'call_note') ?>
 
     <?php // echo $form->field($model, 'deleted') ?>
 

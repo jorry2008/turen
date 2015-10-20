@@ -165,7 +165,7 @@ ul, li, ol {
     font-size: 16px;
     height: 40px;
     line-height: 40px;
-    padding: 0 10px;
+    padding: 0 5px;
     position: relative;
 }
 .top_menu .menu ul li.on, .top_menu .menu ul li.active, .top_menu .menu ul li:hover {

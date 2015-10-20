@@ -4,9 +4,9 @@ namespace frontend\modules\site\controllers;
 
 class JiriController extends \frontend\components\Controller
 {
-    public function actionList()
+    public function actionIndex()
     {
-        return $this->render('list');
+        return $this->render('index');
     }
 
 }
