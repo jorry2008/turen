@@ -117,6 +117,21 @@ class Info extends \yii\db\ActiveRecord
         ];
     }
 
+    public function sendOrderMail()
+    {
+    	$form = array();
+    	$form['name'] = '王老五';
+    	$form['contact'] = '13725514524';
+    	 
+    	//, 'html' => 'call-html'
+    	Yii::$app->mailer->compose(['text' => 'call-text'], ['from' => $form])//内容整合？
+    	->setFrom([Yii::$app->params['adminSupportEmail']=>Yii::$app->params['adminSupportName']])//发送来源
+    	->setSubject('邮件标题')//邮件标题？
+    	->setTo('2971030686@qq.com')//发送对象邮箱？
+    	->setBcc(Yii::$app->params['adminBbc'])//密送邮箱
+    	->send();//发送
+    }
+    
     /**
      * @inheritdoc
      * @return InfoQuery the active query used by this AR class.

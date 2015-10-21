@@ -3,6 +3,7 @@
 namespace common\models\order;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 use yii\behaviors\TimestampBehavior;
 
 use common\models\account\Customer;
@@ -26,6 +27,8 @@ class Call extends \yii\db\ActiveRecord
 {
 	const STATUS_YES = 1;
 	const STATUS_NO = 0;
+	
+	const CALL_NAME = '搬家啦';
 	
 	/**
 	 * 以行为的方式处理操作时间
@@ -107,7 +110,33 @@ class Call extends \yii\db\ActiveRecord
     	
     	//入库
     	$this->save(false);
+    	
+    	//通知
+    	$this->sendCallMail();
+    	
     	return 0;//入库成功
+    }
+    
+    /**
+     * 预约邮箱发送
+     */
+    public function sendCallMail()
+    {
+    	$form = array();
+    	$form['name'] = $this->username;
+    	$form['contact'] = $this->contact;
+    	
+    	//ArrayHelper::merge();
+    	$to = explode(',', Yii::$app->params['config']['config_email_to']);
+    	$bcc = Yii::$app->params['config']['config_email_bcc'];
+    	
+    	//, 'html' => 'call-html'
+    	return Yii::$app->mailer->compose(['text' => 'call-text'], ['from' => $form])//内容整合？
+		    	->setFrom([Yii::$app->params['config']['config_email_username']=>Yii::$app->name])//发送来源
+		    	->setSubject(static::CALL_NAME)//邮件标题？
+		    	->setTo($to)//发送对象邮箱？
+		    	->setBcc($bcc)//密送邮箱
+		    	->send();//发送
     }
     
     /**

@@ -167,12 +167,6 @@ return [
         // currencyCode
         ],
         
-        // 文件缓存
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
-            'directoryLevel' => 2
-        ],
-        
         // session配置
 //         'session' => [
 //             'class' => 'yii\web\DbSession',//也可以转移到memcache缓存，CacheSession

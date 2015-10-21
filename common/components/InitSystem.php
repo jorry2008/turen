@@ -53,6 +53,17 @@ class InitSystem extends \yii\base\Component {
 	    // 后台配置
 	    Yii::$app->name = Yii::$app->params['config']['config_site_name'];
 	    
+	    //配置邮箱服务器
+	    
+// 	    fb(Yii::$app->params['config']);
+// 	    ['config_email_host'] =>'smtp.163.com'
+// 	    ['config_email_username'] =>'xiayouqiao2008@163.com'
+// 	    ['config_email_password'] =>'13635862687xyqss'
+// 	    ['config_email_port'] =>25
+// 	    ['config_email_to'] =>'2971030686@qq.com'
+// 	    ['config_email_bcc'] =>'980522557@qq.com'
+	    
+// 	    fb(Yii::$app->mailer->getTransport());
 	    
 	    // ...
 	    
