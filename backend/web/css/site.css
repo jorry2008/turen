@@ -184,6 +184,9 @@ a.desc::after {
     width: 35px;
     text-indent: -999999px;
 }
+.upload_picture {
+	cursor: pointer;
+}
 
 
 

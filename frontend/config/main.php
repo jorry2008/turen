@@ -34,6 +34,11 @@ return [
 	],
 		
     'components' => [
+    	//请求
+    	'request' => [
+    		// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+    		'cookieValidationKey' => '1W0Fp0AOMz3A5fDVLdH1ybjIMQ4vmgNu',
+    	],
     	//前台用户组件
     	'user' => [
 //     		'class' => 'yii\web\User',//默认

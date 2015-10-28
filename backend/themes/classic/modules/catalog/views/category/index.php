@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\helpers\ArrayHelper;
-use common\components\helpers\General;
+use common\helpers\General;
 use common\models\catalog\Category;
 
 /* @var $this yii\web\View */

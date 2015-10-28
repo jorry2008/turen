@@ -8,7 +8,7 @@ use common\models\customer\Customer;
 use common\models\customer\CustomerSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
-use common\components\helpers\General;
+use common\helpers\General;
 use yii\behaviors\TimestampBehavior;
 use yii\helpers\Json;
 use yii\helpers\ArrayHelper;

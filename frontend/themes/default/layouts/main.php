@@ -5,7 +5,7 @@ use yii\helpers\ArrayHelper;
 use yii\widgets\Breadcrumbs;
 use frontend\assets\AppAsset;
 
-use common\components\helpers\General;
+use common\helpers\General;
 use common\models\extend\Nav;
 // use frontend\widgets\Alert;
 

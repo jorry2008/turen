@@ -5,7 +5,7 @@ namespace common\models\extend;
 use Yii;
 use yii\base\ErrorException;
 use yii\behaviors\TimestampBehavior;
-use common\components\helpers\General;
+use common\helpers\General;
 
 /**
  * This is the model class for table "{{%extend_nav}}".

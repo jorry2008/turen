@@ -6,7 +6,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use common\components\helpers\General;
+use common\helpers\General;
 use common\models\cms\Column;
 use backend\components\uploadify\UploadifyWidget;
 

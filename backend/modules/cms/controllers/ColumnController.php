@@ -10,7 +10,7 @@ use yii\web\NotFoundHttpException;
 use yii\helpers\Json;
 
 use common\models\cms\Column;
-use common\components\helpers\General;
+use common\helpers\General;
 
 /**
  * ColumnController implements the CRUD actions for Column model.

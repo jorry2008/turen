@@ -1,13 +1,15 @@
 <?php
 
-namespace common\components\helpers;
+namespace common\helpers;
 
 use Yii;
 use yii\base\InvalidParamException;
+use yii\helpers\Html;
 // use yii\helpers\StringHelper;
 // use yii\imagine\Image;
 use yii\base\UnknownClassException;
 use yii\helpers\FileHelper;
+use yii\helpers\Url;
 
 /**
  * 一些通用全局的特殊处理方法
@@ -120,7 +122,7 @@ class General
                 
                 //origin为源图路径
                 $ds = DIRECTORY_SEPARATOR;
-                $basePath = Yii::getAlias('@webroot');
+                $basePath = Yii::getAlias('@resource');
                 $path = $ds.$mailDir.$ds.'origin'.$ds.$dir.$ds.date('Y-m');
                 $fileName = $ds.$file->baseName.'.'.$file->extension;
                 if(!is_dir($basePath.$path)) {
@@ -219,6 +221,46 @@ class General
     		}
     		
     		return $url;
+    	}
+    }
+    
+    /**
+     * 展示uploadfile插件的图片
+     */
+    public static function showImages($file_str = '')
+    {
+    	if($file_str) {
+    		$arr = explode(',', $file_str);
+    		$newArr = [];
+    		foreach ($arr as $path) {
+    			$src = Yii::getAlias('@web').'/'.'upload'.'/'.$path;
+    			$key = basename($path);
+//     			$url = Url::to([$route, 'action'=>'del', 'dir'=>$dir, 'field'=>$field, 'path'=>$dir.'/'.date('Y-m').'/'.$key]);//删除按钮地址
+    			$newArr[] = Html::img($src, ['class'=>'file-preview-image', 'alt'=>$key, 'title'=>$key, 'style'=>'height:160px']);
+    		}
+    		return $newArr;
+    	} else {
+    		return [];
+    	}
+    }
+    
+    /**
+     * 展示uploadfile插件删除链接
+     */
+    public static function showLinks($file_str = '', $field = '', $dir = '', $route = '')
+    {
+    	if($file_str) {
+    		$arr = explode(',', $file_str);
+    		$newArr = [];
+    		foreach ($arr as $path) {
+    			$src = Yii::getAlias('@web').'/'.'upload'.'/'.$path;
+    			$key = basename($path);
+    			$url = Url::to([$route, 'action'=>'del', 'dir'=>$dir, 'field'=>$field, 'path'=>$path]);//删除按钮地址
+    			$newArr[] = ['caption' => "{$key}", 'width' => '120px', 'url' => $url, 'key' => $key];
+    		}
+    		return $newArr;
+    	} else {
+    		return [];
     	}
     }
 }

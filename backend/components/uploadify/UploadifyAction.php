@@ -9,9 +9,9 @@ use yii\base\Action;
 // use yii\web\Response;
 // use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
-use common\components\helpers\General;
 use yii\helpers\Json;
 use yii\web\BadRequestHttpException;
+use common\helpers\General;
 // use yii\helpers\FileHelper;
 
 class UploadifyAction extends Action

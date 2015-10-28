@@ -44,6 +44,10 @@ class Ad extends \yii\db\ActiveRecord
 				'class' => TimestampBehavior::className(),
 				'createdAtAttribute' => 'created_at',
 				'updatedAtAttribute' => 'updated_at'
+			], 
+			'upload-file' => [
+				'class' => \backend\behaviors\UploadFileBehavior::className(),
+				'fileAttribute' => 'pic_url',
 			]
 		];
 	}
@@ -69,7 +73,7 @@ class Ad extends \yii\db\ActiveRecord
             [['pic_url'], 'string', 'max' => 100],
             [['link_url'], 'string', 'max' => 255],
         	
-        	[['title'], 'required'],
+        	[['title', 'order'], 'required'],
         	[['link_url'], 'url'],
         ];
     }

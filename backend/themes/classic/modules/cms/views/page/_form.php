@@ -6,7 +6,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 use common\models\cms\Column;
-use common\components\helpers\General;
+use common\helpers\General;
 use backend\components\uploadify\UploadifyWidget;
 use backend\components\ueditor\UeditorWidget;
 
@@ -43,7 +43,7 @@ if($model->isNewRecord) {
         <?php //echo $form->field($model, 'column_id')->dropDownList($items) ?>
         <?php //echo $form->field($model, 'column.name')->textInput(['maxlength' => true]) ?>
     
-        <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
+        <?= $form->field($model, 'pic_url')->widget(UploadifyWidget::className(), ['route'=>'cms/page/uploadify', 'dir'=>'cms', 'num'=>'1', 'btnClassName'=>'upload_picture', 'type'=>'single']) ?>
     
         <?php 
         echo $form->field($model, 'content')->widget(UeditorWidget::className(), [

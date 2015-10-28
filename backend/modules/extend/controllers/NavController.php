@@ -8,7 +8,7 @@ use yii\data\ActiveDataProvider;
 use yii\web\NotFoundHttpException;
 
 use common\models\extend\Nav;
-use common\components\helpers\General;
+use common\helpers\General;
 use backend\components\Controller;
 
 

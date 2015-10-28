@@ -5,7 +5,7 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
-use common\components\helpers\General;
+use common\helpers\General;
 use common\models\extend\LinkType;
 /* @var $this yii\web\View */
 /* @var $model common\models\extend\LinkType */

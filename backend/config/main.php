@@ -45,6 +45,11 @@ return [
     
     // 模块配置
     'modules' => [
+    	//请求
+    	'request' => [
+    		// !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+    		'cookieValidationKey' => '1W0Fp0AOMz3A5fDVLdH1ybjIMQ4vmgNu',
+    	],
     	'user' => [ // 后台管理员模块
     		'class' => 'backend\modules\user\Module',
     		//'viewPath' => '@app/themes/classic/user',//强制模块的主题

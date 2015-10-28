@@ -19,8 +19,8 @@ class AdController extends Controller
 	public function actions()
 	{
 		return [
-			'uploadify' => [
-				'class' => 'backend\components\uploadify\UploadifyAction',
+			'file-upload' => [
+				'class' => 'backend\components\FileUploadAction',
 			],
 			'switch-status' => [
 				'class' => 'backend\components\SwitchAction',
@@ -75,7 +75,7 @@ class AdController extends Controller
     public function actionCreate()
     {
         $model = new Ad();
-
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	return $this->redirect(['index']);
 //             return $this->redirect(['view', 'id' => $model->id]);
@@ -95,7 +95,6 @@ class AdController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
         	return $this->redirect(['index']);
 //             return $this->redirect(['view', 'id' => $model->id]);

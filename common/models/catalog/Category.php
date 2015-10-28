@@ -5,7 +5,7 @@ namespace common\models\catalog;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\web\UploadedFile;
-use common\components\helpers\General;
+use common\helpers\General;
 
 /**
  * This is the model class for table "{{%category}}".

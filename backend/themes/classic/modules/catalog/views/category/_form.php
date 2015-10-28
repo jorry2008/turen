@@ -4,7 +4,7 @@ use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
-use common\components\helpers\General;
+use common\helpers\General;
 use common\models\catalog\Category;
 use backend\components\uploadify\UploadifyWidget;
 use backend\components\ueditor\UeditorWidget;
