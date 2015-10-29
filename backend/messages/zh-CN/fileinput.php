@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Note:' => '',
+    'Note:' => '注意：',
+	'Note: Limit upload one picture.' => '注意：限制上传一张图片。',
+	'Note: Allowed to upload more pictures.' => '注意：允许上传多张图片。',
     'Your browser does not support {validation}. Try an alternative or more recent browser to access these features.' => '',
 ];

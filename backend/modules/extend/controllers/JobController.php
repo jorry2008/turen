@@ -19,6 +19,9 @@ class JobController extends Controller
 	public function actions()
 	{
 		return [
+			'ueditor' => [
+				'class' => 'backend\components\ueditor\UeditorAction',
+			],
 			'switch-status' => [
 				'class' => 'backend\components\SwitchAction',
 				'className' => Job::className(),

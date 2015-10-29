@@ -89,7 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
 		        						return $model->action?$off:$on;
 		        					},
 	        					],
-// 					            'sesstion',
+// 					            'session',
 					            'field',
 					            'dir',
 					            'created_at:datetime',

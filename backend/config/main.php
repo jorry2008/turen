@@ -151,12 +151,12 @@ return [
                     'class' => 'yii\i18n\PhpMessageSource',
                     // 'sourceLanguage' => 'en-US',
                     'basePath' => '@app/messages',
-                    'fileMap' => [ // 简单的映射
-                        'common' => 'common.php',
-                        'user-group' => 'user-group.php',
-                        'user' => 'user.php',
-                        'yii' => 'yii.php',
-                    ]
+//                     'fileMap' => [ // 简单的映射
+//                         'common' => 'common.php',
+//                         'user-group' => 'user-group.php',
+//                         'user' => 'user.php',
+//                         'yii' => 'yii.php',
+//                     ]
                 ],
             ]
         ],
@@ -187,8 +187,8 @@ return [
             'itemTable' => '{{%auth_item}}',
             'itemChildTable' => '{{%auth_item_child}}',
             'assignmentTable' => '{{%auth_assignment}}',
-            'ruleTable' => '{{%auth_rule}}'
-            // 'cache' => 'cache',//see yii\rbac\DbManager默认不启用缓存
+            'ruleTable' => '{{%auth_rule}}',
+            'cache' => 'cache',//see yii\rbac\DbManager默认不启用缓存
         ],
         
         //url规则管理
@@ -221,7 +221,7 @@ return [
                 [
                     'class' => 'yii\log\FileTarget',
                     'levels' => [
-                    	'info',
+                    	//'info',
                         'error',
                         'warning'
                     ]
@@ -308,3 +308,4 @@ return [
 // @backend 表示后台应用所在的文件夹；
 // @console 表示命令行应用所在的文件夹；
 // 其他使用Composer安装的Yii扩展注册的二级别名。
+

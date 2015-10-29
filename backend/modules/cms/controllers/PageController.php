@@ -7,6 +7,7 @@ use common\models\cms\Page;
 use common\models\cms\PageSearch;
 use backend\components\Controller;
 use yii\web\NotFoundHttpException;
+use common\helpers\General;
 
 /**
  * PageController implements the CRUD actions for Page model.
@@ -19,9 +20,9 @@ class PageController extends Controller
 	public function actions()
 	{
 		return [
-			'uploadify' => [
-				'class' => 'backend\components\uploadify\UploadifyAction',
-			],
+			'file-upload' => [
+    			'class' => 'backend\components\FileUploadAction',
+    		],
 			'ueditor' => [
 				'class' => 'backend\components\ueditor\UeditorAction',
 			],

@@ -275,6 +275,7 @@ $baseUrl = Yii::getAlias('@web');
 //                             		['label' => '<i class="fa fa-folder-open-o"></i><span>缓存管理</span>', 'url' => ['/system/cache/index']],
 //                             		['label' => '<i class="fa fa-database"></i><span>数据库管理</span>', 'url' => ['/system/db/index']],
                             		['label' => '<i class="fa fa-folder-open-o"></i><span>公共数据</span>', 'url' => ['/system/cascade-data/index']],
+                        			['label' => '<i class="fa fa-folder-open-o"></i><span>资源管理</span>', 'url' => ['/system/explorer/index']],
 //                             		['label' => '<i class="fa fa-folder-open-o"></i><span>操作日志</span>', 'url' => ['/system/log/index']],
 //                         		    ['label' => '<i class="fa fa-trash-o"></i><span>回收总站</span>', 'url' => ['/system/trash/index']],
                         		]

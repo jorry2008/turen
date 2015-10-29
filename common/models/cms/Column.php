@@ -44,7 +44,11 @@ class Column extends \yii\db\ActiveRecord
     		'timemap' => [
     			'class' => TimestampBehavior::className(),
     			'createdAtAttribute' => 'created_at',
-    			'updatedAtAttribute' => 'updated_at'
+    			'updatedAtAttribute' => 'updated_at',
+    		],
+    		'upload-file' => [
+    			'class' => \backend\behaviors\UploadFileBehavior::className(),
+    			'fileAttribute' => 'pic_url',
     		]
     	];
     }

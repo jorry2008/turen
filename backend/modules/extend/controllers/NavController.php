@@ -25,6 +25,9 @@ class NavController extends Controller
 	public function actions()
 	{
 		return [
+			'file-upload' => [
+				'class' => 'backend\components\FileUploadAction',
+			],
 			'switch-status' => [
 				'class' => 'backend\components\SwitchAction',
 				'className' => Nav::className(),

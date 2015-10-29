@@ -8,6 +8,7 @@ use yii\helpers\Url;
 
 use common\models\cms\Ad;
 use common\models\cms\AdType;
+use backend\components\ueditor\UeditorWidget;
 use kartik\file\FileInput;
 use common\helpers\General;
 
@@ -45,7 +46,7 @@ if($model->isNewRecord) {
 
 	    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 	    
-	    <?= $form->field($model, 'pic_url')->widget(FileInput::classname(), [
+	    <?= $form->field($model, 'pic_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
 		    'options'=>[
 	    		'accept' => 'image/*',//只接收图片类型
 	    		'multiple' => false,//这里不需要多选
@@ -137,7 +138,17 @@ if($model->isNewRecord) {
 		*/
 		?>
 		
-	    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+		<?php 
+		/*
+        echo $form->field($model, 'text')->widget(UeditorWidget::className(), [
+            'clientOptions' => [
+                'serverUrl' => yii\helpers\Url::to(['ueditor']),
+            ],
+        ]);
+        */
+        ?>
+		
+	    <?php // $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 	
 	    <?= $form->field($model, 'link_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Site address, please fill in the  http:// beginning'))->textInput(['maxlength' => true]) ?>
 	

@@ -17,6 +17,7 @@ class Uploader {
 	private $size; // 文件大小
 	private $type; // 文件类型
 	private $state = 'SUCCESS'; // 上传状态信息,默认为成功
+	private $web;
 	
 	/**
 	 * 构造函数
@@ -28,6 +29,7 @@ class Uploader {
 	public function __construct($field, $config, $mode = 'upload') {
 		$this->field = $field;
 		$this->config = $config;
+		$this->web = Yii::$app->params['config']['config_pic_url'];
 		
 		if($mode == 'remote') {
 			$this->saveRemote();//抓取远程图片
@@ -80,7 +82,7 @@ class Uploader {
 		$this->title = $pathinfo['basename'];
 		
 		//转化为web路径
-		$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+		$this->url = $this->web.str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
 		
 		$dirname = dirname($this->filePath);
 		
@@ -120,7 +122,7 @@ class Uploader {
 			$this->title = $pathinfo['basename'];
 			
 			//转化为web路径
-			$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+			$this->url = $this->web.str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
 			
 			$dirname = dirname($this->filePath);
 			
@@ -213,7 +215,7 @@ class Uploader {
 		$this->title = $pathinfo['basename'];
 			
 		//转化为web路径
-		$this->url = Yii::getAlias('@web').str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
+		$this->url = $this->web.str_replace('\\', '/', $this->url);//存储入库之前必须要过滤
 			
 		$dirname = dirname($this->filePath);
 			

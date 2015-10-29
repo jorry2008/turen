@@ -17,7 +17,6 @@ use common\models\system\Explorer;
 class UploadFileBehavior extends \yii\behaviors\AttributeBehavior
 {
     public $fileAttribute = 'file';
-    public $value;
 
     /**
      * @inheritdoc
@@ -44,7 +43,12 @@ class UploadFileBehavior extends \yii\behaviors\AttributeBehavior
     	$ins = Explorer::find()->where(['field'=>$this->fileAttribute])->insertDraft()->all();
     	
     	$owner = $this->owner;
-    	$value = $owner->{$this->fileAttribute};
+    	$value = $owner->getOldAttribute($this->fileAttribute);//注意：bug
+    	
+//     	print_r($value);
+//     	print_r($del);
+//     	print_r($ins);
+//     	exit;
     	
     	$fvalue = [];
     	if($value) {
@@ -67,10 +71,15 @@ class UploadFileBehavior extends \yii\behaviors\AttributeBehavior
     		$in->update(false);
     	}
     	
-    	$fnew = ArrayHelper::merge($fvalue, $fins);//所有不重复的文件
-    	$result = array_diff($fnew, $fdel);//取差集
+    	$fnew = [];
+    	if($fins) {
+    		$fvalue = ArrayHelper::merge($fvalue, $fins);//所有不重复的文件
+    	}
+    	if($fdel) {
+    		$fvalue = array_diff($fvalue, $fdel);//取差集
+    	}
     	
-    	return empty($result)?'':implode(',', $result);
+    	return empty($fvalue)?'':implode(',', $fvalue);
     }
 
 //     public function touch($attribute)

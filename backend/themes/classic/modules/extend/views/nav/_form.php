@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 
 use common\helpers\General;
 use common\models\extend\Nav;
+use kartik\file\FileInput;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\extend\Nav */
@@ -53,7 +55,31 @@ $target = [
 		
 	    <?= $form->field($model, 're_link_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'URL Rewrite'))->textInput(['maxlength' => true]) ?>
 		
-	    <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
+	    <?= $form->field($model, 'pic_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
+		    'options'=>[
+	    		'accept' => 'image/*',//只接收图片类型
+	    		'multiple' => false,//这里不需要多选
+	    	],
+	    	'pluginOptions' => [
+	    		'uploadUrl' => Url::to(['/extend/nav/file-upload']),
+	    		'uploadAsync' => true,//异步上传
+	    		'initialPreview' => General::showImages($model->pic_url),
+	    		'initialPreviewConfig' => General::showLinks($model->pic_url, 'pic_url', 'img', '/extend/nav/file-upload'),
+	    		'previewFileType' => 'any',//预览所有类型文件
+	    		//'initialCaption'=>"原有的图片",
+	    		'overwriteInitial'=>true,//直接覆盖原有的图片
+	    		'maxFileSize' => Yii::$app->params['config']['config_pic_size'],//限制大小
+	    		'allowedFileExtensions' => explode(',', Yii::$app->params['config']['config_pic_extension']),//限制后缀名
+	    		'allowedFileTypes' => ['image'],//限制文件类型（图片）
+	    		'maxFileCount' => 1,//此处限制一张
+	    		'uploadExtraData' => [
+	    			'dir' => 'nav',//目录标识，广告
+	    			'name' => 'Nav[pic_url]',//指定资源获取标识名
+	    			'route' => '/extend/nav/file-upload',
+	    			'field' => 'pic_url',
+	    		],
+	    	],
+		]) ?>
 		
 	    <?= $form->field($model, 'target')->dropDownList(ArrayHelper::merge([''=>Yii::t('extend', 'Open Type')], $target)) ?>
 		

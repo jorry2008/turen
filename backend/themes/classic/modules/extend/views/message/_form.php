@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 //use yii\widgets\ActiveForm;
 use yii\bootstrap\ActiveForm;
+use backend\components\ueditor\UeditorWidget;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\extend\Message */
@@ -35,7 +36,13 @@ if($model->isNewRecord) {
 
 	    <?= $form->field($model, 'contact')->textInput(['maxlength' => true]) ?>
 	
-	    <?= $form->field($model, 'content')->textarea(['rows' => 6]) ?>
+	    <?php 
+        echo $form->field($model, 'content')->widget(UeditorWidget::className(), [
+            'clientOptions' => [
+                'serverUrl' => yii\helpers\Url::to(['ueditor']),
+            ],
+        ]);
+        ?>
 	
 	    <?= $form->field($model, 'is_top')->textInput() ?>
 	

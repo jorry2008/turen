@@ -3,6 +3,7 @@
 namespace common\models\cms;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "{{%cms_page}}".
@@ -21,6 +22,25 @@ class Page extends \yii\db\ActiveRecord
 {
 	const STATUS_YES = 1;
 	const STATUS_NO = 0;
+	
+    /**
+     * 以行为的方式处理操作时间
+     * @see \yii\base\Component::behaviors()
+     */
+    public function behaviors()
+    {
+    	return [
+    		'timemap' => [
+    			'class' => TimestampBehavior::className(),
+    			'createdAtAttribute' => 'created_at',
+    			'updatedAtAttribute' => 'updated_at',
+    		],
+    		'upload-file' => [
+    			'class' => \backend\behaviors\UploadFileBehavior::className(),
+    			'fileAttribute' => 'pic_url',
+    		]
+    	];
+    }
 	
     /**
      * @inheritdoc
@@ -68,10 +88,15 @@ class Page extends \yii\db\ActiveRecord
      */
     public function beforeSave($insert)
     {
-    	//处理上传路径为基础路径
-//     	$this->content = preg_replace('/(<img.+src=\"?)(.+)(\/upload\/.+\.(jpg|gif|bmp|bnp|png)\"?.+>)/i',"\${1}\${3}", $this->content);
-    	
-    	return true;
+    	if(parent::beforeSave($insert)) {
+    		//your code
+    		//处理上传路径为基础路径
+    		//$this->content = preg_replace('/(<img.+src=\"?)(.+)(\/upload\/.+\.(jpg|gif|bmp|bnp|png)\"?.+>)/i',"\${1}\${3}", $this->content);
+    		   
+    		return true;
+    	} else {
+    		return false;
+    	}
     }
     
     /**

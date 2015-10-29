@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'is_exsit',
 				            'status',
 				            'action',
-				            'sesstion',
+				            'session',
 				            'field',
 				            'path',
 				            'dir',

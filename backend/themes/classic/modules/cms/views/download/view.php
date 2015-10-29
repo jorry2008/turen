@@ -67,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				            'keywords',
 				            'description',
 				            'content:ntext',
-				            'picurl:url',
+				            'pic_url:url',
 				            'picarr:ntext',
 				            'hits',
 				            'order',

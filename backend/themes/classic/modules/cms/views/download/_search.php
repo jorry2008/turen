@@ -54,7 +54,7 @@ use yii\bootstrap\ActiveForm;
 
     <?php // echo $form->field($model, 'content') ?>
 
-    <?php // echo $form->field($model, 'picurl') ?>
+    <?php // echo $form->field($model, 'pic_url') ?>
 
     <?php // echo $form->field($model, 'picarr') ?>
 

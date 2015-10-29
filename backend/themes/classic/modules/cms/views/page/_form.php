@@ -6,9 +6,10 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 use common\models\cms\Column;
-use common\helpers\General;
-use backend\components\uploadify\UploadifyWidget;
 use backend\components\ueditor\UeditorWidget;
+use kartik\file\FileInput;
+use common\helpers\General;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\cms\Page */
@@ -43,8 +44,32 @@ if($model->isNewRecord) {
         <?php //echo $form->field($model, 'column_id')->dropDownList($items) ?>
         <?php //echo $form->field($model, 'column.name')->textInput(['maxlength' => true]) ?>
     
-        <?= $form->field($model, 'pic_url')->widget(UploadifyWidget::className(), ['route'=>'cms/page/uploadify', 'dir'=>'cms', 'num'=>'1', 'btnClassName'=>'upload_picture', 'type'=>'single']) ?>
-    
+    	<?= $form->field($model, 'pic_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
+		    'options'=>[
+	    		'accept' => 'image/*',//只接收图片类型
+	    		'multiple' => false,//这里不需要多选
+	    	],
+	    	'pluginOptions' => [
+	    		'uploadUrl' => Url::to(['/cms/page/file-upload']),
+	    		'uploadAsync' => true,//异步上传
+	    		'initialPreview' => General::showImages($model->pic_url),
+	    		'initialPreviewConfig' => General::showLinks($model->pic_url, 'pic_url', 'page', '/cms/page/file-upload'),
+	    		'previewFileType' => 'any',//预览所有类型文件
+	    		//'initialCaption'=>"原有的图片",
+	    		'overwriteInitial'=>true,//直接覆盖原有的图片
+	    		'maxFileSize' => Yii::$app->params['config']['config_pic_size'],//限制大小
+	    		'allowedFileExtensions' => explode(',', Yii::$app->params['config']['config_pic_extension']),//限制后缀名
+	    		'allowedFileTypes' => ['image'],//限制文件类型（图片）
+	    		'maxFileCount' => 1,//此处限制一张
+	    		'uploadExtraData' => [
+	    			'dir' => 'page',//目录标识，广告
+	    			'name' => 'Page[pic_url]',//指定资源获取标识名
+	    			'route' => '/cms/page/file-upload',
+	    			'field' => 'pic_url',
+	    		],
+	    	],
+		]) ?>
+		
         <?php 
         echo $form->field($model, 'content')->widget(UeditorWidget::className(), [
             'clientOptions' => [

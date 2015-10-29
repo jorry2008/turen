@@ -28,7 +28,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $keywords
  * @property string $description
  * @property string $content
- * @property string $picurl
+ * @property string $pic_url
  * @property string $picarr
  * @property string $hits
  * @property string $order
@@ -55,6 +55,14 @@ class Download extends \yii\db\ActiveRecord
 				'class' => TimestampBehavior::className(),
 				'createdAtAttribute' => 'created_at',
 				'updatedAtAttribute' => 'updated_at'
+			],
+			'upload-file' => [
+				'class' => \backend\behaviors\UploadFileBehavior::className(),
+				'fileAttribute' => 'pic_url',
+			],
+			'upload-file2' => [
+				'class' => \backend\behaviors\UploadFileBehavior::className(),
+				'fileAttribute' => 'picarr',
 			]
 		];
 	}
@@ -81,7 +89,7 @@ class Download extends \yii\db\ActiveRecord
             [['unit'], 'string', 'max' => 4],
             [['run_os', 'source', 'author', 'keywords'], 'string', 'max' => 50],
             [['down_url', 'link_url', 'description'], 'string', 'max' => 255],
-            [['picurl'], 'string', 'max' => 100],
+            [['pic_url'], 'string', 'max' => 100],
         	
         	[['link_url', 'source'], 'url'],
         	[['title', 'content', 'publish_at'], 'required'],
@@ -114,7 +122,7 @@ class Download extends \yii\db\ActiveRecord
             'keywords' => Yii::t('cms', 'Keywords'),
             'description' => Yii::t('cms', 'Description'),
             'content' => Yii::t('cms', 'Content'),
-            'picurl' => Yii::t('cms', 'Picurl'),
+            'pic_url' => Yii::t('cms', 'Picurl'),
             'picarr' => Yii::t('cms', 'Picarr'),
             'hits' => Yii::t('cms', 'Hits'),
             'order' => Yii::t('cms', 'Order'),

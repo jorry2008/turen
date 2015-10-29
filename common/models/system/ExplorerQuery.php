@@ -2,6 +2,8 @@
 
 namespace common\models\system;
 
+use Yii;
+
 /**
  * This is the ActiveQuery class for [[Explorer]].
  *
@@ -19,14 +21,14 @@ class ExplorerQuery extends \yii\db\ActiveQuery
     //删除的草稿
     public function deleteDraft()
     {
-    	$this->andWhere(['status'=>Explorer::STATUS_DRAFT ,'action'=>Explorer::ACTION_DEL]);
+    	$this->andWhere(['status'=>Explorer::STATUS_DRAFT ,'action'=>Explorer::ACTION_DEL, 'session'=>Yii::$app->getSession()->id]);
     	return $this;
     }
     
     //插入的草稿
     public function insertDraft()
     {
-    	$this->andWhere(['status'=>Explorer::STATUS_DRAFT ,'action'=>Explorer::ACTION_INS]);
+    	$this->andWhere(['status'=>Explorer::STATUS_DRAFT ,'action'=>Explorer::ACTION_INS, 'session'=>Yii::$app->getSession()->id]);
     	return $this;
     }
 

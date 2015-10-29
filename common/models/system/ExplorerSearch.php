@@ -19,7 +19,7 @@ class ExplorerSearch extends Explorer
     {
         return [
             [['id', 'is_exsit', 'status', 'created_at', 'updated_at'], 'integer'],
-            [['action', 'sesstion', 'field', 'path', 'dir'], 'safe'],
+            [['action', 'session', 'field', 'path', 'dir'], 'safe'],
         ];
     }
 
@@ -69,7 +69,7 @@ class ExplorerSearch extends Explorer
         ]);
 
         $query->andFilterWhere(['like', 'action', $this->action])
-            ->andFilterWhere(['like', 'sesstion', $this->sesstion])
+            ->andFilterWhere(['like', 'session', $this->session])
             ->andFilterWhere(['like', 'field', $this->field])
             ->andFilterWhere(['like', 'path', $this->path])
             ->andFilterWhere(['like', 'dir', $this->dir]);

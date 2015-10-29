@@ -25,8 +25,8 @@ class ColumnController extends Controller
     public function actions()
     {
     	return [
-    		'uploadify' => [
-    			'class' => 'backend\components\uploadify\UploadifyAction',
+    		'file-upload' => [
+    			'class' => 'backend\components\FileUploadAction',
     		],
     		'ueditor' => [
     			'class' => 'backend\components\ueditor\UeditorAction',

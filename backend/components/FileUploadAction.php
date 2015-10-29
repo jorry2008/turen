@@ -50,18 +50,17 @@ class FileUploadAction extends Action
 			$dir = Yii::$app->getRequest()->get('dir');
 			
 			$filePath = $basePath.$ds.$path;
-			if(is_file($filePath)) {
-				if(@unlink($filePath)) {
-					$data = [
-						'action' => 'del',
-						'field' => $field,
-						'path' => $path,
-						'dir' => $dir,
-					];
-					
-					$this->addRecord($data);//删除一条旧记录
-				}
-			}
+			if(is_file($filePath))
+				@unlink($filePath);//只是尝试删除文件
+				
+			$data = [
+				'action' => 'del',
+				'field' => $field,
+				'path' => $path,
+				'dir' => $dir,
+			];
+			$this->addRecord($data);//删除一条旧记录
+			
 // 			fb($filePath);
 			echo Json::encode([]);
 			Yii::$app->end();
@@ -124,14 +123,14 @@ class FileUploadAction extends Action
 	{
 		//清除同名文件：
 		if(!empty($data['path']))
-			Explorer::deleteAll(['path'=>$data['path'], 'status'=>Explorer::STATUS_DRAFT]);
+			Explorer::deleteAll(['path'=>$data['path'], 'status'=>Explorer::STATUS_DRAFT, 'session'=>Yii::$app->getSession()->id]);
 		
 		if(!empty($data['field']) && !empty($data['path']) && !empty($data['dir']) && !empty($data['action'])) {
 			$newData = [
 				'is_exsit' => ($data['action'] == Explorer::ACTION_DEL)?Explorer::EXIST_NO:Explorer::EXIST_YES,
 				'status' => Explorer::STATUS_DRAFT,//操作中，草稿状态
 				
-				'sesstion' => Yii::$app->getSession()->id,//资源限制在当前用户有效
+				'session' => Yii::$app->getSession()->id,//资源限制在当前用户有效
 				'action' => $data['action'],
 				'field' => $data['field'],
 				'path' => $data['path'],

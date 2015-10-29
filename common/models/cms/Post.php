@@ -41,15 +41,23 @@ class Post extends \yii\db\ActiveRecord
 	 * @see \yii\base\Component::behaviors()
 	 */
 	public function behaviors()
-	{
-		return [
-			'timemap' => [
-				'class' => TimestampBehavior::className(),
-				'createdAtAttribute' => 'created_at',
-				'updatedAtAttribute' => 'updated_at'
-			]
-		];
-	}
+    {
+    	return [
+    		'timemap' => [
+    			'class' => TimestampBehavior::className(),
+    			'createdAtAttribute' => 'created_at',
+    			'updatedAtAttribute' => 'updated_at',
+    		],
+    		'upload-file' => [
+    			'class' => \backend\behaviors\UploadFileBehavior::className(),
+    			'fileAttribute' => 'pic_url',
+    		],
+    		'upload-file2' => [
+    			'class' => \backend\behaviors\UploadFileBehavior::className(),
+    			'fileAttribute' => 'picarr',
+    		]
+    	];
+    }
 	
     /**
      * @inheritdoc

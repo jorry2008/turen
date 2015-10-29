@@ -19,7 +19,7 @@ class DownloadSearch extends Download
     {
         return [
             [['id', 'column_id', 'hits', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
-            [['title', 'flag', 'colorval', 'boldval', 'file_type', 'language', 'accredit', 'file_size', 'unit', 'run_os', 'down_url', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'picurl', 'picarr'], 'safe'],
+            [['title', 'flag', 'colorval', 'boldval', 'file_type', 'language', 'accredit', 'file_size', 'unit', 'run_os', 'down_url', 'source', 'author', 'link_url', 'keywords', 'description', 'content', 'pic_url', 'picarr'], 'safe'],
         ];
     }
 
@@ -91,7 +91,7 @@ class DownloadSearch extends Download
             ->andFilterWhere(['like', 'keywords', $this->keywords])
             ->andFilterWhere(['like', 'description', $this->description])
             ->andFilterWhere(['like', 'content', $this->content])
-            ->andFilterWhere(['like', 'picurl', $this->picurl])
+            ->andFilterWhere(['like', 'pic_url', $this->pic_url])
             ->andFilterWhere(['like', 'picarr', $this->picarr]);
 
         return $dataProvider;

@@ -12,7 +12,7 @@ use yii\behaviors\TimestampBehavior;
  * @property integer $is_exsit
  * @property integer $status
  * @property string $action
- * @property string $sesstion
+ * @property string $session
  * @property string $field
  * @property string $path
  * @property string $dir
@@ -62,7 +62,7 @@ class Explorer extends \yii\db\ActiveRecord
         return [
             [['is_exsit', 'status', 'created_at', 'updated_at'], 'integer'],
             [['action', 'dir'], 'string', 'max' => 10],
-            [['sesstion', 'field', 'path'], 'string', 'max' => 50]
+            [['session', 'field', 'path'], 'string', 'max' => 50]
         ];
     }
 
@@ -76,7 +76,7 @@ class Explorer extends \yii\db\ActiveRecord
             'is_exsit' => Yii::t('system', 'Is Exsit'),
             'status' => Yii::t('system', 'Status'),
             'action' => Yii::t('system', 'Action'),
-            'sesstion' => Yii::t('system', 'Sesstion'),
+            'session' => Yii::t('system', 'Sesstion'),
             'field' => Yii::t('system', 'Field'),
             'path' => Yii::t('system', 'Path'),
             'dir' => Yii::t('system', 'Dir'),

@@ -6,6 +6,9 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\ArrayHelper;
 
 use common\models\extend\LinkType;
+use kartik\file\FileInput;
+use common\helpers\General;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\extend\Link */
@@ -39,9 +42,33 @@ if($model->isNewRecord) {
 	    
 	    <?= $form->field($model, 'link_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('extend', 'Example:http://www.turen.pw'))->textInput(['maxlength' => true]) ?>
 	    
-	    <?= $form->field($model, 'pic_url')->textInput(['maxlength' => true]) ?>
-	
 	    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+	    
+	    <?= $form->field($model, 'pic_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
+		    'options'=>[
+	    		'accept' => 'image/*',//只接收图片类型
+	    		'multiple' => false,//这里不需要多选
+	    	],
+	    	'pluginOptions' => [
+	    		'uploadUrl' => Url::to(['/extend/link/file-upload']),
+	    		'uploadAsync' => true,//异步上传
+	    		'initialPreview' => General::showImages($model->pic_url),
+	    		'initialPreviewConfig' => General::showLinks($model->pic_url, 'pic_url', 'link', '/extend/link/file-upload'),
+	    		'previewFileType' => 'any',//预览所有类型文件
+	    		//'initialCaption'=>"原有的图片",
+	    		'overwriteInitial'=>true,//直接覆盖原有的图片
+	    		'maxFileSize' => Yii::$app->params['config']['config_pic_size'],//限制大小
+	    		'allowedFileExtensions' => explode(',', Yii::$app->params['config']['config_pic_extension']),//限制后缀名
+	    		'allowedFileTypes' => ['image'],//限制文件类型（图片）
+	    		'maxFileCount' => 1,//此处限制一张
+	    		'uploadExtraData' => [
+	    			'dir' => 'link',//目录标识，广告
+	    			'name' => 'Link[pic_url]',//指定资源获取标识名
+	    			'route' => '/extend/link/file-upload',
+	    			'field' => 'pic_url',
+	    		],
+	    	],
+		]) ?>
 	    
 	    <?= $form->field($model, 'order')->input('number', ['maxlength' => true]) ?>
 	
