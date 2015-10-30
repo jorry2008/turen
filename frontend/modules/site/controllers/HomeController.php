@@ -16,6 +16,7 @@ use common\models\cms\Column;
 use common\models\cms\Page;
 use common\models\cms\Ad;
 use common\models\cms\AdType;
+use common\models\cms\Img;
 
 /**
  * Site controller
@@ -42,12 +43,20 @@ class HomeController extends \frontend\components\Controller
     {
     	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->all();
     	$about = Column::findOne(['short_code'=>'about-brief']);
-    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->one();
+    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->one();//in查询
+    	$adBottom = Ad::findOne(['short_code'=>'home_bottom']);
+    	$xianChangs = Img::find()->where(['like', 'flag', 'c'])->all();
+//     	$links = '';
+// 		$subNav = '';
     	
     	return $this->render('index', [
     		'columns' => $columns,//推荐栏目到首页
     		'about' => $about,
     		'mainAdType' => $mainAdType,
+    		'adBottom' => $adBottom,
+    		'xianChangs' => $xianChangs,
+//     		'links' => $links,
+//     		'subNav' => $subNav,
     	]);
     }
 

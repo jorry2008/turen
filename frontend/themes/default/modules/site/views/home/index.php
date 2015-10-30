@@ -218,6 +218,8 @@ $this->registerJs("
 	</div>
 </div>
 
+<?php fb($xianChangs);?>
+
 <div class="scene mar-b18">
     <ul class="nav">
 		<li class="active"><a href="">搬运现场</a></li>
@@ -292,7 +294,5 @@ $this->registerJs("
 </div>
 
 <div id="index_banner_botton">
-	<a href="">
-		<img traget="_blank" href="" alt="" src="<?php echo Yii::getAlias('@web/upload/banner/').'sbc.gif'; ?>">
-	</a>
+	<?= Html::a(General::showImg($adBottom->pic_url, 'o', $adBottom->title), ['/ad/link/ad-click', 'name'=>$adBottom->short_code], ['target'=>'_blank']) ?>
 </div>

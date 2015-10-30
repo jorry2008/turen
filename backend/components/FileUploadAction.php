@@ -91,7 +91,7 @@ class FileUploadAction extends Action
 				$key = $newName.'.'.$file->extension;//文件名
 				$src = Yii::getAlias('@web').'/'.'upload'.'/'.$dir.'/'.date('Y-m').'/'.$key;
 				$url = Url::to([$route, 'action'=>'del', 'dir'=>$dir, 'field'=>$field, 'path'=>$dir.'/'.date('Y-m').'/'.$key]);//删除按钮地址
-				$initialPreview[] = Html::img($src, ['class'=>'file-preview-image', 'style'=>'height:160px']);
+				$initialPreview[] = Html::img($src, ['class'=>'file-preview-image', 'style'=>'height:160px;max-width:625px']);
 				$initialPreviewConfig[] = ['caption' => "{$key}", 'width' => '120px', 'url' => $url, 'key' => $key];
 				
 				$data = [

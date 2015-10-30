@@ -57,7 +57,7 @@ $('.cms-class-index .cms-order').focus(function() {
                             <?= Html::a(Yii::t('cms', 'Create Column'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
-            		<?php Pjax::begin() ?>
+            		<?php //Pjax::begin() ?>
 					<?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         
@@ -137,7 +137,7 @@ $('.cms-class-index .cms-order').focus(function() {
                             ]
                         ],
                     ]); ?>
-                    <?php Pjax::end() ?>      
+                    <?php //Pjax::end() ?>      
                 </div>
                 
             </div>

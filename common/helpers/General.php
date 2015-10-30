@@ -235,7 +235,7 @@ class General
     			$src = Yii::getAlias('@web').'/'.'upload'.'/'.$path;
     			$key = basename($path);
 //     			$url = Url::to([$route, 'action'=>'del', 'dir'=>$dir, 'field'=>$field, 'path'=>$dir.'/'.date('Y-m').'/'.$key]);//删除按钮地址
-    			$newArr[] = Html::img($src, ['class'=>'file-preview-image', 'alt'=>$key, 'title'=>$key, 'style'=>'height:160px']);
+    			$newArr[] = Html::img($src, ['class'=>'file-preview-image', 'alt'=>$key, 'title'=>$key, 'style'=>'height:160px;max-width:625px']);
     		}
     		return $newArr;
     	} else {

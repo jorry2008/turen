@@ -168,6 +168,12 @@ ul, li, ol {
     padding: 0 5px;
     position: relative;
 }
+.top_menu .menu ul li:hover {
+	cursor: pointer;
+}
+.top_menu .menu ul li:hover a {
+	color: #FFF;
+}
 .top_menu .menu ul li.on, .top_menu .menu ul li.active, .top_menu .menu ul li:hover {
     background: #01af63;
 }
