@@ -32,6 +32,7 @@ use common\models\system\Explorer;
 class FileUploadAction extends Action
 {
 	public $uniqueSalt = '980522557@qq.com(jorry)';//自定义
+	public $rule = 'R';//R，//有两个规则，一个是哈希，一个是在末尾加R
 	
 	public function init()
 	{
@@ -83,7 +84,7 @@ class FileUploadAction extends Action
 			$initialPreview = [];
 			$initialPreviewConfig = [];
 			foreach ($files as $file) {
-				$newName = $file->baseName;//Yii::$app->security->generateRandomString();
+				$newName = $this->getNameRule($file->baseName, $file->extension, $path);
 				$filePath = $path.$ds.$newName.'.'.$file->extension;
 				$file->saveAs($filePath);//生成新的文件名
 				
@@ -107,6 +108,28 @@ class FileUploadAction extends Action
 				'initialPreviewConfig' => $initialPreviewConfig,
 				'append' => true
 			]);
+		}
+	}
+	
+	/**
+	 * 获取新文件名的规则[不包括后缀]
+	 * @param string $oName 原始文件名
+	 * @param string $path 原始目录
+	 * @param string $ext 后缀名
+	 */
+	protected function getNameRule($oName, $ext, $dir)
+	{
+		$ds = DIRECTORY_SEPARATOR;
+		$file = $dir.$ds.$ds.$oName.'.'.$ext;
+		if($this->rule == 'R') {
+			$newName = $oName;
+			while (is_file($file)) {//已经存在
+				$newName .= 'R';
+				$file = $dir.$ds.$ds.$newName.'.'.$ext;
+			}
+			return $newName;
+		} else {
+			return Yii::$app->security->generateRandomString();
 		}
 	}
 	

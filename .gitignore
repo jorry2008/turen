@@ -4,6 +4,9 @@
 /common/runtime
 /frontend/runtime
 
+/backend/web/assets
+/frontend/web/assets
+
 # phpstorm project files
 .idea
 

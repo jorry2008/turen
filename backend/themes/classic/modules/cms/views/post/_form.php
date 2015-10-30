@@ -168,7 +168,7 @@ $this->registerJs("
         ]);
         ?>
 		
-	    <?= $form->field($model, 'picarr')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Allowed to upload more pictures.'))->widget(FileInput::classname(), [
+	    <?= $form->field($model, 'picarr')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
 		    'options'=>[
 	    		'accept' => 'image/*',//只接收图片类型
 	    		'multiple' => true,//可以一次上传多张

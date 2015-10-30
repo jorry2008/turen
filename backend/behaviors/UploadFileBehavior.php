@@ -79,6 +79,9 @@ class UploadFileBehavior extends \yii\behaviors\AttributeBehavior
     		$fvalue = array_diff($fvalue, $fdel);//取差集
     	}
     	
+    	if(is_array($fvalue))
+    		sort($fvalue);//排序
+    	
     	return empty($fvalue)?'':implode(',', $fvalue);
     }
 

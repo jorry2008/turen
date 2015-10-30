@@ -56,7 +56,6 @@ return [
     'Mail' => '邮件配置',
     'Server' => '服务器相关',
     'Site' => '站点配置',
-    'Accepts units B KB MB GB if string,default is KB' => '接受的单位为B KB MB GB，默认是KB',
     'Please choose the parent item!' => '请先选择父项！',
     'Is Array' => '是数组',
 	'Number of direct interception length of Chinese characters or letters' => '截取的长度为汉字或字母的个数',
@@ -73,4 +72,6 @@ return [
 	'Path' => '资源路径',
 	'Sesstion' => '会话',
 	'Status' => '状态',
+	'Accepts units KB' => '接受单位为KB',
+	'Not Found' => '未找到',
 ];
