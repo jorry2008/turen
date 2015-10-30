@@ -5,6 +5,7 @@ $this->title = '广州搬家';
 use yii\helpers\Html;
 use frontend\assets\FlexsliderAsset;
 use frontend\assets\JcarouselliteAsset;
+use common\helpers\General;
 
 FlexsliderAsset::register($this);
 JcarouselliteAsset::register($this);
@@ -86,15 +87,11 @@ $this->registerJs("
 <div class="slider mar-b18">
 	<div class="flexslider">
 	    <ul class="slides">
+	    	<?php foreach ($mainAdType->ad as $ad) { ?>
 	        <li>
-	            <img src="<?php echo Yii::getAlias('@web/upload/banner/').'1.jpg'; ?>" />
+	            <?= Html::a(General::showImg($ad->pic_url, 'o', $ad->title, 'px', $mainAdType->width, $mainAdType->height), ['/ad/link/ad-click', 'name'=>$ad->short_code], ['target'=>'_blank']) ?>
 	        </li>
-	        <li>
-	            <img src="<?php echo Yii::getAlias('@web/upload/banner/').'2.jpg'; ?>" />
-	        </li>
-	        <li>
-	            <img src="<?php echo Yii::getAlias('@web/upload/banner/').'3.jpg'; ?>" />
-	        </li>
+	        <?php } ?>
 	    </ul>
 	</div>
 	<div class="custom-navigation">
@@ -192,17 +189,10 @@ $this->registerJs("
 
 </div>
 
-<?php 
-
-
-?>
 <div class="about_news mar-b18">
 	<div class="_about">
-		<img width="154" height="83" style="float:left;padding-right: 15px;margin-top: 14px;" src="<?php echo Yii::getAlias('@web/upload/').'about.jpg'; ?>">
-		<p><span class="title">广州市搬家啦</span>是一家具有独立法人资格的专业搬运公司，成立于1996年。公司拥有各种大小厢式货车、吊车、叉车、平板车等专业搬家车辆数十台，并拥有一支训练有素的搬家队伍，他们经过严格的专业培训，熟练掌握物品的包装、拆卸及搬运的技能，让客户在搬家时省心、放心。</p>
-		<p>搬家啦将是您最佳的选择，我们将真诚为您服务。
-本公司的主要业务是大型企业搬迁、工厂搬迁、写字楼搬迁、学院搬迁、个人搬家、拆装空调、拆装家具等。
-本公司自成立迄今，深蒙广大客户支持鼓励，业绩不断成长，口碑尚称良好。我们以服务客户为己任，追求安全、高效、及时、认真的服务宗旨。<a href="">[详情...]</a></p>
+		<?= $about->page->content ?>
+		<?= Html::a('[详情...]', ['/site/page/view', 'name'=>'about'], ['style'=>'bottom: 15px;position: absolute;right: 15px;']) ?>
 	</div>
 	<div class="_list">
 		<ul class="nav">
@@ -211,7 +201,7 @@ $this->registerJs("
 			<?php } ?>
 		</ul>
 		
-		<a class="more" href="">更多</a>
+		<!-- <a class="more" href="">更多</a> -->
 		<?php 
 		foreach ($columns as $key=>$column) {
 			$post = $column->getPost()->where(['like', 'flag', 'c'])->all();//这里是文章类型列表【后台推荐文章】

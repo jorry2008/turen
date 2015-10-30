@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\extend\CommentSearch */
@@ -35,7 +36,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    <?= Html::a(Yii::t('extend', 'Create Comment'), ['create'], ['class' => 'btn btn-success']) ?>
 	                </p>
 	             -->
-            
+            	<?php Pjax::begin() ?>
 				<?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
@@ -73,7 +74,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                 ]); ?>
-                                
+				<?php Pjax::end() ?>
                 </div>
                 
             </div>

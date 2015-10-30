@@ -5,16 +5,16 @@ namespace frontend\modules\site\controllers;
 use common\models\cms\Column;
 use common\models\cms\Post;
 
-class BaikeController extends \frontend\components\Controller
+class PostController extends \frontend\components\Controller
 {
 	/**
-	 * 百科列表
+	 * 新闻列表
 	 * @param int $id
 	 * @return string
 	 */
 	public function actionList()
 	{
-		$column = Column::findOne(['short_code'=>'baike']);
+		$column = Column::findOne(['short_code'=>'news']);
 		return $this->render('list', [
 			'columnModel' => $column,
 			'postmodels' => $column->getPost()->orderBy('publish_at DESC')->all(),
@@ -22,7 +22,7 @@ class BaikeController extends \frontend\components\Controller
 	}
 	
 	/**
-	 * 百科详情
+	 * 新闻详情
 	 * @param int $id
 	 */
     public function actionView($id)

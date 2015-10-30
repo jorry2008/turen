@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use common\models\system\CascadeData;
 use yii\helpers\ArrayHelper;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\system\CascadeDataSearch */
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::a(Yii::t('system', 'Create Cascade Data'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
-                    
+                    <?php Pjax::begin() ?>
                     <?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         
@@ -100,6 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ],
                     ]); ?>
+                    <?php Pjax::end() ?>
                 </div>
                 
             </div>

@@ -25,11 +25,17 @@ return [
 	],
 	
 	'modules' => [
-		'site' => [
+		'site' => [//主站模块
 			'class' => 'frontend\modules\site\Module',
 		],
-		'account' => [
+		'account' => [//用户中心模块
 			'class' => 'frontend\modules\account\Module',
+		],
+		'ad' => [//广告模块（重点）
+			'class' => 'frontend\modules\ad\Module',
+		],
+		'mobile' => [//手机站模块
+			'class' => 'frontend\modules\mobile\Module',
 		],
 	],
 		

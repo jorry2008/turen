@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use yii\helpers\StringHelper;
 
 use common\models\extend\Message;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\extend\MessageSearch */
@@ -38,7 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    <?= Html::a(Yii::t('extend', 'Create Message'), ['create'], ['class' => 'btn btn-success']) ?>
 	                </p>
 	             -->
-            
+            	<?php Pjax::begin() ?>
 				<?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
@@ -63,7 +64,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        					'value' => function($model){
 	        						$length = Yii::$app->params['config']['config_site_title_length'];
 	        						$title = StringHelper::truncate($model->nickname, $length);//'<span class="fa fa-list-ol"></span> '.
-	        						return Html::a($title, ['update', 'id'=>$model->id]);
+	        						return Html::a($title, ['update', 'id'=>$model->id], ['data-pjax' => '0']);
 	        					},
         					],
 				            'contact',
@@ -89,8 +90,8 @@ $this->params['breadcrumbs'][] = $this->title;
 	        					'filter' => [Message::STATUS_YES=>Yii::t('common', 'Yes'), Message::STATUS_NO=>Yii::t('common', 'No')],
 	        					'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
 	        					'value' => function($model){
-	        						$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('common', 'Update Status')]);
-	        						$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('common', 'Update Status')]);
+	        						$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('common', 'Update Status'),'data-pjax' => '0']);
+	        						$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('common', 'Update Status'),'data-pjax' => '0']);
 	        						return $model->status?$on:$off;
 	        					},
         					],
@@ -105,7 +106,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                 ]); ?>
-                                
+				<?php Pjax::end() ?>
                 </div>
                 
             </div>

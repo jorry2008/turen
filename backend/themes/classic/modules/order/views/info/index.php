@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 use common\models\order\Info;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\order\InfoSearch */
@@ -37,7 +38,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    <?= Html::a(Yii::t('order', 'Create Info'), ['create'], ['class' => 'btn btn-success']) ?>
 	                </p>
 	             -->
-            
+            	<?php Pjax::begin() ?>
 				<?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
@@ -60,7 +61,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        					'attribute' => 'order_no',
 	        					'format' => 'raw',
 	        					'value' => function($model){
-	        						return Html::a($model->order_no, ['view', 'id'=>$model->id]);
+	        						return Html::a($model->order_no, ['view', 'id'=>$model->id], ['data-pjax' => '0']);
 	        					},
         					],
 				            'consignee',
@@ -116,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                 ]); ?>
-                                
+				<?php Pjax::end() ?>
                 </div>
                 
             </div>

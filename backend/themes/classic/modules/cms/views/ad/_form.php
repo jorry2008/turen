@@ -8,7 +8,7 @@ use yii\helpers\Url;
 
 use common\models\cms\Ad;
 use common\models\cms\AdType;
-use backend\components\ueditor\UeditorWidget;
+// use backend\components\ueditor\UeditorWidget;
 use kartik\file\FileInput;
 use common\helpers\General;
 
@@ -45,6 +45,8 @@ if($model->isNewRecord) {
         <?= $form->field($model, 'mode')->dropDownList(Ad::getAdMode()) ?>
 
 	    <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
+	    
+	    <?= $form->field($model, 'short_code')->textInput(['maxlength' => true]) ?>
 	    
 	    <?= $form->field($model, 'pic_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('fileinput', 'Note: Limit upload one picture.'))->widget(FileInput::classname(), [
 		    'options'=>[
@@ -148,7 +150,7 @@ if($model->isNewRecord) {
         */
         ?>
 		
-	    <?php // $form->field($model, 'text')->textarea(['rows' => 6]) ?>
+	    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 	
 	    <?= $form->field($model, 'link_url')->hint('<i class="fa fa-info-circle"></i> '.Yii::t('cms', 'Site address, please fill in the  http:// beginning'))->textInput(['maxlength' => true]) ?>
 	

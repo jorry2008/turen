@@ -5,7 +5,7 @@ namespace frontend\modules\site\controllers;
 use common\models\cms\Column;
 use common\models\cms\Post;
 
-class NewsController extends \frontend\components\Controller
+class PostController extends \frontend\components\Controller
 {
 	/**
 	 * 新闻列表

@@ -7,6 +7,9 @@
 /backend/web/assets
 /frontend/web/assets
 
+/backend/web/upload
+/frontend/web/upload
+
 # phpstorm project files
 .idea
 

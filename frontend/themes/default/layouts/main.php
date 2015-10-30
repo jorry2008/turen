@@ -81,9 +81,9 @@ $this->registerJs("
                     <span class="htr_line"></span>
                     <?= Html::a('服务流程', ['/site/page/view', 'name'=>'service'], ['class'=>('site/page/view' == Yii::$app->requestedRoute)?'active':'']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a('新闻中心', ['/site/news/list'], ['class'=>('site/news/list' == Yii::$app->requestedRoute)?'active':'']) ?>
+                    <?= Html::a('新闻中心', ['/site/post/list', 'name'=>'news'], ['class'=>('site/post/list' == Yii::$app->requestedRoute && Yii::$app->getRequest()->get('name') == 'news')?'active':'']) ?>
                     <span class="htr_line"></span>
-                    <?= Html::a('搬家百科', ['/site/baike/list'], ['class'=>('site/baike/list' == Yii::$app->requestedRoute)?'active':'']) ?>
+                    <?= Html::a('搬家百科', ['/site/post/list', 'name'=>'baike'], ['class'=>('site/post/list' == Yii::$app->requestedRoute && Yii::$app->getRequest()->get('name') == 'baike')?'active':'']) ?>
                     <?php 
                     if(!Yii::$app->getUser()->isGuest) {
                     	echo '<span class="htr_line"></span>';

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 use common\models\order\Call;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\order\CallSearch */
@@ -36,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                    <?= Html::a(Yii::t('order', 'Create Call'), ['create'], ['class' => 'btn btn-success']) ?>
 	                </p>
 	             -->
-            
+            	<?php Pjax::begin() ?>
 				<?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
@@ -66,7 +67,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	        					'attribute' => 'username',
 	        					'format' => 'raw',
 	        					'value' => function($model){
-	        						return Html::a(empty($model->username)?'<i>[未留名]</i>':$model->username, ['view', 'id'=>$model->id]);
+	        						return Html::a(empty($model->username)?'<i>[未留名]</i>':$model->username, ['view', 'id'=>$model->id], ['data-pjax' => '0']);
 	        					},
         					],
 				            'contact',
@@ -109,7 +110,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ],
                     ],
                 ]); ?>
-                                
+				<?php Pjax::end() ?>
                 </div>
                 
             </div>

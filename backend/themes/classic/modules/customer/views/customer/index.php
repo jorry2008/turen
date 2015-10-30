@@ -5,6 +5,7 @@ use yii\grid\GridView;
 use common\models\customer\Customer;
 use common\models\customer\CustomerGroup;
 use yii\helpers\ArrayHelper;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\customer\CustomerSearch */
@@ -40,7 +41,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         <?= Html::a(Yii::t('customer', 'Create Customer'), ['create'], ['class' => 'btn btn-success']) ?>
                     </p>
                  -->
-            
+            	<?php Pjax::begin() ?>
                 <?= GridView::widget([
                     'dataProvider' => $dataProvider,
                     
@@ -128,7 +129,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         ]
                     ],
                 ]); ?>
-                                
+				<?php Pjax::end() ?>
                 </div>
                 
             </div>

@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 use common\models\cms\Column;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -56,7 +57,7 @@ $('.cms-class-index .cms-order').focus(function() {
                             <?= Html::a(Yii::t('cms', 'Create Column'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
-            
+            		<?php Pjax::begin() ?>
 					<?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         
@@ -85,7 +86,7 @@ $('.cms-class-index .cms-order').focus(function() {
                                 	
                                 	$name = $model->name;
                                 	if($className) {
-                                		$name = Html::a($name, ['/cms/'.strtolower(str_replace('Cms', 'cms-', $className)).'/index', $className.'Search[column_id]'=>$model->id]);
+                                		$name = Html::a($name, ['/cms/'.strtolower(str_replace('Cms', 'cms-', $className)).'/index', $className.'Search[column_id]'=>$model->id], ['data-pjax' => '0']);
                                 	}
                                 	
                                     return $name.'<i class="type">['.$type.']</i>';
@@ -111,8 +112,8 @@ $('.cms-class-index .cms-order').focus(function() {
 	                            'attribute' => 'status',
 	                            'format' => 'html',
 	                            'value' => function($model){
-	                            	$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
-	                            	$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+	                            	$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status'),'data-pjax' => '0']);
+	                            	$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status'),'data-pjax' => '0']);
 	                            	return $model->status?$on:$off;
 	                            },
                             ],
@@ -136,7 +137,7 @@ $('.cms-class-index .cms-order').focus(function() {
                             ]
                         ],
                     ]); ?>
-                                
+                    <?php Pjax::end() ?>      
                 </div>
                 
             </div>

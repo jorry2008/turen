@@ -13,6 +13,9 @@ use common\models\account\ResetPasswordForm;
 use common\models\account\SignupForm;
 use common\models\account\ContactForm;
 use common\models\cms\Column;
+use common\models\cms\Page;
+use common\models\cms\Ad;
+use common\models\cms\AdType;
 
 /**
  * Site controller
@@ -38,8 +41,13 @@ class HomeController extends \frontend\components\Controller
     public function actionIndex()
     {
     	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->all();
+    	$about = Column::findOne(['short_code'=>'about-brief']);
+    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->one();
+    	
     	return $this->render('index', [
     		'columns' => $columns,//推荐栏目到首页
+    		'about' => $about,
+    		'mainAdType' => $mainAdType,
     	]);
     }
 

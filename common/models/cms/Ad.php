@@ -14,6 +14,7 @@ use yii\behaviors\TimestampBehavior;
  * @property string $mode
  * @property string $pic_url
  * @property string $text
+ * @property string $hits
  * @property string $link_url
  * @property integer $order
  * @property integer $status
@@ -23,15 +24,20 @@ use yii\behaviors\TimestampBehavior;
  */
 class Ad extends \yii\db\ActiveRecord
 {
+	//广告发布状态
 	const STATUS_YES = 1;
 	const STATUS_NO = 0;
 	
 	const MAX_PAGE_SIZE = 20;
 	
+	//广告类型
 	const AD_IMG = 1;
 	const AD_FLASH = 2;
 	const AD_VIDEO = 3;
 	const AD_HTML_CODE = 4;
+	
+	const AD_SOURCE_PC = 'pc';
+	const AD_SOURCE_M = 'm';
 	
 	/**
 	 * 以行为的方式处理操作时间
@@ -68,12 +74,13 @@ class Ad extends \yii\db\ActiveRecord
         return [
             [['ad_type_id', 'order', 'status', 'deleted', 'updated_at', 'created_at'], 'integer'],
             [['text'], 'string'],
-            [['title'], 'string', 'max' => 30],
+            [['title', 'short_code'], 'string', 'max' => 30],
             [['mode'], 'string', 'max' => 10],
             [['pic_url'], 'string', 'max' => 100],
             [['link_url'], 'string', 'max' => 255],
         	
-        	[['title', 'order'], 'required'],
+        	[['title', 'order', 'short_code'], 'required'],
+        	[['short_code'], 'unique'],
         	[['link_url'], 'url'],
         ];
     }
@@ -95,6 +102,7 @@ class Ad extends \yii\db\ActiveRecord
             'status' => Yii::t('cms', 'Status'),
             'updated_at' => Yii::t('cms', 'Updated At'),
             'created_at' => Yii::t('cms', 'Created At'),
+        	'short_code' => Yii::t('cms', 'Short Code'),
         ];
     }
     

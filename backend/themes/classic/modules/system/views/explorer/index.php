@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 
 use common\models\system\Explorer;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\system\ExplorerSearch */
@@ -26,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
            
             <div class="tab-content clearfix">
                 <div class="tab-pane active explorer-index">
+                	<?php Pjax::begin() ?>
 					<?= GridView::widget([
 	                    'dataProvider' => $dataProvider,
 	                    
@@ -101,7 +103,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                        ],
 	                    ],
 	                ]); ?>
-                                
+					<?php Pjax::end() ?>
                 </div>
                 
             </div>

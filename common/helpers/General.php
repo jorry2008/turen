@@ -5,11 +5,10 @@ namespace common\helpers;
 use Yii;
 use yii\base\InvalidParamException;
 use yii\helpers\Html;
-// use yii\helpers\StringHelper;
-// use yii\imagine\Image;
 use yii\base\UnknownClassException;
 use yii\helpers\FileHelper;
 use yii\helpers\Url;
+use yii\imagine\Image;
 
 /**
  * 一些通用全局的特殊处理方法
@@ -262,6 +261,69 @@ class General
     	} else {
     		return [];
     	}
+    }
+    
+    /**
+     * 图片展示，通用方法
+     * @param string $path 图片相对路径
+     * @param string $deal 展示类型，以原图的方式展示'o',以切割处理的方式'c',默认'o'
+     * @param string $type 以像素的方式'px'还是以百分比的方式'p'，没有则不加尺寸限制
+     * @param int $height 纯数字整型
+     * @param int $width 纯数字整型
+     * @return string <img />
+     */
+    public static function showImg($path, $deal='o', $alt='', $type='p', $width='', $height='')
+    {
+    	$quality = Yii::$app->params['config']['config_pic_quality'];
+    	$deal = empty($deal)?'o':$deal;
+    	$basePath = Yii::getAlias('@backend');
+    	$defaultPath = Yii::$app->params['config']['config_site_no_picture'];//来自后台配置的一张no picture
+    	$picUrl = Yii::$app->params['config']['config_pic_url'];
+    	$ds = DIRECTORY_SEPARATOR;
+    	
+    	if(!is_file($basePath.$ds.'web'.$ds.'upload'.$ds.$path))//图片不存在
+    		$path = $defaultPath;
+    	
+    	if($deal == 'o') {//直接展示原图
+    		$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.$path, '/');
+    	} elseif($deal == 'c') {//处理后的图片
+    		$bName = basename($path);
+    		$nPath = str_replace($bName, $quality.'-'.$width.'x'.$height.'-'.$bName, $path);//新的文件路径
+    		
+    		//图片处理后，返回一个新的图片地址
+    		$oFile = $basePath.$ds.'web'.$ds.'upload'.$ds.$path;
+    		$nFile = $basePath.$ds.'web'.$ds.'upload'.$ds.'new'.$ds.$nPath;
+    		
+    		if(!is_file($nFile)) {
+    			if(!is_dir(FileHelper::normalizePath(dirname($nFile))))
+    				FileHelper::createDirectory(FileHelper::normalizePath(dirname($nFile)));
+    			
+    			Image::thumbnail(FileHelper::normalizePath($oFile), $width, $height)
+    			->save(FileHelper::normalizePath($nFile), ['quality' => $quality]);
+    		}
+    		
+    		$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.'new'.$ds.$nPath, '/');
+    	}
+    	
+    	if($type == 'px') {
+    		if($height) $height .= 'px';
+    		if($width) $width .= 'px';
+    	} elseif($type == 'p') {
+    		if($height) $height .= '%';
+    		if($width) $width .= '%';
+    	} else {
+    		$height = $width = '';
+    	}
+    	
+    	return Html::img($src, ['alt'=>$alt, 'title'=>$alt, 'height'=>$height, 'width'=>$width]);
+    }
+    
+    /**
+     * 图片切割
+     */
+    public static function cutImg()
+    {
+    	
     }
 }
 

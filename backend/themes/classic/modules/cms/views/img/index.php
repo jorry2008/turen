@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 use common\models\cms\Column;
 use common\models\cms\Flag;
 use common\models\cms\Img;
+use yii\widgets\Pjax;
 
 /* @var $this yii\web\View */
 /* @var $searchModel common\models\cms\ImgSearch */
@@ -41,7 +42,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             <?= Html::a(Yii::t('cms', 'Create Img'), ['create'], ['class' => 'btn btn-success']) ?>
                         </p>
                      -->
-            
+            		<?php Pjax::begin() ?>
 					<?= GridView::widget([
                         'dataProvider' => $dataProvider,
                         
@@ -69,7 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
 	                        		$options = ['style'=>''];
 	                        		Html::addCssStyle($options, ['color'=>$model->colorval, 'font-weight'=>$model->boldval]);
 	                        		$title = '<span title="'.$model->title.'" style="'.$options['style'].'">'.StringHelper::truncate($model->title, $length).'</span>';
-	                        		return Html::a($title, ['update', 'id'=>$model->id]);
+	                        		return Html::a($title, ['update', 'id'=>$model->id], ['data-pjax' => '0']);
                         		},
                         	], [
                             		'attribute' => 'column_id',
@@ -101,8 +102,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         		'filter' => [Img::STATUS_YES=>Yii::t('cms', 'Yes'), Img::STATUS_NO=>Yii::t('cms', 'No')],
                         		'filterInputOptions' => ['class' => 'form-control', 'id' => null, 'prompt'=>Yii::t('common', 'All')],
                         		'value' => function($model){
-                        			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
-                        			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status')]);
+                        			$on = Html::a('<small class="label bg-green">'.Yii::t('common', 'Yes').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status'),'data-pjax' => '0']);
+                        			$off = Html::a('<small class="label bg-red">'.Yii::t('common', 'No').'</small>', ['switch-status', 'id'=>$model->id], ['title'=>Yii::t('cms', 'Update Status'),'data-pjax' => '0']);
                         			return $model->status?$on:$off;
                         		},
                         	],
@@ -116,7 +117,7 @@ $this->params['breadcrumbs'][] = $this->title;
                             ],
                         ],
                     ]); ?>
-                                
+					<?php Pjax::end() ?>     
                 </div>
                 
             </div>
