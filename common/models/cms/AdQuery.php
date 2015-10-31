@@ -14,7 +14,7 @@ class AdQuery extends \yii\db\ActiveQuery
 	 */
     public function active()
     {
-        $this->andWhere(['status'=>1,'deleted'=>0]);
+        $this->andWhere([Ad::tableName().'.status'=>1,Ad::tableName().'.deleted'=>0]);
         return $this;
     }
     

@@ -206,6 +206,14 @@ class Column extends \yii\db\ActiveRecord
     	return $this->hasOne(Column::className(), ['id' => 'parent_id']);
     }
     
+	/**
+     * 自联，一对多
+     */
+    public function getMultiSelf()
+    {
+    	return $this->hasMany(Column::className(), ['parent_id'=>'id']);
+    }
+    
     /**
      * 一对一
      */

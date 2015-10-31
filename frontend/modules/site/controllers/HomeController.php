@@ -39,12 +39,21 @@ class HomeController extends \frontend\components\Controller
         ];
     }
 
+    /**
+     * 首页
+     * @return string
+     */
     public function actionIndex()
     {
-    	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->active()->all();
+    	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->active()->orderBy('order ASC')->all();
+    	//关于我们单页
     	$about = Column::find()->where(['short_code'=>'about-brief'])->active()->one();
-    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->active()->one();//in查询
+    	//首页主广告
+    	$mainAdType = AdType::find()->where(['short_code'=>'home_main'])->active()->one();//in查询
+    	$mainAds = $mainAdType->getAd()->active()->orderBy('order ASC')->all();
+    	//底部广告
     	$adBottom = Ad::find()->where(['short_code'=>'home_bottom'])->active()->one();
+    	//搬家现场，推荐
     	$scenes = Img::find()->select(Img::tableName().'.*')->where(['like', Img::tableName().'.flag', 'c'])->joinWith([
 			'column' => function ($query) {
 				$query->where([Column::tableName().'.short_code'=>'xianchang']);
@@ -55,6 +64,7 @@ class HomeController extends \frontend\components\Controller
     		'columns' => $columns,//推荐栏目到首页
     		'about' => $about,
     		'mainAdType' => $mainAdType,
+    		'mainAds' => $mainAds,
     		'adBottom' => $adBottom,
     		'scenes' => $scenes,
     	]);

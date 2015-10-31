@@ -87,7 +87,7 @@ $this->registerJs("
 <div class="slider mar-b18">
 	<div class="flexslider">
 	    <ul class="slides">
-	    	<?php foreach ($mainAdType->ad as $ad) { ?>
+	    	<?php foreach ($mainAds as $ad) { ?>
 	        <li>
 	            <?= Html::a(General::showImg($ad->pic_url, 'o', $ad->title, 'px', $mainAdType->width, $mainAdType->height), ['/ad/link/ad-click', 'name'=>$ad->short_code], ['target'=>'_blank']) ?>
 	        </li>

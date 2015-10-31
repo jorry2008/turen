@@ -1,6 +1,13 @@
-<div class="side_box">
-    <?= empty($title)?'':'<h3 class="box_title">'.$title.'</h3>' ?>
-    <div class="<?= empty($title)?'list_page':'box_content' ?>">
-    	content
+<?php 
+/**
+ * jorry<980522557@qq.com>
+ * 
+ */
+use yii\helpers\Html;
+
+?>
+<div id="side_ad" class="side_box">
+    <div style="margin: -15px;">
+    	<?= Html::a($img, $model->link_url); ?>
     </div>
 </div>

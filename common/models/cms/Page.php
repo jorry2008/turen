@@ -106,7 +106,7 @@ class Page extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Column::className(), ['id' => 'column_id']);
     }
-
+    
     /**
      * @inheritdoc
      * @return PageQuery the active query used by this AR class.

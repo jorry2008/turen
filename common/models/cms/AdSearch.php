@@ -50,7 +50,7 @@ class AdSearch extends Ad
         	],
         	'sort' => [
         		'defaultOrder' => [
-        			'created_at' => SORT_DESC
+        			'order' => SORT_ASC
         		],
         	],
         ]);

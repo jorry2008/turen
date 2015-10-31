@@ -4,6 +4,7 @@ use frontend\widgets\SideCurrentTop;
 use frontend\widgets\SidePage;
 use frontend\widgets\SidePicTop;
 use frontend\widgets\SidePostTop;
+use common\models\cms\Ad;
 
 /* @var $this yii\web\View */
 
@@ -16,9 +17,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	<a class="btn_yuyue" rel="nofollow" href="javascript:;">立即预约</a>
 	<a class="btn_liuyan" rel="nofollow" href="javascript:;">给我们留言</a>
 	
-	<?= SideAd::widget(['title'=>'广告']) ?>
+	<?= SideAd::widget(['code'=>'side_ad', 'width'=>238]) ?>
+	<?= SidePage::widget(['parent_short_code'=>'base']) ?>
 	<?= SideCurrentTop::widget(['title'=>'当前']) ?>
-	<?= SidePage::widget(['title'=>'单页']) ?>
 	<?= SidePicTop::widget(['title'=>'图片']) ?>
 	<?= SidePostTop::widget(['title'=>'文章']) ?>
 </div>
