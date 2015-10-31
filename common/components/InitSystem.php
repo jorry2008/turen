@@ -51,7 +51,7 @@ class InitSystem extends \yii\base\Component {
 	    // 后台配置模板
 	    
 	    // 后台配置
-	    Yii::$app->name = Yii::$app->params['config']['config_site_name'];
+	    Yii::$app->name = Yii::$app->params['config']['config_base_name'];
 	    
 	    //配置邮箱服务器
 	    

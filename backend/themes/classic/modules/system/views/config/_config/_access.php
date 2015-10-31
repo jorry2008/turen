@@ -13,6 +13,7 @@ if(isset($models['config_access_action'])) {
 		</div>
     </div>
 </div>
+<span style="display: none;">config_access_action</span>
 <?php } ?>
 
 <?php
@@ -23,13 +24,14 @@ if(isset($models['config_access_controller'])) {
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
     <div class="col-md-10">
         <div class="col-md-7">
-        	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
+        	<textarea rows="" cols="" name="Setting[<?= $model->key ?>]" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5"><?= $model->value ?></textarea>
         </div>
         <div class="col-md-7">
 			<span class="help-block"><?=Yii::t('system', 'Example:')?> user/common,customer/customer.</span>
 		</div>
     </div>
 </div>
+<span style="display: none;">config_access_controller</span>
 <?php } ?>
 
 <?php
@@ -47,6 +49,7 @@ if(isset($models['config_access_verb'])) {
 		</div>
     </div>
 </div>
+<span style="display: none;">config_access_verb</span>
 <?php } ?>
 
 <?php
@@ -64,4 +67,7 @@ if(isset($models['config_access_ip'])) {
 		</div>
     </div>
 </div>
+<span style="display: none;">config_access_ip</span>
 <?php } ?>
+
+

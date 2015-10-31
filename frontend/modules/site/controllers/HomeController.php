@@ -41,11 +41,16 @@ class HomeController extends \frontend\components\Controller
 
     public function actionIndex()
     {
-    	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->all();
-    	$about = Column::findOne(['short_code'=>'about-brief']);
-    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->one();//in查询
-    	$adBottom = Ad::findOne(['short_code'=>'home_bottom']);
-    	$xianChangs = Img::find()->where(['like', 'flag', 'c'])->all();
+    	$columns = Column::find()->where(['type'=>Column::CMS_TYPE_LIST])->orderBy('order ASC')->active()->all();
+    	$about = Column::find()->where(['short_code'=>'about-brief'])->active()->one();
+    	$mainAdType = AdType::find()->with('ad')->where(['short_code'=>'home_main'])->active()->one();//in查询
+    	$adBottom = Ad::find()->where(['short_code'=>'home_bottom'])->active()->one();
+    	$scenes = Img::find()->select(Img::tableName().'.*')->where(['like', Img::tableName().'.flag', 'c'])->joinWith([
+			'column' => function ($query) {
+				$query->where([Column::tableName().'.short_code'=>'xianchang']);
+			}
+		])->active()->all();//搬家现场推荐
+    	
 //     	$links = '';
 // 		$subNav = '';
     	
@@ -54,7 +59,7 @@ class HomeController extends \frontend\components\Controller
     		'about' => $about,
     		'mainAdType' => $mainAdType,
     		'adBottom' => $adBottom,
-    		'xianChangs' => $xianChangs,
+    		'scenes' => $scenes,
 //     		'links' => $links,
 //     		'subNav' => $subNav,
     	]);

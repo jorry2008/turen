@@ -7,6 +7,8 @@ use frontend\assets\AppAsset;
 
 use common\helpers\General;
 use common\models\extend\Nav;
+use common\models\extend\LinkType;
+use common\models\extend\Link;
 // use frontend\widgets\Alert;
 
 /* @var $this \yii\web\View */
@@ -152,227 +154,84 @@ $this->registerJs("
         <?= $content ?>
 	</div>
 	
-	<div class="blue-foot clearfix mar-t18">
-	    <div class="n_foot-box clearfix">
-	    <!-- 
-	        <h3 class="f-tit-h3">
-	            合作伙伴
-	        </h3>
-	        <ul class="blue-pic-ul clearfix">
-	            <li>
-	                <a target="_blank" href="http://www.aliyun.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>aliyun.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://www.baidu.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>baidu.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="https://www.teambition.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>teambition.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://www.qq.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>txw.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://www.cn.jooble.org">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>jooble.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://www.kankan.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>xunlei.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://www.upyun.com">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>youpaiyun.png">
-	                </a>
-	            </li>
-	            <li>
-	                <a target="_blank" href="http://job.zcool.com.cn">
-	                    <img height="60px" src="<?php echo Yii::getAlias('@web/upload/link/')?>zcool.png">
-	                </a>
-	            </li>
-	        </ul>
-	         -->
-	        
-	        <h3 class="f-tit-h3 mar-t5">
-	            友情链接
-	        </h3>
-	        <div class="blue-link-box clearfix">
-	            <ul class="clearfix">
-	                <li>
-	                    <a target="_blank" href="http://www.woshipm.com">
-	                        人人都是产品经理
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.qidianla.com">
-	                        起点学院
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://wenda.woshipm.com">
-	                        天天问
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.zhaopins.com">
-	                        产品经理招聘
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://dh.woshipm.com">
-	                        产品经理导航
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.yiyebang.com">
-	                        异业邦
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.xmpig.com">
-	                        厦门小猪网
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.izhaowo.com">
-	                        找我网
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="https://www.mockplus.cn">
-	                        Mockplus原型
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.pmtown.com">
-	                        泡面小镇
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.25xt.com">
-	                        25学堂
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.jikexueyuan.com">
-	                        极客学院
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://bbs.maxpda.com">
-	                        黑莓论坛
-	                    </a>
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.zn8.com">
-	                        智能电视
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.zzjidi.com">
-	                        站长基地
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.fjii.com">
-	                        览潮网
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.31huiyi.com">
-	                        31会议
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.yopai.com/">
-	                        优派网
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	                <li>
-	                    <a target="_blank" href="http://www.ciaapp.cn/">
-	                        CIA身份验证
-	                    </a>
-	                    &nbsp;&nbsp;
-	                </li>
-	            </ul>
-	        </div>
-	    </div>
-	    <!--foot-box-->
+	<div class="foot-top clearfix mar-t18">
+		<div class="foot-top-content clearfix">
+			<div class="n_foot-box">
+		    	<?php 
+		    	$links = Link::find()->select(Link::tableName().'.*')->joinWith([
+		    			'linkType' => function ($query) {
+		    				$query->where([LinkType::tableName().'.short_code'=>'site_links']);
+		    			}
+		    	])->active()->all();//友情链接
+		    	?>
+		        <ul class="tit_tab clearfix">
+		        	<li class="on">友情链接</li>
+		        </ul>
+		        <div class="main-link-box clearfix">
+		            <ul class="clearfix">
+		            	<?php foreach ($links as $link) { ?>
+		                <li>
+		                    <?= Html::a($link->name, [$link->link_url], ['target'=>'_blank']) ?>
+		                </li>
+		                <?php } ?>
+		            </ul>
+		        </div>
+		    </div>
+		    
+		    <div class="m_foot-box">
+				<div class="ftc_right">
+					<dl>
+						<dt>扫码进手机版</dt>
+						<dd><img width="100px;" src="<?= Yii::$app->params['config']['config_pic_url'].'/upload/common/code.png' ?>" /></dd>
+					</dl>
+				</div>
+		    </div>
+		</div>
 	</div>
 	
 	<div class="black-foot footer">
-	    <div style="overflow:hidden;" class="n_foot-box">
-	        <div class="black-left">
-	            <p style="margin-bottom:10px;">
-	                <a class="f-logo" href="#">快兔搬家</a>
-	            </p>
-	            <a class="a-font mar-r27" target="_blank" href="/sys/about.html">关于我们</a>
-	            <a class="a-font" target="_blank" href="/sys/contact.html">联系我们&nbsp;</a>
-	            <br>
-	            <a class="a-font mar-r27" href="/sys/api.html">开放API</a>
-	            <a class="a-font" target="_blank" href="/sys/declaration.html">免责声明</a>
-	        </div>
-	        <div class="black-center">快兔搬家网是集方科技有限公司旗下的便民服务平台，专注于大众化搬家服务。依托于中国专业网络技术公司--集方科技有限公司（www.jifang.com），整合业内资源，为大众提供专业，极速的信息服务，为客户提供精准，优质的搬家等装卸服务，保证最好的态度与最专业的技术让每位客户满意。</div>
-	        <div class="black-right">
-	            <dl class="foot_r_dl">
-	                <dd></dd>
-	                <dt>
-	                    <p class="n_blue_font">
-	                        <i class="fa fa-qq"></i> 搬家交流群
-	                    </p>
-	                    <p class="mar-b10">980522557</p>
-	                    <p class="n_blue_font">
-	                        <i class="fa fa-phone"></i> 商务联系方式
-	                    </p>
-	                    <p>Jorry：13725514524</p>
-	                </dt>
-	                <div style="clear: both;"></div>
-	            </dl>
-	        </div>
-	    </div>
-	    <!--foot-box-->
-	    <div class="n_foot-box">
-	        <div class="n_copyright">
-	            Copyright &copy; <?= date('Y') ?> - 快兔网-专业的搬家平台 - 粤ICP备14037330号
-	            <br>集方科技旗下网站
-	        </div>
-	        <div style="text-align: center;" class="mar-t10">运行于：
-	            <a target="_blank" href="http://www.aliyun.com">
-	                <img original="http://www.qidianla.com/assets/images/main/f_aly.png" style="display: inline;"
-	                src="http://www.qidianla.com/assets/images/main/f_aly.png">
-	            </a>
-	            <a target="_blank" href="http://www.upyun.com">
-	                <img style="margin-left: 11px; display: inline;" original="http://www.qidianla.com/assets/images/main/f_up.png"
-	                src="http://www.qidianla.com/assets/images/main/f_up.png">
-	            </a>
-	        </div>
-	    </div>
+		
+		<div class="footer_bottom_container">
+		    <div class="fbc_menu">
+		        <ul>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		            </li>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		            </li>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		            </li>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		            </li>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		            </li>
+		            <li>
+		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a>
+		            </li>
+		        </ul>
+		    </div>
+		</div>
+		
+        <div class="n_copyright">
+        	<div class="row">免责声明：本网站部分内容来自互联网，如权利人发现存在误传其作品情形，请及时与本站联系。</div>
+            <div class="row">Copyright &copy; <?= date('Y') ?> - <?= Yii::$app->params['config']['config_base_name'] ?>-专业搬家网 - 粤ICP备198637330号</div>
+            <div class="row"><?= Yii::$app->params['config']['config_base_company'] ?>旗下网站</div>
+            <div class="row">
+				
+				<div class="f_icpico">
+					<?php $url = Yii::$app->params['config']['config_pic_url']; ?>
+					<?= Html::a(Html::img($url.'/upload/common/jingcha.jpg', ['height'=>'32px']), 'javascript:;', ['rel'=>'nofollow']) ?>
+					<?= Html::a(Html::img($url.'/upload/common/chengxin.jpg', ['height'=>'32px']), 'javascript:;', ['rel'=>'nofollow']) ?>
+					<?= Html::a(Html::img($url.'/upload/common/cnnic.png', ['height'=>'32px']), 'javascript:;', ['rel'=>'nofollow']) ?>
+					<?= Html::a(Html::img($url.'/upload/common/beian.jpg', ['height'=>'32px']), 'javascript:;', ['rel'=>'nofollow']) ?>
+			    </div>
+				
+			</div>
+        </div>
 	</div>
 	
 	<div class="ronsever2">

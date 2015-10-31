@@ -15,7 +15,7 @@ class LinkQuery extends \yii\db\ActiveQuery
 	 */
     public function active()
     {
-        $this->andWhere(['status'=>1,'deleted'=>0]);
+        $this->andWhere([Link::tableName().'.status'=>1,Link::tableName().'.deleted'=>0]);
         return $this;
     }
     

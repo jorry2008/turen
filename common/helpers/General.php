@@ -270,23 +270,23 @@ class General
      * @param string $type 以像素的方式'px'还是以百分比的方式'p'，没有则不加尺寸限制
      * @param int $height 纯数字整型
      * @param int $width 纯数字整型
+     * @param string $priority 优先取宽或高 all、w、h
      * @return string <img />
      */
-    public static function showImg($path, $deal='o', $alt='', $type='p', $width='', $height='')
+    public static function showImg($path, $deal, $alt, $type, $width, $height, $priority='all')
     {
-    	$quality = Yii::$app->params['config']['config_pic_quality'];
-    	$deal = empty($deal)?'o':$deal;
+    	$quality = Yii::$app->params['config']['config_pic_quality'];//图片处理质量
     	$basePath = Yii::getAlias('@backend');
-    	$defaultPath = Yii::$app->params['config']['config_site_no_picture'];//来自后台配置的一张no picture
-    	$picUrl = Yii::$app->params['config']['config_pic_url'];
+    	$defaultPath = Yii::$app->params['config']['config_pic_no_picture'];//来自后台配置的一张no picture
+    	$picUrl = Yii::$app->params['config']['config_pic_url'];//图片请求地址
     	$ds = DIRECTORY_SEPARATOR;
     	
-    	if(!is_file($basePath.$ds.'web'.$ds.'upload'.$ds.$path))//图片不存在
+    	$no_pic = !is_file($basePath.$ds.'web'.$ds.'upload'.$ds.$path);
+    	
+    	if($no_pic)//图片不存在
     		$path = $defaultPath;
     	
-    	if($deal == 'o') {//直接展示原图
-    		$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.$path, '/');
-    	} elseif($deal == 'c') {//处理后的图片
+    	if($deal == 'c' || $no_pic) {//指定处理或者没有图片时处理
     		$bName = basename($path);
     		$nPath = str_replace($bName, $quality.'-'.$width.'x'.$height.'-'.$bName, $path);//新的文件路径
     		
@@ -294,15 +294,25 @@ class General
     		$oFile = $basePath.$ds.'web'.$ds.'upload'.$ds.$path;
     		$nFile = $basePath.$ds.'web'.$ds.'upload'.$ds.'new'.$ds.$nPath;
     		
-    		if(!is_file($nFile)) {
+    		$no_nfile = !is_file($nFile);//切割的图片不存在
+    		
+    		if($type == 'px' && $no_nfile && $width && $height) {
     			if(!is_dir(FileHelper::normalizePath(dirname($nFile))))
     				FileHelper::createDirectory(FileHelper::normalizePath(dirname($nFile)));
     			
     			Image::thumbnail(FileHelper::normalizePath($oFile), $width, $height)
     			->save(FileHelper::normalizePath($nFile), ['quality' => $quality]);
+    			
+    			//切割后的新图片
+    			$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.'new'.$ds.$nPath, '/');
+    		} else {//已经存在切割后的图片，或者不满足切割条件
+    			if($no_nfile)
+    				$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.$path, '/');
+    			else //已经存在切割后的图片
+    				$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.'new'.$ds.$nPath, '/');
     		}
-    		
-    		$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.'new'.$ds.$nPath, '/');
+    	} elseif ($deal == 'o') {//直接展示原图
+    		$src = $picUrl.FileHelper::normalizePath($ds.'upload'.$ds.$path, '/');
     	}
     	
     	if($type == 'px') {
@@ -315,15 +325,12 @@ class General
     		$height = $width = '';
     	}
     	
-    	return Html::img($src, ['alt'=>$alt, 'title'=>$alt, 'height'=>$height, 'width'=>$width]);
-    }
-    
-    /**
-     * 图片切割
-     */
-    public static function cutImg()
-    {
+    	if($priority == 'w')
+    		$height = '';
+    	elseif($priority == 'h') 
+    		$width = '';
     	
+    	return Html::img($src, ['alt'=>$alt, 'title'=>$alt, 'height'=>$height, 'width'=>$width]);
     }
 }
 

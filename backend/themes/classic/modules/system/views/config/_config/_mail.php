@@ -13,6 +13,7 @@ $model = $models['config_email_host'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_host</span>
 <?php } ?>
 
 <?php 
@@ -30,6 +31,7 @@ $model = $models['config_email_username'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_username</span>
 <?php } ?>
 
 <?php 
@@ -47,6 +49,7 @@ $model = $models['config_email_password'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_password</span>
 <?php } ?>
 
 <?php 
@@ -64,6 +67,7 @@ $model = $models['config_email_port'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_port</span>
 <?php } ?>
 
 <?php 
@@ -81,6 +85,7 @@ $model = $models['config_email_to'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_to</span>
 <?php } ?>
 
 <?php 
@@ -98,4 +103,8 @@ $model = $models['config_email_bcc'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_email_bcc</span>
 <?php } ?>
+
+
+

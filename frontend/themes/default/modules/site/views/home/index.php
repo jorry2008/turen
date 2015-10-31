@@ -218,81 +218,30 @@ $this->registerJs("
 	</div>
 </div>
 
-<?php fb($xianChangs);?>
-
 <div class="scene mar-b18">
     <ul class="nav">
-		<li class="active"><a href="">搬运现场</a></li>
+		<li class="active"><a href="javascript:;">搬运现场</a></li>
 	</ul>
-    <a class="more" href="">更多</a>
-    <div id="xianchang">
+    <?= Html::a('更多', ['/site/pic/list'], ['class'=>'more']) ?>
+    <div id="xianchang" class="clearfix">
 	    <a href="javascript:void(0)" class="prev"></a>
 	    <a href="javascript:void(0)" class="next"></a>
-        <ul class="clearfix">
+        <ul>
+        	<?php foreach ($scenes as $scene) { ?>
             <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/xiaoxianrou2015/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'1.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            2015年度最热名企与小鲜肉勾搭大会！
-                    </span>
-                </a>
+            	<?php 
+            	$link = $scene->link_url;
+            	if(empty($link))
+            		$link = ['/site/pic/view', 'name'=>'', 'id'=>$scene->id];
+            	?>
+            	<?= Html::a('<span class="pic_box">'.General::showImg($scene->pic_url, 'o', $scene->title, 'px', '230', '140').'</span><span class="text-box">'.$scene->title.'</span>', $link) ?>
             </li>
-            <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/top-position/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'2.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            设计圈高级职位专场！
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/job/O2O2015/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'3.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            O2O企业设计师招聘专场
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/job/hongshanziben2015/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'4.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            红杉资本企业成员设计师招聘专场
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/job/idg2014/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'5.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            IDG资本企业成员设计师招聘专场
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a target="_blank" href="http://www.zcool.com.cn/special/job/xiaomi/">
-                    <span class="pic-box">
-                        <img title="" src="<?php echo Yii::getAlias('@web/upload/scene/').'6.jpg'; ?>">
-                    </span>
-                    <span class="text-box">
-                            小米设计师招聘专场
-                    </span>
-                </a>
-            </li>
+            <?php } ?>
         </ul>
     </div>
 </div>
 
 <div id="index_banner_botton">
-	<?= Html::a(General::showImg($adBottom->pic_url, 'o', $adBottom->title), ['/ad/link/ad-click', 'name'=>$adBottom->short_code], ['target'=>'_blank']) ?>
+	<?= Html::a(General::showImg($adBottom->pic_url, 'o', $adBottom->title, 'px', '1024', '95', 'w'), ['/ad/link/ad-click', 'name'=>$adBottom->short_code], ['target'=>'_blank']) ?>
 </div>
+

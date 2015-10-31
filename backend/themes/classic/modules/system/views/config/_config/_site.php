@@ -13,6 +13,7 @@ $model = $models['config_site_title_length'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_title_length</span>
 <?php } ?>
 
 <?php 
@@ -30,23 +31,7 @@ $model = $models['config_site_default_hits'];
 		</div>
     </div>
 </div>
-<?php } ?>
-
-<?php 
-if(isset($models['config_site_no_picture'])) { 
-$model = $models['config_site_no_picture'];
-?>
-<div class="form-group clearfix">
-    <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
-    <div class="col-md-10">
-        <div class="col-md-7">
-        	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
-        </div>
-        <div class="col-md-7">
-			<span class="help-block"><?= Yii::t('system', 'Example:')?> common/no_picture.png</span>
-		</div>
-    </div>
-</div>
+<span style="display: none;">config_site_default_hits</span>
 <?php } ?>
 
 <?php 
@@ -64,6 +49,7 @@ $model = $models['config_site_contact_phone'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_contact_phone</span>
 <?php } ?>
 
 <?php 
@@ -81,6 +67,7 @@ $model = $models['config_site_contact_tel'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_contact_tel</span>
 <?php } ?>
 
 <?php 
@@ -98,6 +85,7 @@ $model = $models['config_site_contact_qq'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_contact_qq</span>
 <?php } ?>
 
 <?php 
@@ -115,6 +103,7 @@ $model = $models['config_site_tongji_pc'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_tongji_pc</span>
 <?php } ?>
 
 <?php 
@@ -132,6 +121,7 @@ $model = $models['config_site_tongji_m'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_site_tongji_m</span>
 <?php } ?>
 
 

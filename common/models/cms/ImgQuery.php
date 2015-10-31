@@ -14,7 +14,7 @@ class ImgQuery extends \yii\db\ActiveQuery
 	 */
     public function active()
     {
-        $this->andWhere(['status'=>1,'deleted'=>0]);
+        $this->andWhere([Img::tableName().'.status'=>1,Img::tableName().'.deleted'=>0]);
         return $this;
     }
 	

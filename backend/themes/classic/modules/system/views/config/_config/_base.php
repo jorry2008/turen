@@ -1,6 +1,6 @@
 <?php 
-if(isset($models['config_site_name'])) { 
-$model = $models['config_site_name'];
+if(isset($models['config_base_name'])) { 
+$model = $models['config_base_name'];
 ?>
 <div class="form-group clearfix">
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
@@ -9,15 +9,34 @@ $model = $models['config_site_name'];
         	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
         </div>
         <div class="col-md-7">
-			<span class="help-block"><?=Yii::t('system', 'Example:')?> 土人官方网站</span>
+			<span class="help-block"><?=Yii::t('system', 'Example:')?> 土人开源系统官网</span>
 		</div>
     </div>
 </div>
+<span style="display: none;">config_base_name</span>
 <?php } ?>
 
 <?php 
-if(isset($models['config_site_owner'])) { 
-$model = $models['config_site_owner'];
+if(isset($models['config_base_company'])) { 
+$model = $models['config_base_company'];
+?>
+<div class="form-group clearfix">
+    <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
+    <div class="col-md-10">
+        <div class="col-md-7">
+        	<input type="text" name="Setting[<?= $model->key ?>]" value="<?= $model->value ?>" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5">
+        </div>
+        <div class="col-md-7">
+			<span class="help-block"><?=Yii::t('system', 'Example:')?> 聚万方科技有限公司</span>
+		</div>
+    </div>
+</div>
+<span style="display: none;">config_base_company</span>
+<?php } ?>
+
+<?php 
+if(isset($models['config_base_owner'])) { 
+$model = $models['config_base_owner'];
 ?>
 <div class="form-group clearfix">
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
@@ -30,11 +49,12 @@ $model = $models['config_site_owner'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_base_owner</span>
 <?php } ?>
 
 <?php 
-if(isset($models['config_address'])) { 
-$model = $models['config_address'];
+if(isset($models['config_base_address'])) { 
+$model = $models['config_base_address'];
 ?>
 <div class="form-group clearfix">
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
@@ -47,11 +67,12 @@ $model = $models['config_address'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_base_address</span>
 <?php } ?>
 
 <?php 
-if(isset($models['config_email'])) { 
-$model = $models['config_email'];
+if(isset($models['config_base_email'])) { 
+$model = $models['config_base_email'];
 ?>
 <div class="form-group clearfix">
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
@@ -64,11 +85,12 @@ $model = $models['config_email'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_base_email</span>
 <?php } ?>
 
 <?php 
-if(isset($models['config_tel'])) { 
-$model = $models['config_tel'];
+if(isset($models['config_base_tel'])) { 
+$model = $models['config_base_tel'];
 ?>
 <div class="form-group clearfix">
     <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
@@ -81,6 +103,7 @@ $model = $models['config_tel'];
 		</div>
     </div>
 </div>
+<span style="display: none;">config_base_tel</span>
 <?php } ?>
 
         
