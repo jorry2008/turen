@@ -386,11 +386,14 @@ ul.tit_tab li {
     padding: 8px 0 2px;
     text-align: center;
 }
-.ronsever2 .ros_m .ros_main .rosm_tel p {
-    line-height: 22px;
+.ronsever2 .ros_m .ros_main p {
     word-wrap: break-word;
+    margin: 0;
 }
-.ronsever2 .ros_m .ros_main .rosm_tel p b {
+.ronsever2 .ros_m .ros_main p.title {
+	margin: 8px 0;
+}
+.ronsever2 .ros_m .ros_main p b {
     color: #e10;
     font-size: 15px;
     letter-spacing: -0.5px;
@@ -401,12 +404,6 @@ ul.tit_tab li {
     padding-bottom: 3px;
     padding-top: 5px;
     text-align: center;
-}
-.ronsever2 .ros_m .ros_main .rosm_qq p {
-    font-size: 13px;
-    line-height: 22px;
-    padding-bottom: 5px;
-    word-wrap: break-word;
 }
 .ronsever2 .ros_m .ros_bottom {
     background-position: 0 -75px;

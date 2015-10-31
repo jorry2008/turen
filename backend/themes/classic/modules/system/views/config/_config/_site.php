@@ -89,6 +89,24 @@ $model = $models['config_site_contact_qq'];
 <?php } ?>
 
 <?php 
+if(isset($models['config_site_shouhou_qq'])) { 
+$model = $models['config_site_shouhou_qq'];
+?>
+<div class="form-group clearfix">
+    <label class="col-md-2 text-right form-label" for="<?= $model->key ?>"><?= $model->name ?></label>
+    <div class="col-md-10">
+        <div class="col-md-7">
+        	<textarea rows="" cols="" name="Setting[<?= $model->key ?>]" placeholder="" id="<?= $model->key ?>" class="form-control col-md-5"><?= $model->value ?></textarea>
+        </div>
+        <div class="col-md-7">
+			<span class="help-block"><?= Yii::t('system', 'Example:')?> 980522557/980522557,9898989898</span>
+		</div>
+    </div>
+</div>
+<span style="display: none;">config_site_shouhou_qq</span>
+<?php } ?>
+
+<?php 
 if(isset($models['config_site_tongji_pc'])) { 
 $model = $models['config_site_tongji_pc'];
 ?>

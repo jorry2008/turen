@@ -51,17 +51,12 @@ class HomeController extends \frontend\components\Controller
 			}
 		])->active()->all();//搬家现场推荐
     	
-//     	$links = '';
-// 		$subNav = '';
-    	
     	return $this->render('index', [
     		'columns' => $columns,//推荐栏目到首页
     		'about' => $about,
     		'mainAdType' => $mainAdType,
     		'adBottom' => $adBottom,
     		'scenes' => $scenes,
-//     		'links' => $links,
-//     		'subNav' => $subNav,
     	]);
     }
 
@@ -81,10 +76,5 @@ class HomeController extends \frontend\components\Controller
                 'model' => $model,
             ]);
         }
-    }
-
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

@@ -206,7 +206,7 @@ class General
     {
     	$url = [];
     	if(empty($link)) {
-    		return $url;
+    		return '#';
     	} else {
     		$str = substr($link, strpos($link, '?')+1);
     		if(empty($str)) return $url;

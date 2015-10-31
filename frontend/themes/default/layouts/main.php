@@ -18,6 +18,7 @@ AppAsset::register($this);
 
 //使用插件
 $this->registerJs("
+	//返回顶部
 	$('.back_top').toTop({
 		autohide: true,  //boolean 'true' or 'false'
 		offset: 200,     //numeric value (as pixels) for scrolling length from top to hide automatically
@@ -27,6 +28,7 @@ $this->registerJs("
 		bottom: 100       //numeric value (as pixels) for position from bottom. It will work only if the 'position' is set 'true'
 	});
 	
+	//弹出窗口
 	$('.header_top_left a').click(function(){
 		//if(jQuery.browser.msie && ($.browser.version == \"8.0\" || $.browser.version == \"7.0\"))
 		swal({
@@ -66,7 +68,9 @@ $this->registerJs("
 <body id="<?= Yii::$app->controller->id ?>-<?= Yii::$app->controller->action->id ?>">
     <?php $this->beginBody() ?>
     <div id="header">
-    	<div id="code_pic"><img src="<?php echo Yii::getAlias('@web/images/')?>code.png" /></div>
+    	<div id="code_pic">
+    		<img width="128px;" src="<?= Yii::$app->params['config']['config_pic_url'].'/upload/common/code.png' ?>" />
+    	</div>
     	
 	    <div class="header_top">
 		    <div class="header_top_center">
@@ -114,8 +118,7 @@ $this->registerJs("
 		    		foreach ($mainMenu as $key=>$menu) {
 		    			$items[$key]['label'] = $menu->name;
 		    			//这里要作url解析
-		    			$url = General::parseUrl($menu->link_url);
-		    			$items[$key]['url'] = empty($menu->re_link_url)?$url:$menu->re_link_url;
+		    			$items[$key]['url'] = empty($menu->re_link_url)?General::parseUrl($menu->link_url):$menu->re_link_url;
 		    		}
 		    		$items = ArrayHelper::merge([['label'=>'首页', 'url'=>['/site/home/index']]], $items);//Yii::$app->homeUrl
 					echo Menu::widget([
@@ -194,24 +197,19 @@ $this->registerJs("
 		<div class="footer_bottom_container">
 		    <div class="fbc_menu">
 		        <ul>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
+		        <?php 
+		        $subMenus = (new Nav)->TgetNav('sub-main');
+		        $count = count($subMenus);fb($count);
+		        foreach ($subMenus as $key=>$menu) {
+		        	$url = empty($menu->re_link_url)?General::parseUrl($menu->link_url):$menu->re_link_url;
+		        ?>
+		        	<li>
+		        	<?= Html::a($menu->name, $url) ?>
+		        	<?= ($count == ($key+1))?'':'<span></span>' ?>
 		            </li>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
-		            </li>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
-		            </li>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
-		            </li>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a><span></span>
-		            </li>
-		            <li>
-		                <a rel="nofollow" target="_blank" href="http://www.to8to.com/about/index.html">关于我们</a>
-		            </li>
+		        <?php 
+		        }
+		        ?>
 		        </ul>
 		    </div>
 		</div>
@@ -240,12 +238,46 @@ $this->registerJs("
 	        <div class="ros_top"></div>
 	        <div class="ros_main">
 	            <div class="rosm_tel">
-	                <p>服务热线</p>
-	                <p><b>400-800-0011</b></p>
+	                <p class="title">服务热线</p>
+	                <p>
+	                	<?php 
+	                	$tels = Yii::$app->params['config']['config_site_contact_tel'];
+	                	if(!empty($tels)) {
+	                		$tels = explode(',', $tels);
+	                		foreach ($tels as $tel) {
+	                			echo '<b>'.$tel.'</b><br />';
+	                		}
+	                	}
+	                	?>
+	                </p>
 	            </div>
+	            
+	            <?php $url = Yii::$app->params['config']['config_pic_url']; ?>
 	            <div class="rosm_qq">
-	                <p>业务咨询</p>
-	                <p>售后服务</p>
+	                <p class="title">业务咨询</p>
+	                <p>
+	                	<?php 
+	                	$qqs = Yii::$app->params['config']['config_site_contact_qq'];
+	                	if(!empty($qqs)) {
+	                		$qqs = explode(',', $qqs);
+	                		foreach ($qqs as $qq) {
+	                			echo Html::a(Html::img($url.'/upload/common/qq_online.gif', ['alt'=>'在线咨询', 'title'=>'在线咨询']), 'http://wpa.qq.com/msgrd?v=3&uin='.$qq.'&site=qq&menu=yes', ['target'=>'_blank']);
+	                		}
+	                	}
+	                	?>
+	                </p>
+	                <p class="title">售后服务</p>
+	                <p>
+	                	<?php 
+	                	$qqs = Yii::$app->params['config']['config_site_shouhou_qq'];
+	                	if(!empty($qqs)) {
+	                		$qqs = explode(',', $qqs);
+	                		foreach ($qqs as $qq) {
+	                			echo Html::a(Html::img($url.'/upload/common/qq_online.gif', ['alt'=>'在线咨询', 'title'=>'在线咨询']), 'http://wpa.qq.com/msgrd?v=3&uin='.$qq.'&site=qq&menu=yes', ['target'=>'_blank']);
+	                		}
+	                	}
+	                	?>
+	                </p>
 	            </div>
 	        </div>
 	        <div class="ros_bottom"></div>

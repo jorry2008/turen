@@ -119,7 +119,7 @@ $this->registerJs("
 		    <div class="sec_topr_form index_form">
 		        <div class="form_hd">
 		            <p class="mar-t0">
-		                10秒预约，咨询报价，获得免费电话回拨，或者直接拨打热线电话：<span style="color: #f25618; font-weight: bold; font-size: 18px;">13725514524</span>
+		                10秒预约，咨询报价，获得免费电话回拨，或者直接拨打热线电话：<span style="color: #f25618; font-weight: bold; font-size: 18px;"><?= Yii::$app->params['config']['config_site_contact_phone'] ?></span>
 		            </p>
 		        </div>
 		        <div class="form_line">
