@@ -103,14 +103,19 @@ $this->registerJs("
 
 <div class="quick_order">
 	<div class="button clearfix">
-	    <a class="yellow_button mar-r15" target="_blank" href="###">
+	    <a class="yellow_button mar-r15" href="javascript:;">
 	        <i class="fa fa-paw icon_fg"></i>
 	        <font>专业人才加盟</font>
 	    </a>
-	    <a class="yellow_button" target="_blank" href="###">
-	        <i class="fa fa-qq icon_fg"></i>
-	        <font>呼叫客服小妹</font>
-	    </a>
+	    <?php 
+		$qqs = Yii::$app->params['config']['config_site_contact_qq'];
+		if(!empty($qqs)) {
+        	$qqs = explode(',', $qqs);
+			foreach ($qqs as $qq) {
+				echo Html::a('<i class="fa fa-qq icon_fg"></i><font>呼叫客服小妹</font>', 'http://wpa.qq.com/msgrd?v=3&uin='.$qq.'&site=qq&menu=yes', ['class'=>'yellow_button', 'target'=>'_blank']);
+				break;
+			}
+		} ?>
     </div>
     
     <div class="order mar-t11">
@@ -141,7 +146,7 @@ $this->registerJs("
 	
 	<ul class="index_zxlc_list clearfix">
 	    <li class="first">
-	        <a rel="nofollow" href="http://sz.to8to.com/zb/index6.html">
+	        <a rel="nofollow" href="javascript:;">
 	            <i class="index_zxlc_ico1">
 	            </i>
 	            <span>
@@ -150,7 +155,7 @@ $this->registerJs("
 	        </a>
 	    </li>
 	    <li>
-	        <a rel="nofollow" href="http://sz.to8to.com/zb/">
+	        <a rel="nofollow" href="javascript:;">
 	            <i class="index_zxlc_ico4">
 	            </i>
 	            <span>
@@ -159,7 +164,7 @@ $this->registerJs("
 	        </a>
 	    </li>
 	    <li>
-	        <a rel="nofollow" href="http://mall.to8to.com/">
+	        <a rel="nofollow" href="javascript:;">
 	            <i class="index_zxlc_ico5">
 	            </i>
 	            <span>
@@ -168,7 +173,7 @@ $this->registerJs("
 	        </a>
 	    </li>
 	    <li>
-	        <a rel="nofollow" href="http://www.to8to.com/riji/">
+	        <a rel="nofollow" href="javascript:;">
 	            <i class="index_zxlc_ico6">
 	            </i>
 	            <span>
@@ -177,7 +182,7 @@ $this->registerJs("
 	        </a>
 	    </li>
 	    <li class="last">
-	        <a rel="nofollow" href="http://www.to8to.com/company/zxb.php">
+	        <a rel="nofollow" href="javascript:;">
 	            <i class="index_zxlc_ico7">
 	            </i>
 	            <span>

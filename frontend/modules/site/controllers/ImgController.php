@@ -2,8 +2,11 @@
 
 namespace frontend\modules\site\controllers;
 
+use Yii;
 use common\models\cms\Column;
-use common\models\cms\Post;
+use common\models\cms\Img;
+use yii\data\ActiveDataProvider;
+use yii\web\NotFoundHttpException;
 
 class ImgController extends \frontend\components\Controller
 {
@@ -14,10 +17,23 @@ class ImgController extends \frontend\components\Controller
 	 */
 	public function actionList()
 	{
-		$column = Column::findOne(['short_code'=>'news']);
+		$column = Column::findOne(['short_code' => Yii::$app->getRequest()->get('name', '')]);
+		if(empty($column)) {
+			throw new NotFoundHttpException('The requested page does not exist.');
+		}
+		
+		//检索与分页
+		$query = $column->getImg()->orderBy('publish_at DESC');
+		$dataProvider = new ActiveDataProvider([
+			'query' => $query,
+			'pagination' => [
+				'pageSize' => Yii::$app->params['config']['config_site_default_page_size'],
+			],
+		]);
+		
 		return $this->render('list', [
 			'columnModel' => $column,
-			'postmodels' => $column->getPost()->orderBy('publish_at DESC')->all(),
+			'dataProvider' => $dataProvider
 		]);
 	}
 	
@@ -41,7 +57,7 @@ class ImgController extends \frontend\components\Controller
      */
     protected function findModel($id)
     {
-    	if (($model = Post::findOne($id)) !== null) {
+    	if (($model = Img::findOne($id)) !== null) {
     		return $model;
     	} else {
     		throw new NotFoundHttpException('The requested page does not exist.');

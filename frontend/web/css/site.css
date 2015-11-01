@@ -121,9 +121,10 @@
 }
 #side-page .box_content ul a {
 	display: block;
-	height: 32px;
-	line-height: 32px;
+	height: 30px;
+	line-height: 30px;
 	padding-left: 15px;
+	border-bottom: 1px solid #fff;
 }
 #side-page .box_content ul li.on a, #side-page .box_content ul li a:hover {
 	background: #e8e8e8;
@@ -141,17 +142,89 @@
 	padding-left: 5px;
 }
 
-/* 侧边栏 ,图片 */
 
-
-
-
-
-
-
-
-
-
+/* 中部主体内容 */
+.con-title {
+	margin-top: 0;
+}
+.list-view .list {
+	border-bottom: 1px dotted #e8e8e8;
+    height: 102px;
+    overflow: hidden;
+    padding: 30px 0 30px 156px;
+}
+.list-view .list .img {
+    display: block;
+    float: left;
+    margin-left: -156px;
+}
+.list-view .list .img img {
+	vertical-align: top;
+}
+.list-view .list .list_detail {
+    color: #999;
+}
+.list-view .list .title {
+    display: block;
+    font-size: 20px;
+    line-height: 22px;
+    margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #333;
+}
+.list-view .list a.title:hover {
+	color: #f25618;
+}
+.list-view .list .cont a {
+    color: #fea201;
+}
+.list-view .list .ft {
+    font-family: Arial;
+    margin-top: 16px;
+    padding-right: 5px;
+}
+.list-view .list .ft .date {
+    border-right: 1px solid #eee;
+    display: inline-block;
+    height: 15px;
+    line-height: 15px;
+    margin-right: 15px;
+    padding-right: 15px;
+}
+.list-view .pagination {
+	clear: both;
+    padding-top: 60px;
+    text-align: center;
+    padding: 0;
+}
+.list-view .pagination li {
+	display: inline-block;
+	width: 28px;
+    margin: 0 0 0 -1px;
+    background-color: #fff;
+    border: 1px solid #eee;
+    color: #999;
+    vertical-align: middle;
+}
+.list-view .pagination li.first, .list-view .pagination li.last {
+	width: 50px;
+}
+.list-view .pagination li.prev, .list-view .pagination li.next {
+	width: 66px;
+}
+.list-view .pagination li a, .list-view .pagination li span {
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	color: #999;
+}
+.list-view .pagination li.active a,.list-view .pagination li a:hover {
+	background: #33c182;
+	margin: -1px;
+	color: #fff;
+}
 
 
 

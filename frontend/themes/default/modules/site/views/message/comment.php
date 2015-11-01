@@ -1,16 +1,15 @@
 <?php
 use yii\helpers\Html;
-
 /* @var $this yii\web\View */
 
-$this->title = '在线预约';
+$this->title = '在线留言';
 // $this->params['breadcrumbs'][] = ['label' => '', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="side">
-	<?php // Html::a('立即预约', ['/site/order/online-call'], ['class'=>'btn_yuyue', 'rel'=>'nofollow']) ?>
-	<?= Html::a('给我们留言', ['/site/message/comment'], ['class'=>'btn_liuyan', 'rel'=>'nofollow']) ?>
+	<?= Html::a('立即预约', ['/site/order/online-call'], ['class'=>'btn_yuyue', 'rel'=>'nofollow']) ?>
+	<?php // Html::a('给我们留言', ['/site/message/comment'], ['class'=>'btn_liuyan', 'rel'=>'nofollow']) ?>
 
 	<?php // \frontend\widgets\SidePostTop::widget(['title'=>'关注最多', 'short_code'=>'', 'type'=>'v', 'num'=>8]) ?>
 	
@@ -23,9 +22,3 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="main">
 	<h2 class="con-title" style="text-align: center;"><?= $this->title ?></h2>
 </div>
-
-
-
-
-
-

@@ -80,22 +80,15 @@ return [
     	],
     		
     	// 多语言配置【前台关闭多语言】
-//     	'i18n' => [
-//     		'translations' => [
-//     			'*' => [ // 界面翻译
-//     				'class' => 'yii\i18n\PhpMessageSource',
-//     				'sourceLanguage' => 'zh-CN',
-//     				'basePath' => '@app/messages',
-// //     				'fileMap' => [ // 简单的映射
-// //     					'common' => 'common.php',
-// //     					'site' => 'site.php',
-// //     					'account' => 'account.php',
-// //     					'customer' => 'customer.php',
-// //     					'user' => 'user.php',
-// //     				]
-//     			],
-//     		]
-//     	],
+    	'i18n' => [
+    		'translations' => [
+    			'*' => [ // 界面翻译
+    				'class' => 'yii\i18n\PhpMessageSource',
+    				'sourceLanguage' => 'zh-CN',
+    				'basePath' => '@app/messages',
+    			],
+    		]
+    	],
     	
     	//url规则管理
     	'urlManager' => [

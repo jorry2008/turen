@@ -2,8 +2,11 @@
 
 namespace frontend\modules\site\controllers;
 
+use Yii;
 use common\models\cms\Column;
 use common\models\cms\Post;
+// use common\models\cms\PostSearch;
+use yii\data\ActiveDataProvider;
 
 class PostController extends \frontend\components\Controller
 {
@@ -14,10 +17,25 @@ class PostController extends \frontend\components\Controller
 	 */
 	public function actionList()
 	{
-		$column = Column::findOne(['short_code'=>'news']);
+		$column = Column::findOne(['short_code' => Yii::$app->getRequest()->get('name', '')]);
+		if(empty($column)) {
+			throw new NotFoundHttpException('The requested page does not exist.');
+		}
+		
+		//检索与分页
+// 		$searchModel = new PostSearch();
+// 		$dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+		$query = $column->getPost()->orderBy('publish_at DESC');
+		$dataProvider = new ActiveDataProvider([
+			'query' => $query,
+			'pagination' => [
+				'pageSize' => Yii::$app->params['config']['config_site_default_page_size'],
+			],
+		]);
+		
 		return $this->render('list', [
 			'columnModel' => $column,
-			'postmodels' => $column->getPost()->orderBy('publish_at DESC')->all(),
+			'dataProvider' => $dataProvider
 		]);
 	}
 	

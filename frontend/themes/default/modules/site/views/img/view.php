@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 /* @var $this yii\web\View */
 
 $this->title = $model->title;
@@ -7,31 +8,18 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <div class="side">
-	<a class="btn_yuyue" rel="nofollow" href="javascript:;">立即预约</a>
-	<a class="btn_liuyan" rel="nofollow" href="javascript:;">给我们留言</a>
+	<?= Html::a('立即预约', ['/site/order/online-call'], ['class'=>'btn_yuyue', 'rel'=>'nofollow']) ?>
+	<?= Html::a('给我们留言', ['/site/message/comment'], ['class'=>'btn_liuyan', 'rel'=>'nofollow']) ?>
 	
-	<div class="side_box">
-	    <div class="list_page">
-	    	<ul>
-	    		<li>title1</li>
-	    		<li>title2</li>
-	    	</ul>
-	    </div>
-	</div>
+	<?= \frontend\widgets\SideCurrentTop::widget(['title'=>'相关话题', 'type'=>'v', 'num'=>6]) ?>
 	
-	<div class="side_box">
-	    <h3 class="box_title">热门文章</h3>
-	    <div class="box_content">
-	    	content
-	    </div>
-	</div>
+	<?= \frontend\widgets\SideImgTop::widget(['title'=>'特荐现场', 'short_code'=>'', 'type'=>'a', 'num'=>6]) ?>
 	
+	<?= \frontend\widgets\SideFragment::widget(['short_code'=>'contact_us']) ?>
 </div>
 
-
-
 <div class="main">
-	<h2 style="text-align: center;"><?= $this->title ?></h2>
+	<h2 class="con-title" style="text-align: center;"><?= $this->title ?></h2>
 	<?= $model->content ?>
 </div>
 

@@ -4,9 +4,19 @@ namespace frontend\modules\site\controllers;
 
 class MessageController extends \frontend\components\Controller
 {
-    public function actionSend()
+	/**
+	 * 联系我们
+	 */
+    public function actionContact()
     {
-        return $this->render('send');
+        return $this->render('contact');
     }
 
+    /**
+     * 给我留言
+     */
+    public function actionComment()
+    {
+    	return $this->render('comment');
+    }
 }

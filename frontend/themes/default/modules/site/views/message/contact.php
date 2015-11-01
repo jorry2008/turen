@@ -1,38 +1,47 @@
 <?php
-use yii\helpers\Html;
-use yii\bootstrap\ActiveForm;
-use yii\captcha\Captcha;
 
 /* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \frontend\models\ContactForm */
 
-$this->title = 'Contact';
+$this->title = '联系我们';
+// $this->params['breadcrumbs'][] = ['label' => '', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
-    <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        If you have business inquiries or other questions, please fill out the following form to contact us. Thank you.
-    </p>
+<div class="side">
+	<?= Html::a('立即预约', ['/site/order/online-call'], ['class'=>'btn_yuyue', 'rel'=>'nofollow']) ?>
+	<?= Html::a('给我们留言', ['/site/message/comment'], ['class'=>'btn_liuyan', 'rel'=>'nofollow']) ?>
 
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
-                <?= $form->field($model, 'name') ?>
-                <?= $form->field($model, 'email') ?>
-                <?= $form->field($model, 'subject') ?>
-                <?= $form->field($model, 'body')->textArea(['rows' => 6]) ?>
-                <?= $form->field($model, 'verifyCode')->widget(Captcha::className(), [
+	<?php // \frontend\widgets\SidePostTop::widget(['title'=>'关注最多', 'short_code'=>'', 'type'=>'v', 'num'=>8]) ?>
+	
+	<?= \frontend\widgets\SideImgTop::widget(['title'=>'特荐现场', 'short_code'=>'', 'type'=>'a', 'num'=>6]) ?>
+	
+	<?= \frontend\widgets\SideFragment::widget(['short_code'=>'contact_us']) ?>
+	
+</div>
+
+<div class="main">
+	<h2 class="con-title" style="text-align: center;"><?= $this->title ?></h2>
+	
+	
+</div>
+
+
+
+
+<?php // $form = ActiveForm::begin(['id' => 'contact-form']); ?>
+                <?php // $form->field($model, 'name') ?>
+                <?php // $form->field($model, 'email') ?>
+                <?php // $form->field($model, 'subject') ?>
+                <?php // $form->field($model, 'body')->textArea(['rows' => 6]) ?>
+                <?php 
+                /*
+                $form->field($model, 'verifyCode')->widget(Captcha::className(), [
                 	'captchaAction' => '/site/home/captcha',
                     'template' => '{image}{input}',
-                ]) ?>
-                <div class="form-group">
-                    <?= Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
-                </div>
-            <?php ActiveForm::end(); ?>
-        </div>
-    </div>
-
-</div>
+                ])
+                */
+                ?>
+                    <?php // Html::submitButton('Submit', ['class' => 'btn btn-primary', 'name' => 'contact-button']) ?>
+            <?php // ActiveForm::end(); ?>
+            
+            
