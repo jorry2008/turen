@@ -5,7 +5,7 @@ namespace frontend\modules\site\controllers;
 use common\models\cms\Column;
 use common\models\cms\Post;
 
-class PicController extends \frontend\components\Controller
+class ImgController extends \frontend\components\Controller
 {
 	/**
 	 * 新闻列表

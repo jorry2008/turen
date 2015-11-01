@@ -33,7 +33,7 @@ class BrandController extends Controller
                 'class' => 'backend\components\uploadify\UploadifyAction',
             ],
             'ueditor' => [
-                'class' => 'backend\components\ueditor\UeditorAction',
+                'class' => \backend\components\ueditor\UeditorAction::className(),
             ]
         ];
     }

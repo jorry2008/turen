@@ -22,14 +22,14 @@ class SideAd extends \yii\base\Widget
 
 	public $width = 0;
 	public $height = 0;
-	public $code = '';
+	public $short_code = '';
 	
 	//初始化
     public function init()
     {
         parent::init();
         
-        if(empty($this->width) || (empty($this->height) && empty($this->code))) {
+        if(empty($this->width) || (empty($this->height) && empty($this->short_code))) {
         	throw new InvalidConfigException('SideAd config is error.');
         }
     }
@@ -38,7 +38,7 @@ class SideAd extends \yii\base\Widget
     public function run()
     {
     	$uploadPath = Yii::getAlias('@backend').'/web/upload';
-    	$model = Ad::findOne(['short_code'=>$this->code]);
+    	$model = Ad::findOne(['short_code'=>$this->short_code]);
     	if($model && is_file($uploadPath.'/'.$model->pic_url)) {
     		list($width, $height, $type, $attr) = getimagesize($uploadPath.'/'.$model->pic_url);
     		if($this->height && $this->width) {

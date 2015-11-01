@@ -20,14 +20,14 @@ class CommentController extends Controller
 	{
 		return [
 			'switch-status' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Comment::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'status',
 // 				'route' => '/extend/nav/index',
 			],
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Comment::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',

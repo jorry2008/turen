@@ -12,6 +12,7 @@ use common\models\cms\Column;
 class SidePage extends \yii\base\Widget
 {
 	public $parent_short_code = '';
+	public $title = '相关页面';
 	
 	//初始化
     public function init()
@@ -26,15 +27,12 @@ class SidePage extends \yii\base\Widget
     public function run()
     {
     	$model = Column::findOne(['short_code'=>$this->parent_short_code]);
-    	$columns = $model->multiSelf;
+    	$columns = $model->multiSelf;//取子列表，仅一层
     	if($columns) {
-    		$title = '相关页面';
     		return $this->render('side-page', [
-    			'title'=>$title,
+    			'title' => $this->title,
     			'models' => $columns,
     		]);
-    	} else {
-    		return '';
     	}
     }
 }

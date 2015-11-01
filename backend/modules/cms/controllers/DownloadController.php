@@ -23,17 +23,17 @@ class DownloadController extends Controller
     			'class' => 'backend\components\FileUploadAction',
     		],
 			'ueditor' => [
-				'class' => 'backend\components\ueditor\UeditorAction',
+				'class' => \backend\components\ueditor\UeditorAction::className(),
 			],
 			'switch-status' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Download::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'status',
 //     			'route' => '/cms/column/index',
 			],
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Download::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',

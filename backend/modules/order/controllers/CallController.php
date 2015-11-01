@@ -20,7 +20,7 @@ class CallController extends Controller
 	{
 		return [
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Call::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',

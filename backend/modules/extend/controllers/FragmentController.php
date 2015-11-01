@@ -19,15 +19,21 @@ class FragmentController extends Controller
 	public function actions()
 	{
 		return [
+			'file-upload' => [
+				'class' => \backend\components\FileUploadAction::className(),
+			],
+			'ueditor' => [
+				'class' => \backend\components\ueditor\UeditorAction::className(),
+			],
 			'switch-status' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Fragment::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'status',
 // 				'route' => '/extend/nav/index',
 			],
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Fragment::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',

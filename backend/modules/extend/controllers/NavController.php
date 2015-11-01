@@ -29,14 +29,14 @@ class NavController extends Controller
 				'class' => 'backend\components\FileUploadAction',
 			],
 			'switch-status' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Nav::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'status',
 // 				'route' => '/extend/nav/index',
 			],
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Nav::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',

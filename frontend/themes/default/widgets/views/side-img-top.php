@@ -13,7 +13,7 @@ use yii\helpers\Html;
     	<ul>
 	    	<?php 
 	    	foreach ($models as $model) {
-	    		echo '<li><i class="list_i"></i>'.Html::a(StringHelper::truncate($model->title, $length), ['/site/'.$type.'/view', 'id'=>$model->id]).'</li>';
+	    		echo '<li><i class="list_i"></i>'.Html::a(StringHelper::truncate($model->title, $length), ['/site/post/view', 'id'=>$model->id]).'</li>';
 	    	}
 	    	?>
     	</ul>

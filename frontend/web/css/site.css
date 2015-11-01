@@ -65,6 +65,7 @@
     color: #018d50;
 }
 
+/* 侧边栏通用部分 */
 .side_box {
     border: 1px solid #e8e8e8;
     margin-bottom: 20px;
@@ -83,11 +84,69 @@
     padding-left: 6px;
     padding-top: 10px;
 }
+.side_box ul {
+	margin: 0;
+	padding: 0;
+	margin-left: -15px;
+	margin-right: -15px;
+}
+.side_box .list_i {
+	background: url(../images/icon.png) no-repeat scroll -34px -17px;
+    display: inline-block;
+    vertical-align: middle;
+    display: inline-block;
+    height: 4px;
+    vertical-align: middle;
+    width: 4px;
+}
+.side_box ul a {
+	color: #333;
+}
+.side_box ul a:hover {
+	color: #f25618;
+}
 
-.side_box .list_page ul {
+
+/* 侧边栏 ,单页面 */
+#side-page .box_content {
 	margin: 0;
 	padding: 0;
 }
+#side-page .box_content ul li {
+	margin: 0;
+	padding: 0;
+}
+#side-page .box_content ul {
+	margin-top: 10px;
+}
+#side-page .box_content ul a {
+	display: block;
+	height: 32px;
+	line-height: 32px;
+	padding-left: 15px;
+}
+#side-page .box_content ul li.on a, #side-page .box_content ul li a:hover {
+	background: #e8e8e8;
+	color: #f25618;
+}
+
+/* 侧边栏 ,文章 图片 */
+.side_box .box_content ul li {
+    line-height: 16px;
+    padding-left: 12px;
+    padding-top: 10px;
+    white-space: nowrap;
+}
+.side_box .box_content ul li a {
+	padding-left: 5px;
+}
+
+/* 侧边栏 ,图片 */
+
+
+
+
+
 
 
 

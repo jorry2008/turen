@@ -14,7 +14,7 @@ class PostQuery extends \yii\db\ActiveQuery
 	 */
     public function active()
     {
-        $this->andWhere(['status'=>1,'deleted'=>0]);//双[[]]表示and
+        $this->andWhere([Post::tableName().'.status'=>1,Post::tableName().'.deleted'=>0]);//双[[]]表示and
         return $this;
     }
     

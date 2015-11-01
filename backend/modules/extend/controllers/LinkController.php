@@ -20,17 +20,17 @@ class LinkController extends Controller
 	{
 		return [
 			'file-upload' => [
-				'class' => 'backend\components\FileUploadAction',
+				'class' => \backend\components\FileUploadAction::className(),
 			],
 			'switch-status' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Link::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'status',
 // 				'route' => '/extend/nav/index',
 			],
 			'delete' => [
-				'class' => 'backend\components\SwitchAction',
+				'class' => \backend\components\SwitchAction::className(),
 				'className' => Link::className(),
 				'id' => Yii::$app->getRequest()->get('id'),
 				'feild' => 'deleted',
